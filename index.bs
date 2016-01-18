@@ -1,0 +1,47 @@
+<h1>Open Register Core</h1>
+<pre class="metadata">
+Status: ED
+ED: https://openregister.github.io/specificaton/
+Shortname: openregister-core
+Level: 1
+Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-office.gov.uk
+Group: registers
+Indent: 2
+Abstract:
+  This document defines the resources and representations which together
+  provide an Application Programming Interface (API) for linking to
+  data held in a register.
+
+Version History: https://github.com/openregister/specification/gh-pages/index.bs
+!Bug Reports: <a href="https://github.com/openregister/specification/issues/new">via the openregister/specification repository on GitHub</a>
+</pre>
+
+<!-- Big Text: Intro -->
+<section>
+  <h2 id="intro">Introduction</h2>
+
+  An introduction to registers .. [[RFC6962]]
+
+</section>
+
+<pre class="anchors">
+urlPrefix: http://www.w3.org/TR/html5/
+  type: interface
+    urlPrefix: webappapis.html
+      text: NavigatorPlugins
+</pre>
+
+<pre class="link-defaults">
+spec:html5; type:element; text:script
+</pre>
+
+<pre class="biblio">
+{
+  "RFC6962": {
+      "href": "https://tools.ietf.org/html/rfc6962",
+      "title": "Certificate Transparency",
+      "publisher": "IETF",
+      "authors": [ "B. Laurie", "A. Langley", "E. Kasper" ]
+  }
+}
+</pre>
