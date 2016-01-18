@@ -1,10 +1,11 @@
-<h1>Open Register Core</h1>
+<h1>Register Core</h1>
 <pre class="metadata">
 Status: ED
 ED: https://openregister.github.io/specificaton/
 Shortname: openregister-core
 Level: 1
 Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-office.gov.uk
+Editor: Daniel Appelquist, Government Digital Service, daniel.appelquist@digital.cabinet-office.gov.uk
 Group: registers
 Indent: 2
 Abstract:
@@ -15,6 +16,13 @@ Abstract:
 Version History: https://github.com/openregister/specification/gh-pages/index.bs
 !Bug Reports: <a href="https://github.com/openregister/specification/issues/new">via the openregister/specification repository on GitHub</a>
 </pre>
+
+<div boilerplate=copyright>
+<p>
+  This document is <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  released under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>.
+</p>
+</div>
 
 <!-- Big Text: Intro -->
 <section>
