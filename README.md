@@ -6,6 +6,10 @@
 
 Note this repository doesn't have a master branch, the default is the gh-pages branch.
 
+# Bikeshed
+
+The specification is made using [Bikeshed](https://github.com/tabatkins/bikeshed).
+
 # Building
 
 Use make to build a local copy of the register data
