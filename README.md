@@ -1,6 +1,6 @@
 # Open Registers Specifications
 
-<https://openregistry.github.io/specification/>
+<https://openregister.github.io/specification/>
 
 # Default branch
 
