@@ -2,6 +2,10 @@
 
 <https://openregistry.github.io/specification/>
 
+# Default branch
+
+Note this repository doesn't have a master branch, the default is the gh-pages branch.
+
 # Building
 
 Use make to build a local copy of the register data
