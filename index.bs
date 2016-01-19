@@ -1,7 +1,7 @@
 <h1>Register Core</h1>
 <pre class="metadata">
 Status: ED
-ED: https://openregister.github.io/specificaton/
+ED: https://openregister.github.io/specification/
 Shortname: openregister-core
 Level: 1
 Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-office.gov.uk
@@ -13,7 +13,7 @@ Abstract:
   provide an Application Programming Interface (API) for linking to
   data held in a register.
 
-Version History: https://github.com/openregister/specification/gh-pages/index.bs
+Version History: https://github.com/openregister/specification/commits/gh-pages/index.bs
 !Bug Reports: <a href="https://github.com/openregister/specification/issues/new">via the openregister/specification repository on GitHub</a>
 </pre>
 
