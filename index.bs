@@ -28,9 +28,77 @@ Version History: https://github.com/openregister/specification/gh-pages/index.bs
 <section>
   <h2 id="intro">Introduction</h2>
 
-  An introduction to registers .. [[RFC6962]]
+  An introduction to registers .. 
 
 </section>
+
+<!-- Big Text: Resources -->
+<section>
+  <h2 id="resources">Resources</h2>
+
+  * Item
+  * Entry
+  * Register
+  * Record
+  * Proof
+
+</section>
+
+
+<!-- Big Text: Datatypes -->
+<section>
+  <h2 id="datatypes">Datatypes</h2>
+
+  * string [[UNICODE]] [[UTF-8]]
+  * datetime [[ISO8601]]
+  * curie [[CURIE]]
+  * URL [[URI]]
+  * point [[GEOJSON]]
+  * multipolygon [[GEOJSON]]
+  * text [[MARKDOWN]]
+
+</section>
+
+<!-- Big Text: Representations -->
+<section>
+  <h2 id="resources">Resources</h2>
+
+  * [[HTML5]]
+  * [[JSON]] 
+  * [[YAML]] 
+  * [[CSVW-UCR]]
+  * [[IANA-TSV]]
+  * [[TURTLE]]
+
+</section>
+
+<!-- Big Text: Core Registers -->
+<section>
+  <h2 id="core-registers">Core Registers</h2>
+
+  * register Register
+  * field Register
+  * datatype Register
+
+</section>
+
+<!-- Big Text: Dereferencing a CURIE value -->
+<section>
+  <h2 id="curie-dereferencing">Dereferencing a CURIE value</h2>
+
+  * [[CURIE]]
+
+</section>
+
+
+<!-- Big Text: Proving the integrity of a register -->
+<section>
+  <h2 id="proof">Proving the integrity of a register</h2>
+
+  * [[RFC6962]]
+
+</section>
+
 
 <pre class="anchors">
 urlPrefix: http://www.w3.org/TR/html5/
@@ -50,6 +118,12 @@ spec:html5; type:element; text:script
       "title": "Certificate Transparency",
       "publisher": "IETF",
       "authors": [ "B. Laurie", "A. Langley", "E. Kasper" ]
+  },
+  "GEOJSON": {
+      "href": "https://tools.ietf.org/html/draft-ietf-geojson-00",
+      "title": "The GeoJSON Format",
+      "publisher": "IETF",
+      "authors": [ "H. Butler", "M. Daly", "A. Doyle", "S. Gillies", "T. Schaub", "S. Hagen" ]
   }
 }
 </pre>
