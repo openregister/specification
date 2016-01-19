@@ -1,4 +1,4 @@
-<h1>Register Core</h1>
+<h1>Registers</h1>
 <pre class="metadata">
 Logo: https://assets.digital.cabinet-office.gov.uk/static/images/gov.uk_logotype_crown.png
 Status: ED
@@ -33,64 +33,21 @@ path: includes/copyright.bs
 
 </section>
 
-<section>
-  <h2 id="field">Field</h2>
-</section>
+<section><h2 id="entity-resources">Entity resources</h2>
 
-<section>
-  <h2 id="item">Item</h2>
-</section>
-
-<section>
-  <h2 id="datatypes">Datatypes</h2>
-
-  * string [[UNICODE]] [[UTF-8]]
-  * integer
-  * datetime [[ISO8601]]
-  * curie [[CURIE]]
-  * URL [[URI]]
-  * point [[GEOJSON]]
-  * multipolygon [[GEOJSON]]
-  * text [[MARKDOWN]]
-
-  <section><h3 id="integer">Integer</h3>
-  JSON does not natively support integers; all numbers are floating point values.
-  Therefore, integers shall be formatted as JSON strings.  Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).  Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
-  </section>
-
-</section>
-
-<section>
-  <h2 id="resources">Resources</h2>
-
-<section id="register-home-page"><h3>Register home page</h3>
+<section><h3 id="register-home-page">Register home page</h3>
   : /
 </section>
 
-<section id="register-resource"><h3>Register information</h3>
+<section><h3 id="register-resource">Register information</h3>
   : /register
 </section>
 
-<section id="register-proof-resource"><h3>Register proof</h3>
+<section><h3 id="register-proof-resource">Register proof</h3>
   : /register/proof
 </section>
 
-<section id="records-resource"><h3>List of records</h3>
-  : /records
-</section>
-
-<section id="record-resource"><h3>A record</h3>
-  : /{field-name}/{field-value}
-</section>
-
-<section id="record-history-resource">Record history</h3>
-  :/{field-name}/{field-value}/history
-</section>
-
-<specification id="entries-resource"><h3>List of entries</h3>
-  : /entries
-
-<specification id="entry-resource"><h3>Entry</h3>
+<section><h3 id="entry-resource">Entry</h3>
   : /entry/{entry-number}
 <p>
 <pre>
@@ -104,51 +61,149 @@ Content-Type: application/json
 {"hash": "abcd", "entry": { "school": "12345" } }
 </pre>
 </p>
-: /item/{hash}
 </section>
 
+<section><h3 id="item-resource">Item</h3>
+  : /item/{item-hash}
+</section>
 
-<section id="link-headers">Link headers</h3>
-<section id="pagination"><h3>Pagination</h3>
+<section><h3 id="record-resource">Record</h3>
+  : /{field-name}/{field-value}
+</section>
+</section>
+
+<section><h2 id="list-resources">List resources</h2>
 There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
+
+<section><h3 id="records-resource">List of records</h3>
+  : /records
 </section>
+
+<section><h3 id="entries-resource">List of entries</h3>
+  : /entries
+</section>
+
+<section><h3 id="record-history-resource">Record history</h3>
+  : /{field-name}/{field-value}/history
+
+<p>
+<pre>
+HTTP/1.1 200 OK
+Link: </school/12345/history>; rel="version-history"
+Content-Type: application/json
+
+[
+  {
+      "serial-number": 72
+      "hash": "abcd"
+      "timestamp": "2015-08-20T08:15:30-05:00"
+  },
+  {
+      "serial-number": 21
+      "hash": "efgh"
+      "timestamp": "2015-08-15T08:15:30-05:00"
+  }
+]
+</pre>
+</p>
+
+</section>
+
+</section>
+
+
+<section>
+  <h2 id="datatypes">Datatypes</h2>
+
+<section><h3 id="string">String</h3>
+  * [[UNICODE]] [[UTF-8]]
+</section>
+
+<section><h3 id="integer">Integer</h3>
+  JSON does not natively support integers; all numbers are floating point values.
+  Therefore, integers shall be formatted as JSON strings.  Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).  Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
+</section>
+
+<section><h3 id="datetime">Datetime</h3>
+  * datetime [[ISO8601]]
+</section>
+
+<section><h3 id="curie">CURIE</h3>
+  * curie [[CURIE]]
+</section>
+
+<section><h3 id="url">URL</h3>
+  * URL [[URI]]
+</section>
+
+<section><h3 id="point">Point</h3>
+  * point [[GEOJSON]]
+</section>
+
+<section><h3 id="multipolygon">Multipolygon</h3>
+  * multipolygon [[GEOJSON]]
+</section>
+
+<section><h3 id="text">Text</h3>
+  * text [[MARKDOWN]]
+</section>
+
+<section><h3 id="hash">Hash</h3>
+
+  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
+  * [[FIPS-180-4]]
+
+</section>
+
 </section>
 
 
 <section>
   <h2 id="representations">Representations</h2>
 
+<section><h3 id="html-representation">HTML</h3>
   * [[HTML5]]
+</section>
+
+<section><h3 id="json-representation">JSON</h3>
   * [[JSON]] 
+</section>
+
+<section><h3 id="yaml-representation">YAML</h3>
   * [[YAML]] 
+</section>
+
+<section><h3 id="csv-representation">CSV</h3>
   * CSV [[tabular-data-model]]
+</section>
+
+<section><h3 id="tsv-representation">TSV</h3>
   * [[IANA-TSV]]
+</section>
+
+<section><h3 id="json-ld-representation">JSON-LD</h3>
   * [[JSON-LD]]
+</section>
+
+<section><h3 id="ttl-representation">Turtle</h3>
   * [[TURTLE]]
-  * [[ATOM]]
+</section>
+
+<section><h3 id="atom-representation">Atom</h3>
+  * [[RFC4287]]
+</section>
 
 </section>
 
 <section>
   <h2 id="core-registers">Core Registers</h2>
 
-  * register Register
-  * field Register
-  * datatype Register
-
+<section><h3 id="register-register">Register register</h3>
 </section>
-
-<section>
-  <h2 id="curie-dereferencing">Dereferencing a CURIE value</h2>
-
-  * [[CURIE]]
-
+<section><h3 id="field-register">Field register</h3>
 </section>
-
-<section>
-  <h2 id="item-hash">Identifying an Item</h2>
-
-  * [[FIPS-180-4]]
+<section><h3 id="datatype-register">Datatype register</h3>
+</section>
 
 </section>
 
@@ -162,7 +217,7 @@ There is a limit to how many records or entries can be returned in a single requ
 
 
 <section>
-  <h2 id="proof">Proof: Certificate Transparency</h2>
+  <h2 id="proof">Certificate Transparency</h2>
 
   * Entry leaf signature
   * Signed tree head
