@@ -18,20 +18,14 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
 !Bug Reports: <a href="https://github.com/openregister/specification/issues/new">via the openregister/specification repository on GitHub</a>
 </pre>
 
-<div boilerplate=logo>
-<div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: 'Helvetica', sans-serif;">
-  <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a>
-</div>
-</div>
+<pre class=include>
+path: includes/logo.bs
+</pre>
 
-<div boilerplate=copyright>
-<p>
-  <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
-  released under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>.
-</p>
-</div>
+<pre class=include>
+path: includes/copyright.bs
+</pre>
 
-<!-- Big Text: Intro -->
 <section>
   <h2 id="intro">Introduction</h2>
 
@@ -39,38 +33,19 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
 
 </section>
 
-<!-- Big Text: Resources -->
 <section>
-  <h2 id="resources">Resources</h2>
-
-  * Item
-  * Entry
-  * Register
-  * Record
-  * Proof
-
+  <h2 id="field">Field</h2>
 </section>
 
-
-<!-- Big Text: Fields -->
 <section>
-  <h2 id="fields">Fields</h2>
-
-  * string [[UNICODE]] [[UTF-8]]
-  * datetime [[ISO8601]]
-  * curie [[CURIE]]
-  * URL [[URI]]
-  * point [[GEOJSON]]
-  * multipolygon [[GEOJSON]]
-  * text [[MARKDOWN]]
-
+  <h2 id="item">Item</h2>
 </section>
 
-<!-- Big Text: Datatypes -->
 <section>
   <h2 id="datatypes">Datatypes</h2>
 
   * string [[UNICODE]] [[UTF-8]]
+  * integer
   * datetime [[ISO8601]]
   * curie [[CURIE]]
   * URL [[URI]]
@@ -78,9 +53,68 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
   * multipolygon [[GEOJSON]]
   * text [[MARKDOWN]]
 
+  <section><h3 id="integer">Integer</h3>
+  JSON does not natively support integers; all numbers are floating point values.
+  Therefore, integers shall be formatted as JSON strings.  Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).  Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
+  </section>
+
 </section>
 
-<!-- Big Text: Representations -->
+<section>
+  <h2 id="resources">Resources</h2>
+
+<section id="register-home-page"><h3>Register home page</h3>
+  : /
+</section>
+
+<section id="register-resource"><h3>Register information</h3>
+  : /register
+</section>
+
+<section id="register-proof-resource"><h3>Register proof</h3>
+  : /register/proof
+</section>
+
+<section id="records-resource"><h3>List of records</h3>
+  : /records
+</section>
+
+<section id="record-resource"><h3>A record</h3>
+  : /{field-name}/{field-value}
+</section>
+
+<section id="record-history-resource">Record history</h3>
+  :/{field-name}/{field-value}/history
+</section>
+
+<specification id="entries-resource"><h3>List of entries</h3>
+  : /entries
+
+<specification id="entry-resource"><h3>Entry</h3>
+  : /entry/{entry-number}
+<p>
+<pre>
+GET /entry/5.json
+</pre>
+<pre>
+HTTP/1.1 200 OK
+Link: &lt;/school/12345/history&gt;; rel="version-history"
+Content-Type: application/json
+
+{"hash": "abcd", "entry": { "school": "12345" } }
+</pre>
+</p>
+: /item/{hash}
+</section>
+
+
+<section id="link-headers">Link headers</h3>
+<section id="pagination"><h3>Pagination</h3>
+There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
+</section>
+</section>
+
+
 <section>
   <h2 id="representations">Representations</h2>
 
@@ -91,10 +125,10 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
   * [[IANA-TSV]]
   * [[JSON-LD]]
   * [[TURTLE]]
+  * [[ATOM]]
 
 </section>
 
-<!-- Big Text: Core Registers -->
 <section>
   <h2 id="core-registers">Core Registers</h2>
 
@@ -104,7 +138,6 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
 
 </section>
 
-<!-- Big Text: Dereferencing a CURIE value -->
 <section>
   <h2 id="curie-dereferencing">Dereferencing a CURIE value</h2>
 
@@ -112,11 +145,27 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
 
 </section>
 
-
-<!-- Big Text: Proving the integrity of a register -->
 <section>
-  <h2 id="proof">Proving the integrity of a register</h2>
+  <h2 id="item-hash">Identifying an Item</h2>
 
+  * [[FIPS-180-4]]
+
+</section>
+
+
+<section>
+  <h2 id="minting">Minting a new entry</h2>
+
+  * [[CURIE]]
+
+</section>
+
+
+<section>
+  <h2 id="proof">Proof: Certificate Transparency</h2>
+
+  * Entry leaf signature
+  * Signed tree head
   * [[RFC6962]]
 
 </section>

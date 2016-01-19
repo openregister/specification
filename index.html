@@ -1334,13 +1334,31 @@ data held in a register.</p>
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
-    <li><a href="#resources"><span class="secno">2</span> <span class="content">Resources</span></a>
-    <li><a href="#fields"><span class="secno">3</span> <span class="content">Fields</span></a>
-    <li><a href="#datatypes"><span class="secno">4</span> <span class="content">Datatypes</span></a>
-    <li><a href="#representations"><span class="secno">5</span> <span class="content">Representations</span></a>
-    <li><a href="#core-registers"><span class="secno">6</span> <span class="content">Core Registers</span></a>
-    <li><a href="#curie-dereferencing"><span class="secno">7</span> <span class="content">Dereferencing a CURIE value</span></a>
-    <li><a href="#proof"><span class="secno">8</span> <span class="content">Proving the integrity of a register</span></a>
+    <li><a href="#field"><span class="secno">2</span> <span class="content">Field</span></a>
+    <li><a href="#item"><span class="secno">3</span> <span class="content">Item</span></a>
+    <li>
+     <a href="#datatypes"><span class="secno">4</span> <span class="content">Datatypes</span></a>
+     <ol class="toc">
+      <li><a href="#integer"><span class="secno">4.1</span> <span class="content">Integer</span></a>
+     </ol>
+    <li>
+     <a href="#resources"><span class="secno">5</span> <span class="content">Resources</span></a>
+     <ol class="toc">
+      <li><a href="#register-home-page0"><span class="secno">5.1</span> <span class="content">Register home page</span></a>
+      <li><a href="#register-information"><span class="secno">5.2</span> <span class="content">Register information</span></a>
+      <li><a href="#register-proof"><span class="secno">5.3</span> <span class="content">Register proof</span></a>
+      <li><a href="#list-of-records"><span class="secno">5.4</span> <span class="content">List of records</span></a>
+      <li><a href="#a-record"><span class="secno">5.5</span> <span class="content">A record</span></a>
+      <li><a href="#list-of-entries"><span class="secno">5.6</span> <span class="content">List of entries</span></a>
+      <li><a href="#entry"><span class="secno">5.7</span> <span class="content">Entry</span></a>
+      <li><a href="#pagination0"><span class="secno">5.8</span> <span class="content">Pagination</span></a>
+     </ol>
+    <li><a href="#representations"><span class="secno">6</span> <span class="content">Representations</span></a>
+    <li><a href="#core-registers"><span class="secno">7</span> <span class="content">Core Registers</span></a>
+    <li><a href="#curie-dereferencing"><span class="secno">8</span> <span class="content">Dereferencing a CURIE value</span></a>
+    <li><a href="#item-hash"><span class="secno">9</span> <span class="content">Identifying an Item</span></a>
+    <li><a href="#minting"><span class="secno">10</span> <span class="content">Minting a new entry</span></a>
+    <li><a href="#proof"><span class="secno">11</span> <span class="content">Proof: Certificate Transparency</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
@@ -1356,38 +1374,10 @@ data held in a register.</p>
     <p>An introduction to registers ..</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="2" id="resources"><span class="secno">2. </span><span class="content">Resources</span><a class="self-link" href="#resources"></a></h2>
-    <ul>
-     <li data-md="">
-      <p>Item</p>
-     <li data-md="">
-      <p>Entry</p>
-     <li data-md="">
-      <p>Register</p>
-     <li data-md="">
-      <p>Record</p>
-     <li data-md="">
-      <p>Proof</p>
-    </ul>
+    <h2 class="heading settled" data-level="2" id="field"><span class="secno">2. </span><span class="content">Field</span><a class="self-link" href="#field"></a></h2>
    </section>
    <section>
-    <h2 class="heading settled" data-level="3" id="fields"><span class="secno">3. </span><span class="content">Fields</span><a class="self-link" href="#fields"></a></h2>
-    <ul>
-     <li data-md="">
-      <p>string <a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> <a data-link-type="biblio" href="#biblio-utf-8">[UTF-8]</a></p>
-     <li data-md="">
-      <p>datetime <a data-link-type="biblio" href="#biblio-iso8601">[ISO8601]</a></p>
-     <li data-md="">
-      <p>curie <a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
-     <li data-md="">
-      <p>URL <a data-link-type="biblio" href="#biblio-uri">[URI]</a></p>
-     <li data-md="">
-      <p>point <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
-     <li data-md="">
-      <p>multipolygon <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
-     <li data-md="">
-      <p>text <a data-link-type="biblio" href="#biblio-markdown">[MARKDOWN]</a></p>
-    </ul>
+    <h2 class="heading settled" data-level="3" id="item"><span class="secno">3. </span><span class="content">Item</span><a class="self-link" href="#item"></a></h2>
    </section>
    <section>
     <h2 class="heading settled" data-level="4" id="datatypes"><span class="secno">4. </span><span class="content">Datatypes</span><a class="self-link" href="#datatypes"></a></h2>
@@ -1395,6 +1385,8 @@ data held in a register.</p>
      <li data-md="">
       <p>string <a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> <a data-link-type="biblio" href="#biblio-utf-8">[UTF-8]</a></p>
      <li data-md="">
+      <p>integer</p>
+     <li data-md="">
       <p>datetime <a data-link-type="biblio" href="#biblio-iso8601">[ISO8601]</a></p>
      <li data-md="">
       <p>curie <a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
@@ -1407,9 +1399,89 @@ data held in a register.</p>
      <li data-md="">
       <p>text <a data-link-type="biblio" href="#biblio-markdown">[MARKDOWN]</a></p>
     </ul>
+    <section>
+     <h3 class="heading settled" data-level="4.1" id="integer"><span class="secno">4.1. </span><span class="content">Integer</span><a class="self-link" href="#integer"></a></h3>
+      JSON does not natively support integers; all numbers are floating point values.
+  Therefore, integers shall be formatted as JSON strings.  Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).  Negative integers are marked with a leading “-” character (<a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> 0x2D HYPHEN-MINUS) 
+    </section>
    </section>
    <section>
-    <h2 class="heading settled" data-level="5" id="representations"><span class="secno">5. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
+    <h2 class="heading settled" data-level="5" id="resources"><span class="secno">5. </span><span class="content">Resources</span><a class="self-link" href="#resources"></a></h2>
+    <section id="register-home-page">
+     <h3 class="heading settled" data-level="5.1" id="register-home-page0"><span class="secno">5.1. </span><span class="content">Register home page</span><a class="self-link" href="#register-home-page0"></a></h3>
+     <dl>
+      <dt data-md="">
+       <p>/</p>
+     </dl>
+    </section>
+    <section id="register-resource">
+     <h3 class="heading settled" data-level="5.2" id="register-information"><span class="secno">5.2. </span><span class="content">Register information</span><a class="self-link" href="#register-information"></a></h3>
+     <dl>
+      <dt data-md="">
+       <p>/register</p>
+     </dl>
+    </section>
+    <section id="register-proof-resource">
+     <h3 class="heading settled" data-level="5.3" id="register-proof"><span class="secno">5.3. </span><span class="content">Register proof</span><a class="self-link" href="#register-proof"></a></h3>
+     <dl>
+      <dt data-md="">
+       <p>/register/proof</p>
+     </dl>
+    </section>
+    <section id="records-resource">
+     <h3 class="heading settled" data-level="5.4" id="list-of-records"><span class="secno">5.4. </span><span class="content">List of records</span><a class="self-link" href="#list-of-records"></a></h3>
+     <dl>
+      <dt data-md="">
+       <p>/records</p>
+     </dl>
+    </section>
+    <section id="record-resource">
+     <h3 class="heading settled" data-level="5.5" id="a-record"><span class="secno">5.5. </span><span class="content">A record</span><a class="self-link" href="#a-record"></a></h3>
+     <dl>
+      <dt data-md="">
+       <p>/{field-name}/{field-value}</p>
+     </dl>
+    </section>
+    <section id="record-history-resource">Record history
+  :/{field-name}/{field-value}/history </section>
+    <specification id="entries-resource">
+     <h3 class="heading settled" data-level="5.6" id="list-of-entries"><span class="secno">5.6. </span><span class="content">List of entries</span><a class="self-link" href="#list-of-entries"></a></h3>
+     <dl>
+      <dt data-md="">
+       <p>/entries</p>
+     </dl>
+     <specification id="entry-resource">
+      <h3 class="heading settled" data-level="5.7" id="entry"><span class="secno">5.7. </span><span class="content">Entry</span><a class="self-link" href="#entry"></a></h3>
+      <dl>
+       <dt data-md="">
+        <p>/entry/{entry-number}</p>
+      </dl>
+      <p></p>
+<pre>GET /entry/5.json
+</pre>
+<pre>HTTP/1.1 200 OK
+Link: &lt;/school/12345/history>; rel="version-history"
+Content-Type: application/json
+
+{"hash": "abcd", "entry": { "school": "12345" } }
+</pre>
+      <p></p>
+      <dl>
+       <dt data-md="">
+        <p>/item/{hash}</p>
+      </dl>
+     </specification>
+    </specification>
+   </section>
+   <section id="link-headers">
+    Link headers 
+    <section id="pagination">
+     <h3 class="heading settled" data-level="5.8" id="pagination0"><span class="secno">5.8. </span><span class="content">Pagination</span><a class="self-link" href="#pagination0"></a></h3>
+      There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link. 
+    </section>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="6" id="representations"><span class="secno">6. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
     <ul>
      <li data-md="">
       <p><a data-link-type="biblio" href="#biblio-html5">[HTML5]</a></p>
@@ -1425,10 +1497,12 @@ data held in a register.</p>
       <p><a data-link-type="biblio" href="#biblio-json-ld">[JSON-LD]</a></p>
      <li data-md="">
       <p><a data-link-type="biblio" href="#biblio-turtle">[TURTLE]</a></p>
+     <li data-md="">
+      <p><span>[ATOM]</span></p>
     </ul>
    </section>
    <section>
-    <h2 class="heading settled" data-level="6" id="core-registers"><span class="secno">6. </span><span class="content">Core Registers</span><a class="self-link" href="#core-registers"></a></h2>
+    <h2 class="heading settled" data-level="7" id="core-registers"><span class="secno">7. </span><span class="content">Core Registers</span><a class="self-link" href="#core-registers"></a></h2>
     <ul>
      <li data-md="">
       <p>register Register</p>
@@ -1439,15 +1513,33 @@ data held in a register.</p>
     </ul>
    </section>
    <section>
-    <h2 class="heading settled" data-level="7" id="curie-dereferencing"><span class="secno">7. </span><span class="content">Dereferencing a CURIE value</span><a class="self-link" href="#curie-dereferencing"></a></h2>
+    <h2 class="heading settled" data-level="8" id="curie-dereferencing"><span class="secno">8. </span><span class="content">Dereferencing a CURIE value</span><a class="self-link" href="#curie-dereferencing"></a></h2>
     <ul>
      <li data-md="">
       <p><a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
     </ul>
    </section>
    <section>
-    <h2 class="heading settled" data-level="8" id="proof"><span class="secno">8. </span><span class="content">Proving the integrity of a register</span><a class="self-link" href="#proof"></a></h2>
+    <h2 class="heading settled" data-level="9" id="item-hash"><span class="secno">9. </span><span class="content">Identifying an Item</span><a class="self-link" href="#item-hash"></a></h2>
     <ul>
+     <li data-md="">
+      <p><a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a></p>
+    </ul>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="10" id="minting"><span class="secno">10. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
+    <ul>
+     <li data-md="">
+      <p><a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
+    </ul>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="11" id="proof"><span class="secno">11. </span><span class="content">Proof: Certificate Transparency</span><a class="self-link" href="#proof"></a></h2>
+    <ul>
+     <li data-md="">
+      <p>Entry leaf signature</p>
+     <li data-md="">
+      <p>Signed tree head</p>
      <li data-md="">
       <p><a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a></p>
     </ul>
@@ -1476,6 +1568,8 @@ data held in a register.</p>
   </dl>
   <h3 class="no-num heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
+   <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson"><a class="self-link" href="#biblio-geojson"></a>[GEOJSON]
    <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
    <dt id="biblio-iana-tsv"><a class="self-link" href="#biblio-iana-tsv"></a>[IANA-TSV]
