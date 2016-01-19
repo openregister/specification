@@ -20,6 +20,8 @@ Use make to build a local copy of the register data
     $ make init
     $ make
 
+Note, bikeshed works with Python 2.7, and not with Python 3.0.
+
 # Licence
 
 The software in this project is open source, covered by LICENSE file.
