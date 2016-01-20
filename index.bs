@@ -1,4 +1,4 @@
-<h1>Registers</h1>
+<h1>Open Registers</h1>
 <pre class="metadata">
 Logo: https://assets.digital.cabinet-office.gov.uk/static/images/gov.uk_logotype_crown.png
 Status: ED
@@ -11,8 +11,8 @@ Group: registers
 Indent: 2
 Abstract:
   This document defines the resources and representations which together
-  provide an Application Programming Interface (API) for linking to
-  data held in a register.
+  provide an Application Programming Interface (API) for accessing 
+  data held in an open register.
 
 Version History: https://github.com/openregister/specification/commits/gh-pages/index.bs
 !Bug Reports: <a href="https://github.com/openregister/specification/issues/new">via the openregister/specification repository on GitHub</a>
@@ -26,204 +26,223 @@ path: includes/logo.bs
 path: includes/copyright.bs
 </pre>
 
-<section>
-  <h2 id="intro">Introduction</h2>
+# Introduction # {#introduction}
 
-  An introduction to registers .. 
+An introduction to registers .. 
 
-</section>
 
-<section><h2 id="entity-resources">Entity resources</h2>
+# Entity resources # {#entity-resources}
 
-<section><h3 id="register-home-page">Register home page</h3>
-  : /
-</section>
-
-<section><h3 id="register-resource">Register information</h3>
-  : /register
-</section>
-
-<section><h3 id="register-proof-resource">Register proof</h3>
-  : /register/proof
-</section>
-
-<section><h3 id="entry-resource">Entry</h3>
-  : /entry/{entry-number}
-<p>
-<pre>
-GET /entry/5.json
-</pre>
-<pre>
-HTTP/1.1 200 OK
-Link: &lt;/school/12345/history&gt;; rel="version-history"
-Content-Type: application/json
-
-{"hash": "abcd", "entry": { "school": "12345" } }
-</pre>
-</p>
-</section>
-
-<section><h3 id="item-resource">Item</h3>
+## Item ## {#item}
   : /item/{item-hash}
-</section>
 
-<section><h3 id="record-resource">Record</h3>
-  : /{field-name}/{field-value}
-</section>
-</section>
+### Field ### {#item-field}
 
-<section><h2 id="list-resources">List resources</h2>
+### Item hash ### {#item-hash}
+  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
+  * [[FIPS-180-4]]
+
+
+## Entry ## {#entry-resource"}
+: /entry/{entry-number}
+
+### Entry number ### {#entry-number}
+
+Note: renamed from serial-number
+
+## Register ## {#register-home-page"}
+  : /
+  : /register
+
+
+## Record ## {#record-resource"}
+  : /record/{field-name}/{field-value}
+
+
+
+
+
+# List resources # {#list-resources}
+
 There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
 
-<section><h3 id="records-resource">List of records</h3>
-  : /records
-</section>
-
-<section><h3 id="entries-resource">List of entries</h3>
+## List of entries ## {#entries-resource"}
   : /entries
-</section>
 
-<section><h3 id="record-history-resource">Record history</h3>
-  : /{field-name}/{field-value}/history
 
-<p>
-<pre>
+## Record entries ## {#record-entries-resource"}
+  : /record/{field-name}/{field-value}/entries
+
+Note: renamed from /history ..
+
+<pre class="example">
 HTTP/1.1 200 OK
-Link: </school/12345/history>; rel="version-history"
+Link: &lt;/school/12345/entries&gt;; rel="version-history"
 Content-Type: application/json
 
 [
   {
-      "serial-number": 72
-      "hash": "abcd"
+      "entry-number": "72",
+      "item-hash": "abcd",
       "timestamp": "2015-08-20T08:15:30-05:00"
   },
   {
-      "serial-number": 21
-      "hash": "efgh"
+      "entry-number": "21",
+      "item-hash": "efgh",
       "timestamp": "2015-08-15T08:15:30-05:00"
   }
 ]
 </pre>
-</p>
 
-</section>
-
-</section>
+## Register records ## {#register-records-resource"}
+  : /records
 
 
-<section>
-  <h2 id="datatypes">Datatypes</h2>
 
-<section><h3 id="string">String</h3>
+
+# Proof resources # {#proof-resources}
+
+## Entry proof ## {#entry-proof-resource"}
+  : /register/proof
+
+## Register proof ## {#register-proof-resource"}
+  : /register/proof
+
+
+
+
+# Archive resources # {#archive}
+
+## Download page ## {#download"}
+  : /download
+The contents of an open register MUST be made available as one or more .
+
+
+
+
+# Streaming resources # {#streaming}
+
+
+
+
+# HTTP Headers # {#http-headers}
+
+Table of link and other headers used by resources ..
+
+
+
+# Datatypes # {#datatypes}
+
+## String ## {#string"}
   * [[UNICODE]] [[UTF-8]]
-</section>
 
-<section><h3 id="integer">Integer</h3>
-  JSON does not natively support integers; all numbers are floating point values.
-  Therefore, integers shall be formatted as JSON strings.  Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).  Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
-</section>
+## Integer ## {#integer"}
+Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).
+Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
 
-<section><h3 id="datetime">Datetime</h3>
+## Datetime ## {#datetime"}
   * datetime [[ISO8601]]
-</section>
 
-<section><h3 id="curie">CURIE</h3>
+## CURIE ## {#curie"}
   * curie [[CURIE]]
-</section>
 
-<section><h3 id="url">URL</h3>
+## URL ## {#url"}
   * URL [[URI]]
-</section>
 
-<section><h3 id="point">Point</h3>
+## Point ## {#point"}
   * point [[GEOJSON]]
-</section>
 
-<section><h3 id="multipolygon">Multipolygon</h3>
+## Multipolygon ## {#multipolygon"}
   * multipolygon [[GEOJSON]]
-</section>
 
-<section><h3 id="text">Text</h3>
+## Text ## {#text"}
   * text [[MARKDOWN]]
-</section>
 
-<section><h3 id="hash">Hash</h3>
-
-  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
-  * [[FIPS-180-4]]
-
-</section>
-
-</section>
+## Hash ## {#hash"}
 
 
-<section>
-  <h2 id="representations">Representations</h2>
+## List ## {#field-list"}
 
-<section><h3 id="html-representation">HTML</h3>
+  * [string]
+
+
+
+
+# Representations # {#representations}
+
+## HTML ## {#html-representation"}
   * [[HTML5]]
-</section>
 
-<section><h3 id="json-representation">JSON</h3>
+## JSON ## {#json-representation"}
   * [[JSON]] 
-</section>
 
-<section><h3 id="yaml-representation">YAML</h3>
+  JSON does not natively support integers; all numbers are floating point values.
+  Therefore, integers shall be formatted as JSON strings.
+
+## YAML ## {#yaml-representation"}
   * [[YAML]] 
-</section>
 
-<section><h3 id="csv-representation">CSV</h3>
+## CSV ## {#csv-representation"}
   * CSV [[tabular-data-model]]
-</section>
 
-<section><h3 id="tsv-representation">TSV</h3>
+## TSV ## {#tsv-representation"}
   * [[IANA-TSV]]
-</section>
 
-<section><h3 id="json-ld-representation">JSON-LD</h3>
+## JSON-LD ## {#json-ld-representation"}
   * [[JSON-LD]]
-</section>
 
-<section><h3 id="ttl-representation">Turtle</h3>
+## Turtle ## {#ttl-representation"}
   * [[TURTLE]]
-</section>
 
-<section><h3 id="atom-representation">Atom</h3>
+## Atom ## {#atom-representation"}
   * [[RFC4287]]
-</section>
-
-</section>
-
-<section>
-  <h2 id="core-registers">Core Registers</h2>
-
-<section><h3 id="register-register">Register register</h3>
-</section>
-<section><h3 id="field-register">Field register</h3>
-</section>
-<section><h3 id="datatype-register">Datatype register</h3>
-</section>
-
-</section>
 
 
-<section>
-  <h2 id="minting">Minting a new entry</h2>
 
-  * [[CURIE]]
+# Core Registers # {#core-registers}
 
-</section>
+## Register register ## {#register-register"}
+
+## Field register ## {#field-register"}
+
+## Datatype register ## {#datatype-register"}
 
 
-<section>
-  <h2 id="proof">Certificate Transparency</h2>
 
-  * Entry leaf signature
-  * Signed tree head
-  * [[RFC6962]]
 
-</section>
+# Redaction # {#redaction}
+
+
+
+# Digital Proofs # {#proof}
+
+## Certificate transparency ## {#using-certificate-transparency"}
+  Certificate Transparency [[RFC6962]] is one of a number of possible methods of proving the integrity of a register.
+
+### Signed tree head ### {#signed-tree-head}
+
+### Leaf signature ### {#leaf-signature}
+
+
+
+# Minting a new entry # {#minting}
+
+- POST a new entry to ..url..
+- only trust it has been secured when it appears in the List of entries, 
+  and is a part of the Digital Proof for the register.
+
+
+
+# Versioning and extensibility # {#versioning-and-extensibility}
+
+## Backwards compitability ## {#backwards-compatibility"}
+Semantics of a field cannot be significantly changed but not changed.
+
+## Forwards compatibility ## {#forwards-compatibility"}
+Must-ignore rule.
+
+## Points of extensibility ## {#extension-points"}
+
 
 
 <pre class="anchors">
