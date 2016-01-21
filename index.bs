@@ -30,193 +30,349 @@ path: includes/copyright.bs
 
 An introduction to registers .. 
 
+ISSUE: this should be an introduction to the product, independent of HMG's use of registers?
 
 # Entity resources # {#entity-resources}
 
-## Item ## {#item}
-  : /item/{item-hash}
+## Item ## {#item-resource}
+: /item/{item-hash}
 
-### Field ### {#item-field}
+ISSUE: the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
 
-### Item hash ### {#item-hash}
-  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
-  * [[FIPS-180-4]]
+<div class="example">
+The following example shows an item in the JSON representation [[#json-representation]]:
+<pre highlight="json">
+{
+  "business": "company:07228130",
+  "end-date": "",
+  "food-premises": "788112",
+  "food-premises-types": ["restaurant", "cafe"],
+  "local-authority": "E09000015",
+  "name": "Roy's Rolls",
+  "premises": "13456079000",
+  "start-date": "2015-03-01"
+}
+</pre>
+</div>
 
-
-## Entry ## {#entry-resource"}
+## Entry ## {#entry-resource}
 : /entry/{entry-number}
 
-### Entry number ### {#entry-number}
 
-Note: renamed from serial-number
-
-## Register ## {#register-home-page"}
-  : /
+## Register ## {#register-resource}
   : /register
 
+<div class="example">
+The following example shows a register in the JSON representation [[#json-representation]]:
 
-## Record ## {#record-resource"}
+<pre highlight="json">
+{
+  "domain": ".register.gov.uk",
+  "item": {
+    "fields": [ "address", "end-date", "school", "start-date", "name", "website" ],
+    "name": "Schools in the UK",
+    "phase": "beta",
+    "register": "school",
+    "registry": "department-of-education",
+    "start-date": "2016-01-1"
+  },
+  "last-updated": "2016-01-21T21:09:59",
+  "total-entries": "109001",
+  "total-items": "109009",
+  "total-records": "30522"
+}
+</pre>
+</div>
+
+## Record ## {#record-resource}
   : /record/{field-name}/{field-value}
 
 
+<div class="example">
+The following example shows a record in the JSON representation [[#json-representation]]:
 
+<pre highlight="json">
+{
+    "entry-number": "72",
+    "item-hash": "a1b2 … … e9",
+    "item": {
+      "local-authority": "E09000019",
+      "name": "Islington"
+    },
+    "timestamp": "2015-08-20T08:15:30"
+}
+</pre>
+</div>
+
+ISSUE: CT timestamps seem to be in localtime with a "-05:00" suffix. We should force them to be UTC.
 
 
 # List resources # {#list-resources}
 
 There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
 
-## List of entries ## {#entries-resource"}
+ISSUE: define query string parameters ..
+
+## List of entries ## {#entries-resource}
   : /entries
 
+<div class="example">
+The following example shows a list of entries in the JSON representation [[#json-representation]]:
 
-## Record entries ## {#record-entries-resource"}
-  : /record/{field-name}/{field-value}/entries
-
-Note: renamed from /history ..
-
-<pre class="example">
-HTTP/1.1 200 OK
-Link: &lt;/school/12345/entries&gt;; rel="version-history"
-Content-Type: application/json
-
+<pre highlight="json">
 [
   {
-      "entry-number": "72",
-      "item-hash": "abcd",
-      "timestamp": "2015-08-20T08:15:30-05:00"
+    "entry-number": "72",
+    "item-hash": "abcd",
+    "timestamp": "2015-08-20T08:15:30"
   },
   {
-      "entry-number": "21",
-      "item-hash": "efgh",
-      "timestamp": "2015-08-15T08:15:30-05:00"
+    "entry-number": "21",
+    "item-hash": "efgh",
+    "timestamp": "2015-08-15T08:15:30"
   }
 ]
 </pre>
+</div>
 
-## Register records ## {#register-records-resource"}
+## Record entries ## {#record-entries-resource}
+  : /record/{field-name}/{field-value}/entries
+
+ISSUE: the path /{field-name}/{field-value}/history has been renamed as /record/{field-name}/field-value}/entries
+
+<div class="example">
+The following example shows a list of record entries in the JSON representation [[#json-representation]]:
+
+<pre highlight="json">
+[
+  {
+    "entry-number": "72",
+    "item-hash": "abcd",
+    "timestamp": "2015-08-20T08:15:30"
+  },
+  {
+    "entry-number": "21",
+    "item-hash": "efgh",
+    "timestamp": "2015-08-15T08:15:30"
+  }
+]
+</pre>
+</div>
+
+## Register records ## {#register-records-resource}
   : /records
 
+<div class="example">
+The following example shows a list of records in the JSON representation [[#json-representation]]:
+
+<pre highlight="json">
+[
+  {
+    "entry-number": "72",
+    "item-hash": "a1b2 … … e9",
+    "item": {
+      "local-authority": "E09000019",
+      "name": "Islington"
+    },
+    "timestamp": "2015-08-20T08:15:30"
+  },
+  {
+    "entry-number": "76",
+    "item-hash": "9834 … … ff",
+    "item": {
+      "local-authority": "E09000016",
+      "name": "Havering"
+    },
+    "timestamp": "2015-08-20T08:15:30"
+  }
+]
+</pre>
+</div>
 
 
 
 # Proof resources # {#proof-resources}
 
-## Entry proof ## {#entry-proof-resource"}
+## Entry proof ## {#entry-proof-resource}
   : /register/proof
 
-## Register proof ## {#register-proof-resource"}
+ISSUE: What does an entry-proof look like?
+
+ISSUE: How do we support multiple proofs, say if quantum cryptography comes along?
+
+## Register proof ## {#register-proof-resource}
   : /register/proof
 
+ISSUE: What does a register-proof look like?
 
 
 
-# Archive resources # {#archive}
+# Archive resources # {#archive-resources}
 
-## Download page ## {#download"}
+## Download page ## {#download}
   : /download
-The contents of an open register MUST be made available as one or more .
+The contents of an open register MUST be made available as an archive.
+The archive MAY be split into multiple parts.
+
+The archive contains the following files in the following structure:
+
+ * a directory named "register" containing
+   * a directory with the name of the register containing
+     * a file named "register.json" containing the [[#register-resource]] in the [[#json-representation]]
+     * a directory named "item" containing all of the [[#item-resource]]
+     * a directory named "entry" containing all of the [[#entry-resource]]
+
+<em> .. resources either as one file per item/entry in .json or a single .tsv file</em>
 
 
+ISSUE: what is the naming convention for the archive files?
+
+ISSUE: how about a "record" archive containing only the latest entries for each record?
 
 
-# Streaming resources # {#streaming}
+# Streaming resources # {#streaming-resources}
 
-
+ISSUE: we don't yet know how to support updating an index or a cache, beyond polling. Maybe [[EVENTSOURCE]]?
 
 
 # HTTP Headers # {#http-headers}
 
-Table of link and other headers used by resources ..
+Table of link and other HTTP headers used by resources ..
 
+  * [[RFC5988]]
+  * <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a>
+
+<pre class="example">
+HTTP/1.1 200 OK
+Link: &lt;/school/12345/entries>; rel="version-history"
+Content-Type: application/json
+</pre>
 
 
 # Datatypes # {#datatypes}
 
-## String ## {#string"}
+## String datatype ## {#string-datatype}
   * [[UNICODE]] [[UTF-8]]
 
-## Integer ## {#integer"}
-Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).
-Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
+## Integer datatype ## {#integer-datatype}
+  * All values are decimal
+  * Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).
+  * Negative values, less than zero, are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
 
-## Datetime ## {#datetime"}
-  * datetime [[ISO8601]]
+<div class="example">
+  The following examples are all valid integer values: 
+  <pre>
+    "100", "0", "-200"
+  </pre>
+</div>
 
-## CURIE ## {#curie"}
+## Datetime datatype ## {#datetime-datatype}
+
+
+  : YYYY[-MM[-DD[THH:MM[:SS]]]]
+
+  * Datetime values MUST be recorded as Universal Coordinated Time (UTC), and not local time such as British Summer Time (BST) or other offset from UTC.
+  * Datetime values are all valid [[ISO8601]].
+  * The may be taken as a consumer as an indication of the precision, in which case it is the responsibility of the consumer to decide how the date should be interpreted.
+
+<div class="example">
+  The following examples are all valid Datetime values: 
+  <pre>
+    "2001", "2001-01", "2001-01-31", "2001-01-31T23:20:55"
+  </pre>
+</div>
+
+
+## CURIE datatype ## {#curie-datatype}
   * curie [[CURIE]]
 
-## URL ## {#url"}
+## URL datatype ## {#url-datatype}
   * URL [[URI]]
 
-## Point ## {#point"}
+## Point datatype ## {#point-datatype}
   * point [[GEOJSON]]
 
-## Multipolygon ## {#multipolygon"}
+## Multipolygon datatype ## {#multipolygon-datatype}
   * multipolygon [[GEOJSON]]
 
-## Text ## {#text"}
+## Text datatype ## {#text-datatype}
   * text [[MARKDOWN]]
 
-## Hash ## {#hash"}
+## Item-hash datatype ## {#item-hash-datatype}
 
+ISSUE: do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?
 
-## List ## {#field-list"}
+## Entry-reference datatype ## {#entry-reference-datatype}
 
-  * [string]
-
+ISSUE: we don't know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.
 
 
 
 # Representations # {#representations}
 
-## HTML ## {#html-representation"}
+
+## HTML representation ## {#html-representation}
   * [[HTML5]]
 
-## JSON ## {#json-representation"}
-  * [[JSON]] 
+## JSON representation ## {#json-representation}
+  * suffix: .json
+  * media-type: application/json
+  * specification: [[JSON]] 
 
   JSON does not natively support integers; all numbers are floating point values.
   Therefore, integers shall be formatted as JSON strings.
 
-## YAML ## {#yaml-representation"}
+## YAML representation ## {#yaml-representation}
   * [[YAML]] 
 
-## CSV ## {#csv-representation"}
+## CSV representation ## {#csv-representation}
   * CSV [[tabular-data-model]]
 
-## TSV ## {#tsv-representation"}
+## TSV representation ## {#tsv-representation}
   * [[IANA-TSV]]
 
-## JSON-LD ## {#json-ld-representation"}
+## JSON-LD representation ## {#json-ld-representation}
   * [[JSON-LD]]
 
-## Turtle ## {#ttl-representation"}
+## Turtle representation ## {#ttl-representation}
   * [[TURTLE]]
 
-## Atom ## {#atom-representation"}
+## Atom representation ## {#atom-representation}
   * [[RFC4287]]
 
 
 
-# Core Registers # {#core-registers}
+# Core registers # {#core-registers}
 
-## Register register ## {#register-register"}
+## Register register ## {#register-register}
 
-## Field register ## {#field-register"}
+## Field register ## {#field-register}
 
-## Datatype register ## {#datatype-register"}
-
-
+## Datatype register ## {#datatype-register}
 
 
-# Redaction # {#redaction}
+# Entity fields # {#item-field}
+
+## Item hash ## {#item-hash}
+
+ISSUE: objecthash isn't a specification, we'll need to define our algorithm here
+
+  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
+  * [[FIPS-180-4]]
+
+## Entry number ## {#entry-number}
+
+ISSUE: serial-number is inconsistent and has therefore been renamed as entry-number
+
+## Lists ## {#list}
+
+  * [string]
 
 
 
-# Digital Proofs # {#proof}
+# Digital Proofs # {#digital-proofs}
 
-## Certificate transparency ## {#using-certificate-transparency"}
+## Certificate transparency ## {#using-certificate-transparency}
   Certificate Transparency [[RFC6962]] is one of a number of possible methods of proving the integrity of a register.
 
 ### Signed tree head ### {#signed-tree-head}
@@ -227,21 +383,52 @@ Negative integers are marked with a leading “-” character ([[UNICODE]] 0x2D 
 
 # Minting a new entry # {#minting}
 
-- POST a new entry to ..url..
-- only trust it has been secured when it appears in the List of entries, 
-  and is a part of the Digital Proof for the register.
+  To mint a new entry in the register:
+  * POST a new item to ..url.. with the proposed new entry number
+  * The item will first appear as a new item in the store
+  * The proposer can only trust it has been secured when the entry
+    is listed in the [[#entries-resource]] with the same [[#entry-number]],
+    and the [[#entry-resource]] is a covered by one or more [[#digital-proofs]] for the register.
+
+
+# Redaction # {#redaction}
+
+* An item may be removed from a register, but the entry MUST NOT be removed from the register.
+
+ISSUE: there is a need redaction, even for open records such as insolvency and bankruptcy.
+
+ISSUE: need a mechanism to flag an item as redacted.
+
+ISSUE: need a mechanism to mark a proof as deprecated.
+
+ISSUE: need a mechanism to terminate a proof and start a new proof.
 
 
 
 # Versioning and extensibility # {#versioning-and-extensibility}
 
-## Backwards compitability ## {#backwards-compatibility"}
-Semantics of a field cannot be significantly changed but not changed.
+## Backwards compitability ## {#backwards-compatibility}
+  * Semantics of a field cannot be significantly changed but not changed.
 
-## Forwards compatibility ## {#forwards-compatibility"}
-Must-ignore rule.
+## Forwards compatibility ## {#forwards-compatibility}
+  * Must-ignore rule.
+  * Defaulting empty or missing values
 
-## Points of extensibility ## {#extension-points"}
+
+## Points of extensibility ## {#extension-points}
+
+### Fields ### {#extensibility-fields}
+### Resources ### {#extensibility-resources}
+### Proofs ### {#extensibility-proofs}
+### Representations ### {#extensibility-representations}
+
+A register may provide additional, possibly domain specific representations.
+
+<div class="example">
+A register containing fields with [[#point-datatype]] or [[#multipolygon-datatype]] values may also serve a list of items as [[GML]], [[KML]] or other geographical representation.
+</div>
+
+Additional representations for [[#entity-resources]], [[#list-resources]], [[#proof-resources]], [[#archive-resources]] and [[#streaming-resources]] SHOULD be linked to from the HTML representation of the resource.
 
 
 
@@ -275,6 +462,12 @@ spec:html5; type:element; text:script
       "title": "Common Markdown",
       "publisher": "CommonMark",
       "authors": [ "John MacFarlane", "David Greenspan", "Vicent Marti", "Neil Williams", "Benjamin Dumke-von der Ehe", "Jeff Atwood" ]
+  },
+  "KML": {
+      "href": "http://www.opengeospatial.org/standards/kml/",
+      "title": "KML 2.3",
+      "publisher": "OGC"
   }
+
 }
 </pre>
