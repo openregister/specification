@@ -271,7 +271,7 @@ Table of link and other HTTP headers used by resources ..
 
 
 <div class="example">
-The following example shows the HTTP headers for the [[json-representation]] of an immutable [[#item-resource]]:
+The following example shows the HTTP headers for the [[#json-representation]] of an immutable [[#item-resource]]:
 <pre>
 HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT

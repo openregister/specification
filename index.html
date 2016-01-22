@@ -1429,13 +1429,13 @@ data held in an open register.</p>
       <li><a href="#string-datatype"><span class="secno">8.1</span> <span class="content">String datatype</span></a>
       <li><a href="#integer-datatype"><span class="secno">8.2</span> <span class="content">Integer datatype</span></a>
       <li><a href="#datetime-datatype"><span class="secno">8.3</span> <span class="content">Datetime datatype</span></a>
-      <li><a href="#curie-datatype"><span class="secno">8.4</span> <span class="content">CURIE datatype</span></a>
-      <li><a href="#url-datatype"><span class="secno">8.5</span> <span class="content">URL datatype</span></a>
-      <li><a href="#point-datatype"><span class="secno">8.6</span> <span class="content">Point datatype</span></a>
-      <li><a href="#multipolygon-datatype"><span class="secno">8.7</span> <span class="content">Multipolygon datatype</span></a>
-      <li><a href="#text-datatype"><span class="secno">8.8</span> <span class="content">Text datatype</span></a>
-      <li><a href="#item-hash-datatype"><span class="secno">8.9</span> <span class="content">Item-hash datatype</span></a>
-      <li><a href="#entry-reference-datatype"><span class="secno">8.10</span> <span class="content">Entry-reference datatype</span></a>
+      <li><a href="#point-datatype"><span class="secno">8.4</span> <span class="content">Point datatype</span></a>
+      <li><a href="#multipolygon-datatype"><span class="secno">8.5</span> <span class="content">Multipolygon datatype</span></a>
+      <li><a href="#text-datatype"><span class="secno">8.6</span> <span class="content">Text datatype</span></a>
+      <li><a href="#curie-datatype"><span class="secno">8.7</span> <span class="content">CURIE datatype</span></a>
+      <li><a href="#item-hash-datatype"><span class="secno">8.8</span> <span class="content">Item hash datatype</span></a>
+      <li><a href="#entry-reference-datatype"><span class="secno">8.9</span> <span class="content">Entry-reference datatype</span></a>
+      <li><a href="#url-datatype"><span class="secno">8.10</span> <span class="content">URL datatype</span></a>
      </ol>
     <li>
      <a href="#representations"><span class="secno">9</span> <span class="content">Representations</span></a>
@@ -1460,9 +1460,9 @@ data held in an open register.</p>
     <li>
      <a href="#core-fields"><span class="secno">12</span> <span class="content">Core fields</span></a>
      <ol class="toc">
-      <li><a href="#item-hash"><span class="secno">12.1</span> <span class="content">Item hash</span></a>
-      <li><a href="#entry-number"><span class="secno">12.2</span> <span class="content">Entry number</span></a>
-      <li><a href="#list"><span class="secno">12.3</span> <span class="content">Lists</span></a>
+      <li><a href="#item-hash"><span class="secno">12.1</span> <span class="content">item-hash</span></a>
+      <li><a href="#entry-number"><span class="secno">12.2</span> <span class="content">entry-number</span></a>
+      <li><a href="#field-cardinality"><span class="secno">12.3</span> <span class="content">cardinality</span></a>
      </ol>
     <li>
      <a href="#digital-proofs"><span class="secno">13</span> <span class="content">Digital Proofs</span></a>
@@ -1729,8 +1729,8 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p>Long served resources SHOULD be served with a long-lived Cache-Control value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a></p>
    </ul>
-   <div class="example" id="example-52191f87">
-    <a class="self-link" href="#example-52191f87"></a> The following example shows the HTTP headers for the <span>[json-representation]</span> of an immutable <a href="#item-resource">§2.1 Item</a>: 
+   <div class="example" id="example-2d620f2a">
+    <a class="self-link" href="#example-2d620f2a"></a> The following example shows the HTTP headers for the <a href="#json-representation">§9.2 JSON representation</a> of an immutable <a href="#item-resource">§2.1 Item</a>: 
 <pre>HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Link: &lt;/school/12345/entries>; rel="version-history"
@@ -1780,35 +1780,39 @@ Content-Length: 522
 <pre>"2001", "2001-01", "2001-01-31", "2001-01-31T23:20:55"
 </pre>
    </div>
-   <h3 class="heading settled" data-level="8.4" id="curie-datatype"><span class="secno">8.4. </span><span class="content">CURIE datatype</span><a class="self-link" href="#curie-datatype"></a></h3>
-   <ul>
-    <li data-md="">
-     <p>curie <a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
-   </ul>
-   <h3 class="heading settled" data-level="8.5" id="url-datatype"><span class="secno">8.5. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
-   <ul>
-    <li data-md="">
-     <p>URL <a data-link-type="biblio" href="#biblio-uri">[URI]</a></p>
-   </ul>
-   <h3 class="heading settled" data-level="8.6" id="point-datatype"><span class="secno">8.6. </span><span class="content">Point datatype</span><a class="self-link" href="#point-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.4" id="point-datatype"><span class="secno">8.4. </span><span class="content">Point datatype</span><a class="self-link" href="#point-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>point <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.7" id="multipolygon-datatype"><span class="secno">8.7. </span><span class="content">Multipolygon datatype</span><a class="self-link" href="#multipolygon-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.5" id="multipolygon-datatype"><span class="secno">8.5. </span><span class="content">Multipolygon datatype</span><a class="self-link" href="#multipolygon-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>multipolygon <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.8" id="text-datatype"><span class="secno">8.8. </span><span class="content">Text datatype</span><a class="self-link" href="#text-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.6" id="text-datatype"><span class="secno">8.6. </span><span class="content">Text datatype</span><a class="self-link" href="#text-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>text <a data-link-type="biblio" href="#biblio-markdown">[MARKDOWN]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.9" id="item-hash-datatype"><span class="secno">8.9. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.7" id="curie-datatype"><span class="secno">8.7. </span><span class="content">CURIE datatype</span><a class="self-link" href="#curie-datatype"></a></h3>
+    Used to identify a record, possibly in another register. 
+   <ul>
+    <li data-md="">
+     <p>curie <a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
+   </ul>
+   <h3 class="heading settled" data-level="8.8" id="item-hash-datatype"><span class="secno">8.8. </span><span class="content">Item hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
+    The object hash of the item’s contents may be used to identify the contents of an item, irrespective of where it is stored or presented. 
    <p class="issue" id="issue-ebfdb117"><a class="self-link" href="#issue-ebfdb117"></a> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?</p>
-   <h3 class="heading settled" data-level="8.10" id="entry-reference-datatype"><span class="secno">8.10. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.9" id="entry-reference-datatype"><span class="secno">8.9. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
+    Legal documents may need to cite an individual entry, rather than the latest entry of the record. 
    <p class="issue" id="issue-420ac5c0"><a class="self-link" href="#issue-420ac5c0"></a> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.</p>
+   <h3 class="heading settled" data-level="8.10" id="url-datatype"><span class="secno">8.10. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
+    Used to link to an external website, or other resource not held in a register. 
+   <ul>
+    <li data-md="">
+     <p>URL <a data-link-type="biblio" href="#biblio-uri">[URI]</a></p>
+   </ul>
    <h2 class="heading settled" data-level="9" id="representations"><span class="secno">9. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
    <h3 class="heading settled" data-level="9.1" id="html-representation"><span class="secno">9.1. </span><span class="content">HTML representation</span><a class="self-link" href="#html-representation"></a></h3>
    <ul>
@@ -1869,7 +1873,7 @@ Content-Length: 522
    </ul>
    <h2 class="heading settled" data-level="12" id="core-fields"><span class="secno">12. </span><span class="content">Core fields</span><a class="self-link" href="#core-fields"></a></h2>
    <p><em>List of fields defined by this specification</em></p>
-   <h3 class="heading settled" data-level="12.1" id="item-hash"><span class="secno">12.1. </span><span class="content">Item hash</span><a class="self-link" href="#item-hash"></a></h3>
+   <h3 class="heading settled" data-level="12.1" id="item-hash"><span class="secno">12.1. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash"></a></h3>
    <p class="issue" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here</p>
    <ul>
     <li data-md="">
@@ -1877,9 +1881,9 @@ Content-Length: 522
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="12.2" id="entry-number"><span class="secno">12.2. </span><span class="content">Entry number</span><a class="self-link" href="#entry-number"></a></h3>
+   <h3 class="heading settled" data-level="12.2" id="entry-number"><span class="secno">12.2. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number"></a></h3>
    <p class="issue" id="issue-16c53430"><a class="self-link" href="#issue-16c53430"></a> serial-number is inconsistent and has therefore been renamed as entry-number</p>
-   <h3 class="heading settled" data-level="12.3" id="list"><span class="secno">12.3. </span><span class="content">Lists</span><a class="self-link" href="#list"></a></h3>
+   <h3 class="heading settled" data-level="12.3" id="field-cardinality"><span class="secno">12.3. </span><span class="content">cardinality</span><a class="self-link" href="#field-cardinality"></a></h3>
    <ul>
     <li data-md="">
      <p>[string]</p>
@@ -1900,7 +1904,7 @@ Content-Length: 522
      <p>The item will first appear as a new item in the store</p>
     <li data-md="">
      <p>The proposer can only trust it has been secured when the entry
-is listed in the <a href="#entries-resource">§3.1 Register entries</a> with the same <a href="#entry-number">§12.2 Entry number</a>,
+is listed in the <a href="#entries-resource">§3.1 Register entries</a> with the same <a href="#entry-number">§12.2 entry-number</a>,
 and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</p>
    </ul>
    <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry?</p>
@@ -1932,7 +1936,7 @@ and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a
    <h4 class="heading settled" data-level="16.3.3" id="extensibility-proofs"><span class="secno">16.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4>
    <h4 class="heading settled" data-level="16.3.4" id="extensibility-representations"><span class="secno">16.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4>
    <p>A register may provide additional, possibly domain specific representations.</p>
-   <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§8.6 Point datatype</a> or <a href="#multipolygon-datatype">§8.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
+   <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§8.4 Point datatype</a> or <a href="#multipolygon-datatype">§8.5 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
    <p>Additional representations for <a href="#entity-resources">§2 Entity resources</a>, <a href="#list-resources">§3 List resources</a>, <a href="#proof-resources">§4 Proof resources</a>, <a href="#archive-resources">§5 Archive resources</a> and <a href="#streaming-resources">§6 Streaming resources</a> SHOULD be linked to from the HTML representation of the resource.</p>
    <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <h3 class="heading settled" data-level="17.1" id="mint-access-control"><span class="secno">17.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3>
