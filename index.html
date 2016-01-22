@@ -1360,7 +1360,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-21">21 January 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-22">22 January 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1405,9 +1405,10 @@ data held in an open register.</p>
     <li>
      <a href="#list-resources"><span class="secno">3</span> <span class="content">List resources</span></a>
      <ol class="toc">
-      <li><a href="#entries-resource"><span class="secno">3.1</span> <span class="content">List of entries</span></a>
+      <li><a href="#entries-resource"><span class="secno">3.1</span> <span class="content">Register entries</span></a>
       <li><a href="#record-entries-resource"><span class="secno">3.2</span> <span class="content">Record entries</span></a>
-      <li><a href="#register-records-resource"><span class="secno">3.3</span> <span class="content">Register records</span></a>
+      <li><a href="#item-entries-resource"><span class="secno">3.3</span> <span class="content">Item entries</span></a>
+      <li><a href="#register-records-resource"><span class="secno">3.4</span> <span class="content">Register records</span></a>
      </ol>
     <li>
      <a href="#proof-resources"><span class="secno">4</span> <span class="content">Proof resources</span></a>
@@ -1455,38 +1456,52 @@ data held in an open register.</p>
       <li><a href="#field-register"><span class="secno">10.2</span> <span class="content">Field register</span></a>
       <li><a href="#datatype-register"><span class="secno">10.3</span> <span class="content">Datatype register</span></a>
      </ol>
+    <li><a href="#namespaces"><span class="secno">11</span> <span class="content">Namespaces</span></a>
     <li>
-     <a href="#item-field"><span class="secno">11</span> <span class="content">Entity fields</span></a>
+     <a href="#core-fields"><span class="secno">12</span> <span class="content">Core fields</span></a>
      <ol class="toc">
-      <li><a href="#item-hash"><span class="secno">11.1</span> <span class="content">Item hash</span></a>
-      <li><a href="#entry-number"><span class="secno">11.2</span> <span class="content">Entry number</span></a>
-      <li><a href="#list"><span class="secno">11.3</span> <span class="content">Lists</span></a>
+      <li><a href="#item-hash"><span class="secno">12.1</span> <span class="content">Item hash</span></a>
+      <li><a href="#entry-number"><span class="secno">12.2</span> <span class="content">Entry number</span></a>
+      <li><a href="#list"><span class="secno">12.3</span> <span class="content">Lists</span></a>
      </ol>
     <li>
-     <a href="#digital-proofs"><span class="secno">12</span> <span class="content">Digital Proofs</span></a>
+     <a href="#digital-proofs"><span class="secno">13</span> <span class="content">Digital Proofs</span></a>
      <ol class="toc">
       <li>
-       <a href="#using-certificate-transparency"><span class="secno">12.1</span> <span class="content">Certificate transparency</span></a>
+       <a href="#using-certificate-transparency"><span class="secno">13.1</span> <span class="content">Certificate transparency</span></a>
        <ol class="toc">
-        <li><a href="#signed-tree-head"><span class="secno">12.1.1</span> <span class="content">Signed tree head</span></a>
-        <li><a href="#leaf-signature"><span class="secno">12.1.2</span> <span class="content">Leaf signature</span></a>
+        <li><a href="#signed-tree-head"><span class="secno">13.1.1</span> <span class="content">Signed tree head</span></a>
+        <li><a href="#leaf-signature"><span class="secno">13.1.2</span> <span class="content">Leaf signature</span></a>
+        <li><a href="#ct-verify-register"><span class="secno">13.1.3</span> <span class="content">Verifying the register</span></a>
+        <li><a href="#ct-verify-entry"><span class="secno">13.1.4</span> <span class="content">Verifying an entry</span></a>
        </ol>
      </ol>
-    <li><a href="#minting"><span class="secno">13</span> <span class="content">Minting a new entry</span></a>
-    <li><a href="#redaction"><span class="secno">14</span> <span class="content">Redaction</span></a>
+    <li><a href="#minting"><span class="secno">14</span> <span class="content">Minting a new entry</span></a>
+    <li><a href="#redaction"><span class="secno">15</span> <span class="content">Redaction</span></a>
     <li>
-     <a href="#versioning-and-extensibility"><span class="secno">15</span> <span class="content">Versioning and extensibility</span></a>
+     <a href="#versioning-and-extensibility"><span class="secno">16</span> <span class="content">Versioning and extensibility</span></a>
      <ol class="toc">
-      <li><a href="#backwards-compatibility"><span class="secno">15.1</span> <span class="content">Backwards compitability</span></a>
-      <li><a href="#forwards-compatibility"><span class="secno">15.2</span> <span class="content">Forwards compatibility</span></a>
+      <li><a href="#backwards-compatibility"><span class="secno">16.1</span> <span class="content">Backwards compitability</span></a>
+      <li><a href="#forwards-compatibility"><span class="secno">16.2</span> <span class="content">Forwards compatibility</span></a>
       <li>
-       <a href="#extension-points"><span class="secno">15.3</span> <span class="content">Points of extensibility</span></a>
+       <a href="#extension-points"><span class="secno">16.3</span> <span class="content">Points of extensibility</span></a>
        <ol class="toc">
-        <li><a href="#extensibility-fields"><span class="secno">15.3.1</span> <span class="content">Fields</span></a>
-        <li><a href="#extensibility-resources"><span class="secno">15.3.2</span> <span class="content">Resources</span></a>
-        <li><a href="#extensibility-proofs"><span class="secno">15.3.3</span> <span class="content">Proofs</span></a>
-        <li><a href="#extensibility-representations"><span class="secno">15.3.4</span> <span class="content">Representations</span></a>
+        <li><a href="#extensibility-fields"><span class="secno">16.3.1</span> <span class="content">Fields</span></a>
+        <li><a href="#extensibility-resources"><span class="secno">16.3.2</span> <span class="content">Resources</span></a>
+        <li><a href="#extensibility-proofs"><span class="secno">16.3.3</span> <span class="content">Proofs</span></a>
+        <li><a href="#extensibility-representations"><span class="secno">16.3.4</span> <span class="content">Representations</span></a>
        </ol>
+     </ol>
+    <li>
+     <a href="#security-considerations"><span class="secno">17</span> <span class="content">Security considerations</span></a>
+     <ol class="toc">
+      <li><a href="#mint-access-control"><span class="secno">17.1</span> <span class="content">Mint access control</span></a>
+      <li><a href="#compromised-proof"><span class="secno">17.2</span> <span class="content">Compromised proof</span></a>
+      <li><a href="#stale-record"><span class="secno">17.3</span> <span class="content">Stale record</span></a>
+      <li><a href="#denial-of-service"><span class="secno">17.4</span> <span class="content">Denial of service</span></a>
+      <li><a href="#DNS"><span class="secno">17.5</span> <span class="content">DNS</span></a>
+      <li><a href="#private-key"><span class="secno">17.6</span> <span class="content">Protecting the private key</span></a>
+      <li><a href="#compromised-private-key"><span class="secno">17.7</span> <span class="content">Compromised private key</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -1571,7 +1586,7 @@ data held in an open register.</p>
    <h2 class="heading settled" data-level="3" id="list-resources"><span class="secno">3. </span><span class="content">List resources</span><a class="self-link" href="#list-resources"></a></h2>
    <p>There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.</p>
    <p class="issue" id="issue-c647663d"><a class="self-link" href="#issue-c647663d"></a> define query string parameters ..</p>
-   <h3 class="heading settled" data-level="3.1" id="entries-resource"><span class="secno">3.1. </span><span class="content">List of entries</span><a class="self-link" href="#entries-resource"></a></h3>
+   <h3 class="heading settled" data-level="3.1" id="entries-resource"><span class="secno">3.1. </span><span class="content">Register entries</span><a class="self-link" href="#entries-resource"></a></h3>
    <dl>
     <dt data-md="">
      <p>/entries</p>
@@ -1612,7 +1627,28 @@ data held in an open register.</p>
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
-   <h3 class="heading settled" data-level="3.3" id="register-records-resource"><span class="secno">3.3. </span><span class="content">Register records</span><a class="self-link" href="#register-records-resource"></a></h3>
+   <h3 class="heading settled" data-level="3.3" id="item-entries-resource"><span class="secno">3.3. </span><span class="content">Item entries</span><a class="self-link" href="#item-entries-resource"></a></h3>
+   <dl>
+    <dt data-md="">
+     <p>/record/{field-name}/{field-value}/entries</p>
+   </dl>
+   <p class="issue" id="issue-3c688429"><a class="self-link" href="#issue-3c688429"></a> the path /item/{item-hash}/entries has yet to be implemented</p>
+   <div class="example" id="example-d89da666">
+    <a class="self-link" href="#example-d89da666"></a> The following example shows a list of item entries in the JSON representation <a href="#json-representation">§9.2 JSON representation</a>: 
+<pre class="highlight"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"abcd"</span><span class="p">,</span>
+    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"133"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"abcd"</span><span class="p">,</span>
+    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30"</span>
+  <span class="p">}</span>
+<span class="p">]</span></pre>
+   </div>
+   <h3 class="heading settled" data-level="3.4" id="register-records-resource"><span class="secno">3.4. </span><span class="content">Register records</span><a class="self-link" href="#register-records-resource"></a></h3>
    <dl>
     <dt data-md="">
      <p>/records</p>
@@ -1661,26 +1697,25 @@ data held in an open register.</p>
      <p>/download</p>
    </dl>
    The contents of an open register MUST be made available as an archive.
-The archive MAY be split into multiple parts. 
+The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate <a href="#digital-proofs">§13 Digital Proofs</a>.
+The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large. 
    <p>The archive contains the following files in the following structure:</p>
    <ul>
     <li data-md="">
-     <p>a directory named "register" containing</p>
+     <p>a directory with the name of the register containing</p>
      <ul>
       <li data-md="">
-       <p>a directory with the name of the register containing</p>
-       <ul>
-        <li data-md="">
-         <p>a file named "register.json" containing the <a href="#register-resource">§2.3 Register</a> in the <a href="#json-representation">§9.2 JSON representation</a></p>
-        <li data-md="">
-         <p>a directory named "item" containing all of the <a href="#item-resource">§2.1 Item</a></p>
-        <li data-md="">
-         <p>a directory named "entry" containing all of the <a href="#entry-resource">§2.2 Entry</a></p>
-       </ul>
+       <p>a file named "register.json" containing the <a href="#register-resource">§2.3 Register</a> in the <a href="#json-representation">§9.2 JSON representation</a></p>
+      <li data-md="">
+       <p>a file named "proof.json" containing one or more digital proofs for the register in the <a href="#json-representation">§9.2 JSON representation</a></p>
+      <li data-md="">
+       <p>a directory named "item" containing all of the <a href="#item-resource">§2.1 Item</a> in one or more parts in the <a href="#json-representation">§9.2 JSON representation</a></p>
+      <li data-md="">
+       <p>a directory named "entry" containing all of the <a href="#entry-resource">§2.2 Entry</a> in one or more files in the <a href="#json-representation">§9.2 JSON representation</a></p>
      </ul>
    </ul>
-   <p><em> .. resources either as one file per item/entry in .json or a single .tsv file</em></p>
-   <p class="issue" id="issue-ebf44255"><a class="self-link" href="#issue-ebf44255"></a> what is the naming convention for the archive files?</p>
+   <p>A register archive MAY contain entry and item resources in the more space efficient <a href="#tsv-representation">§9.5 TSV representation</a>.</p>
+   <p class="issue" id="issue-045e5d2f"><a class="self-link" href="#issue-045e5d2f"></a> what is the naming convention for the archive files themselves?</p>
    <p class="issue" id="issue-8f0260f4"><a class="self-link" href="#issue-8f0260f4"></a> how about a "record" archive containing only the latest entries for each record?</p>
    <h2 class="heading settled" data-level="6" id="streaming-resources"><span class="secno">6. </span><span class="content">Streaming resources</span><a class="self-link" href="#streaming-resources"></a></h2>
    <p class="issue" id="issue-073f5c29"><a class="self-link" href="#issue-073f5c29"></a> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>?</p>
@@ -1691,11 +1726,22 @@ The archive MAY be split into multiple parts.
      <p><a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a></p>
     <li data-md="">
      <p><a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a></p>
-<pre class="example" id="example-31843418"><a class="self-link" href="#example-31843418"></a>HTTP/1.1 200 OK
-Link: &lt;/school/12345/entries>; rel="version-history"
-Content-Type: application/json
-</pre>
+    <li data-md="">
+     <p>Long served resources SHOULD be served with a long-lived Cache-Control value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a></p>
    </ul>
+   <div class="example" id="example-52191f87">
+    <a class="self-link" href="#example-52191f87"></a> The following example shows the HTTP headers for the <span>[json-representation]</span> of an immutable <a href="#item-resource">§2.1 Item</a>: 
+<pre>HTTP/1.1 200 OK
+Date: Fri, 22 Jan 2016 08:00:08 GMT
+Link: &lt;/school/12345/entries>; rel="version-history"
+Cache-Control: max-stale=31536000
+Content-Type: application/json
+Content-Security-Policy: default-src 'self'
+Cache-Control: no-transform
+Vary: Accept-Encoding
+Content-Length: 522
+</pre>
+   </div>
    <h2 class="heading settled" data-level="8" id="datatypes"><span class="secno">8. </span><span class="content">Datatypes</span><a class="self-link" href="#datatypes"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="string-datatype"><span class="secno">8.1. </span><span class="content">String datatype</span><a class="self-link" href="#string-datatype"></a></h3>
    <ul>
@@ -1814,8 +1860,16 @@ Content-Type: application/json
    <h3 class="heading settled" data-level="10.1" id="register-register"><span class="secno">10.1. </span><span class="content">Register register</span><a class="self-link" href="#register-register"></a></h3>
    <h3 class="heading settled" data-level="10.2" id="field-register"><span class="secno">10.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
    <h3 class="heading settled" data-level="10.3" id="datatype-register"><span class="secno">10.3. </span><span class="content">Datatype register</span><a class="self-link" href="#datatype-register"></a></h3>
-   <h2 class="heading settled" data-level="11" id="item-field"><span class="secno">11. </span><span class="content">Entity fields</span><a class="self-link" href="#item-field"></a></h2>
-   <h3 class="heading settled" data-level="11.1" id="item-hash"><span class="secno">11.1. </span><span class="content">Item hash</span><a class="self-link" href="#item-hash"></a></h3>
+   <h2 class="heading settled" data-level="11" id="namespaces"><span class="secno">11. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2>
+   <ul>
+    <li data-md="">
+     <p>defined by this specification</p>
+    <li data-md="">
+     <p>defined by {#core-registers}</p>
+   </ul>
+   <h2 class="heading settled" data-level="12" id="core-fields"><span class="secno">12. </span><span class="content">Core fields</span><a class="self-link" href="#core-fields"></a></h2>
+   <p><em>List of fields defined by this specification</em></p>
+   <h3 class="heading settled" data-level="12.1" id="item-hash"><span class="secno">12.1. </span><span class="content">Item hash</span><a class="self-link" href="#item-hash"></a></h3>
    <p class="issue" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here</p>
    <ul>
     <li data-md="">
@@ -1823,19 +1877,21 @@ Content-Type: application/json
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="11.2" id="entry-number"><span class="secno">11.2. </span><span class="content">Entry number</span><a class="self-link" href="#entry-number"></a></h3>
+   <h3 class="heading settled" data-level="12.2" id="entry-number"><span class="secno">12.2. </span><span class="content">Entry number</span><a class="self-link" href="#entry-number"></a></h3>
    <p class="issue" id="issue-16c53430"><a class="self-link" href="#issue-16c53430"></a> serial-number is inconsistent and has therefore been renamed as entry-number</p>
-   <h3 class="heading settled" data-level="11.3" id="list"><span class="secno">11.3. </span><span class="content">Lists</span><a class="self-link" href="#list"></a></h3>
+   <h3 class="heading settled" data-level="12.3" id="list"><span class="secno">12.3. </span><span class="content">Lists</span><a class="self-link" href="#list"></a></h3>
    <ul>
     <li data-md="">
      <p>[string]</p>
    </ul>
-   <h2 class="heading settled" data-level="12" id="digital-proofs"><span class="secno">12. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
-   <h3 class="heading settled" data-level="12.1" id="using-certificate-transparency"><span class="secno">12.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
+   <h2 class="heading settled" data-level="13" id="digital-proofs"><span class="secno">13. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
+   <h3 class="heading settled" data-level="13.1" id="using-certificate-transparency"><span class="secno">13.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
-   <h4 class="heading settled" data-level="12.1.1" id="signed-tree-head"><span class="secno">12.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
-   <h4 class="heading settled" data-level="12.1.2" id="leaf-signature"><span class="secno">12.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
-   <h2 class="heading settled" data-level="13" id="minting"><span class="secno">13. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
+   <h4 class="heading settled" data-level="13.1.1" id="signed-tree-head"><span class="secno">13.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
+   <h4 class="heading settled" data-level="13.1.2" id="leaf-signature"><span class="secno">13.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
+   <h4 class="heading settled" data-level="13.1.3" id="ct-verify-register"><span class="secno">13.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
+   <h4 class="heading settled" data-level="13.1.4" id="ct-verify-entry"><span class="secno">13.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
+   <h2 class="heading settled" data-level="14" id="minting"><span class="secno">14. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
    <p>To mint a new entry in the register:</p>
    <ul>
     <li data-md="">
@@ -1844,10 +1900,11 @@ Content-Type: application/json
      <p>The item will first appear as a new item in the store</p>
     <li data-md="">
      <p>The proposer can only trust it has been secured when the entry
-is listed in the <a href="#entries-resource">§3.1 List of entries</a> with the same <a href="#entry-number">§11.2 Entry number</a>,
-and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a href="#digital-proofs">§12 Digital Proofs</a> for the register.</p>
+is listed in the <a href="#entries-resource">§3.1 Register entries</a> with the same <a href="#entry-number">§12.2 Entry number</a>,
+and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</p>
    </ul>
-   <h2 class="heading settled" data-level="14" id="redaction"><span class="secno">14. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2>
+   <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry?</p>
+   <h2 class="heading settled" data-level="15" id="redaction"><span class="secno">15. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2>
    <ul>
     <li data-md="">
      <p>An item may be removed from a register, but the entry MUST NOT be removed from the register.</p>
@@ -1856,27 +1913,35 @@ and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a
    <p class="issue" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted.</p>
    <p class="issue" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated.</p>
    <p class="issue" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof.</p>
-   <h2 class="heading settled" data-level="15" id="versioning-and-extensibility"><span class="secno">15. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2>
-   <h3 class="heading settled" data-level="15.1" id="backwards-compatibility"><span class="secno">15.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3>
+   <h2 class="heading settled" data-level="16" id="versioning-and-extensibility"><span class="secno">16. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2>
+   <h3 class="heading settled" data-level="16.1" id="backwards-compatibility"><span class="secno">16.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3>
    <ul>
     <li data-md="">
      <p>Semantics of a field cannot be significantly changed but not changed.</p>
    </ul>
-   <h3 class="heading settled" data-level="15.2" id="forwards-compatibility"><span class="secno">15.2. </span><span class="content">Forwards compatibility</span><a class="self-link" href="#forwards-compatibility"></a></h3>
+   <h3 class="heading settled" data-level="16.2" id="forwards-compatibility"><span class="secno">16.2. </span><span class="content">Forwards compatibility</span><a class="self-link" href="#forwards-compatibility"></a></h3>
    <ul>
     <li data-md="">
      <p>Must-ignore rule.</p>
     <li data-md="">
      <p>Defaulting empty or missing values</p>
    </ul>
-   <h3 class="heading settled" data-level="15.3" id="extension-points"><span class="secno">15.3. </span><span class="content">Points of extensibility</span><a class="self-link" href="#extension-points"></a></h3>
-   <h4 class="heading settled" data-level="15.3.1" id="extensibility-fields"><span class="secno">15.3.1. </span><span class="content">Fields</span><a class="self-link" href="#extensibility-fields"></a></h4>
-   <h4 class="heading settled" data-level="15.3.2" id="extensibility-resources"><span class="secno">15.3.2. </span><span class="content">Resources</span><a class="self-link" href="#extensibility-resources"></a></h4>
-   <h4 class="heading settled" data-level="15.3.3" id="extensibility-proofs"><span class="secno">15.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4>
-   <h4 class="heading settled" data-level="15.3.4" id="extensibility-representations"><span class="secno">15.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4>
+   <h3 class="heading settled" data-level="16.3" id="extension-points"><span class="secno">16.3. </span><span class="content">Points of extensibility</span><a class="self-link" href="#extension-points"></a></h3>
+   <h4 class="heading settled" data-level="16.3.1" id="extensibility-fields"><span class="secno">16.3.1. </span><span class="content">Fields</span><a class="self-link" href="#extensibility-fields"></a></h4>
+   <h4 class="heading settled" data-level="16.3.2" id="extensibility-resources"><span class="secno">16.3.2. </span><span class="content">Resources</span><a class="self-link" href="#extensibility-resources"></a></h4>
+   <h4 class="heading settled" data-level="16.3.3" id="extensibility-proofs"><span class="secno">16.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4>
+   <h4 class="heading settled" data-level="16.3.4" id="extensibility-representations"><span class="secno">16.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4>
    <p>A register may provide additional, possibly domain specific representations.</p>
    <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§8.6 Point datatype</a> or <a href="#multipolygon-datatype">§8.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
    <p>Additional representations for <a href="#entity-resources">§2 Entity resources</a>, <a href="#list-resources">§3 List resources</a>, <a href="#proof-resources">§4 Proof resources</a>, <a href="#archive-resources">§5 Archive resources</a> and <a href="#streaming-resources">§6 Streaming resources</a> SHOULD be linked to from the HTML representation of the resource.</p>
+   <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2>
+   <h3 class="heading settled" data-level="17.1" id="mint-access-control"><span class="secno">17.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3>
+   <h3 class="heading settled" data-level="17.2" id="compromised-proof"><span class="secno">17.2. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3>
+   <h3 class="heading settled" data-level="17.3" id="stale-record"><span class="secno">17.3. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3>
+   <h3 class="heading settled" data-level="17.4" id="denial-of-service"><span class="secno">17.4. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3>
+   <h3 class="heading settled" data-level="17.5" id="DNS"><span class="secno">17.5. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3>
+   <h3 class="heading settled" data-level="17.6" id="private-key"><span class="secno">17.6. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3>
+   <h3 class="heading settled" data-level="17.7" id="compromised-private-key"><span class="secno">17.7. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3>
   </main>
   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
   <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
@@ -1939,6 +2004,8 @@ and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a
    <dd>M. Nottingham, Ed.; R. Sayre, Ed.. <a href="https://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. December 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4287">https://tools.ietf.org/html/rfc4287</a>
    <dt id="biblio-rfc5988"><a class="self-link" href="#biblio-rfc5988"></a>[RFC5988]
    <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc5988">Web Linking</a>. October 2010. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc5988">https://tools.ietf.org/html/rfc5988</a>
+   <dt id="biblio-rfc7234"><a class="self-link" href="#biblio-rfc7234"></a>[RFC7234]
+   <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7234">Hypertext Transfer Protocol (HTTP/1.1): Caching</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7234">https://tools.ietf.org/html/rfc7234</a>
    <dt id="biblio-tabular-data-model"><a class="self-link" href="#biblio-tabular-data-model"></a>[TABULAR-DATA-MODEL]
    <dd>Jeni Tennison; Gregg Kellogg. <a href="http://www.w3.org/TR/tabular-data-model/">Model for Tabular Data and Metadata on the Web</a>. 17 December 2015. REC. URL: <a href="http://www.w3.org/TR/tabular-data-model/">http://www.w3.org/TR/tabular-data-model/</a>
    <dt id="biblio-turtle"><a class="self-link" href="#biblio-turtle"></a>[TURTLE]
@@ -1951,16 +2018,18 @@ and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a
    <div class="issue"> CT timestamps seem to be in localtime with a "-05:00" suffix. We should force them to be UTC.<a href="#issue-783205bb"> ↵ </a></div>
    <div class="issue"> define query string parameters ..<a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> the path /{field-name}/{field-value}/history has been renamed as /record/{field-name}/field-value}/entries<a href="#issue-aaa46346"> ↵ </a></div>
+   <div class="issue"> the path /item/{item-hash}/entries has yet to be implemented<a href="#issue-3c688429"> ↵ </a></div>
    <div class="issue"> What does an entry-proof look like?<a href="#issue-46a6029e"> ↵ </a></div>
    <div class="issue"> How do we support multiple proofs, say if quantum cryptography comes along?<a href="#issue-569a7009"> ↵ </a></div>
    <div class="issue"> What does a register-proof look like?<a href="#issue-9a24a390"> ↵ </a></div>
-   <div class="issue"> what is the naming convention for the archive files?<a href="#issue-ebf44255"> ↵ </a></div>
+   <div class="issue"> what is the naming convention for the archive files themselves?<a href="#issue-045e5d2f"> ↵ </a></div>
    <div class="issue"> how about a "record" archive containing only the latest entries for each record?<a href="#issue-8f0260f4"> ↵ </a></div>
    <div class="issue"> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>?<a href="#issue-073f5c29"> ↵ </a></div>
    <div class="issue"> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?<a href="#issue-ebfdb117"> ↵ </a></div>
    <div class="issue"> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.<a href="#issue-420ac5c0"> ↵ </a></div>
    <div class="issue"> objecthash isn’t a specification, we’ll need to define our algorithm here<a href="#issue-b730eb4a"> ↵ </a></div>
    <div class="issue"> serial-number is inconsistent and has therefore been renamed as entry-number<a href="#issue-16c53430"> ↵ </a></div>
+   <div class="issue"> does a register have a standard URL to POST a new entry?<a href="#issue-72e39dac"> ↵ </a></div>
    <div class="issue"> there is a need redaction, even for open records such as insolvency and bankruptcy.<a href="#issue-6510bec9"> ↵ </a></div>
    <div class="issue"> need a mechanism to flag an item as redacted.<a href="#issue-183a231c"> ↵ </a></div>
    <div class="issue"> need a mechanism to mark a proof as deprecated.<a href="#issue-65e174d1"> ↵ </a></div>

@@ -113,7 +113,8 @@ There is a limit to how many records or entries can be returned in a single requ
 
 ISSUE: define query string parameters ..
 
-## List of entries ## {#entries-resource}
+
+## Register entries ## {#entries-resource}
   : /entries
 
 <div class="example">
@@ -135,6 +136,7 @@ The following example shows a list of entries in the JSON representation [[#json
 </pre>
 </div>
 
+
 ## Record entries ## {#record-entries-resource}
   : /record/{field-name}/{field-value}/entries
 
@@ -153,6 +155,30 @@ The following example shows a list of record entries in the JSON representation 
   {
     "entry-number": "21",
     "item-hash": "efgh",
+    "timestamp": "2015-08-15T08:15:30"
+  }
+]
+</pre>
+</div>
+
+## Item entries ## {#item-entries-resource}
+  : /record/{field-name}/{field-value}/entries
+
+ISSUE: the path /item/{item-hash}/entries has yet to be implemented
+
+<div class="example">
+The following example shows a list of item entries in the JSON representation [[#json-representation]]:
+
+<pre highlight="json">
+[
+  {
+    "entry-number": "121",
+    "item-hash": "abcd",
+    "timestamp": "2015-08-20T08:15:30"
+  },
+  {
+    "entry-number": "133",
+    "item-hash": "abcd",
     "timestamp": "2015-08-15T08:15:30"
   }
 ]
@@ -212,20 +238,20 @@ ISSUE: What does a register-proof look like?
 ## Download page ## {#download}
   : /download
 The contents of an open register MUST be made available as an archive.
-The archive MAY be split into multiple parts.
+The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate [[#digital-proofs]].
+The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large.
 
 The archive contains the following files in the following structure:
 
- * a directory named "register" containing
-   * a directory with the name of the register containing
-     * a file named "register.json" containing the [[#register-resource]] in the [[#json-representation]]
-     * a directory named "item" containing all of the [[#item-resource]]
-     * a directory named "entry" containing all of the [[#entry-resource]]
+ * a directory with the name of the register containing
+   * a file named "register.json" containing the [[#register-resource]] in the [[#json-representation]]
+   * a file named "proof.json" containing one or more digital proofs for the register in the [[#json-representation]]
+   * a directory named "item" containing all of the [[#item-resource]] in one or more parts in the [[#json-representation]]
+   * a directory named "entry" containing all of the [[#entry-resource]] in one or more files in the [[#json-representation]]
 
-<em> .. resources either as one file per item/entry in .json or a single .tsv file</em>
+A register archive MAY contain entry and item resources in the more space efficient [[#tsv-representation]].
 
-
-ISSUE: what is the naming convention for the archive files?
+ISSUE: what is the naming convention for the archive files themselves?
 
 ISSUE: how about a "record" archive containing only the latest entries for each record?
 
@@ -241,12 +267,23 @@ Table of link and other HTTP headers used by resources ..
 
   * [[RFC5988]]
   * <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a>
+  * Long served resources SHOULD be served with a long-lived Cache-Control value [[RFC7234]]
 
-<pre class="example">
+
+<div class="example">
+The following example shows the HTTP headers for the [[json-representation]] of an immutable [[#item-resource]]:
+<pre>
 HTTP/1.1 200 OK
+Date: Fri, 22 Jan 2016 08:00:08 GMT
 Link: &lt;/school/12345/entries>; rel="version-history"
+Cache-Control: max-stale=31536000
 Content-Type: application/json
+Content-Security-Policy: default-src 'self'
+Cache-Control: no-transform
+Vary: Accept-Encoding
+Content-Length: 522
 </pre>
+</div>
 
 
 # Datatypes # {#datatypes}
@@ -351,7 +388,15 @@ ISSUE: we don't know how to globally reference an entry, by its entry-number "re
 ## Datatype register ## {#datatype-register}
 
 
-# Entity fields # {#item-field}
+# Namespaces # {#namespaces}
+
+* defined by this specification
+* defined by {#core-registers}
+
+
+# Core fields # {#core-fields}
+
+<em>List of fields defined by this specification</em>
 
 ## Item hash ## {#item-hash}
 
@@ -369,7 +414,6 @@ ISSUE: serial-number is inconsistent and has therefore been renamed as entry-num
   * [string]
 
 
-
 # Digital Proofs # {#digital-proofs}
 
 ## Certificate transparency ## {#using-certificate-transparency}
@@ -378,6 +422,10 @@ ISSUE: serial-number is inconsistent and has therefore been renamed as entry-num
 ### Signed tree head ### {#signed-tree-head}
 
 ### Leaf signature ### {#leaf-signature}
+
+### Verifying the register ### {#ct-verify-register}
+
+### Verifying an entry ### {#ct-verify-entry}
 
 
 
@@ -390,6 +438,7 @@ ISSUE: serial-number is inconsistent and has therefore been renamed as entry-num
     is listed in the [[#entries-resource]] with the same [[#entry-number]],
     and the [[#entry-resource]] is a covered by one or more [[#digital-proofs]] for the register.
 
+ISSUE: does a register have a standard URL to POST a new entry?
 
 # Redaction # {#redaction}
 
@@ -430,14 +479,16 @@ A register containing fields with [[#point-datatype]] or [[#multipolygon-datatyp
 
 Additional representations for [[#entity-resources]], [[#list-resources]], [[#proof-resources]], [[#archive-resources]] and [[#streaming-resources]] SHOULD be linked to from the HTML representation of the resource.
 
+# Security considerations # {#security-considerations}
 
+## Mint access control ## {#mint-access-control}
+## Compromised proof ## {#compromised-proof}
+## Stale record ## {#stale-record}
+## Denial of service ## {#denial-of-service}
+## DNS ## {#DNS}
+## Protecting the private key ## {#private-key}
+## Compromised private key ## {#compromised-private-key}
 
-<pre class="anchors">
-urlPrefix: http://www.w3.org/TR/html5/
-  type: interface
-    urlPrefix: webappapis.html
-      text: NavigatorPlugins
-</pre>
 
 <pre class="link-defaults">
 spec:html5; type:element; text:script
