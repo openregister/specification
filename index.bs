@@ -276,15 +276,21 @@ The following example shows the HTTP headers for the [[#json-representation]] of
 HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Link: &lt;/school/12345/entries>; rel="version-history"
-Cache-Control: max-stale=31536000
+Cache-Control: max-age=31536000
 Content-Type: application/json
 Content-Security-Policy: default-src 'self'
 Cache-Control: no-transform
+X-Xss-Protection "1; mode=block"
+X-Frame-Options "SAMEORIGIN"
+X-Content-Type-Options "nosniff"
 Vary: Accept-Encoding
 Content-Length: 522
 </pre>
 </div>
 
+ISSUE: should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?
+
+ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?
 
 # Datatypes # {#datatypes}
 

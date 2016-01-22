@@ -1729,8 +1729,8 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p>Long served resources SHOULD be served with a long-lived Cache-Control value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a></p>
    </ul>
-   <div class="example" id="example-2d620f2a">
-    <a class="self-link" href="#example-2d620f2a"></a> The following example shows the HTTP headers for the <a href="#json-representation">§9.2 JSON representation</a> of an immutable <a href="#item-resource">§2.1 Item</a>: 
+   <div class="example" id="example-6ee5268c">
+    <a class="self-link" href="#example-6ee5268c"></a> The following example shows the HTTP headers for the <a href="#json-representation">§9.2 JSON representation</a> of an immutable <a href="#item-resource">§2.1 Item</a>: 
 <pre>HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Link: &lt;/school/12345/entries>; rel="version-history"
@@ -1738,10 +1738,15 @@ Cache-Control: max-stale=31536000
 Content-Type: application/json
 Content-Security-Policy: default-src 'self'
 Cache-Control: no-transform
+X-Xss-Protection "1; mode=block"
+X-Frame-Options "SAMEORIGIN"
+X-Content-Type-Options "nosniff"
 Vary: Accept-Encoding
 Content-Length: 522
 </pre>
    </div>
+   <p class="issue" id="issue-30cc7315"><a class="self-link" href="#issue-30cc7315"></a> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?</p>
+   <p class="issue" id="issue-70d0c866"><a class="self-link" href="#issue-70d0c866"></a> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?</p>
    <h2 class="heading settled" data-level="8" id="datatypes"><span class="secno">8. </span><span class="content">Datatypes</span><a class="self-link" href="#datatypes"></a></h2>
    <h3 class="heading settled" data-level="8.1" id="string-datatype"><span class="secno">8.1. </span><span class="content">String datatype</span><a class="self-link" href="#string-datatype"></a></h3>
    <ul>
@@ -2029,6 +2034,8 @@ and the <a href="#entry-resource">§2.2 Entry</a> is a covered by one or more <a
    <div class="issue"> what is the naming convention for the archive files themselves?<a href="#issue-045e5d2f"> ↵ </a></div>
    <div class="issue"> how about a "record" archive containing only the latest entries for each record?<a href="#issue-8f0260f4"> ↵ </a></div>
    <div class="issue"> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>?<a href="#issue-073f5c29"> ↵ </a></div>
+   <div class="issue"> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?<a href="#issue-30cc7315"> ↵ </a></div>
+   <div class="issue"> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?<a href="#issue-70d0c866"> ↵ </a></div>
    <div class="issue"> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?<a href="#issue-ebfdb117"> ↵ </a></div>
    <div class="issue"> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.<a href="#issue-420ac5c0"> ↵ </a></div>
    <div class="issue"> objecthash isn’t a specification, we’ll need to define our algorithm here<a href="#issue-b730eb4a"> ↵ </a></div>
