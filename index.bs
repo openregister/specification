@@ -320,12 +320,6 @@ Content-Length: 522
 </div>
 
 
-## CURIE datatype ## {#curie-datatype}
-  * curie [[CURIE]]
-
-## URL datatype ## {#url-datatype}
-  * URL [[URI]]
-
 ## Point datatype ## {#point-datatype}
   * point [[GEOJSON]]
 
@@ -335,13 +329,23 @@ Content-Length: 522
 ## Text datatype ## {#text-datatype}
   * text [[MARKDOWN]]
 
-## Item-hash datatype ## {#item-hash-datatype}
+## CURIE datatype ## {#curie-datatype}
+Used to identify a record, possibly in another register.
+  * curie [[CURIE]]
+
+## Item hash datatype ## {#item-hash-datatype}
+The object hash of the item's contents may be used to identify the contents of an item, irrespective of where it is stored or presented.
 
 ISSUE: do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?
 
 ## Entry-reference datatype ## {#entry-reference-datatype}
+Legal documents may need to cite an individual entry, rather than the latest entry of the record.
 
 ISSUE: we don't know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.
+
+## URL datatype ## {#url-datatype}
+Used to link to an external website, or other resource not held in a register.
+  * URL [[URI]]
 
 
 
@@ -398,18 +402,18 @@ ISSUE: we don't know how to globally reference an entry, by its entry-number "re
 
 <em>List of fields defined by this specification</em>
 
-## Item hash ## {#item-hash}
+## item-hash ## {#item-hash}
 
 ISSUE: objecthash isn't a specification, we'll need to define our algorithm here
 
   * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
   * [[FIPS-180-4]]
 
-## Entry number ## {#entry-number}
+## entry-number ## {#entry-number}
 
 ISSUE: serial-number is inconsistent and has therefore been renamed as entry-number
 
-## Lists ## {#list}
+## cardinality ## {#field-cardinality}
 
   * [string]
 
