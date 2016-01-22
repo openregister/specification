@@ -7,7 +7,7 @@ Shortname: openregister-core
 Level: 1
 Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-office.gov.uk
 Editor: Daniel Appelquist, Government Digital Service, daniel.appelquist@digital.cabinet-office.gov.uk
-Group: registers
+Group: openregister
 Indent: 2
 Abstract:
   This document defines the resources and representations which together
@@ -19,32 +19,34 @@ Version History: https://github.com/openregister/specification/commits/gh-pages/
 </pre>
 
 <pre class=include>
-path: includes/logo.bs
+path: include/logo-openregister.include
 </pre>
 
 <pre class=include>
-path: includes/copyright.bs
+path: include/copyright-openregister.include
 </pre>
+
+<style>
+svg.railroad-diagram { width: 100%; }
+</style>
 
 # Introduction # {#introduction}
 
-An introduction to registers .. 
-
-ISSUE: this should be an introduction to the product, independent of HMG's use of registers?
+An introduction to the product, independent of HMG's use of registers ..
 
 # Entity resources # {#entity-resources}
 
-## Item ## {#item-resource}
+## Item resource ## {#item-resource}
 : /item/{item-hash}
 
-ISSUE: the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
+ISSUE: IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
+
 
 <div class="example">
-The following example shows an item in the JSON representation [[#json-representation]]:
+The following example shows an item in the [[#json-representation]]:
 <pre highlight="json">
 {
   "business": "company:07228130",
-  "end-date": "",
   "food-premises": "788112",
   "food-premises-types": ["restaurant", "cafe"],
   "local-authority": "E09000015",
@@ -55,28 +57,71 @@ The following example shows an item in the JSON representation [[#json-represent
 </pre>
 </div>
 
-## Entry ## {#entry-resource}
+## Entry resource ## {#entry-resource}
 : /entry/{entry-number}
 
+<div class="example">
+The following example shows an entry in the [[#json-representation]]:
 
-## Register ## {#register-resource}
+<pre highlight="json">
+{
+    "entry-number": "72",
+    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+    "timestamp": "2015-08-20T08:15:30Z"
+}
+</pre>
+</div>
+
+ISSUE: IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the [[#timestamp-datatype]].
+
+## Record resource ## {#record-resource}
+  : /record/{key-field-value}
+
+
+<div class="example">
+The following example shows a record in the [[#json-representation]]:
+
+<pre highlight="json">
+{
+    "entry": {
+      "entry-number": "72",
+      "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+      "timestamp": "2015-08-20T08:15:30Z"
+    },
+    "item": {
+      "local-authority": "E09000019",
+      "name": "Islington"
+    }
+}
+</pre>
+</div>
+
+
+## Register resource ## {#register-resource}
   : /register
 
 <div class="example">
-The following example shows a register in the JSON representation [[#json-representation]]:
+The following example shows a register in the [[#json-representation]]:
 
 <pre highlight="json">
 {
   "domain": ".register.gov.uk",
-  "item": {
-    "fields": [ "address", "end-date", "school", "start-date", "name", "website" ],
-    "name": "Schools in the UK",
-    "phase": "beta",
-    "register": "school",
-    "registry": "department-of-education",
-    "start-date": "2016-01-1"
-  },
   "last-updated": "2016-01-21T21:09:59",
+  "record": {
+    "entry": {
+      "entry-number": "12",
+      "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+      "timestamp": "2015-08-20T08:15:30Z"
+    },
+    "item": {
+      "fields": [ "address", "end-date", "school", "start-date", "name", "website" ],
+      "name": "Schools in the UK",
+      "phase": "beta",
+      "register": "school",
+      "registry": "department-of-education",
+      "start-date": "2012-01-01"
+    }
+  }
   "total-entries": "109001",
   "total-items": "109009",
   "total-records": "30522"
@@ -84,153 +129,263 @@ The following example shows a register in the JSON representation [[#json-repres
 </pre>
 </div>
 
-## Record ## {#record-resource}
-  : /record/{field-name}/{field-value}
-
+## Proof resource ## {#proof-resource}
+  : /proof/{proof-identifier}
 
 <div class="example">
-The following example shows a record in the JSON representation [[#json-representation]]:
+The following example shows a register proof in the [[#json-representation]]:
 
+<pre>
+https://school.register.gov.uk/proof/certificate-transparency
+</pre>
 <pre highlight="json">
 {
-    "entry-number": "72",
-    "item-hash": "a1b2 … … e9",
-    "item": {
-      "local-authority": "E09000019",
-      "name": "Islington"
-    },
-    "timestamp": "2015-08-20T08:15:30"
+  "tree_size": "9803348",
+  "timestamp": "1447421303202",
+  "sha256_root_hash": "JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU=",
+  "tree_head_signature":
+  "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
 }
 </pre>
 </div>
 
-ISSUE: CT timestamps seem to be in localtime with a "-05:00" suffix. We should force them to be UTC.
+ISSUE: CT timestamp is inconsistent with [[#timestamp-datatype]].
 
+ISSUE: CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
 
-# List resources # {#list-resources}
+## Proof node resource ## {#proof-node-resource}
+  : /proof/{proof-identifier}/node/{proof-node-hash}
+
+<div class="example">
+The following example shows a register proof in the [[#json-representation]]:
+
+<pre highlight="json">
+{
+  "proof": "certificate-transparency",
+  "proof-node-hashes": [
+    "zeC0N4isU4ZrwaeCJdjy31+X9avF8zt87NN6G+xOThQ=",
+    "WBb5QnpttrokZ3kMCNNyAymfQK/BfPgIdsh3izVZgK0=",
+    "lyzm0rW0RIi1OXHwnpQ4WVB+cbSzLplTeAWrIDZaavU="
+  ]
+}
+</pre>
+</div>
+
+# Immutable resources # {#immutable-resources}
+
+An immutable resource, is one whose contents will never change.
+An instance of an [[#item-resource]], [[#entry-resource]] and [[#proof-node-resource]] are all deemed to be immutable.
+
+# Collection resources # {#list-resources}
 
 There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
 
 ISSUE: define query string parameters ..
 
+ISSUE: if /records and /items are sets, what does that mean for pagination?
 
-## Register entries ## {#entries-resource}
+## Items resource ## {#items-resource}
+  : /items
+
+ISSUE: IMPLEMENTATION /items isn't yet implemented. There may not be a need for this resource as it's available in the archive.
+
+<div class="example">
+The following example shows a set of records in the [[#json-representation]]:
+
+<pre highlight="json">
+{
+  "1a0212ba5094383bcc2a0bbe1a55e3a1f1278984": {
+    "local-authority": "E09000019",
+    "name": "Islington"
+  },
+  "d9178efd8febfebaaa42968648b7bdd023369c7f": {
+    "local-authority": "E09000016",
+    "name": "Havering"
+  }
+}
+</pre>
+</div>
+
+
+## Entries resource ## {#entries-resource}
   : /entries
 
+ISSUE: IMPLEMENTATION /entries is currently implemented as also returning the item contents.
+
 <div class="example">
-The following example shows a list of entries in the JSON representation [[#json-representation]]:
+The following example shows a list of entries in the [[#json-representation]]:
 
 <pre highlight="json">
 [
   {
     "entry-number": "72",
-    "item-hash": "abcd",
-    "timestamp": "2015-08-20T08:15:30"
+    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591",
+    "timestamp": "2015-08-20T08:15:30Z"
   },
   {
     "entry-number": "21",
-    "item-hash": "efgh",
-    "timestamp": "2015-08-15T08:15:30"
+    "item-hash": "1a0212ba5094383bcc2a0bbe1a55e3a1f1278984",
+    "timestamp": "2015-08-15T08:15:30Z"
   }
 ]
 </pre>
 </div>
 
 
-## Record entries ## {#record-entries-resource}
+## Item entries resource ## {#item-entries-resource}
   : /record/{field-name}/{field-value}/entries
 
-ISSUE: the path /{field-name}/{field-value}/history has been renamed as /record/{field-name}/field-value}/entries
+An ordered list of [[#entry-resource]] values which cite the item.
+
+ISSUE: IMPLEMENTATION The resource is /item/{item-hash}/entries is new.
 
 <div class="example">
-The following example shows a list of record entries in the JSON representation [[#json-representation]]:
-
-<pre highlight="json">
-[
-  {
-    "entry-number": "72",
-    "item-hash": "abcd",
-    "timestamp": "2015-08-20T08:15:30"
-  },
-  {
-    "entry-number": "21",
-    "item-hash": "efgh",
-    "timestamp": "2015-08-15T08:15:30"
-  }
-]
-</pre>
-</div>
-
-## Item entries ## {#item-entries-resource}
-  : /record/{field-name}/{field-value}/entries
-
-ISSUE: the path /item/{item-hash}/entries has yet to be implemented
-
-<div class="example">
-The following example shows a list of item entries in the JSON representation [[#json-representation]]:
+The following example shows a list of item entries in the [[#json-representation]]:
 
 <pre highlight="json">
 [
   {
     "entry-number": "121",
-    "item-hash": "abcd",
-    "timestamp": "2015-08-20T08:15:30"
+    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782",
+    "timestamp": "2015-08-20T08:15:30Z"
   },
   {
     "entry-number": "133",
-    "item-hash": "abcd",
-    "timestamp": "2015-08-15T08:15:30"
+    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591",
+    "timestamp": "2015-08-15T08:15:30Z"
   }
 ]
 </pre>
 </div>
 
-## Register records ## {#register-records-resource}
-  : /records
+
+## Record entries resource ## {#record-entries-resource}
+  : /record/{field-name}/{field-value}/entries
+
+ISSUE: IMPLEMENTATION the path /{key-field-name}/{field-value}/history is now /item/{item-hash}/entries
 
 <div class="example">
-The following example shows a list of records in the JSON representation [[#json-representation]]:
+The following example shows a list of item entries in the [[#json-representation]]:
 
 <pre highlight="json">
 [
   {
-    "entry-number": "72",
-    "item-hash": "a1b2 … … e9",
-    "item": {
-      "local-authority": "E09000019",
-      "name": "Islington"
-    },
-    "timestamp": "2015-08-20T08:15:30"
+    "entry-number": "121",
+    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782",
+    "timestamp": "2015-08-20T08:15:30Z"
   },
   {
-    "entry-number": "76",
-    "item-hash": "9834 … … ff",
-    "item": {
-      "local-authority": "E09000016",
-      "name": "Havering"
-    },
-    "timestamp": "2015-08-20T08:15:30"
+    "entry-number": "133",
+    "item-hash": "ffb781149473e7244109e45165260702fe39cede",
+    "timestamp": "2015-08-15T08:15:30Z"
   }
 ]
 </pre>
 </div>
 
 
+## Records resource ## {#records-resource}
+  : /records
 
-# Proof resources # {#proof-resources}
+ISSUE: IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.
 
-## Entry proof ## {#entry-proof-resource}
-  : /register/proof
+<div class="example">
+The following example shows a list of records in the [[#json-representation]]:
 
-ISSUE: What does an entry-proof look like?
+<pre highlight="json">
+{
+  "E09000019": {
+    "entry": {
+      "entry-number": "72",
+      "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
+      "timestamp": "2015-08-20T08:15:30Z"
+    },
+    "item": {
+      "local-authority": "E09000019",
+      "name": "Islington"
+    }
+  },
+  "E09000016": {
+    "entry": {
+      "entry-number": "76",
+      "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
+      "timestamp": "2015-08-20T08:15:30Z"
+    },
+    "item": {
+      "local-authority": "E09000016",
+      "name": "Havering"
+    }
+  }
+}
+</pre>
+</div>
 
-ISSUE: How do we support multiple proofs, say if quantum cryptography comes along?
+## Faceted records resource ## {#faceted-records-resource}
+  : /records/{facet-value}
 
-## Register proof ## {#register-proof-resource}
-  : /register/proof
+<div class="example">
+The following example shows a list of record entries matching a field in the [[#json-representation]]:
 
-ISSUE: What does a register-proof look like?
+<pre highlight="http">
+http://school.register.gov.uk/religious-character/Quaker.json
+</pre>
+<pre highlight="json">
+{
+  "123278": {
+    "entry": {
+      "entry-number": "18371",
+      "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
+      "timestamp": "2016-01-01T00:00:00Z"
+    },
+    "item": {
+      "address": "10011891998",
+      "maximum-age": "18",
+      "minimum-age": "2",
+      "name": "Sibford School",
+      "religious-character": "Quaker",
+      "school": "123278",
+      "start-date": "1945-01-01",
+      "website": "http://www.sibford.oxon.sch.uk"
+    }
+  },
+  "121728": {
+    "entry": {
+      "entry-number": "17164",
+      "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
+      "timestamp": "2016-01-01T00:00:00Z"
+    },
+    "item": {
+      "address": "200004778207",
+      "end-date": "2006-02-28",
+      "headteacher": "Mrs S Ratcliffe",
+      "name": "Boothan Junior School",
+      "religious-character": "Quaker",
+      "school": "121728",
+      "start-date": "1957-10-21",
+      "website": "http://www.bootham.york.sch.uk/ebor"
+    }
+  }
+}
+</pre>
+</div>
 
+## Proofs resource ## {#proofs-resource}
+  : /proofs
+
+<div class="example">
+The following example shows a set of register proofs in the [[#json-representation]]:
+
+<pre highlight="json">
+['certificate-transparency']
+</pre>
+</div>
+
+Note: A register MAY have more than one proof, to support multiple types of proof in the future.
+
+## Entry proof nodes resource ## {#entry-proof-resource}
+  : /entry/{entry-number}/proofs
+
+A set of links to the [[#proof-resource]]s and [[#proof-node-resource]]s which reference this entry.
 
 
 # Archive resources # {#archive-resources}
@@ -251,14 +406,17 @@ The archive contains the following files in the following structure:
 
 A register archive MAY contain entry and item resources in the more space efficient [[#tsv-representation]].
 
-ISSUE: what is the naming convention for the archive files themselves?
+ISSUE: Do we provide downloads in tar.gz or [[ZIP]] (the ISO/IEC 21320-1:2015 profile is open)?
 
-ISSUE: how about a "record" archive containing only the latest entries for each record?
+ISSUE: What is the naming convention for the archive files themselves?
+
+ISSUE: How about a "record" archive containing only the latest entries for each record?
 
 
 # Streaming resources # {#streaming-resources}
 
 ISSUE: we don't yet know how to support updating an index or a cache, beyond polling. Maybe [[EVENTSOURCE]]?
+
 
 
 # HTTP Headers # {#http-headers}
@@ -267,7 +425,8 @@ Table of link and other HTTP headers used by resources ..
 
   * [[RFC5988]]
   * <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a>
-  * Long served resources SHOULD be served with a long-lived Cache-Control value [[RFC7234]]
+  * [[#immutable-resources]] SHOULD be served with a long-lived Cache-Control max-age value [[RFC7234]].
+  * the [[#item-hash]] SHOULD be served as the etag header value for an [[#item-resource]].
 
 
 <div class="example">
@@ -275,11 +434,12 @@ The following example shows the HTTP headers for the [[#json-representation]] of
 <pre>
 HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
+Expires: Sun, 22 Jan 2017 08:00:08 GMT
 Link: &lt;/school/12345/entries>; rel="version-history"
-Cache-Control: max-age=31536000
 Content-Type: application/json
 Content-Security-Policy: default-src 'self'
-Cache-Control: no-transform
+Cache-Control: no-transform, max-age=31536000
+etag: c2f6fb7ed8332561f2252359b7d6f173a376a942
 X-Xss-Protection "1; mode=block"
 X-Frame-Options "SAMEORIGIN"
 X-Content-Type-Options "nosniff"
@@ -311,8 +471,32 @@ ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-
 
 ## Datetime datatype ## {#datetime-datatype}
 
+<pre class='railroad'>
+T: YYYY
+Stack:
+  Optional:
+    Sequence:
+      T: -
+      T: MM
+      Optional:
+        Sequence:
+          T: -
+          T: DD
+          Optional:
+            Sequence:
+              T: T
+              T: HH
+              Optional:
+                Sequence:
+                  T: :
+                  T: MM
+                  Optional:
+                    Sequence:
+                      T: :
+                      T: SS
+</pre>
 
-  : YYYY[-MM[-DD[THH:MM[:SS]]]]
+
 
   * Datetime values MUST be recorded as Universal Coordinated Time (UTC), and not local time such as British Summer Time (BST) or other offset from UTC.
   * Datetime values are all valid [[ISO8601]].
@@ -325,6 +509,31 @@ ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-
   </pre>
 </div>
 
+## Timestamp datatype ## {#timestamp-datatype}
+<pre class='railroad'>
+Sequence:
+  T: YYYY
+  T: -
+  T: MM
+  T: -
+  T: DD
+  T: T
+  T: HH
+  T: :
+  T: MM
+  T: :
+  T: SS
+  T: Z
+</pre>
+
+  * [[RFC3339]] timestamp, MUST be in UTC.
+
+<div class="example">
+  The following example is a valid Timestamp value: 
+  <pre>
+    "2001-01-31T23:20:55Z"
+  </pre>
+</div>
 
 ## Point datatype ## {#point-datatype}
   * point [[GEOJSON]]
@@ -339,7 +548,7 @@ ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-
 Used to identify a record, possibly in another register.
   * curie [[CURIE]]
 
-## Item hash datatype ## {#item-hash-datatype}
+## Item-hash datatype ## {#item-hash-datatype}
 The object hash of the item's contents may be used to identify the contents of an item, irrespective of where it is stored or presented.
 
 ISSUE: do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?
@@ -354,42 +563,30 @@ Used to link to an external website, or other resource not held in a register.
   * URL [[URI]]
 
 
+# Fields # {#fields}
 
-# Representations # {#representations}
+ISSUE: We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?
 
+<em>List of fields defined by this specification</em>
 
-## HTML representation ## {#html-representation}
-  * [[HTML5]]
+## item-hash ## {#item-hash}
 
-## JSON representation ## {#json-representation}
-  * suffix: .json
-  * media-type: application/json
-  * specification: [[JSON]] 
+ISSUE: objecthash isn't a specification, we'll need to define our algorithm here
 
-  JSON does not natively support integers; all numbers are floating point values.
-  Therefore, integers shall be formatted as JSON strings.
+ISSUE: we need to ensure our objecthash generates the same value for an empty and a missing field.
 
-## YAML representation ## {#yaml-representation}
-  * [[YAML]] 
+  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
+  * [[FIPS-180-4]]
 
-## CSV representation ## {#csv-representation}
-  * CSV [[tabular-data-model]]
+## entry-number ## {#entry-number}
 
-## TSV representation ## {#tsv-representation}
-  * [[IANA-TSV]]
+ISSUE: IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number
 
-## JSON-LD representation ## {#json-ld-representation}
-  * [[JSON-LD]]
-
-## Turtle representation ## {#ttl-representation}
-  * [[TURTLE]]
-
-## Atom representation ## {#atom-representation}
-  * [[RFC4287]]
+## cardinality ## {#cardinality}
 
 
 
-# Core registers # {#core-registers}
+# Registers # {#registers}
 
 ## Register register ## {#register-register}
 
@@ -398,30 +595,89 @@ Used to link to an external website, or other resource not held in a register.
 ## Datatype register ## {#datatype-register}
 
 
-# Namespaces # {#namespaces}
-
-* defined by this specification
-* defined by {#core-registers}
 
 
-# Core fields # {#core-fields}
+# Representations # {#representations}
 
-<em>List of fields defined by this specification</em>
+Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.
 
-## item-hash ## {#item-hash}
+ISSUE: IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON.
 
-ISSUE: objecthash isn't a specification, we'll need to define our algorithm here
+## HTML representation ## {#html-representation}
+  * [[HTML5]]
 
-  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
-  * [[FIPS-180-4]]
+ISSUE: do we specify RDFa or Schema.org markup?
 
-## entry-number ## {#entry-number}
+## JSON representation ## {#json-representation}
+  * suffix: .json
+  * media-type: application/json
+  * specification: [[JSON]] 
 
-ISSUE: serial-number is inconsistent and has therefore been renamed as entry-number
+  All field values MUST be encoded as JSON strings.
 
-## cardinality ## {#field-cardinality}
+ISSUE: the JSON should be in a c14n format, but no spec exists, so we will need to define what that means?
 
-  * [string]
+## YAML representation ## {#yaml-representation}
+
+  * Suffix: .yaml
+  * Content-Type: text/yaml;charset=UTF-8
+  * Specification: [[YAML]] 
+
+<div class="example">
+The following example shows a [[#record-resource]] in the [[#yaml-representation]]:
+<pre highlight="yaml">
+entry:
+  entry-number: "30568"
+  timestamp: "2015-01-02T23:59:01Z"
+  item-hash: "87963123bd04263c878b36ad7ce421b8b68a07f9"
+item:
+  address: "100101030506"
+  name: "Glanaman Home Tution Centre"
+  school: "402175"
+  start-date: "2007-11-07"
+</pre>
+</div>
+
+## CSV representation ## {#csv-representation}
+  * Suffix: .csv
+  * Specification: [[tabular-data-model]]
+
+## TSV representation ## {#tsv-representation}
+  * Suffix: .tsv
+  * Content-Type: text/tab-separated-values;charset=UTF-8
+  * Specification: [[IANA-TSV]]
+
+
+</pre>
+</div>
+
+## JSON-LD representation ## {#json-ld-representation}
+  * [[JSON-LD]]
+
+## Turtle representation ## {#ttl-representation}
+  * Suffix: .ttl
+  * Content-Type: text/turtle;charset=UTF-8
+  * Specification: [[TURTLE]]
+
+<div class="example">
+The following example shows an [[#item-resource]] in the [[#ttl-representation]]:
+<pre>
+@prefix field: &lt;http://field.register.gov.uk/field/&gt;.
+
+&lt;http://school.register.gov.uk/item/af3056bd04263c878b36ad7ce421b8b68a0799&gt;
+ field:address &lt;http://address.register.gov.uk/address/100101030506&gt; ;
+ field:name "Glanaman Home Tution Centre" ;
+ field:school &lt;http://school.register.gov.uk/record/402175&gt; ;
+ field:start-date "2007-11-07" ;
+</pre>
+</div>
+
+## Atom representation ## {#atom-representation}
+  * [[RFC4287]]
+
+
+
+
 
 
 # Digital Proofs # {#digital-proofs}
@@ -430,6 +686,8 @@ ISSUE: serial-number is inconsistent and has therefore been renamed as entry-num
   Certificate Transparency [[RFC6962]] is one of a number of possible methods of proving the integrity of a register.
 
 ### Signed tree head ### {#signed-tree-head}
+
+ISSUE: What happens when a key is rotated?
 
 ### Leaf signature ### {#leaf-signature}
 
@@ -442,13 +700,18 @@ ISSUE: serial-number is inconsistent and has therefore been renamed as entry-num
 # Minting a new entry # {#minting}
 
   To mint a new entry in the register:
-  * POST a new item to ..url.. with the proposed new entry number
+  * POST a new item in [[#json-representation]] to the ..mint url.. with the proposed new entry number.
   * The item will first appear as a new item in the store
+  * <em> .. status codes and error cases </em>
+  * <em> .. 202 Accepted with a Location header of the [[#entry-resource]] for the new entry
   * The proposer can only trust it has been secured when the entry
     is listed in the [[#entries-resource]] with the same [[#entry-number]],
     and the [[#entry-resource]] is a covered by one or more [[#digital-proofs]] for the register.
 
+The item MUST NOT contain empty fields.
+
 ISSUE: does a register have a standard URL to POST a new entry?
+
 
 # Redaction # {#redaction}
 
@@ -487,7 +750,7 @@ A register may provide additional, possibly domain specific representations.
 A register containing fields with [[#point-datatype]] or [[#multipolygon-datatype]] values may also serve a list of items as [[GML]], [[KML]] or other geographical representation.
 </div>
 
-Additional representations for [[#entity-resources]], [[#list-resources]], [[#proof-resources]], [[#archive-resources]] and [[#streaming-resources]] SHOULD be linked to from the HTML representation of the resource.
+Additional representations for resources SHOULD be linked to from the HTML representation of the resource.
 
 # Security considerations # {#security-considerations}
 
@@ -498,6 +761,7 @@ Additional representations for [[#entity-resources]], [[#list-resources]], [[#pr
 ## DNS ## {#DNS}
 ## Protecting the private key ## {#private-key}
 ## Compromised private key ## {#compromised-private-key}
+## Hash clash ## {#hash-clash}
 
 
 <pre class="link-defaults">
@@ -532,3 +796,8 @@ spec:html5; type:element; text:script
 
 }
 </pre>
+
+# Namespaces # {#namespaces}
+
+* defined by this specification
+* defined by {#core-registers}
