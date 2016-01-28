@@ -27,20 +27,64 @@ path: include/copyright-openregister.include
 </pre>
 
 <style>
-svg.railroad-diagram { width: 100%; }
+  svg.railroad-diagram { width: 100%; }
+
+  dt {
+    font-weight: bold;
+    font-style: italic;
+    color: #005A9C;
+  }
+
+  dl.resource {
+    background: #DEF;
+    border-left: 0.5em solid #8CCBF2;
+  }
+  dl.resource dt {
+    display: inline-block;
+    min-width: 100px;
+    padding: 1.2em 0.5em;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  dl.resource dd {
+    display: inline;
+    margin: 0;
+  }
+  dl.resource dd:after{
+    display: block;
+    content: '';
+  }
+  dl.resource a {
+    color: #005A9C;
+    padding: 0 0.25em;
+  }
 </style>
 
 # Introduction # {#introduction}
 
-An introduction to the product, independent of HMG's use of registers ..
+<em>An introduction to the product, independent of HMG's use of registers ..</em>
+
+# Infoset # {#infoset}
+
+<em>We don't have a canonical representation, instead calculate ha</em>
+* An infoset is an unordered collection of data items.
+* Each data item is identified by a [[##field-name-datatype]] value.
+* An infoset 
+
 
 # Entity resources # {#entity-resources}
 
 ## Item resource ## {#item-resource}
-: /item/{item-hash}
 
-ISSUE: IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
+<dl class="resource"><dt>Path</dt><dd>/item/{<a href="#item-hash-field">item-hash</a>}</dd></dt></dl>
 
+An item is an unordered collection of [[#fields]] and values.
+The set of fields which MAY be included in an item are defined in the 
+[[#fields-field]] field in the [[#register-register]] entry for the register.
+
+An item is identified by the globally unique [[#item-hash-field]]
+calculated from its contents. Changing the item data changes the [[#item-hash-field]].
 
 <div class="example">
 The following example shows an item in the [[#json-representation]]:
@@ -57,8 +101,11 @@ The following example shows an item in the [[#json-representation]]:
 </pre>
 </div>
 
+ISSUE: IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
+
 ## Entry resource ## {#entry-resource}
-: /entry/{entry-number}
+
+<dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}</dd></dt></dl>
 
 <div class="example">
 The following example shows an entry in the [[#json-representation]]:
@@ -75,7 +122,8 @@ The following example shows an entry in the [[#json-representation]]:
 ISSUE: IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the [[#timestamp-datatype]].
 
 ## Record resource ## {#record-resource}
-  : /record/{key-field-value}
+
+<dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}</dd></dt></dl>
 
 
 <div class="example">
@@ -98,7 +146,27 @@ The following example shows a record in the [[#json-representation]]:
 
 
 ## Register resource ## {#register-resource}
-  : /register
+
+<dl class="resource"><dt>Path</dt><dd>/register</dd></dt></dl>
+
+The register resource is [[#infoset]] with the following fields:
+
+  : [[#domain-field]]
+  :: The Internet domain the register is available from.
+  : [[#last-updated-field]]
+  :: The date the register was last updated.
+
+The register resource also contains the following data items:
+
+  : register-record
+  :: A copy of the [[#register-register]] [[#record-resource]] entity describing this register.
+  : total-items
+  :: An [[#integer-datatype]] value representing the number of [[#item-resource]] entities currently stored in the register.
+  : total-entries
+  :: An [[#integer-datatype]] value representing the number of [[#entry-resource]] entities currently stored in the register.
+  : total-records
+  :: An [[#integer-datatype]] value representing the number of [[#record-resource]] entities currently stored in the register.
+
 
 <div class="example">
 The following example shows a register in the [[#json-representation]]:
@@ -106,8 +174,8 @@ The following example shows a register in the [[#json-representation]]:
 <pre highlight="json">
 {
   "domain": ".register.gov.uk",
-  "last-updated": "2016-01-21T21:09:59",
-  "record": {
+  "last-updated": "2016-01-21T21:09:59Z",
+  "register-record": {
     "entry": {
       "entry-number": "12",
       "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
@@ -130,7 +198,7 @@ The following example shows a register in the [[#json-representation]]:
 </div>
 
 ## Proof resource ## {#proof-resource}
-  : /proof/{proof-identifier}
+<dl class="resource"><dt>Path</dt><dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}</dd></dt></dl>
 
 <div class="example">
 The following example shows a register proof in the [[#json-representation]]:
@@ -140,10 +208,10 @@ https://school.register.gov.uk/proof/certificate-transparency
 </pre>
 <pre highlight="json">
 {
-  "tree_size": "9803348",
+  "tree-size": "9803348",
   "timestamp": "1447421303202",
-  "sha256_root_hash": "JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU=",
-  "tree_head_signature":
+  "sha256-root-hash": "JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU=",
+  "tree-head-signature":
   "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
 }
 </pre>
@@ -154,7 +222,7 @@ ISSUE: CT timestamp is inconsistent with [[#timestamp-datatype]].
 ISSUE: CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
 
 ## Proof node resource ## {#proof-node-resource}
-  : /proof/{proof-identifier}/node/{proof-node-hash}
+<dl class="resource"><dt>Path</dt><dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}/node/{<a href="#proof-node-hash-field">proof-node-hash</a>}</dd></dt></dl>
 
 <div class="example">
 The following example shows a register proof in the [[#json-representation]]:
@@ -185,7 +253,8 @@ ISSUE: define query string parameters ..
 ISSUE: if /records and /items are sets, what does that mean for pagination?
 
 ## Items resource ## {#items-resource}
-  : /items
+
+<dl class="resource"><dt>Path</dt><dd>/items</dd></dt></dl>
 
 ISSUE: IMPLEMENTATION /items isn't yet implemented. There may not be a need for this resource as it's available in the archive.
 
@@ -208,7 +277,8 @@ The following example shows a set of records in the [[#json-representation]]:
 
 
 ## Entries resource ## {#entries-resource}
-  : /entries
+
+<dl class="resource"><dt>Path</dt><dd>/entries</dd></dt></dl>
 
 ISSUE: IMPLEMENTATION /entries is currently implemented as also returning the item contents.
 
@@ -233,7 +303,8 @@ The following example shows a list of entries in the [[#json-representation]]:
 
 
 ## Item entries resource ## {#item-entries-resource}
-  : /record/{field-name}/{field-value}/entries
+
+<dl class="resource"><dt>Path</dt><dd>/item/{<a href="#item-hash-field">item-hash</a>}/entries</dd></dt></dl>
 
 An ordered list of [[#entry-resource]] values which cite the item.
 
@@ -260,9 +331,10 @@ The following example shows a list of item entries in the [[#json-representation
 
 
 ## Record entries resource ## {#record-entries-resource}
-  : /record/{field-name}/{field-value}/entries
 
-ISSUE: IMPLEMENTATION the path /{key-field-name}/{field-value}/history is now /item/{item-hash}/entries
+<dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}/entries</dd></dt></dl>
+
+ISSUE: IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries
 
 <div class="example">
 The following example shows a list of item entries in the [[#json-representation]]:
@@ -285,7 +357,8 @@ The following example shows a list of item entries in the [[#json-representation
 
 
 ## Records resource ## {#records-resource}
-  : /records
+
+<dl class="resource"><dt>Path</dt><dd>/records</dd></dt></dl>
 
 ISSUE: IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.
 
@@ -321,7 +394,8 @@ The following example shows a list of records in the [[#json-representation]]:
 </div>
 
 ## Faceted records resource ## {#faceted-records-resource}
-  : /records/{facet-value}
+
+<dl class="resource"><dt>Path</dt><dd>/records/{<a href="#field-field"">field-name</a>}/{<a href="#field-value"">field-value</a>}</dd></dt></dl>
 
 <div class="example">
 The following example shows a list of record entries matching a field in the [[#json-representation]]:
@@ -370,7 +444,8 @@ http://school.register.gov.uk/religious-character/Quaker.json
 </div>
 
 ## Proofs resource ## {#proofs-resource}
-  : /proofs
+
+<dl class="resource"><dt>Path</dt><dd>/proofs</dd></dt></dl>
 
 <div class="example">
 The following example shows a set of register proofs in the [[#json-representation]]:
@@ -383,7 +458,8 @@ The following example shows a set of register proofs in the [[#json-representati
 Note: A register MAY have more than one proof, to support multiple types of proof in the future.
 
 ## Entry proof nodes resource ## {#entry-proof-resource}
-  : /entry/{entry-number}/proofs
+
+<dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs</dd></dt></dl>
 
 A set of links to the [[#proof-resource]]s and [[#proof-node-resource]]s which reference this entry.
 
@@ -391,7 +467,9 @@ A set of links to the [[#proof-resource]]s and [[#proof-node-resource]]s which r
 # Archive resources # {#archive-resources}
 
 ## Download page ## {#download}
-  : /download
+
+<dl class="resource"><dt>Path</dt><dd>/download</dd></dt></dl>
+
 The contents of an open register MUST be made available as an archive.
 The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate [[#digital-proofs]].
 The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large.
@@ -426,7 +504,7 @@ Table of link and other HTTP headers used by resources ..
   * [[RFC5988]]
   * <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a>
   * [[#immutable-resources]] SHOULD be served with a long-lived Cache-Control max-age value [[RFC7234]].
-  * the [[#item-hash]] SHOULD be served as the etag header value for an [[#item-resource]].
+  * the [[#item-hash-field]] SHOULD be served as the etag header value for an [[#item-resource]].
 
 
 <div class="example">
@@ -457,10 +535,22 @@ ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-
 ## String datatype ## {#string-datatype}
   * [[UNICODE]] [[UTF-8]]
 
+## Field-name datatype ## {#fieldname-datatype}
+
 ## Integer datatype ## {#integer-datatype}
-  * All values are decimal
-  * Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).
-  * Negative values, less than zero, are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS)
+
+<pre class='railroad'>
+Choice:
+  T: 0
+  Sequence:
+    Optional:
+      T: -
+    N: digit 1 to 9
+    ZeroOrMore:
+      N: digit 0 to 9
+</pre>
+All values are decimal. Leading zeros are not allowed, except for the integer '0', which is represented as the string “0”.
+Negative values are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS).
 
 <div class="example">
   The following examples are all valid integer values: 
@@ -473,27 +563,26 @@ ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-
 
 <pre class='railroad'>
 T: YYYY
-Stack:
-  Optional:
-    Sequence:
-      T: -
-      T: MM
-      Optional:
-        Sequence:
-          T: -
-          T: DD
-          Optional:
-            Sequence:
-              T: T
-              T: HH
-              Optional:
-                Sequence:
-                  T: :
-                  T: MM
-                  Optional:
-                    Sequence:
-                      T: :
-                      T: SS
+Optional:
+  Sequence:
+    T: -
+    T: MM
+    Optional:
+      Sequence:
+        T: -
+        T: DD
+        Optional:
+          Sequence:
+            T: T
+            T: HH
+            Optional:
+              Sequence:
+                T: :
+                T: MM
+                Optional:
+                  Sequence:
+                    T: :
+                    T: SS
 </pre>
 
 
@@ -567,9 +656,17 @@ Used to link to an external website, or other resource not held in a register.
 
 ISSUE: We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?
 
-<em>List of fields defined by this specification</em>
+<em>Fields defined by this specification</em>
 
-## item-hash ## {#item-hash}
+## cardinality ## {#cardinality-field}
+
+## domain ## {#domain-field}
+
+## entry-number ## {#entry-number-field}
+
+ISSUE: IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number
+
+## item-hash ## {#item-hash-field}
 
 ISSUE: objecthash isn't a specification, we'll need to define our algorithm here
 
@@ -578,11 +675,15 @@ ISSUE: we need to ensure our objecthash generates the same value for an empty an
   * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
   * [[FIPS-180-4]]
 
-## entry-number ## {#entry-number}
+## last-updated ## {#last-updated-field}
 
-ISSUE: IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number
+## proof-identifier ## {#proof-identifier-field}
 
-## cardinality ## {#cardinality}
+## proof-node-hash ## {#proof-node-hash-field}
+
+## field ## {#field-field}
+
+## fields ## {#fields-field}
 
 
 
@@ -705,7 +806,7 @@ ISSUE: What happens when a key is rotated?
   * <em> .. status codes and error cases </em>
   * <em> .. 202 Accepted with a Location header of the [[#entry-resource]] for the new entry
   * The proposer can only trust it has been secured when the entry
-    is listed in the [[#entries-resource]] with the same [[#entry-number]],
+    is listed in the [[#entries-resource]] with the same [[#entry-number-field]],
     and the [[#entry-resource]] is a covered by one or more [[#digital-proofs]] for the register.
 
 The item MUST NOT contain empty fields.

@@ -1294,8 +1294,40 @@
 </style>
   <meta content="Bikeshed 1.0.0" name="generator">
 <style>
-svg.railroad-diagram { width: 100%; }
+  svg.railroad-diagram { width: 100%; }
+
+  dt {
+    font-weight: bold;
+    font-style: italic;
+    color: #005A9C;
+  }
+
+  dl.resource {
+    background: #DEF;
+    border-left: 0.5em solid #8CCBF2;
+  }
+  dl.resource dt {
+    display: inline-block;
+    min-width: 100px;
+    padding: 1.2em 0.5em;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  dl.resource dd {
+    display: inline;
+    margin: 0;
+  }
+  dl.resource dd:after{
+    display: block;
+    content: '';
+  }
+  dl.resource a {
+    color: #005A9C;
+    padding: 0 0.25em;
+  }
 </style>
+<style>svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3;stroke:black;fill:hsl(120,100%,90%);}</style>
 <style>svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3;stroke:black;fill:hsl(120,100%,90%);}</style>
 <style>svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3;stroke:black;fill:hsl(120,100%,90%);}</style>
 <style>.highlight .hll { background-color: #ffffcc }
@@ -1365,7 +1397,7 @@ svg.railroad-diagram { width: 100%; }
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-25">25 January 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-28">28 January 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1399,118 +1431,126 @@ data held in an open register.</p>
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li><a href="#infoset"><span class="secno">2</span> <span class="content">Infoset</span></a>
     <li>
-     <a href="#entity-resources"><span class="secno">2</span> <span class="content">Entity resources</span></a>
+     <a href="#entity-resources"><span class="secno">3</span> <span class="content">Entity resources</span></a>
      <ol class="toc">
-      <li><a href="#item-resource"><span class="secno">2.1</span> <span class="content">Item resource</span></a>
-      <li><a href="#entry-resource"><span class="secno">2.2</span> <span class="content">Entry resource</span></a>
-      <li><a href="#record-resource"><span class="secno">2.3</span> <span class="content">Record resource</span></a>
-      <li><a href="#register-resource"><span class="secno">2.4</span> <span class="content">Register resource</span></a>
-      <li><a href="#proof-resource"><span class="secno">2.5</span> <span class="content">Proof resource</span></a>
-      <li><a href="#proof-node-resource"><span class="secno">2.6</span> <span class="content">Proof node resource</span></a>
+      <li><a href="#item-resource"><span class="secno">3.1</span> <span class="content">Item resource</span></a>
+      <li><a href="#entry-resource"><span class="secno">3.2</span> <span class="content">Entry resource</span></a>
+      <li><a href="#record-resource"><span class="secno">3.3</span> <span class="content">Record resource</span></a>
+      <li><a href="#register-resource"><span class="secno">3.4</span> <span class="content">Register resource</span></a>
+      <li><a href="#proof-resource"><span class="secno">3.5</span> <span class="content">Proof resource</span></a>
+      <li><a href="#proof-node-resource"><span class="secno">3.6</span> <span class="content">Proof node resource</span></a>
      </ol>
-    <li><a href="#immutable-resources"><span class="secno">3</span> <span class="content">Immutable resources</span></a>
+    <li><a href="#immutable-resources"><span class="secno">4</span> <span class="content">Immutable resources</span></a>
     <li>
-     <a href="#list-resources"><span class="secno">4</span> <span class="content">Collection resources</span></a>
+     <a href="#list-resources"><span class="secno">5</span> <span class="content">Collection resources</span></a>
      <ol class="toc">
-      <li><a href="#items-resource"><span class="secno">4.1</span> <span class="content">Items resource</span></a>
-      <li><a href="#entries-resource"><span class="secno">4.2</span> <span class="content">Entries resource</span></a>
-      <li><a href="#item-entries-resource"><span class="secno">4.3</span> <span class="content">Item entries resource</span></a>
-      <li><a href="#record-entries-resource"><span class="secno">4.4</span> <span class="content">Record entries resource</span></a>
-      <li><a href="#records-resource"><span class="secno">4.5</span> <span class="content">Records resource</span></a>
-      <li><a href="#faceted-records-resource"><span class="secno">4.6</span> <span class="content">Faceted records resource</span></a>
-      <li><a href="#proofs-resource"><span class="secno">4.7</span> <span class="content">Proofs resource</span></a>
-      <li><a href="#entry-proof-resource"><span class="secno">4.8</span> <span class="content">Entry proof nodes resource</span></a>
-     </ol>
-    <li>
-     <a href="#archive-resources"><span class="secno">5</span> <span class="content">Archive resources</span></a>
-     <ol class="toc">
-      <li><a href="#download"><span class="secno">5.1</span> <span class="content">Download page</span></a>
-     </ol>
-    <li><a href="#streaming-resources"><span class="secno">6</span> <span class="content">Streaming resources</span></a>
-    <li><a href="#http-headers"><span class="secno">7</span> <span class="content">HTTP Headers</span></a>
-    <li>
-     <a href="#datatypes"><span class="secno">8</span> <span class="content">Datatypes</span></a>
-     <ol class="toc">
-      <li><a href="#string-datatype"><span class="secno">8.1</span> <span class="content">String datatype</span></a>
-      <li><a href="#integer-datatype"><span class="secno">8.2</span> <span class="content">Integer datatype</span></a>
-      <li><a href="#datetime-datatype"><span class="secno">8.3</span> <span class="content">Datetime datatype</span></a>
-      <li><a href="#timestamp-datatype"><span class="secno">8.4</span> <span class="content">Timestamp datatype</span></a>
-      <li><a href="#point-datatype"><span class="secno">8.5</span> <span class="content">Point datatype</span></a>
-      <li><a href="#multipolygon-datatype"><span class="secno">8.6</span> <span class="content">Multipolygon datatype</span></a>
-      <li><a href="#text-datatype"><span class="secno">8.7</span> <span class="content">Text datatype</span></a>
-      <li><a href="#curie-datatype"><span class="secno">8.8</span> <span class="content">CURIE datatype</span></a>
-      <li><a href="#item-hash-datatype"><span class="secno">8.9</span> <span class="content">Item-hash datatype</span></a>
-      <li><a href="#entry-reference-datatype"><span class="secno">8.10</span> <span class="content">Entry-reference datatype</span></a>
-      <li><a href="#url-datatype"><span class="secno">8.11</span> <span class="content">URL datatype</span></a>
+      <li><a href="#items-resource"><span class="secno">5.1</span> <span class="content">Items resource</span></a>
+      <li><a href="#entries-resource"><span class="secno">5.2</span> <span class="content">Entries resource</span></a>
+      <li><a href="#item-entries-resource"><span class="secno">5.3</span> <span class="content">Item entries resource</span></a>
+      <li><a href="#record-entries-resource"><span class="secno">5.4</span> <span class="content">Record entries resource</span></a>
+      <li><a href="#records-resource"><span class="secno">5.5</span> <span class="content">Records resource</span></a>
+      <li><a href="#faceted-records-resource"><span class="secno">5.6</span> <span class="content">Faceted records resource</span></a>
+      <li><a href="#proofs-resource"><span class="secno">5.7</span> <span class="content">Proofs resource</span></a>
+      <li><a href="#entry-proof-resource"><span class="secno">5.8</span> <span class="content">Entry proof nodes resource</span></a>
      </ol>
     <li>
-     <a href="#fields"><span class="secno">9</span> <span class="content">Fields</span></a>
+     <a href="#archive-resources"><span class="secno">6</span> <span class="content">Archive resources</span></a>
      <ol class="toc">
-      <li><a href="#item-hash"><span class="secno">9.1</span> <span class="content">item-hash</span></a>
-      <li><a href="#entry-number"><span class="secno">9.2</span> <span class="content">entry-number</span></a>
-      <li><a href="#cardinality"><span class="secno">9.3</span> <span class="content">cardinality</span></a>
+      <li><a href="#download"><span class="secno">6.1</span> <span class="content">Download page</span></a>
+     </ol>
+    <li><a href="#streaming-resources"><span class="secno">7</span> <span class="content">Streaming resources</span></a>
+    <li><a href="#http-headers"><span class="secno">8</span> <span class="content">HTTP Headers</span></a>
+    <li>
+     <a href="#datatypes"><span class="secno">9</span> <span class="content">Datatypes</span></a>
+     <ol class="toc">
+      <li><a href="#string-datatype"><span class="secno">9.1</span> <span class="content">String datatype</span></a>
+      <li><a href="#fieldname-datatype"><span class="secno">9.2</span> <span class="content">Field-name datatype</span></a>
+      <li><a href="#integer-datatype"><span class="secno">9.3</span> <span class="content">Integer datatype</span></a>
+      <li><a href="#datetime-datatype"><span class="secno">9.4</span> <span class="content">Datetime datatype</span></a>
+      <li><a href="#timestamp-datatype"><span class="secno">9.5</span> <span class="content">Timestamp datatype</span></a>
+      <li><a href="#point-datatype"><span class="secno">9.6</span> <span class="content">Point datatype</span></a>
+      <li><a href="#multipolygon-datatype"><span class="secno">9.7</span> <span class="content">Multipolygon datatype</span></a>
+      <li><a href="#text-datatype"><span class="secno">9.8</span> <span class="content">Text datatype</span></a>
+      <li><a href="#curie-datatype"><span class="secno">9.9</span> <span class="content">CURIE datatype</span></a>
+      <li><a href="#item-hash-datatype"><span class="secno">9.10</span> <span class="content">Item-hash datatype</span></a>
+      <li><a href="#entry-reference-datatype"><span class="secno">9.11</span> <span class="content">Entry-reference datatype</span></a>
+      <li><a href="#url-datatype"><span class="secno">9.12</span> <span class="content">URL datatype</span></a>
      </ol>
     <li>
-     <a href="#registers"><span class="secno">10</span> <span class="content">Registers</span></a>
+     <a href="#fields"><span class="secno">10</span> <span class="content">Fields</span></a>
      <ol class="toc">
-      <li><a href="#register-register"><span class="secno">10.1</span> <span class="content">Register register</span></a>
-      <li><a href="#field-register"><span class="secno">10.2</span> <span class="content">Field register</span></a>
-      <li><a href="#datatype-register"><span class="secno">10.3</span> <span class="content">Datatype register</span></a>
+      <li><a href="#cardinality-field"><span class="secno">10.1</span> <span class="content">cardinality</span></a>
+      <li><a href="#domain-field"><span class="secno">10.2</span> <span class="content">domain</span></a>
+      <li><a href="#entry-number-field"><span class="secno">10.3</span> <span class="content">entry-number</span></a>
+      <li><a href="#item-hash-field"><span class="secno">10.4</span> <span class="content">item-hash</span></a>
+      <li><a href="#last-updated-field"><span class="secno">10.5</span> <span class="content">last-updated</span></a>
+      <li><a href="#proof-identifier-field"><span class="secno">10.6</span> <span class="content">proof-identifier</span></a>
+      <li><a href="#proof-node-hash-field"><span class="secno">10.7</span> <span class="content">proof-node-hash</span></a>
+      <li><a href="#field-field"><span class="secno">10.8</span> <span class="content">field</span></a>
+      <li><a href="#fields-field"><span class="secno">10.9</span> <span class="content">fields</span></a>
      </ol>
     <li>
-     <a href="#representations"><span class="secno">11</span> <span class="content">Representations</span></a>
+     <a href="#registers"><span class="secno">11</span> <span class="content">Registers</span></a>
      <ol class="toc">
-      <li><a href="#html-representation"><span class="secno">11.1</span> <span class="content">HTML representation</span></a>
-      <li><a href="#json-representation"><span class="secno">11.2</span> <span class="content">JSON representation</span></a>
-      <li><a href="#yaml-representation"><span class="secno">11.3</span> <span class="content">YAML representation</span></a>
-      <li><a href="#csv-representation"><span class="secno">11.4</span> <span class="content">CSV representation</span></a>
-      <li><a href="#tsv-representation"><span class="secno">11.5</span> <span class="content">TSV representation</span></a>
-      <li><a href="#json-ld-representation"><span class="secno">11.6</span> <span class="content">JSON-LD representation</span></a>
-      <li><a href="#ttl-representation"><span class="secno">11.7</span> <span class="content">Turtle representation</span></a>
-      <li><a href="#atom-representation"><span class="secno">11.8</span> <span class="content">Atom representation</span></a>
+      <li><a href="#register-register"><span class="secno">11.1</span> <span class="content">Register register</span></a>
+      <li><a href="#field-register"><span class="secno">11.2</span> <span class="content">Field register</span></a>
+      <li><a href="#datatype-register"><span class="secno">11.3</span> <span class="content">Datatype register</span></a>
      </ol>
     <li>
-     <a href="#digital-proofs"><span class="secno">12</span> <span class="content">Digital Proofs</span></a>
+     <a href="#representations"><span class="secno">12</span> <span class="content">Representations</span></a>
+     <ol class="toc">
+      <li><a href="#html-representation"><span class="secno">12.1</span> <span class="content">HTML representation</span></a>
+      <li><a href="#json-representation"><span class="secno">12.2</span> <span class="content">JSON representation</span></a>
+      <li><a href="#yaml-representation"><span class="secno">12.3</span> <span class="content">YAML representation</span></a>
+      <li><a href="#csv-representation"><span class="secno">12.4</span> <span class="content">CSV representation</span></a>
+      <li><a href="#tsv-representation"><span class="secno">12.5</span> <span class="content">TSV representation</span></a>
+      <li><a href="#json-ld-representation"><span class="secno">12.6</span> <span class="content">JSON-LD representation</span></a>
+      <li><a href="#ttl-representation"><span class="secno">12.7</span> <span class="content">Turtle representation</span></a>
+      <li><a href="#atom-representation"><span class="secno">12.8</span> <span class="content">Atom representation</span></a>
+     </ol>
+    <li>
+     <a href="#digital-proofs"><span class="secno">13</span> <span class="content">Digital Proofs</span></a>
      <ol class="toc">
       <li>
-       <a href="#using-certificate-transparency"><span class="secno">12.1</span> <span class="content">Certificate transparency</span></a>
+       <a href="#using-certificate-transparency"><span class="secno">13.1</span> <span class="content">Certificate transparency</span></a>
        <ol class="toc">
-        <li><a href="#signed-tree-head"><span class="secno">12.1.1</span> <span class="content">Signed tree head</span></a>
-        <li><a href="#leaf-signature"><span class="secno">12.1.2</span> <span class="content">Leaf signature</span></a>
-        <li><a href="#ct-verify-register"><span class="secno">12.1.3</span> <span class="content">Verifying the register</span></a>
-        <li><a href="#ct-verify-entry"><span class="secno">12.1.4</span> <span class="content">Verifying an entry</span></a>
+        <li><a href="#signed-tree-head"><span class="secno">13.1.1</span> <span class="content">Signed tree head</span></a>
+        <li><a href="#leaf-signature"><span class="secno">13.1.2</span> <span class="content">Leaf signature</span></a>
+        <li><a href="#ct-verify-register"><span class="secno">13.1.3</span> <span class="content">Verifying the register</span></a>
+        <li><a href="#ct-verify-entry"><span class="secno">13.1.4</span> <span class="content">Verifying an entry</span></a>
        </ol>
      </ol>
-    <li><a href="#minting"><span class="secno">13</span> <span class="content">Minting a new entry</span></a>
-    <li><a href="#redaction"><span class="secno">14</span> <span class="content">Redaction</span></a>
+    <li><a href="#minting"><span class="secno">14</span> <span class="content">Minting a new entry</span></a>
+    <li><a href="#redaction"><span class="secno">15</span> <span class="content">Redaction</span></a>
     <li>
-     <a href="#versioning-and-extensibility"><span class="secno">15</span> <span class="content">Versioning and extensibility</span></a>
+     <a href="#versioning-and-extensibility"><span class="secno">16</span> <span class="content">Versioning and extensibility</span></a>
      <ol class="toc">
-      <li><a href="#backwards-compatibility"><span class="secno">15.1</span> <span class="content">Backwards compitability</span></a>
-      <li><a href="#forwards-compatibility"><span class="secno">15.2</span> <span class="content">Forwards compatibility</span></a>
+      <li><a href="#backwards-compatibility"><span class="secno">16.1</span> <span class="content">Backwards compitability</span></a>
+      <li><a href="#forwards-compatibility"><span class="secno">16.2</span> <span class="content">Forwards compatibility</span></a>
       <li>
-       <a href="#extension-points"><span class="secno">15.3</span> <span class="content">Points of extensibility</span></a>
+       <a href="#extension-points"><span class="secno">16.3</span> <span class="content">Points of extensibility</span></a>
        <ol class="toc">
-        <li><a href="#extensibility-fields"><span class="secno">15.3.1</span> <span class="content">Fields</span></a>
-        <li><a href="#extensibility-resources"><span class="secno">15.3.2</span> <span class="content">Resources</span></a>
-        <li><a href="#extensibility-proofs"><span class="secno">15.3.3</span> <span class="content">Proofs</span></a>
-        <li><a href="#extensibility-representations"><span class="secno">15.3.4</span> <span class="content">Representations</span></a>
+        <li><a href="#extensibility-fields"><span class="secno">16.3.1</span> <span class="content">Fields</span></a>
+        <li><a href="#extensibility-resources"><span class="secno">16.3.2</span> <span class="content">Resources</span></a>
+        <li><a href="#extensibility-proofs"><span class="secno">16.3.3</span> <span class="content">Proofs</span></a>
+        <li><a href="#extensibility-representations"><span class="secno">16.3.4</span> <span class="content">Representations</span></a>
        </ol>
      </ol>
     <li>
-     <a href="#security-considerations"><span class="secno">16</span> <span class="content">Security considerations</span></a>
+     <a href="#security-considerations"><span class="secno">17</span> <span class="content">Security considerations</span></a>
      <ol class="toc">
-      <li><a href="#mint-access-control"><span class="secno">16.1</span> <span class="content">Mint access control</span></a>
-      <li><a href="#compromised-proof"><span class="secno">16.2</span> <span class="content">Compromised proof</span></a>
-      <li><a href="#stale-record"><span class="secno">16.3</span> <span class="content">Stale record</span></a>
-      <li><a href="#denial-of-service"><span class="secno">16.4</span> <span class="content">Denial of service</span></a>
-      <li><a href="#DNS"><span class="secno">16.5</span> <span class="content">DNS</span></a>
-      <li><a href="#private-key"><span class="secno">16.6</span> <span class="content">Protecting the private key</span></a>
-      <li><a href="#compromised-private-key"><span class="secno">16.7</span> <span class="content">Compromised private key</span></a>
-      <li><a href="#hash-clash"><span class="secno">16.8</span> <span class="content">Hash clash</span></a>
+      <li><a href="#mint-access-control"><span class="secno">17.1</span> <span class="content">Mint access control</span></a>
+      <li><a href="#compromised-proof"><span class="secno">17.2</span> <span class="content">Compromised proof</span></a>
+      <li><a href="#stale-record"><span class="secno">17.3</span> <span class="content">Stale record</span></a>
+      <li><a href="#denial-of-service"><span class="secno">17.4</span> <span class="content">Denial of service</span></a>
+      <li><a href="#DNS"><span class="secno">17.5</span> <span class="content">DNS</span></a>
+      <li><a href="#private-key"><span class="secno">17.6</span> <span class="content">Protecting the private key</span></a>
+      <li><a href="#compromised-private-key"><span class="secno">17.7</span> <span class="content">Compromised private key</span></a>
+      <li><a href="#hash-clash"><span class="secno">17.8</span> <span class="content">Hash clash</span></a>
      </ol>
-    <li><a href="#namespaces"><span class="secno">17</span> <span class="content">Namespaces</span></a>
+    <li><a href="#namespaces"><span class="secno">18</span> <span class="content">Namespaces</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
@@ -1523,16 +1563,28 @@ data held in an open register.</p>
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
-   <p>An introduction to the product, independent of HMG’s use of registers ..</p>
-   <h2 class="heading settled" data-level="2" id="entity-resources"><span class="secno">2. </span><span class="content">Entity resources</span><a class="self-link" href="#entity-resources"></a></h2>
-   <h3 class="heading settled" data-level="2.1" id="item-resource"><span class="secno">2.1. </span><span class="content">Item resource</span><a class="self-link" href="#item-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/item/{item-hash}</p>
+   <p><em>An introduction to the product, independent of HMG’s use of registers ..</em></p>
+   <h2 class="heading settled" data-level="2" id="infoset"><span class="secno">2. </span><span class="content">Infoset</span><a class="self-link" href="#infoset"></a></h2>
+   <p><em>We don’t have a canonical representation, instead calculate ha</em></p>
+   <ul>
+    <li data-md="">
+     <p>An infoset is an unordered collection of data items.</p>
+    <li data-md="">
+     <p>Each data item is identified by a [[##field-name-datatype]] value.</p>
+    <li data-md="">
+     <p>An infoset</p>
+   </ul>
+   <h2 class="heading settled" data-level="3" id="entity-resources"><span class="secno">3. </span><span class="content">Entity resources</span><a class="self-link" href="#entity-resources"></a></h2>
+   <h3 class="heading settled" data-level="3.1" id="item-resource"><span class="secno">3.1. </span><span class="content">Item resource</span><a class="self-link" href="#item-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/item/{<a href="#item-hash-field">item-hash</a>}
    </dl>
-   <p class="issue" id="issue-a52ed4c7"><a class="self-link" href="#issue-a52ed4c7"></a> IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.</p>
+   <p>An item is an unordered collection of <a href="#fields">§10 Fields</a> and values.
+The set of fields which MAY be included in an item are defined in the <a href="#fields-field">§10.9 fields</a> field in the <a href="#register-register">§11.1 Register register</a> entry for the register.</p>
+   <p>An item is identified by the globally unique <a href="#item-hash-field">§10.4 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§10.4 item-hash</a>.</p>
    <div class="example" id="example-7265d706">
-    <a class="self-link" href="#example-7265d706"></a> The following example shows an item in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-7265d706"></a> The following example shows an item in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"business"</span><span class="p">:</span> <span class="s2">"company:07228130"</span><span class="p">,</span>
   <span class="nt">"food-premises"</span><span class="p">:</span> <span class="s2">"788112"</span><span class="p">,</span>
@@ -1543,27 +1595,28 @@ data held in an open register.</p>
   <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"2015-03-01"</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="2.2" id="entry-resource"><span class="secno">2.2. </span><span class="content">Entry resource</span><a class="self-link" href="#entry-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/entry/{entry-number}</p>
+   <p class="issue" id="issue-a52ed4c7"><a class="self-link" href="#issue-a52ed4c7"></a> IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.</p>
+   <h3 class="heading settled" data-level="3.2" id="entry-resource"><span class="secno">3.2. </span><span class="content">Entry resource</span><a class="self-link" href="#entry-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/entry/{<a href="#entry-number-field">entry-number</a>}
    </dl>
    <div class="example" id="example-06599394">
-    <a class="self-link" href="#example-06599394"></a> The following example shows an entry in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-06599394"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
     <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
 <span class="p">}</span></pre>
    </div>
-   <p class="issue" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§8.4 Timestamp datatype</a>.</p>
-   <h3 class="heading settled" data-level="2.3" id="record-resource"><span class="secno">2.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/record/{key-field-value}</p>
+   <p class="issue" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>.</p>
+   <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/record/{<a href="#field-value">field-value</a>}
    </dl>
    <div class="example" id="example-43c3c027">
-    <a class="self-link" href="#example-43c3c027"></a> The following example shows a record in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-43c3c027"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
     <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1576,17 +1629,47 @@ data held in an open register.</p>
     <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="2.4" id="register-resource"><span class="secno">2.4. </span><span class="content">Register resource</span><a class="self-link" href="#register-resource"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="register-resource"><span class="secno">3.4. </span><span class="content">Register resource</span><a class="self-link" href="#register-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/register
+   </dl>
+   <p>The register resource is <a href="#infoset">§2 Infoset</a> with the following fields:</p>
    <dl>
     <dt data-md="">
-     <p>/register</p>
+     <p><a href="#domain-field">§10.2 domain</a></p>
+    <dd data-md="">
+     <p>The Internet domain the register is available from.</p>
+    <dt data-md="">
+     <p><a href="#last-updated-field">§10.5 last-updated</a></p>
+    <dd data-md="">
+     <p>The date the register was last updated.</p>
    </dl>
-   <div class="example" id="example-0c1d9660">
-    <a class="self-link" href="#example-0c1d9660"></a> The following example shows a register in the <a href="#json-representation">§11.2 JSON representation</a>: 
+   <p>The register resource also contains the following data items:</p>
+   <dl>
+    <dt data-md="">
+     <p>register-record</p>
+    <dd data-md="">
+     <p>A copy of the <a href="#register-register">§11.1 Register register</a> <a href="#record-resource">§3.3 Record resource</a> entity describing this register.</p>
+    <dt data-md="">
+     <p>total-items</p>
+    <dd data-md="">
+     <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#item-resource">§3.1 Item resource</a> entities currently stored in the register.</p>
+    <dt data-md="">
+     <p>total-entries</p>
+    <dd data-md="">
+     <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#entry-resource">§3.2 Entry resource</a> entities currently stored in the register.</p>
+    <dt data-md="">
+     <p>total-records</p>
+    <dd data-md="">
+     <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#record-resource">§3.3 Record resource</a> entities currently stored in the register.</p>
+   </dl>
+   <div class="example" id="example-d95d912c">
+    <a class="self-link" href="#example-d95d912c"></a> The following example shows a register in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"domain"</span><span class="p">:</span> <span class="s2">".register.gov.uk"</span><span class="p">,</span>
-  <span class="nt">"last-updated"</span><span class="p">:</span> <span class="s2">"2016-01-21T21:09:59"</span><span class="p">,</span>
-  <span class="nt">"record"</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">"last-updated"</span><span class="p">:</span> <span class="s2">"2016-01-21T21:09:59Z"</span><span class="p">,</span>
+  <span class="nt">"register-record"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">,</span>
       <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
@@ -1606,32 +1689,32 @@ data held in an open register.</p>
   <span class="nt">"total-records"</span><span class="p">:</span> <span class="s2">"30522"</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="2.5" id="proof-resource"><span class="secno">2.5. </span><span class="content">Proof resource</span><a class="self-link" href="#proof-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/proof/{proof-identifier}</p>
+   <h3 class="heading settled" data-level="3.5" id="proof-resource"><span class="secno">3.5. </span><span class="content">Proof resource</span><a class="self-link" href="#proof-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}
    </dl>
-   <div class="example" id="example-80e1720c">
-    <a class="self-link" href="#example-80e1720c"></a> The following example shows a register proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
+   <div class="example" id="example-9088c435">
+    <a class="self-link" href="#example-9088c435"></a> The following example shows a register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/certificate-transparency
 </pre>
 <pre class="highlight"><span class="p">{</span>
-  <span class="nt">"tree_size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
+  <span class="nt">"tree-size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
   <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"1447421303202"</span><span class="p">,</span>
-  <span class="nt">"sha256_root_hash"</span><span class="p">:</span> <span class="s2">"JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU="</span><span class="p">,</span>
-  <span class="nt">"tree_head_signature"</span><span class="p">:</span>
+  <span class="nt">"sha256-root-hash"</span><span class="p">:</span> <span class="s2">"JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU="</span><span class="p">,</span>
+  <span class="nt">"tree-head-signature"</span><span class="p">:</span>
   <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
 <span class="p">}</span></pre>
    </div>
-   <p class="issue" id="issue-0e9bdd5b"><a class="self-link" href="#issue-0e9bdd5b"></a> CT timestamp is inconsistent with <a href="#timestamp-datatype">§8.4 Timestamp datatype</a>.</p>
+   <p class="issue" id="issue-0e9bdd5b"><a class="self-link" href="#issue-0e9bdd5b"></a> CT timestamp is inconsistent with <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>.</p>
    <p class="issue" id="issue-ba4608f8"><a class="self-link" href="#issue-ba4608f8"></a> CT names should be mapped to a consistent "proof" field names, or held inside an envelope.</p>
-   <h3 class="heading settled" data-level="2.6" id="proof-node-resource"><span class="secno">2.6. </span><span class="content">Proof node resource</span><a class="self-link" href="#proof-node-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/proof/{proof-identifier}/node/{proof-node-hash}</p>
+   <h3 class="heading settled" data-level="3.6" id="proof-node-resource"><span class="secno">3.6. </span><span class="content">Proof node resource</span><a class="self-link" href="#proof-node-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}/node/{<a href="#proof-node-hash-field">proof-node-hash</a>}
    </dl>
    <div class="example" id="example-f70af647">
-    <a class="self-link" href="#example-f70af647"></a> The following example shows a register proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-f70af647"></a> The following example shows a register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof"</span><span class="p">:</span> <span class="s2">"certificate-transparency"</span><span class="p">,</span>
   <span class="nt">"proof-node-hashes"</span><span class="p">:</span> <span class="p">[</span>
@@ -1641,21 +1724,21 @@ data held in an open register.</p>
   <span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
-   <h2 class="heading settled" data-level="3" id="immutable-resources"><span class="secno">3. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
+   <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
    <p>An immutable resource, is one whose contents will never change.
-An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#entry-resource">§2.2 Entry resource</a> and <a href="#proof-node-resource">§2.6 Proof node resource</a> are all deemed to be immutable.</p>
-   <h2 class="heading settled" data-level="4" id="list-resources"><span class="secno">4. </span><span class="content">Collection resources</span><a class="self-link" href="#list-resources"></a></h2>
+An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#entry-resource">§3.2 Entry resource</a> and <a href="#proof-node-resource">§3.6 Proof node resource</a> are all deemed to be immutable.</p>
+   <h2 class="heading settled" data-level="5" id="list-resources"><span class="secno">5. </span><span class="content">Collection resources</span><a class="self-link" href="#list-resources"></a></h2>
    <p>There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.</p>
    <p class="issue" id="issue-c647663d"><a class="self-link" href="#issue-c647663d"></a> define query string parameters ..</p>
    <p class="issue" id="issue-ab2143f9"><a class="self-link" href="#issue-ab2143f9"></a> if /records and /items are sets, what does that mean for pagination?</p>
-   <h3 class="heading settled" data-level="4.1" id="items-resource"><span class="secno">4.1. </span><span class="content">Items resource</span><a class="self-link" href="#items-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/items</p>
+   <h3 class="heading settled" data-level="5.1" id="items-resource"><span class="secno">5.1. </span><span class="content">Items resource</span><a class="self-link" href="#items-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/items
    </dl>
    <p class="issue" id="issue-9ee875b6"><a class="self-link" href="#issue-9ee875b6"></a> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive.</p>
    <div class="example" id="example-107c4192">
-    <a class="self-link" href="#example-107c4192"></a> The following example shows a set of records in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-107c4192"></a> The following example shows a set of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
@@ -1667,14 +1750,14 @@ An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#en
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.2" id="entries-resource"><span class="secno">4.2. </span><span class="content">Entries resource</span><a class="self-link" href="#entries-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/entries</p>
+   <h3 class="heading settled" data-level="5.2" id="entries-resource"><span class="secno">5.2. </span><span class="content">Entries resource</span><a class="self-link" href="#entries-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/entries
    </dl>
    <p class="issue" id="issue-31859f20"><a class="self-link" href="#issue-31859f20"></a> IMPLEMENTATION /entries is currently implemented as also returning the item contents.</p>
    <div class="example" id="example-884a7308">
-    <a class="self-link" href="#example-884a7308"></a> The following example shows a list of entries in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-884a7308"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1688,15 +1771,15 @@ An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#en
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.3" id="item-entries-resource"><span class="secno">4.3. </span><span class="content">Item entries resource</span><a class="self-link" href="#item-entries-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/record/{field-name}/{field-value}/entries</p>
+   <h3 class="heading settled" data-level="5.3" id="item-entries-resource"><span class="secno">5.3. </span><span class="content">Item entries resource</span><a class="self-link" href="#item-entries-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/item/{<a href="#item-hash-field">item-hash</a>}/entries
    </dl>
-   <p>An ordered list of <a href="#entry-resource">§2.2 Entry resource</a> values which cite the item.</p>
+   <p>An ordered list of <a href="#entry-resource">§3.2 Entry resource</a> values which cite the item.</p>
    <p class="issue" id="issue-1dc835c7"><a class="self-link" href="#issue-1dc835c7"></a> IMPLEMENTATION The resource is /item/{item-hash}/entries is new.</p>
    <div class="example" id="example-4b014064">
-    <a class="self-link" href="#example-4b014064"></a> The following example shows a list of item entries in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-4b014064"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
@@ -1710,14 +1793,14 @@ An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#en
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.4" id="record-entries-resource"><span class="secno">4.4. </span><span class="content">Record entries resource</span><a class="self-link" href="#record-entries-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/record/{field-name}/{field-value}/entries</p>
+   <h3 class="heading settled" data-level="5.4" id="record-entries-resource"><span class="secno">5.4. </span><span class="content">Record entries resource</span><a class="self-link" href="#record-entries-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/record/{<a href="#field-value">field-value</a>}/entries
    </dl>
-   <p class="issue" id="issue-522e8f75"><a class="self-link" href="#issue-522e8f75"></a> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is now /item/{item-hash}/entries</p>
+   <p class="issue" id="issue-8815c872"><a class="self-link" href="#issue-8815c872"></a> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries</p>
    <div class="example" id="example-77dc1878">
-    <a class="self-link" href="#example-77dc1878"></a> The following example shows a list of item entries in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-77dc1878"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
@@ -1731,14 +1814,14 @@ An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#en
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.5" id="records-resource"><span class="secno">4.5. </span><span class="content">Records resource</span><a class="self-link" href="#records-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/records</p>
+   <h3 class="heading settled" data-level="5.5" id="records-resource"><span class="secno">5.5. </span><span class="content">Records resource</span><a class="self-link" href="#records-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/records
    </dl>
    <p class="issue" id="issue-d994c4f5"><a class="self-link" href="#issue-d994c4f5"></a> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.</p>
    <div class="example" id="example-a5efa83f">
-    <a class="self-link" href="#example-a5efa83f"></a> The following example shows a list of records in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-a5efa83f"></a> The following example shows a list of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
@@ -1764,13 +1847,13 @@ An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#en
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.6" id="faceted-records-resource"><span class="secno">4.6. </span><span class="content">Faceted records resource</span><a class="self-link" href="#faceted-records-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/records/{facet-value}</p>
+   <h3 class="heading settled" data-level="5.6" id="faceted-records-resource"><span class="secno">5.6. </span><span class="content">Faceted records resource</span><a class="self-link" href="#faceted-records-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/records/{<a U00022="" href="#field-field">field-name</a>}/{<a U00022="" href="#field-value">field-value</a>}
    </dl>
    <div class="example" id="example-445dd4fc">
-    <a class="self-link" href="#example-445dd4fc"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-445dd4fc"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="err">http://school.register.gov.uk/religious-character/Quaker.json</span></pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"123278"</span><span class="p">:</span> <span class="p">{</span>
@@ -1809,53 +1892,53 @@ An instance of an <a href="#item-resource">§2.1 Item resource</a>, <a href="#en
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="4.7" id="proofs-resource"><span class="secno">4.7. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/proofs</p>
+   <h3 class="heading settled" data-level="5.7" id="proofs-resource"><span class="secno">5.7. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proofs
    </dl>
    <div class="example" id="example-328ac361">
-    <a class="self-link" href="#example-328ac361"></a> The following example shows a set of register proofs in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-328ac361"></a> The following example shows a set of register proofs in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span><span class="err">'certificate-transparency'</span><span class="p">]</span></pre>
    </div>
    <p class="note" role="note">Note: A register MAY have more than one proof, to support multiple types of proof in the future.</p>
-   <h3 class="heading settled" data-level="4.8" id="entry-proof-resource"><span class="secno">4.8. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proof-resource"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/entry/{entry-number}/proofs</p>
+   <h3 class="heading settled" data-level="5.8" id="entry-proof-resource"><span class="secno">5.8. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proof-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs
    </dl>
-   <p>A set of links to the <a href="#proof-resource">§2.5 Proof resource</a>s and <a href="#proof-node-resource">§2.6 Proof node resource</a>s which reference this entry.</p>
-   <h2 class="heading settled" data-level="5" id="archive-resources"><span class="secno">5. </span><span class="content">Archive resources</span><a class="self-link" href="#archive-resources"></a></h2>
-   <h3 class="heading settled" data-level="5.1" id="download"><span class="secno">5.1. </span><span class="content">Download page</span><a class="self-link" href="#download"></a></h3>
-   <dl>
-    <dt data-md="">
-     <p>/download</p>
+   <p>A set of links to the <a href="#proof-resource">§3.5 Proof resource</a>s and <a href="#proof-node-resource">§3.6 Proof node resource</a>s which reference this entry.</p>
+   <h2 class="heading settled" data-level="6" id="archive-resources"><span class="secno">6. </span><span class="content">Archive resources</span><a class="self-link" href="#archive-resources"></a></h2>
+   <h3 class="heading settled" data-level="6.1" id="download"><span class="secno">6.1. </span><span class="content">Download page</span><a class="self-link" href="#download"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/download
    </dl>
-   The contents of an open register MUST be made available as an archive.
-The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate <a href="#digital-proofs">§12 Digital Proofs</a>.
-The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large. 
+   <p>The contents of an open register MUST be made available as an archive.
+The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate <a href="#digital-proofs">§13 Digital Proofs</a>.
+The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large.</p>
    <p>The archive contains the following files in the following structure:</p>
    <ul>
     <li data-md="">
      <p>a directory with the name of the register containing</p>
      <ul>
       <li data-md="">
-       <p>a file named "register.json" containing the <a href="#register-resource">§2.4 Register resource</a> in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a file named "register.json" containing the <a href="#register-resource">§3.4 Register resource</a> in the <a href="#json-representation">§12.2 JSON representation</a></p>
       <li data-md="">
-       <p>a file named "proof.json" containing one or more digital proofs for the register in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a file named "proof.json" containing one or more digital proofs for the register in the <a href="#json-representation">§12.2 JSON representation</a></p>
       <li data-md="">
-       <p>a directory named "item" containing all of the <a href="#item-resource">§2.1 Item resource</a> in one or more parts in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a directory named "item" containing all of the <a href="#item-resource">§3.1 Item resource</a> in one or more parts in the <a href="#json-representation">§12.2 JSON representation</a></p>
       <li data-md="">
-       <p>a directory named "entry" containing all of the <a href="#entry-resource">§2.2 Entry resource</a> in one or more files in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a directory named "entry" containing all of the <a href="#entry-resource">§3.2 Entry resource</a> in one or more files in the <a href="#json-representation">§12.2 JSON representation</a></p>
      </ul>
    </ul>
-   <p>A register archive MAY contain entry and item resources in the more space efficient <a href="#tsv-representation">§11.5 TSV representation</a>.</p>
+   <p>A register archive MAY contain entry and item resources in the more space efficient <a href="#tsv-representation">§12.5 TSV representation</a>.</p>
    <p class="issue" id="issue-a9ea3195"><a class="self-link" href="#issue-a9ea3195"></a> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)?</p>
    <p class="issue" id="issue-941daf47"><a class="self-link" href="#issue-941daf47"></a> What is the naming convention for the archive files themselves?</p>
    <p class="issue" id="issue-37c7e097"><a class="self-link" href="#issue-37c7e097"></a> How about a "record" archive containing only the latest entries for each record?</p>
-   <h2 class="heading settled" data-level="6" id="streaming-resources"><span class="secno">6. </span><span class="content">Streaming resources</span><a class="self-link" href="#streaming-resources"></a></h2>
+   <h2 class="heading settled" data-level="7" id="streaming-resources"><span class="secno">7. </span><span class="content">Streaming resources</span><a class="self-link" href="#streaming-resources"></a></h2>
    <p class="issue" id="issue-073f5c29"><a class="self-link" href="#issue-073f5c29"></a> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>?</p>
-   <h2 class="heading settled" data-level="7" id="http-headers"><span class="secno">7. </span><span class="content">HTTP Headers</span><a class="self-link" href="#http-headers"></a></h2>
+   <h2 class="heading settled" data-level="8" id="http-headers"><span class="secno">8. </span><span class="content">HTTP Headers</span><a class="self-link" href="#http-headers"></a></h2>
    <p>Table of link and other HTTP headers used by resources ..</p>
    <ul>
     <li data-md="">
@@ -1863,12 +1946,12 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p><a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a></p>
     <li data-md="">
-     <p><a href="#immutable-resources">§3 Immutable resources</a> SHOULD be served with a long-lived Cache-Control max-age value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a>.</p>
+     <p><a href="#immutable-resources">§4 Immutable resources</a> SHOULD be served with a long-lived Cache-Control max-age value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a>.</p>
     <li data-md="">
-     <p>the <a href="#item-hash">§9.1 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§2.1 Item resource</a>.</p>
+     <p>the <a href="#item-hash-field">§10.4 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
    </ul>
    <div class="example" id="example-1ddbf6d4">
-    <a class="self-link" href="#example-1ddbf6d4"></a> The following example shows the HTTP headers for the <a href="#json-representation">§11.2 JSON representation</a> of an immutable <a href="#item-resource">§2.1 Item resource</a>: 
+    <a class="self-link" href="#example-1ddbf6d4"></a> The following example shows the HTTP headers for the <a href="#json-representation">§12.2 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
 <pre>HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Expires: Sun, 22 Jan 2017 08:00:08 GMT
@@ -1886,29 +1969,103 @@ Content-Length: 522
    </div>
    <p class="issue" id="issue-30cc7315"><a class="self-link" href="#issue-30cc7315"></a> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?</p>
    <p class="issue" id="issue-70d0c866"><a class="self-link" href="#issue-70d0c866"></a> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?</p>
-   <h2 class="heading settled" data-level="8" id="datatypes"><span class="secno">8. </span><span class="content">Datatypes</span><a class="self-link" href="#datatypes"></a></h2>
-   <h3 class="heading settled" data-level="8.1" id="string-datatype"><span class="secno">8.1. </span><span class="content">String datatype</span><a class="self-link" href="#string-datatype"></a></h3>
+   <h2 class="heading settled" data-level="9" id="datatypes"><span class="secno">9. </span><span class="content">Datatypes</span><a class="self-link" href="#datatypes"></a></h2>
+   <h3 class="heading settled" data-level="9.1" id="string-datatype"><span class="secno">9.1. </span><span class="content">String datatype</span><a class="self-link" href="#string-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> <a data-link-type="biblio" href="#biblio-utf-8">[UTF-8]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.2" id="integer-datatype"><span class="secno">8.2. </span><span class="content">Integer datatype</span><a class="self-link" href="#integer-datatype"></a></h3>
-   <ul>
-    <li data-md="">
-     <p>All values are decimal</p>
-    <li data-md="">
-     <p>Leading zeros are not allowed (except for the integer 0, which is represented as the string “0”).</p>
-    <li data-md="">
-     <p>Negative values, less than zero, are marked with a leading “-” character (<a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> 0x2D HYPHEN-MINUS)</p>
-   </ul>
+   <h3 class="heading settled" data-level="9.2" id="fieldname-datatype"><span class="secno">9.2. </span><span class="content">Field-name datatype</span><a class="self-link" href="#fieldname-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.3" id="integer-datatype"><span class="secno">9.3. </span><span class="content">Integer datatype</span><a class="self-link" href="#integer-datatype"></a></h3>
+   <div class="railroad">
+    <svg class="railroad-diagram" height="111" viewBox="0 0 501 111" width="501">
+     <g transform="translate(.5 .5)">
+      <path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5" data-type="start" data-updown="10 10"></path>
+      <g data-type="choice" data-updown="11 60">
+       <path d="M40 31h0.0"></path>
+       <path d="M460.0 31h0.0"></path>
+       <path d="M40.0 31h20"></path>
+       <path d="M440.0 31h20"></path>
+       <g data-type="terminal" data-updown="11 11">
+        <path d="M60.0 31h176.0"></path>
+        <path d="M264.0 31h176.0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="236.0" y="20"></rect>
+        <text x="250.0" y="35"> 0</text>
+       </g>
+       <path d="M40.0 31a10 10 0 0 1 10 10v20a10 10 0 0 0 10 10"></path>
+       <path d="M440.0 71a10 10 0 0 0 10 -10v-20a10 10 0 0 1 10 -10"></path>
+       <g data-type="sequence" data-updown="21 20">
+        <path d="M60.0 71h0.0"></path>
+        <path d="M440.0 71h0.0"></path>
+        <g data-type="choice" data-updown="21 11">
+         <path d="M60.0 71h0.0"></path>
+         <path d="M128.0 71h0.0"></path>
+         <path d="M60.0 71a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+         <path d="M108.0 51a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+         <g data-type="skip" data-updown="0 0">
+          <path d="M80.0 51h28"></path>
+         </g>
+         <path d="M60.0 71h20"></path>
+         <path d="M108.0 71h20"></path>
+         <g data-type="terminal" data-updown="11 11">
+          <path d="M80.0 71h0.0"></path>
+          <path d="M108.0 71h0.0"></path>
+          <rect height="22" rx="10" ry="10" width="28" x="80.0" y="60"></rect>
+          <text x="94.0" y="75"> -</text>
+         </g>
+        </g>
+        <path d="M128.0 71h10"></path>
+        <path d="M254.0 71h10"></path>
+        <g data-type="non-terminal" data-updown="11 11">
+         <path d="M138.0 71h0.0"></path>
+         <path d="M254.0 71h0.0"></path>
+         <rect height="22" width="116" x="138.0" y="60"></rect>
+         <text x="196.0" y="75"> digit 1 to 9</text>
+        </g>
+        <g data-type="choice" data-updown="21 20">
+         <path d="M264.0 71h0.0"></path>
+         <path d="M440.0 71h0.0"></path>
+         <path d="M264.0 71a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+         <path d="M420.0 51a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+         <g data-type="skip" data-updown="0 0">
+          <path d="M284.0 51h136"></path>
+         </g>
+         <path d="M264.0 71h20"></path>
+         <path d="M420.0 71h20"></path>
+         <g data-type="oneormore" data-updown="11 20">
+          <path d="M284.0 71h0.0"></path>
+          <path d="M420.0 71h0.0"></path>
+          <path d="M284.0 71h10"></path>
+          <path d="M410.0 71h10"></path>
+          <path d="M294.0 71a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+          <path d="M410.0 91a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+          <g data-type="non-terminal" data-updown="11 11">
+           <path d="M294.0 71h0.0"></path>
+           <path d="M410.0 71h0.0"></path>
+           <rect height="22" width="116" x="294.0" y="60"></rect>
+           <text x="352.0" y="75"> digit 0 to 9</text>
+          </g>
+          <g data-type="skip" data-updown="0 0">
+           <path d="M294.0 91h116"></path>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+      <path d="M 460 31 h 20 m -10 -10 v 20 m 10 -20 v 20" data-type="end" data-updown="10 10"></path>
+     </g>
+    </svg>
+   </div>
+   <p>All values are decimal. Leading zeros are not allowed, except for the integer <a class="property" data-link-type="propdesc">0</a>, which is represented as the string “0”.
+Negative values are marked with a leading “-” character (<a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> 0x2D HYPHEN-MINUS).</p>
    <div class="example" id="example-ce32c22e">
     <a class="self-link" href="#example-ce32c22e"></a> The following examples are all valid integer values: 
 <pre>"100", "0", "-200"
 </pre>
    </div>
-   <h3 class="heading settled" data-level="8.3" id="datetime-datatype"><span class="secno">8.3. </span><span class="content">Datetime datatype</span><a class="self-link" href="#datetime-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.4" id="datetime-datatype"><span class="secno">9.4. </span><span class="content">Datetime datatype</span><a class="self-link" href="#datetime-datatype"></a></h3>
    <div class="railroad">
-    <svg class="railroad-diagram" height="112" viewBox="0 0 913 112" width="913">
+    <svg class="railroad-diagram" height="112" viewBox="0 0 873 112" width="873">
      <g transform="translate(.5 .5)">
       <path d="M 20 71 v 20 m 10 -20 v 20 m -10 -10 h 20.5" data-type="start" data-updown="10 10"></path>
       <path d="M40 81h10"></path>
@@ -1919,153 +2076,150 @@ Content-Length: 522
        <rect height="22" rx="10" ry="10" width="52" x="50.0" y="70"></rect>
        <text x="76.0" y="85"> YYYY</text>
       </g>
-      <g>
-       <path d="M112 81h20.0"></path>
-       <g data-type="choice" data-updown="61 11">
+      <g data-type="choice" data-updown="61 11">
+       <path d="M112 81h0.0"></path>
+       <path d="M832.0 81h0.0"></path>
+       <path d="M112.0 81a10 10 0 0 0 10 -10v-39a10 10 0 0 1 10 -10"></path>
+       <path d="M812.0 22a10 10 0 0 1 10 10v39a10 10 0 0 0 10 10"></path>
+       <g data-type="skip" data-updown="0 0">
+        <path d="M132.0 22h680"></path>
+       </g>
+       <path d="M112.0 81h20"></path>
+       <path d="M812.0 81h20"></path>
+       <g data-type="sequence" data-updown="51 11">
         <path d="M132.0 81h0.0"></path>
-        <path d="M852.0 81h0.0"></path>
-        <path d="M132.0 81a10 10 0 0 0 10 -10v-39a10 10 0 0 1 10 -10"></path>
-        <path d="M832.0 22a10 10 0 0 1 10 10v39a10 10 0 0 0 10 10"></path>
-        <g data-type="skip" data-updown="0 0">
-         <path d="M152.0 22h680"></path>
+        <path d="M812.0 81h0.0"></path>
+        <path d="M132.0 81h10"></path>
+        <path d="M170.0 81h10"></path>
+        <g data-type="terminal" data-updown="11 11">
+         <path d="M142.0 81h0.0"></path>
+         <path d="M170.0 81h0.0"></path>
+         <rect height="22" rx="10" ry="10" width="28" x="142.0" y="70"></rect>
+         <text x="156.0" y="85"> -</text>
         </g>
-        <path d="M132.0 81h20"></path>
-        <path d="M832.0 81h20"></path>
-        <g data-type="sequence" data-updown="51 11">
-         <path d="M152.0 81h0.0"></path>
-         <path d="M832.0 81h0.0"></path>
-         <path d="M152.0 81h10"></path>
-         <path d="M190.0 81h10"></path>
-         <g data-type="terminal" data-updown="11 11">
-          <path d="M162.0 81h0.0"></path>
-          <path d="M190.0 81h0.0"></path>
-          <rect height="22" rx="10" ry="10" width="28" x="162.0" y="70"></rect>
-          <text x="176.0" y="85"> -</text>
+        <path d="M180.0 81h10"></path>
+        <path d="M226.0 81h10"></path>
+        <g data-type="terminal" data-updown="11 11">
+         <path d="M190.0 81h0.0"></path>
+         <path d="M226.0 81h0.0"></path>
+         <rect height="22" rx="10" ry="10" width="36" x="190.0" y="70"></rect>
+         <text x="208.0" y="85"> MM</text>
+        </g>
+        <g data-type="choice" data-updown="51 11">
+         <path d="M236.0 81h0.0"></path>
+         <path d="M812.0 81h0.0"></path>
+         <path d="M236.0 81a10 10 0 0 0 10 -10v-29a10 10 0 0 1 10 -10"></path>
+         <path d="M792.0 32a10 10 0 0 1 10 10v29a10 10 0 0 0 10 10"></path>
+         <g data-type="skip" data-updown="0 0">
+          <path d="M256.0 32h536"></path>
          </g>
-         <path d="M200.0 81h10"></path>
-         <path d="M246.0 81h10"></path>
-         <g data-type="terminal" data-updown="11 11">
-          <path d="M210.0 81h0.0"></path>
-          <path d="M246.0 81h0.0"></path>
-          <rect height="22" rx="10" ry="10" width="36" x="210.0" y="70"></rect>
-          <text x="228.0" y="85"> MM</text>
-         </g>
-         <g data-type="choice" data-updown="51 11">
+         <path d="M236.0 81h20"></path>
+         <path d="M792.0 81h20"></path>
+         <g data-type="sequence" data-updown="41 11">
           <path d="M256.0 81h0.0"></path>
-          <path d="M832.0 81h0.0"></path>
-          <path d="M256.0 81a10 10 0 0 0 10 -10v-29a10 10 0 0 1 10 -10"></path>
-          <path d="M812.0 32a10 10 0 0 1 10 10v29a10 10 0 0 0 10 10"></path>
-          <g data-type="skip" data-updown="0 0">
-           <path d="M276.0 32h536"></path>
+          <path d="M792.0 81h0.0"></path>
+          <path d="M256.0 81h10"></path>
+          <path d="M294.0 81h10"></path>
+          <g data-type="terminal" data-updown="11 11">
+           <path d="M266.0 81h0.0"></path>
+           <path d="M294.0 81h0.0"></path>
+           <rect height="22" rx="10" ry="10" width="28" x="266.0" y="70"></rect>
+           <text x="280.0" y="85"> -</text>
           </g>
-          <path d="M256.0 81h20"></path>
-          <path d="M812.0 81h20"></path>
-          <g data-type="sequence" data-updown="41 11">
-           <path d="M276.0 81h0.0"></path>
-           <path d="M812.0 81h0.0"></path>
-           <path d="M276.0 81h10"></path>
-           <path d="M314.0 81h10"></path>
-           <g data-type="terminal" data-updown="11 11">
-            <path d="M286.0 81h0.0"></path>
-            <path d="M314.0 81h0.0"></path>
-            <rect height="22" rx="10" ry="10" width="28" x="286.0" y="70"></rect>
-            <text x="300.0" y="85"> -</text>
+          <path d="M304.0 81h10"></path>
+          <path d="M350.0 81h10"></path>
+          <g data-type="terminal" data-updown="11 11">
+           <path d="M314.0 81h0.0"></path>
+           <path d="M350.0 81h0.0"></path>
+           <rect height="22" rx="10" ry="10" width="36" x="314.0" y="70"></rect>
+           <text x="332.0" y="85"> DD</text>
+          </g>
+          <g data-type="choice" data-updown="41 11">
+           <path d="M360.0 81h0.0"></path>
+           <path d="M792.0 81h0.0"></path>
+           <path d="M360.0 81a10 10 0 0 0 10 -10v-19a10 10 0 0 1 10 -10"></path>
+           <path d="M772.0 42a10 10 0 0 1 10 10v19a10 10 0 0 0 10 10"></path>
+           <g data-type="skip" data-updown="0 0">
+            <path d="M380.0 42h392"></path>
            </g>
-           <path d="M324.0 81h10"></path>
-           <path d="M370.0 81h10"></path>
-           <g data-type="terminal" data-updown="11 11">
-            <path d="M334.0 81h0.0"></path>
-            <path d="M370.0 81h0.0"></path>
-            <rect height="22" rx="10" ry="10" width="36" x="334.0" y="70"></rect>
-            <text x="352.0" y="85"> DD</text>
-           </g>
-           <g data-type="choice" data-updown="41 11">
+           <path d="M360.0 81h20"></path>
+           <path d="M772.0 81h20"></path>
+           <g data-type="sequence" data-updown="31 11">
             <path d="M380.0 81h0.0"></path>
-            <path d="M812.0 81h0.0"></path>
-            <path d="M380.0 81a10 10 0 0 0 10 -10v-19a10 10 0 0 1 10 -10"></path>
-            <path d="M792.0 42a10 10 0 0 1 10 10v19a10 10 0 0 0 10 10"></path>
-            <g data-type="skip" data-updown="0 0">
-             <path d="M400.0 42h392"></path>
+            <path d="M772.0 81h0.0"></path>
+            <path d="M380.0 81h10"></path>
+            <path d="M418.0 81h10"></path>
+            <g data-type="terminal" data-updown="11 11">
+             <path d="M390.0 81h0.0"></path>
+             <path d="M418.0 81h0.0"></path>
+             <rect height="22" rx="10" ry="10" width="28" x="390.0" y="70"></rect>
+             <text x="404.0" y="85"> T</text>
             </g>
-            <path d="M380.0 81h20"></path>
-            <path d="M792.0 81h20"></path>
-            <g data-type="sequence" data-updown="31 11">
-             <path d="M400.0 81h0.0"></path>
-             <path d="M792.0 81h0.0"></path>
-             <path d="M400.0 81h10"></path>
-             <path d="M438.0 81h10"></path>
-             <g data-type="terminal" data-updown="11 11">
-              <path d="M410.0 81h0.0"></path>
-              <path d="M438.0 81h0.0"></path>
-              <rect height="22" rx="10" ry="10" width="28" x="410.0" y="70"></rect>
-              <text x="424.0" y="85"> T</text>
+            <path d="M428.0 81h10"></path>
+            <path d="M474.0 81h10"></path>
+            <g data-type="terminal" data-updown="11 11">
+             <path d="M438.0 81h0.0"></path>
+             <path d="M474.0 81h0.0"></path>
+             <rect height="22" rx="10" ry="10" width="36" x="438.0" y="70"></rect>
+             <text x="456.0" y="85"> HH</text>
+            </g>
+            <g data-type="choice" data-updown="31 11">
+             <path d="M484.0 81h0.0"></path>
+             <path d="M772.0 81h0.0"></path>
+             <path d="M484.0 81a10 10 0 0 0 10 -10v-9a10 10 0 0 1 10 -10"></path>
+             <path d="M752.0 52a10 10 0 0 1 10 10v9a10 10 0 0 0 10 10"></path>
+             <g data-type="skip" data-updown="0 0">
+              <path d="M504.0 52h248"></path>
              </g>
-             <path d="M448.0 81h10"></path>
-             <path d="M494.0 81h10"></path>
-             <g data-type="terminal" data-updown="11 11">
-              <path d="M458.0 81h0.0"></path>
-              <path d="M494.0 81h0.0"></path>
-              <rect height="22" rx="10" ry="10" width="36" x="458.0" y="70"></rect>
-              <text x="476.0" y="85"> HH</text>
-             </g>
-             <g data-type="choice" data-updown="31 11">
+             <path d="M484.0 81h20"></path>
+             <path d="M752.0 81h20"></path>
+             <g data-type="sequence" data-updown="21 11">
               <path d="M504.0 81h0.0"></path>
-              <path d="M792.0 81h0.0"></path>
-              <path d="M504.0 81a10 10 0 0 0 10 -10v-9a10 10 0 0 1 10 -10"></path>
-              <path d="M772.0 52a10 10 0 0 1 10 10v9a10 10 0 0 0 10 10"></path>
-              <g data-type="skip" data-updown="0 0">
-               <path d="M524.0 52h248"></path>
+              <path d="M752.0 81h0.0"></path>
+              <path d="M504.0 81h10"></path>
+              <path d="M542.0 81h10"></path>
+              <g data-type="terminal" data-updown="11 11">
+               <path d="M514.0 81h0.0"></path>
+               <path d="M542.0 81h0.0"></path>
+               <rect height="22" rx="10" ry="10" width="28" x="514.0" y="70"></rect>
+               <text x="528.0" y="85"> :</text>
               </g>
-              <path d="M504.0 81h20"></path>
-              <path d="M772.0 81h20"></path>
-              <g data-type="sequence" data-updown="21 11">
-               <path d="M524.0 81h0.0"></path>
-               <path d="M772.0 81h0.0"></path>
-               <path d="M524.0 81h10"></path>
-               <path d="M562.0 81h10"></path>
-               <g data-type="terminal" data-updown="11 11">
-                <path d="M534.0 81h0.0"></path>
-                <path d="M562.0 81h0.0"></path>
-                <rect height="22" rx="10" ry="10" width="28" x="534.0" y="70"></rect>
-                <text x="548.0" y="85"> :</text>
+              <path d="M552.0 81h10"></path>
+              <path d="M598.0 81h10"></path>
+              <g data-type="terminal" data-updown="11 11">
+               <path d="M562.0 81h0.0"></path>
+               <path d="M598.0 81h0.0"></path>
+               <rect height="22" rx="10" ry="10" width="36" x="562.0" y="70"></rect>
+               <text x="580.0" y="85"> MM</text>
+              </g>
+              <g data-type="choice" data-updown="21 11">
+               <path d="M608.0 81h0.0"></path>
+               <path d="M752.0 81h0.0"></path>
+               <path d="M608.0 81a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+               <path d="M732.0 61a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+               <g data-type="skip" data-updown="0 0">
+                <path d="M628.0 61h104"></path>
                </g>
-               <path d="M572.0 81h10"></path>
-               <path d="M618.0 81h10"></path>
-               <g data-type="terminal" data-updown="11 11">
-                <path d="M582.0 81h0.0"></path>
-                <path d="M618.0 81h0.0"></path>
-                <rect height="22" rx="10" ry="10" width="36" x="582.0" y="70"></rect>
-                <text x="600.0" y="85"> MM</text>
-               </g>
-               <g data-type="choice" data-updown="21 11">
+               <path d="M608.0 81h20"></path>
+               <path d="M732.0 81h20"></path>
+               <g data-type="sequence" data-updown="11 11">
                 <path d="M628.0 81h0.0"></path>
-                <path d="M772.0 81h0.0"></path>
-                <path d="M628.0 81a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
-                <path d="M752.0 61a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
-                <g data-type="skip" data-updown="0 0">
-                 <path d="M648.0 61h104"></path>
+                <path d="M732.0 81h0.0"></path>
+                <path d="M628.0 81h10"></path>
+                <path d="M666.0 81h10"></path>
+                <g data-type="terminal" data-updown="11 11">
+                 <path d="M638.0 81h0.0"></path>
+                 <path d="M666.0 81h0.0"></path>
+                 <rect height="22" rx="10" ry="10" width="28" x="638.0" y="70"></rect>
+                 <text x="652.0" y="85"> :</text>
                 </g>
-                <path d="M628.0 81h20"></path>
-                <path d="M752.0 81h20"></path>
-                <g data-type="sequence" data-updown="11 11">
-                 <path d="M648.0 81h0.0"></path>
-                 <path d="M752.0 81h0.0"></path>
-                 <path d="M648.0 81h10"></path>
-                 <path d="M686.0 81h10"></path>
-                 <g data-type="terminal" data-updown="11 11">
-                  <path d="M658.0 81h0.0"></path>
-                  <path d="M686.0 81h0.0"></path>
-                  <rect height="22" rx="10" ry="10" width="28" x="658.0" y="70"></rect>
-                  <text x="672.0" y="85"> :</text>
-                 </g>
-                 <path d="M696.0 81h10"></path>
-                 <path d="M742.0 81h10"></path>
-                 <g data-type="terminal" data-updown="11 11">
-                  <path d="M706.0 81h0.0"></path>
-                  <path d="M742.0 81h0.0"></path>
-                  <rect height="22" rx="10" ry="10" width="36" x="706.0" y="70"></rect>
-                  <text x="724.0" y="85"> SS</text>
-                 </g>
+                <path d="M676.0 81h10"></path>
+                <path d="M722.0 81h10"></path>
+                <g data-type="terminal" data-updown="11 11">
+                 <path d="M686.0 81h0.0"></path>
+                 <path d="M722.0 81h0.0"></path>
+                 <rect height="22" rx="10" ry="10" width="36" x="686.0" y="70"></rect>
+                 <text x="704.0" y="85"> SS</text>
                 </g>
                </g>
               </g>
@@ -2076,9 +2230,8 @@ Content-Length: 522
          </g>
         </g>
        </g>
-       <path d="M852.0 81h20.0"></path>
       </g>
-      <path d="M 872 81 h 20 m -10 -10 v 20 m 10 -20 v 20" data-type="end" data-updown="10 10"></path>
+      <path d="M 832 81 h 20 m -10 -10 v 20 m 10 -20 v 20" data-type="end" data-updown="10 10"></path>
      </g>
     </svg>
    </div>
@@ -2095,7 +2248,7 @@ Content-Length: 522
 <pre>"2001", "2001-01", "2001-01-31", "2001-01-31T23:20:55"
 </pre>
    </div>
-   <h3 class="heading settled" data-level="8.4" id="timestamp-datatype"><span class="secno">8.4. </span><span class="content">Timestamp datatype</span><a class="self-link" href="#timestamp-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.5" id="timestamp-datatype"><span class="secno">9.5. </span><span class="content">Timestamp datatype</span><a class="self-link" href="#timestamp-datatype"></a></h3>
    <div class="railroad">
     <svg class="railroad-diagram" height="62" viewBox="0 0 721 62" width="721">
      <g transform="translate(.5 .5)">
@@ -2213,43 +2366,47 @@ Content-Length: 522
 <pre>"2001-01-31T23:20:55Z"
 </pre>
    </div>
-   <h3 class="heading settled" data-level="8.5" id="point-datatype"><span class="secno">8.5. </span><span class="content">Point datatype</span><a class="self-link" href="#point-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.6" id="point-datatype"><span class="secno">9.6. </span><span class="content">Point datatype</span><a class="self-link" href="#point-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>point <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.6" id="multipolygon-datatype"><span class="secno">8.6. </span><span class="content">Multipolygon datatype</span><a class="self-link" href="#multipolygon-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.7" id="multipolygon-datatype"><span class="secno">9.7. </span><span class="content">Multipolygon datatype</span><a class="self-link" href="#multipolygon-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>multipolygon <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.7" id="text-datatype"><span class="secno">8.7. </span><span class="content">Text datatype</span><a class="self-link" href="#text-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.8" id="text-datatype"><span class="secno">9.8. </span><span class="content">Text datatype</span><a class="self-link" href="#text-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>text <a data-link-type="biblio" href="#biblio-markdown">[MARKDOWN]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.8" id="curie-datatype"><span class="secno">8.8. </span><span class="content">CURIE datatype</span><a class="self-link" href="#curie-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.9" id="curie-datatype"><span class="secno">9.9. </span><span class="content">CURIE datatype</span><a class="self-link" href="#curie-datatype"></a></h3>
     Used to identify a record, possibly in another register. 
    <ul>
     <li data-md="">
      <p>curie <a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.9" id="item-hash-datatype"><span class="secno">8.9. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.10" id="item-hash-datatype"><span class="secno">9.10. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
     The object hash of the item’s contents may be used to identify the contents of an item, irrespective of where it is stored or presented. 
    <p class="issue" id="issue-ebfdb117"><a class="self-link" href="#issue-ebfdb117"></a> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?</p>
-   <h3 class="heading settled" data-level="8.10" id="entry-reference-datatype"><span class="secno">8.10. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.11" id="entry-reference-datatype"><span class="secno">9.11. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
     Legal documents may need to cite an individual entry, rather than the latest entry of the record. 
    <p class="issue" id="issue-420ac5c0"><a class="self-link" href="#issue-420ac5c0"></a> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.</p>
-   <h3 class="heading settled" data-level="8.11" id="url-datatype"><span class="secno">8.11. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
+   <h3 class="heading settled" data-level="9.12" id="url-datatype"><span class="secno">9.12. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
     Used to link to an external website, or other resource not held in a register. 
    <ul>
     <li data-md="">
      <p>URL <a data-link-type="biblio" href="#biblio-uri">[URI]</a></p>
    </ul>
-   <h2 class="heading settled" data-level="9" id="fields"><span class="secno">9. </span><span class="content">Fields</span><a class="self-link" href="#fields"></a></h2>
+   <h2 class="heading settled" data-level="10" id="fields"><span class="secno">10. </span><span class="content">Fields</span><a class="self-link" href="#fields"></a></h2>
    <p class="issue" id="issue-8d36d08b"><a class="self-link" href="#issue-8d36d08b"></a> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?</p>
-   <p><em>List of fields defined by this specification</em></p>
-   <h3 class="heading settled" data-level="9.1" id="item-hash"><span class="secno">9.1. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash"></a></h3>
+   <p><em>Fields defined by this specification</em></p>
+   <h3 class="heading settled" data-level="10.1" id="cardinality-field"><span class="secno">10.1. </span><span class="content">cardinality</span><a class="self-link" href="#cardinality-field"></a></h3>
+   <h3 class="heading settled" data-level="10.2" id="domain-field"><span class="secno">10.2. </span><span class="content">domain</span><a class="self-link" href="#domain-field"></a></h3>
+   <h3 class="heading settled" data-level="10.3" id="entry-number-field"><span class="secno">10.3. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
+   <p class="issue" id="issue-89016d43"><a class="self-link" href="#issue-89016d43"></a> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number</p>
+   <h3 class="heading settled" data-level="10.4" id="item-hash-field"><span class="secno">10.4. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
    <p class="issue" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here</p>
    <p class="issue" id="issue-059eb690"><a class="self-link" href="#issue-059eb690"></a> we need to ensure our objecthash generates the same value for an empty and a missing field.</p>
    <ul>
@@ -2258,23 +2415,25 @@ Content-Length: 522
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="9.2" id="entry-number"><span class="secno">9.2. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number"></a></h3>
-   <p class="issue" id="issue-89016d43"><a class="self-link" href="#issue-89016d43"></a> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number</p>
-   <h3 class="heading settled" data-level="9.3" id="cardinality"><span class="secno">9.3. </span><span class="content">cardinality</span><a class="self-link" href="#cardinality"></a></h3>
-   <h2 class="heading settled" data-level="10" id="registers"><span class="secno">10. </span><span class="content">Registers</span><a class="self-link" href="#registers"></a></h2>
-   <h3 class="heading settled" data-level="10.1" id="register-register"><span class="secno">10.1. </span><span class="content">Register register</span><a class="self-link" href="#register-register"></a></h3>
-   <h3 class="heading settled" data-level="10.2" id="field-register"><span class="secno">10.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
-   <h3 class="heading settled" data-level="10.3" id="datatype-register"><span class="secno">10.3. </span><span class="content">Datatype register</span><a class="self-link" href="#datatype-register"></a></h3>
-   <h2 class="heading settled" data-level="11" id="representations"><span class="secno">11. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
+   <h3 class="heading settled" data-level="10.5" id="last-updated-field"><span class="secno">10.5. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
+   <h3 class="heading settled" data-level="10.6" id="proof-identifier-field"><span class="secno">10.6. </span><span class="content">proof-identifier</span><a class="self-link" href="#proof-identifier-field"></a></h3>
+   <h3 class="heading settled" data-level="10.7" id="proof-node-hash-field"><span class="secno">10.7. </span><span class="content">proof-node-hash</span><a class="self-link" href="#proof-node-hash-field"></a></h3>
+   <h3 class="heading settled" data-level="10.8" id="field-field"><span class="secno">10.8. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
+   <h3 class="heading settled" data-level="10.9" id="fields-field"><span class="secno">10.9. </span><span class="content">fields</span><a class="self-link" href="#fields-field"></a></h3>
+   <h2 class="heading settled" data-level="11" id="registers"><span class="secno">11. </span><span class="content">Registers</span><a class="self-link" href="#registers"></a></h2>
+   <h3 class="heading settled" data-level="11.1" id="register-register"><span class="secno">11.1. </span><span class="content">Register register</span><a class="self-link" href="#register-register"></a></h3>
+   <h3 class="heading settled" data-level="11.2" id="field-register"><span class="secno">11.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
+   <h3 class="heading settled" data-level="11.3" id="datatype-register"><span class="secno">11.3. </span><span class="content">Datatype register</span><a class="self-link" href="#datatype-register"></a></h3>
+   <h2 class="heading settled" data-level="12" id="representations"><span class="secno">12. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
    <p class="note" role="note">Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.</p>
    <p class="issue" id="issue-800c7c98"><a class="self-link" href="#issue-800c7c98"></a> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON.</p>
-   <h3 class="heading settled" data-level="11.1" id="html-representation"><span class="secno">11.1. </span><span class="content">HTML representation</span><a class="self-link" href="#html-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.1" id="html-representation"><span class="secno">12.1. </span><span class="content">HTML representation</span><a class="self-link" href="#html-representation"></a></h3>
    <ul>
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-html5">[HTML5]</a></p>
    </ul>
    <p class="issue" id="issue-f79e8df8"><a class="self-link" href="#issue-f79e8df8"></a> do we specify RDFa or Schema.org markup?</p>
-   <h3 class="heading settled" data-level="11.2" id="json-representation"><span class="secno">11.2. </span><span class="content">JSON representation</span><a class="self-link" href="#json-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.2" id="json-representation"><span class="secno">12.2. </span><span class="content">JSON representation</span><a class="self-link" href="#json-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>suffix: .json</p>
@@ -2285,7 +2444,7 @@ Content-Length: 522
    </ul>
    <p>All field values MUST be encoded as JSON strings.</p>
    <p class="issue" id="issue-fac8c80e"><a class="self-link" href="#issue-fac8c80e"></a> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means?</p>
-   <h3 class="heading settled" data-level="11.3" id="yaml-representation"><span class="secno">11.3. </span><span class="content">YAML representation</span><a class="self-link" href="#yaml-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.3" id="yaml-representation"><span class="secno">12.3. </span><span class="content">YAML representation</span><a class="self-link" href="#yaml-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>Suffix: .yaml</p>
@@ -2295,7 +2454,7 @@ Content-Length: 522
      <p>Specification: <a data-link-type="biblio" href="#biblio-yaml">[YAML]</a></p>
    </ul>
    <div class="example" id="example-30c1eda5">
-    <a class="self-link" href="#example-30c1eda5"></a> The following example shows a <a href="#record-resource">§2.3 Record resource</a> in the <a href="#yaml-representation">§11.3 YAML representation</a>: 
+    <a class="self-link" href="#example-30c1eda5"></a> The following example shows a <a href="#record-resource">§3.3 Record resource</a> in the <a href="#yaml-representation">§12.3 YAML representation</a>: 
 <pre class="highlight"><span class="l l-Scalar l-Scalar-Plain">entry</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">entry-number</span><span class="p p-Indicator">:</span> <span class="s">"30568"</span>
   <span class="l l-Scalar l-Scalar-Plain">timestamp</span><span class="p p-Indicator">:</span> <span class="s">"2015-01-02T23:59:01Z"</span>
@@ -2306,14 +2465,14 @@ Content-Length: 522
   <span class="l l-Scalar l-Scalar-Plain">school</span><span class="p p-Indicator">:</span> <span class="s">"402175"</span>
   <span class="l l-Scalar l-Scalar-Plain">start-date</span><span class="p p-Indicator">:</span> <span class="s">"2007-11-07"</span></pre>
    </div>
-   <h3 class="heading settled" data-level="11.4" id="csv-representation"><span class="secno">11.4. </span><span class="content">CSV representation</span><a class="self-link" href="#csv-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.4" id="csv-representation"><span class="secno">12.4. </span><span class="content">CSV representation</span><a class="self-link" href="#csv-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>Suffix: .csv</p>
     <li data-md="">
      <p>Specification: <a data-link-type="biblio" href="#biblio-tabular-data-model">[tabular-data-model]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="11.5" id="tsv-representation"><span class="secno">11.5. </span><span class="content">TSV representation</span><a class="self-link" href="#tsv-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.5" id="tsv-representation"><span class="secno">12.5. </span><span class="content">TSV representation</span><a class="self-link" href="#tsv-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>Suffix: .tsv</p>
@@ -2322,12 +2481,12 @@ Content-Length: 522
     <li data-md="">
      <p>Specification: <a data-link-type="biblio" href="#biblio-iana-tsv">[IANA-TSV]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="11.6" id="json-ld-representation"><span class="secno">11.6. </span><span class="content">JSON-LD representation</span><a class="self-link" href="#json-ld-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.6" id="json-ld-representation"><span class="secno">12.6. </span><span class="content">JSON-LD representation</span><a class="self-link" href="#json-ld-representation"></a></h3>
    <ul>
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-json-ld">[JSON-LD]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="11.7" id="ttl-representation"><span class="secno">11.7. </span><span class="content">Turtle representation</span><a class="self-link" href="#ttl-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.7" id="ttl-representation"><span class="secno">12.7. </span><span class="content">Turtle representation</span><a class="self-link" href="#ttl-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>Suffix: .ttl</p>
@@ -2337,7 +2496,7 @@ Content-Length: 522
      <p>Specification: <a data-link-type="biblio" href="#biblio-turtle">[TURTLE]</a></p>
    </ul>
    <div class="example" id="example-19270c4e">
-    <a class="self-link" href="#example-19270c4e"></a> The following example shows an <a href="#item-resource">§2.1 Item resource</a> in the <a href="#ttl-representation">§11.7 Turtle representation</a>: 
+    <a class="self-link" href="#example-19270c4e"></a> The following example shows an <a href="#item-resource">§3.1 Item resource</a> in the <a href="#ttl-representation">§12.7 Turtle representation</a>: 
 <pre>@prefix field: &lt;http://field.register.gov.uk/field/>.
 
 &lt;http://school.register.gov.uk/item/af3056bd04263c878b36ad7ce421b8b68a0799>
@@ -2347,38 +2506,38 @@ Content-Length: 522
  field:start-date "2007-11-07" ;
 </pre>
    </div>
-   <h3 class="heading settled" data-level="11.8" id="atom-representation"><span class="secno">11.8. </span><span class="content">Atom representation</span><a class="self-link" href="#atom-representation"></a></h3>
+   <h3 class="heading settled" data-level="12.8" id="atom-representation"><span class="secno">12.8. </span><span class="content">Atom representation</span><a class="self-link" href="#atom-representation"></a></h3>
    <ul>
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-rfc4287">[RFC4287]</a></p>
    </ul>
-   <h2 class="heading settled" data-level="12" id="digital-proofs"><span class="secno">12. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
-   <h3 class="heading settled" data-level="12.1" id="using-certificate-transparency"><span class="secno">12.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
+   <h2 class="heading settled" data-level="13" id="digital-proofs"><span class="secno">13. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
+   <h3 class="heading settled" data-level="13.1" id="using-certificate-transparency"><span class="secno">13.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
-   <h4 class="heading settled" data-level="12.1.1" id="signed-tree-head"><span class="secno">12.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
+   <h4 class="heading settled" data-level="13.1.1" id="signed-tree-head"><span class="secno">13.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
    <p class="issue" id="issue-a8551e06"><a class="self-link" href="#issue-a8551e06"></a> What happens when a key is rotated?</p>
-   <h4 class="heading settled" data-level="12.1.2" id="leaf-signature"><span class="secno">12.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
-   <h4 class="heading settled" data-level="12.1.3" id="ct-verify-register"><span class="secno">12.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
-   <h4 class="heading settled" data-level="12.1.4" id="ct-verify-entry"><span class="secno">12.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
-   <h2 class="heading settled" data-level="13" id="minting"><span class="secno">13. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
+   <h4 class="heading settled" data-level="13.1.2" id="leaf-signature"><span class="secno">13.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
+   <h4 class="heading settled" data-level="13.1.3" id="ct-verify-register"><span class="secno">13.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
+   <h4 class="heading settled" data-level="13.1.4" id="ct-verify-entry"><span class="secno">13.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
+   <h2 class="heading settled" data-level="14" id="minting"><span class="secno">14. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
    <p>To mint a new entry in the register:</p>
    <ul>
     <li data-md="">
-     <p>POST a new item in <a href="#json-representation">§11.2 JSON representation</a> to the ..mint url.. with the proposed new entry number.</p>
+     <p>POST a new item in <a href="#json-representation">§12.2 JSON representation</a> to the ..mint url.. with the proposed new entry number.</p>
     <li data-md="">
      <p>The item will first appear as a new item in the store</p>
     <li data-md="">
      <p><em> .. status codes and error cases </em></p>
     <li data-md="">
-     <p><em> .. 202 Accepted with a Location header of the <a href="#entry-resource">§2.2 Entry resource</a> for the new entry</em></p>
+     <p><em> .. 202 Accepted with a Location header of the <a href="#entry-resource">§3.2 Entry resource</a> for the new entry</em></p>
      <em> </em>
     <li data-md="">
      <p><em>The proposer can only trust it has been secured when the entry
-is listed in the <a href="#entries-resource">§4.2 Entries resource</a> with the same <a href="#entry-number">§9.2 entry-number</a>,
-and the <a href="#entry-resource">§2.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§12 Digital Proofs</a> for the register.</em></p>
+is listed in the <a href="#entries-resource">§5.2 Entries resource</a> with the same <a href="#entry-number-field">§10.3 entry-number</a>,
+and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</em></p>
      <em> </em>
    </ul>
-   <em> <p>The item MUST NOT contain empty fields.</p> <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry?</p> <h2 class="heading settled" data-level="14" id="redaction"><span class="secno">14. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2> <ul><li data-md=""><p>An item may be removed from a register, but the entry MUST NOT be removed from the register.</p> </li></ul> <p class="issue" id="issue-6510bec9"><a class="self-link" href="#issue-6510bec9"></a> there is a need redaction, even for open records such as insolvency and bankruptcy.</p> <p class="issue" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted.</p> <p class="issue" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated.</p> <p class="issue" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof.</p> <h2 class="heading settled" data-level="15" id="versioning-and-extensibility"><span class="secno">15. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2> <h3 class="heading settled" data-level="15.1" id="backwards-compatibility"><span class="secno">15.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3> <ul><li data-md=""><p>Semantics of a field cannot be significantly changed but not changed.</p> </li></ul> <h3 class="heading settled" data-level="15.2" id="forwards-compatibility"><span class="secno">15.2. </span><span class="content">Forwards compatibility</span><a class="self-link" href="#forwards-compatibility"></a></h3> <ul><li data-md=""><p>Must-ignore rule.</p> </li><li data-md=""><p>Defaulting empty or missing values</p> </li></ul> <h3 class="heading settled" data-level="15.3" id="extension-points"><span class="secno">15.3. </span><span class="content">Points of extensibility</span><a class="self-link" href="#extension-points"></a></h3> <h4 class="heading settled" data-level="15.3.1" id="extensibility-fields"><span class="secno">15.3.1. </span><span class="content">Fields</span><a class="self-link" href="#extensibility-fields"></a></h4> <h4 class="heading settled" data-level="15.3.2" id="extensibility-resources"><span class="secno">15.3.2. </span><span class="content">Resources</span><a class="self-link" href="#extensibility-resources"></a></h4> <h4 class="heading settled" data-level="15.3.3" id="extensibility-proofs"><span class="secno">15.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4> <h4 class="heading settled" data-level="15.3.4" id="extensibility-representations"><span class="secno">15.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4> <p>A register may provide additional, possibly domain specific representations.</p> <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§8.5 Point datatype</a> or <a href="#multipolygon-datatype">§8.6 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div> <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p> <h2 class="heading settled" data-level="16" id="security-considerations"><span class="secno">16. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2> <h3 class="heading settled" data-level="16.1" id="mint-access-control"><span class="secno">16.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3> <h3 class="heading settled" data-level="16.2" id="compromised-proof"><span class="secno">16.2. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3> <h3 class="heading settled" data-level="16.3" id="stale-record"><span class="secno">16.3. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3> <h3 class="heading settled" data-level="16.4" id="denial-of-service"><span class="secno">16.4. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3> <h3 class="heading settled" data-level="16.5" id="DNS"><span class="secno">16.5. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3> <h3 class="heading settled" data-level="16.6" id="private-key"><span class="secno">16.6. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3> <h3 class="heading settled" data-level="16.7" id="compromised-private-key"><span class="secno">16.7. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3> <h3 class="heading settled" data-level="16.8" id="hash-clash"><span class="secno">16.8. </span><span class="content">Hash clash</span><a class="self-link" href="#hash-clash"></a></h3> <h2 class="heading settled" data-level="17" id="namespaces"><span class="secno">17. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2> <ul><li data-md=""><p>defined by this specification</p> </li><li data-md=""><p>defined by {#core-registers}</p> </li></ul> </em>
+   <em> <p>The item MUST NOT contain empty fields.</p> <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry?</p> <h2 class="heading settled" data-level="15" id="redaction"><span class="secno">15. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2> <ul><li data-md=""><p>An item may be removed from a register, but the entry MUST NOT be removed from the register.</p> </li></ul> <p class="issue" id="issue-6510bec9"><a class="self-link" href="#issue-6510bec9"></a> there is a need redaction, even for open records such as insolvency and bankruptcy.</p> <p class="issue" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted.</p> <p class="issue" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated.</p> <p class="issue" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof.</p> <h2 class="heading settled" data-level="16" id="versioning-and-extensibility"><span class="secno">16. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2> <h3 class="heading settled" data-level="16.1" id="backwards-compatibility"><span class="secno">16.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3> <ul><li data-md=""><p>Semantics of a field cannot be significantly changed but not changed.</p> </li></ul> <h3 class="heading settled" data-level="16.2" id="forwards-compatibility"><span class="secno">16.2. </span><span class="content">Forwards compatibility</span><a class="self-link" href="#forwards-compatibility"></a></h3> <ul><li data-md=""><p>Must-ignore rule.</p> </li><li data-md=""><p>Defaulting empty or missing values</p> </li></ul> <h3 class="heading settled" data-level="16.3" id="extension-points"><span class="secno">16.3. </span><span class="content">Points of extensibility</span><a class="self-link" href="#extension-points"></a></h3> <h4 class="heading settled" data-level="16.3.1" id="extensibility-fields"><span class="secno">16.3.1. </span><span class="content">Fields</span><a class="self-link" href="#extensibility-fields"></a></h4> <h4 class="heading settled" data-level="16.3.2" id="extensibility-resources"><span class="secno">16.3.2. </span><span class="content">Resources</span><a class="self-link" href="#extensibility-resources"></a></h4> <h4 class="heading settled" data-level="16.3.3" id="extensibility-proofs"><span class="secno">16.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4> <h4 class="heading settled" data-level="16.3.4" id="extensibility-representations"><span class="secno">16.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4> <p>A register may provide additional, possibly domain specific representations.</p> <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§9.6 Point datatype</a> or <a href="#multipolygon-datatype">§9.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div> <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p> <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2> <h3 class="heading settled" data-level="17.1" id="mint-access-control"><span class="secno">17.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3> <h3 class="heading settled" data-level="17.2" id="compromised-proof"><span class="secno">17.2. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3> <h3 class="heading settled" data-level="17.3" id="stale-record"><span class="secno">17.3. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3> <h3 class="heading settled" data-level="17.4" id="denial-of-service"><span class="secno">17.4. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3> <h3 class="heading settled" data-level="17.5" id="DNS"><span class="secno">17.5. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3> <h3 class="heading settled" data-level="17.6" id="private-key"><span class="secno">17.6. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3> <h3 class="heading settled" data-level="17.7" id="compromised-private-key"><span class="secno">17.7. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3> <h3 class="heading settled" data-level="17.8" id="hash-clash"><span class="secno">17.8. </span><span class="content">Hash clash</span><a class="self-link" href="#hash-clash"></a></h3> <h2 class="heading settled" data-level="18" id="namespaces"><span class="secno">18. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2> <ul><li data-md=""><p>defined by this specification</p> </li><li data-md=""><p>defined by {#core-registers}</p> </li></ul> </em>
   </main>
   <em> <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2> <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
         The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
@@ -2449,15 +2608,15 @@ and the <a href="#entry-resource">§2.2 Entry resource</a> is a covered by one o
   <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.<a href="#issue-a52ed4c7"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§8.4 Timestamp datatype</a>.<a href="#issue-850458d5"> ↵ </a></div>
-   <div class="issue"> CT timestamp is inconsistent with <a href="#timestamp-datatype">§8.4 Timestamp datatype</a>.<a href="#issue-0e9bdd5b"> ↵ </a></div>
+   <div class="issue"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>.<a href="#issue-850458d5"> ↵ </a></div>
+   <div class="issue"> CT timestamp is inconsistent with <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>.<a href="#issue-0e9bdd5b"> ↵ </a></div>
    <div class="issue"> CT names should be mapped to a consistent "proof" field names, or held inside an envelope.<a href="#issue-ba4608f8"> ↵ </a></div>
    <div class="issue"> define query string parameters ..<a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination?<a href="#issue-ab2143f9"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive.<a href="#issue-9ee875b6"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION /entries is currently implemented as also returning the item contents.<a href="#issue-31859f20"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new.<a href="#issue-1dc835c7"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is now /item/{item-hash}/entries<a href="#issue-522e8f75"> ↵ </a></div>
+   <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries<a href="#issue-8815c872"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.<a href="#issue-d994c4f5"> ↵ </a></div>
    <div class="issue"> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)?<a href="#issue-a9ea3195"> ↵ </a></div>
    <div class="issue"> What is the naming convention for the archive files themselves?<a href="#issue-941daf47"> ↵ </a></div>
@@ -2468,9 +2627,9 @@ and the <a href="#entry-resource">§2.2 Entry resource</a> is a covered by one o
    <div class="issue"> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?<a href="#issue-ebfdb117"> ↵ </a></div>
    <div class="issue"> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.<a href="#issue-420ac5c0"> ↵ </a></div>
    <div class="issue"> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?<a href="#issue-8d36d08b"> ↵ </a></div>
+   <div class="issue"> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number<a href="#issue-89016d43"> ↵ </a></div>
    <div class="issue"> objecthash isn’t a specification, we’ll need to define our algorithm here<a href="#issue-b730eb4a"> ↵ </a></div>
    <div class="issue"> we need to ensure our objecthash generates the same value for an empty and a missing field.<a href="#issue-059eb690"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number<a href="#issue-89016d43"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON.<a href="#issue-800c7c98"> ↵ </a></div>
    <div class="issue"> do we specify RDFa or Schema.org markup?<a href="#issue-f79e8df8"> ↵ </a></div>
    <div class="issue"> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means?<a href="#issue-fac8c80e"> ↵ </a></div>
