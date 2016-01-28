@@ -42,7 +42,7 @@ path: include/copyright-openregister.include
   dl.resource dt {
     display: inline-block;
     min-width: 100px;
-    padding: 1.2em 0.5em;
+    padding: 0.5em;
     font-style: normal;
     font-weight: normal;
     text-transform: uppercase;
