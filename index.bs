@@ -67,10 +67,11 @@ path: include/copyright-openregister.include
 
 # Infoset # {#infoset}
 
-<em>We don't have a canonical representation, instead calculate ha</em>
+Note: Data items in this specification are defined in terms of an information set which can be mapped to one of a number of different representations. There is no canonical representation.
+
 * An infoset is an unordered collection of data items.
-* Each data item is identified by a [[##field-name-datatype]] value.
-* An infoset 
+* A data item is identified within the scope of the infoset by a [[#field-field]] value.
+* The contents of a data item is constrained by one of a number of different [[#datatypes]].
 
 
 # Entity resources # {#entity-resources}
