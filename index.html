@@ -1397,7 +1397,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-01-28">28 January 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-03">3 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1489,7 +1489,6 @@ data held in an open register.</p>
       <li><a href="#proof-identifier-field"><span class="secno">10.6</span> <span class="content">proof-identifier</span></a>
       <li><a href="#proof-node-hash-field"><span class="secno">10.7</span> <span class="content">proof-node-hash</span></a>
       <li><a href="#field-field"><span class="secno">10.8</span> <span class="content">field</span></a>
-      <li><a href="#fields-field"><span class="secno">10.9</span> <span class="content">fields</span></a>
      </ol>
     <li>
      <a href="#registers"><span class="secno">11</span> <span class="content">Registers</span></a>
@@ -1581,7 +1580,7 @@ data held in an open register.</p>
     <dd>/item/{<a href="#item-hash-field">item-hash</a>}
    </dl>
    <p>An item is an unordered collection of <a href="#fields">§10 Fields</a> and values.
-The set of fields which MAY be included in an item are defined in the <a href="#fields-field">§10.9 fields</a> field in the <a href="#register-register">§11.1 Register register</a> entry for the register.</p>
+The set of fields which MAY be included in an item are defined in the <a href="#fields-field"></a> field in the <a href="#register-register">§11.1 Register register</a> entry for the register.</p>
    <p>An item is identified by the globally unique <a href="#item-hash-field">§10.4 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§10.4 item-hash</a>.</p>
    <div class="example" id="example-7265d706">
     <a class="self-link" href="#example-7265d706"></a> The following example shows an item in the <a href="#json-representation">§12.2 JSON representation</a>: 
@@ -2419,7 +2418,6 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    <h3 class="heading settled" data-level="10.6" id="proof-identifier-field"><span class="secno">10.6. </span><span class="content">proof-identifier</span><a class="self-link" href="#proof-identifier-field"></a></h3>
    <h3 class="heading settled" data-level="10.7" id="proof-node-hash-field"><span class="secno">10.7. </span><span class="content">proof-node-hash</span><a class="self-link" href="#proof-node-hash-field"></a></h3>
    <h3 class="heading settled" data-level="10.8" id="field-field"><span class="secno">10.8. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
-   <h3 class="heading settled" data-level="10.9" id="fields-field"><span class="secno">10.9. </span><span class="content">fields</span><a class="self-link" href="#fields-field"></a></h3>
    <h2 class="heading settled" data-level="11" id="registers"><span class="secno">11. </span><span class="content">Registers</span><a class="self-link" href="#registers"></a></h2>
    <h3 class="heading settled" data-level="11.1" id="register-register"><span class="secno">11.1. </span><span class="content">Register register</span><a class="self-link" href="#register-register"></a></h3>
    <h3 class="heading settled" data-level="11.2" id="field-register"><span class="secno">11.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>

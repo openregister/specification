@@ -684,9 +684,6 @@ ISSUE: we need to ensure our objecthash generates the same value for an empty an
 
 ## field ## {#field-field}
 
-## fields ## {#fields-field}
-
-
 
 # Registers # {#registers}
 
