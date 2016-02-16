@@ -1,5 +1,6 @@
 <h1>Open Registers</h1>
 <pre class="metadata">
+Repository: https://github.com/openregister/specification
 Logo: https://assets.digital.cabinet-office.gov.uk/static/images/gov.uk_logotype_crown.png
 Status: ED
 ED: https://openregister.github.io/specification/
@@ -9,13 +10,14 @@ Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-off
 Editor: Daniel Appelquist, Government Digital Service, daniel.appelquist@digital.cabinet-office.gov.uk
 Group: openregister
 Indent: 2
+Inline Github Issues: true
 Abstract:
   This document defines the resources and representations which together
   provide an Application Programming Interface (API) for accessing 
   data held in an open register.
 
 Version History: https://github.com/openregister/specification/commits/gh-pages/index.bs
-!Bug Reports: <a href="https://github.com/openregister/specification/issues/new">via the openregister/specification repository on GitHub</a>
+!Bug Reports: <a href="[REPOSITORYURL]/issues/new">via the openregister/specification repository on GitHub</a>
 </pre>
 
 <pre class=include>
@@ -102,7 +104,7 @@ The following example shows an item in the [[#json-representation]]:
 </pre>
 </div>
 
-ISSUE: IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
+ISSUE(openregister/specification#3): IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
 
 ## Entry resource ## {#entry-resource}
 
@@ -120,7 +122,7 @@ The following example shows an entry in the [[#json-representation]]:
 </pre>
 </div>
 
-ISSUE: IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the [[#timestamp-datatype]].
+ISSUE(openregister/specification#4): IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the [[#timestamp-datatype]].
 
 ## Record resource ## {#record-resource}
 
@@ -218,9 +220,9 @@ https://school.register.gov.uk/proof/certificate-transparency
 </pre>
 </div>
 
-ISSUE: CT timestamp is inconsistent with [[#timestamp-datatype]].
+ISSUE(openregister/specification#5): CT timestamp is inconsistent with [[#timestamp-datatype]].
 
-ISSUE: CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
+ISSUE(openregister/specification#6): CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
 
 ## Proof node resource ## {#proof-node-resource}
 <dl class="resource"><dt>Path</dt><dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}/node/{<a href="#proof-node-hash-field">proof-node-hash</a>}</dd></dt></dl>
@@ -249,15 +251,15 @@ An instance of an [[#item-resource]], [[#entry-resource]] and [[#proof-node-reso
 
 There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
 
-ISSUE: define query string parameters ..
+ISSUE(openregister/specification#7): define query string parameters ..
 
-ISSUE: if /records and /items are sets, what does that mean for pagination?
+ISSUE(openregister/specification#8): if /records and /items are sets, what does that mean for pagination?
 
 ## Items resource ## {#items-resource}
 
 <dl class="resource"><dt>Path</dt><dd>/items</dd></dt></dl>
 
-ISSUE: IMPLEMENTATION /items isn't yet implemented. There may not be a need for this resource as it's available in the archive.
+ISSUE(openregister/specification#9): IMPLEMENTATION /items isn't yet implemented. There may not be a need for this resource as it's available in the archive.
 
 <div class="example">
 The following example shows a set of records in the [[#json-representation]]:
@@ -281,7 +283,7 @@ The following example shows a set of records in the [[#json-representation]]:
 
 <dl class="resource"><dt>Path</dt><dd>/entries</dd></dt></dl>
 
-ISSUE: IMPLEMENTATION /entries is currently implemented as also returning the item contents.
+ISSUE(openregister/specification#10): IMPLEMENTATION /entries is currently implemented as also returning the item contents.
 
 <div class="example">
 The following example shows a list of entries in the [[#json-representation]]:
@@ -309,7 +311,7 @@ The following example shows a list of entries in the [[#json-representation]]:
 
 An ordered list of [[#entry-resource]] values which cite the item.
 
-ISSUE: IMPLEMENTATION The resource is /item/{item-hash}/entries is new.
+ISSUE(openregister/specification#11): IMPLEMENTATION The resource is /item/{item-hash}/entries is new.
 
 <div class="example">
 The following example shows a list of item entries in the [[#json-representation]]:
@@ -335,7 +337,7 @@ The following example shows a list of item entries in the [[#json-representation
 
 <dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}/entries</dd></dt></dl>
 
-ISSUE: IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries
+ISSUE(openregister/specification#12): IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries
 
 <div class="example">
 The following example shows a list of item entries in the [[#json-representation]]:
@@ -361,7 +363,7 @@ The following example shows a list of item entries in the [[#json-representation
 
 <dl class="resource"><dt>Path</dt><dd>/records</dd></dt></dl>
 
-ISSUE: IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.
+ISSUE(openregister/specification#13): IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.
 
 <div class="example">
 The following example shows a list of records in the [[#json-representation]]:
@@ -485,16 +487,16 @@ The archive contains the following files in the following structure:
 
 A register archive MAY contain entry and item resources in the more space efficient [[#tsv-representation]].
 
-ISSUE: Do we provide downloads in tar.gz or [[ZIP]] (the ISO/IEC 21320-1:2015 profile is open)?
+ISSUE(openregister/specification#14): Do we provide downloads in tar.gz or [[ZIP]] (the ISO/IEC 21320-1:2015 profile is open)?
 
-ISSUE: What is the naming convention for the archive files themselves?
+ISSUE(openregister/specification#15): What is the naming convention for the archive files themselves?
 
-ISSUE: How about a "record" archive containing only the latest entries for each record?
+ISSUE(openregister/specification#16): How about a "record" archive containing only the latest entries for each record?
 
 
 # Streaming resources # {#streaming-resources}
 
-ISSUE: we don't yet know how to support updating an index or a cache, beyond polling. Maybe [[EVENTSOURCE]]?
+ISSUE(openregister/specification#17): we don't yet know how to support updating an index or a cache, beyond polling. Maybe [[EVENTSOURCE]]?
 
 
 
@@ -527,9 +529,9 @@ Content-Length: 522
 </pre>
 </div>
 
-ISSUE: should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?
+ISSUE(openregister/specification#18): should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?
 
-ISSUE: should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?
+ISSUE(openregister/specification#19): should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?
 
 # Datatypes # {#datatypes}
 
@@ -641,12 +643,12 @@ Used to identify a record, possibly in another register.
 ## Item-hash datatype ## {#item-hash-datatype}
 The object hash of the item's contents may be used to identify the contents of an item, irrespective of where it is stored or presented.
 
-ISSUE: do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?
+ISSUE(openregister/specification#20): do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?
 
 ## Entry-reference datatype ## {#entry-reference-datatype}
 Legal documents may need to cite an individual entry, rather than the latest entry of the record.
 
-ISSUE: we don't know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.
+ISSUE(openregister/specification#21): we don't know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.
 
 ## URL datatype ## {#url-datatype}
 Used to link to an external website, or other resource not held in a register.
@@ -655,7 +657,7 @@ Used to link to an external website, or other resource not held in a register.
 
 # Fields # {#fields}
 
-ISSUE: We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?
+ISSUE(openregister/specification#22): We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?
 
 <em>Fields defined by this specification</em>
 
@@ -665,13 +667,13 @@ ISSUE: We use semicolons to separate fields in a TSV/CSV value. Is this the best
 
 ## entry-number ## {#entry-number-field}
 
-ISSUE: IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number
+ISSUE(openregister/specification#23): IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number
 
 ## item-hash ## {#item-hash-field}
 
-ISSUE: objecthash isn't a specification, we'll need to define our algorithm here
+ISSUE(openregister/specification#24): objecthash isn't a specification, we'll need to define our algorithm here
 
-ISSUE: we need to ensure our objecthash generates the same value for an empty and a missing field.
+ISSUE(openregister/specification#25): we need to ensure our objecthash generates the same value for an empty and a missing field.
 
   * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
   * [[FIPS-180-4]]
@@ -700,12 +702,12 @@ ISSUE: we need to ensure our objecthash generates the same value for an empty an
 
 Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.
 
-ISSUE: IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON.
+ISSUE(openregister/specification#26): IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON.
 
 ## HTML representation ## {#html-representation}
   * [[HTML5]]
 
-ISSUE: do we specify RDFa or Schema.org markup?
+ISSUE(openregister/specification#27): do we specify RDFa or Schema.org markup?
 
 ## JSON representation ## {#json-representation}
   * suffix: .json
@@ -714,7 +716,7 @@ ISSUE: do we specify RDFa or Schema.org markup?
 
   All field values MUST be encoded as JSON strings.
 
-ISSUE: the JSON should be in a c14n format, but no spec exists, so we will need to define what that means?
+ISSUE(openregister/specification#28): the JSON should be in a c14n format, but no spec exists, so we will need to define what that means?
 
 ## YAML representation ## {#yaml-representation}
 
@@ -786,7 +788,7 @@ The following example shows an [[#item-resource]] in the [[#ttl-representation]]
 
 ### Signed tree head ### {#signed-tree-head}
 
-ISSUE: What happens when a key is rotated?
+ISSUE(openregister/specification#29): What happens when a key is rotated?
 
 ### Leaf signature ### {#leaf-signature}
 
@@ -809,20 +811,20 @@ ISSUE: What happens when a key is rotated?
 
 The item MUST NOT contain empty fields.
 
-ISSUE: does a register have a standard URL to POST a new entry?
+ISSUE(openregister/specification#30): does a register have a standard URL to POST a new entry?
 
 
 # Redaction # {#redaction}
 
 * An item may be removed from a register, but the entry MUST NOT be removed from the register.
 
-ISSUE: there is a need redaction, even for open records such as insolvency and bankruptcy.
+ISSUE(openregister/specification#31): there is a need redaction, even for open records such as insolvency and bankruptcy.
 
-ISSUE: need a mechanism to flag an item as redacted.
+ISSUE(openregister/specification#32): need a mechanism to flag an item as redacted.
 
-ISSUE: need a mechanism to mark a proof as deprecated.
+ISSUE(openregister/specification#33): need a mechanism to mark a proof as deprecated.
 
-ISSUE: need a mechanism to terminate a proof and start a new proof.
+ISSUE(openregister/specification#34): need a mechanism to terminate a proof and start a new proof.
 
 
 
