@@ -1,6 +1,6 @@
 <h1>Open Registers</h1>
 <pre class="metadata">
-Repository: https://github.com/openregister/specification
+Repository: openregister/specification
 Logo: https://assets.digital.cabinet-office.gov.uk/static/images/gov.uk_logotype_crown.png
 Status: ED
 ED: https://openregister.github.io/specification/
@@ -17,7 +17,7 @@ Abstract:
   data held in an open register.
 
 Version History: https://github.com/openregister/specification/commits/gh-pages/index.bs
-!Bug Reports: <a href="[REPOSITORYURL]/issues/new">via the openregister/specification repository on GitHub</a>
+!Bug Reports: <a href="[REPOSITORYURL]/issues">via the openregister/specification repository on GitHub</a>
 </pre>
 
 <pre class=include>
