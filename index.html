@@ -1397,7 +1397,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-16">16 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-19">19 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1600,12 +1600,12 @@ The set of fields which MAY be included in an item are defined in the <a href="#
     <dt>Path
     <dd>/entry/{<a href="#entry-number-field">entry-number</a>}
    </dl>
-   <div class="example" id="example-06599394">
-    <a class="self-link" href="#example-06599394"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-afca11ff">
+    <a class="self-link" href="#example-afca11ff"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span>
 <span class="p">}</span></pre>
    </div>
    <p class="issue" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a></p>
@@ -1614,18 +1614,14 @@ The set of fields which MAY be included in an item are defined in the <a href="#
     <dt>Path
     <dd>/record/{<a href="#field-value">field-value</a>}
    </dl>
-   <div class="example" id="example-43c3c027">
-    <a class="self-link" href="#example-43c3c027"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-48a65a4d">
+    <a class="self-link" href="#example-48a65a4d"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
-    <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
-      <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
-      <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
-    <span class="p">},</span>
-    <span class="nt">"item"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
-      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Islington"</span>
-    <span class="p">}</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
+    <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Islington"</span>
 <span class="p">}</span></pre>
    </div>
    <h3 class="heading settled" data-level="3.4" id="register-resource"><span class="secno">3.4. </span><span class="content">Register resource</span><a class="self-link" href="#register-resource"></a></h3>
@@ -1663,25 +1659,21 @@ The set of fields which MAY be included in an item are defined in the <a href="#
     <dd data-md="">
      <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#record-resource">§3.3 Record resource</a> entities currently stored in the register.</p>
    </dl>
-   <div class="example" id="example-d95d912c">
-    <a class="self-link" href="#example-d95d912c"></a> The following example shows a register in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-da084c50">
+    <a class="self-link" href="#example-da084c50"></a> The following example shows a register in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"domain"</span><span class="p">:</span> <span class="s2">".register.gov.uk"</span><span class="p">,</span>
   <span class="nt">"last-updated"</span><span class="p">:</span> <span class="s2">"2016-01-21T21:09:59Z"</span><span class="p">,</span>
   <span class="nt">"register-record"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">,</span>
-      <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
-      <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
-    <span class="p">},</span>
-    <span class="nt">"item"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"fields"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"address"</span><span class="p">,</span> <span class="s2">"end-date"</span><span class="p">,</span> <span class="s2">"school"</span><span class="p">,</span> <span class="s2">"start-date"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"website"</span> <span class="p">],</span>
-      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Schools in the UK"</span><span class="p">,</span>
-      <span class="nt">"phase"</span><span class="p">:</span> <span class="s2">"beta"</span><span class="p">,</span>
-      <span class="nt">"register"</span><span class="p">:</span> <span class="s2">"school"</span><span class="p">,</span>
-      <span class="nt">"registry"</span><span class="p">:</span> <span class="s2">"department-of-education"</span><span class="p">,</span>
-      <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"2012-01-01"</span>
-    <span class="p">}</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">,</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
+    <span class="nt">"fields"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"address"</span><span class="p">,</span> <span class="s2">"end-date"</span><span class="p">,</span> <span class="s2">"school"</span><span class="p">,</span> <span class="s2">"start-date"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"website"</span> <span class="p">],</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Schools in the UK"</span><span class="p">,</span>
+    <span class="nt">"phase"</span><span class="p">:</span> <span class="s2">"beta"</span><span class="p">,</span>
+    <span class="nt">"register"</span><span class="p">:</span> <span class="s2">"school"</span><span class="p">,</span>
+    <span class="nt">"registry"</span><span class="p">:</span> <span class="s2">"department-of-education"</span><span class="p">,</span>
+    <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"2012-01-01"</span>
   <span class="p">}</span>
   <span class="s2">"total-entries"</span><span class="p">:</span> <span class="s2">"109001"</span><span class="p">,</span>
   <span class="nt">"total-items"</span><span class="p">:</span> <span class="s2">"109009"</span><span class="p">,</span>
@@ -1755,18 +1747,18 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dd>/entries
    </dl>
    <p class="issue" id="issue-31859f20"><a class="self-link" href="#issue-31859f20"></a> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a></p>
-   <div class="example" id="example-884a7308">
-    <a class="self-link" href="#example-884a7308"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-bbcc8e9d">
+    <a class="self-link" href="#example-bbcc8e9d"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"13f6de75b9f6d970691985e72a7dfa211bad1591"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"13f6de75b9f6d970691985e72a7dfa211bad1591"</span>
   <span class="p">},</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"21"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span>
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
@@ -1777,18 +1769,18 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
    </dl>
    <p>An ordered list of <a href="#entry-resource">§3.2 Entry resource</a> values which cite the item.</p>
    <p class="issue" id="issue-1dc835c7"><a class="self-link" href="#issue-1dc835c7"></a> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a></p>
-   <div class="example" id="example-4b014064">
-    <a class="self-link" href="#example-4b014064"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-e79d0d6b">
+    <a class="self-link" href="#example-e79d0d6b"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"c8844f3961a9a90812b8992ad8dbd5495e0f4782"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"c8844f3961a9a90812b8992ad8dbd5495e0f4782"</span>
   <span class="p">},</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"133"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"13f6de75b9f6d970691985e72a7dfa211bad1591"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"13f6de75b9f6d970691985e72a7dfa211bad1591"</span>
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
@@ -1798,18 +1790,18 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dd>/record/{<a href="#field-value">field-value</a>}/entries
    </dl>
    <p class="issue" id="issue-8815c872"><a class="self-link" href="#issue-8815c872"></a> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a></p>
-   <div class="example" id="example-77dc1878">
-    <a class="self-link" href="#example-77dc1878"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-4d56cd3a">
+    <a class="self-link" href="#example-4d56cd3a"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"c8844f3961a9a90812b8992ad8dbd5495e0f4782"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"c8844f3961a9a90812b8992ad8dbd5495e0f4782"</span>
   <span class="p">},</span>
   <span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"133"</span><span class="p">,</span>
-    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"ffb781149473e7244109e45165260702fe39cede"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"ffb781149473e7244109e45165260702fe39cede"</span>
   <span class="p">}</span>
 <span class="p">]</span></pre>
    </div>
@@ -1819,30 +1811,22 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dd>/records
    </dl>
    <p class="issue" id="issue-d994c4f5"><a class="self-link" href="#issue-d994c4f5"></a> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a></p>
-   <div class="example" id="example-a5efa83f">
-    <a class="self-link" href="#example-a5efa83f"></a> The following example shows a list of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-f58a369f">
+    <a class="self-link" href="#example-f58a369f"></a> The following example shows a list of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
-      <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"</span><span class="p">,</span>
-      <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
-    <span class="p">},</span>
-    <span class="nt">"item"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
-      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Islington"</span>
-    <span class="p">}</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"</span>
+    <span class="s2">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Islington"</span>
   <span class="p">},</span>
   <span class="nt">"E09000016"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"76"</span><span class="p">,</span>
-      <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"0ac85d452fdfd10414a7d113f990a617b590633f"</span><span class="p">,</span>
-      <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span>
-    <span class="p">},</span>
-    <span class="nt">"item"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000016"</span><span class="p">,</span>
-      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Havering"</span>
-    <span class="p">}</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"76"</span><span class="p">,</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"0ac85d452fdfd10414a7d113f990a617b590633f"</span><span class="p">,</span>
+    <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000016"</span><span class="p">,</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Havering"</span>
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
@@ -1851,43 +1835,35 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dt>Path
     <dd>/records/{<a U00022="" href="#field-field">field-name</a>}/{<a U00022="" href="#field-value">field-value</a>}
    </dl>
-   <div class="example" id="example-445dd4fc">
-    <a class="self-link" href="#example-445dd4fc"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-fc03be82">
+    <a class="self-link" href="#example-fc03be82"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="err">http://school.register.gov.uk/religious-character/Quaker.json</span></pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"123278"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"18371"</span><span class="p">,</span>
-      <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"</span><span class="p">,</span>
-      <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2016-01-01T00:00:00Z"</span>
-    <span class="p">},</span>
-    <span class="nt">"item"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"address"</span><span class="p">:</span> <span class="s2">"10011891998"</span><span class="p">,</span>
-      <span class="nt">"maximum-age"</span><span class="p">:</span> <span class="s2">"18"</span><span class="p">,</span>
-      <span class="nt">"minimum-age"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
-      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Sibford School"</span><span class="p">,</span>
-      <span class="nt">"religious-character"</span><span class="p">:</span> <span class="s2">"Quaker"</span><span class="p">,</span>
-      <span class="nt">"school"</span><span class="p">:</span> <span class="s2">"123278"</span><span class="p">,</span>
-      <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"1945-01-01"</span><span class="p">,</span>
-      <span class="nt">"website"</span><span class="p">:</span> <span class="s2">"http://www.sibford.oxon.sch.uk"</span>
-    <span class="p">}</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"18371"</span><span class="p">,</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2016-01-01T00:00:00Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"</span><span class="p">,</span>
+    <span class="nt">"address"</span><span class="p">:</span> <span class="s2">"10011891998"</span><span class="p">,</span>
+    <span class="nt">"maximum-age"</span><span class="p">:</span> <span class="s2">"18"</span><span class="p">,</span>
+    <span class="nt">"minimum-age"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Sibford School"</span><span class="p">,</span>
+    <span class="nt">"religious-character"</span><span class="p">:</span> <span class="s2">"Quaker"</span><span class="p">,</span>
+    <span class="nt">"school"</span><span class="p">:</span> <span class="s2">"123278"</span><span class="p">,</span>
+    <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"1945-01-01"</span><span class="p">,</span>
+    <span class="nt">"website"</span><span class="p">:</span> <span class="s2">"http://www.sibford.oxon.sch.uk"</span>
   <span class="p">},</span>
   <span class="nt">"121728"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"entry"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"17164"</span><span class="p">,</span>
-      <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"0ac85d452fdfd10414a7d113f990a617b590633f"</span><span class="p">,</span>
-      <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2016-01-01T00:00:00Z"</span>
-    <span class="p">},</span>
-    <span class="nt">"item"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">"address"</span><span class="p">:</span> <span class="s2">"200004778207"</span><span class="p">,</span>
-      <span class="nt">"end-date"</span><span class="p">:</span> <span class="s2">"2006-02-28"</span><span class="p">,</span>
-      <span class="nt">"headteacher"</span><span class="p">:</span> <span class="s2">"Mrs S Ratcliffe"</span><span class="p">,</span>
-      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Boothan Junior School"</span><span class="p">,</span>
-      <span class="nt">"religious-character"</span><span class="p">:</span> <span class="s2">"Quaker"</span><span class="p">,</span>
-      <span class="nt">"school"</span><span class="p">:</span> <span class="s2">"121728"</span><span class="p">,</span>
-      <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"1957-10-21"</span><span class="p">,</span>
-      <span class="nt">"website"</span><span class="p">:</span> <span class="s2">"http://www.bootham.york.sch.uk/ebor"</span>
-    <span class="p">}</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"17164"</span><span class="p">,</span>
+    <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2016-01-01T00:00:00Z"</span><span class="p">,</span>
+    <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"0ac85d452fdfd10414a7d113f990a617b590633f"</span><span class="p">,</span>
+    <span class="nt">"address"</span><span class="p">:</span> <span class="s2">"200004778207"</span><span class="p">,</span>
+    <span class="nt">"end-date"</span><span class="p">:</span> <span class="s2">"2006-02-28"</span><span class="p">,</span>
+    <span class="nt">"headteacher"</span><span class="p">:</span> <span class="s2">"Mrs S Ratcliffe"</span><span class="p">,</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Boothan Junior School"</span><span class="p">,</span>
+    <span class="nt">"religious-character"</span><span class="p">:</span> <span class="s2">"Quaker"</span><span class="p">,</span>
+    <span class="nt">"school"</span><span class="p">:</span> <span class="s2">"121728"</span><span class="p">,</span>
+    <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"1957-10-21"</span><span class="p">,</span>
+    <span class="nt">"website"</span><span class="p">:</span> <span class="s2">"http://www.bootham.york.sch.uk/ebor"</span>
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
@@ -2528,24 +2504,75 @@ Negative values are marked with a leading “-” character (<a data-link-type="
      <p><em> .. status codes and error cases </em></p>
     <li data-md="">
      <p><em> .. 202 Accepted with a Location header of the <a href="#entry-resource">§3.2 Entry resource</a> for the new entry</em></p>
-     <em> </em>
     <li data-md="">
-     <p><em>The proposer can only trust it has been secured when the entry
+     <p>The proposer can only trust it has been secured when the entry
 is listed in the <a href="#entries-resource">§5.2 Entries resource</a> with the same <a href="#entry-number-field">§10.3 entry-number</a>,
-and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</em></p>
-     <em> </em>
+and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</p>
    </ul>
-   <em> <p>The item MUST NOT contain empty fields.</p> <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry? <a href="https://github.com/openregister/specification/issues/30">&lt;https://github.com/openregister/specification/issues/30></a></p> <h2 class="heading settled" data-level="15" id="redaction"><span class="secno">15. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2> <ul><li data-md=""><p>An item may be removed from a register, but the entry MUST NOT be removed from the register.</p> </li></ul> <p class="issue" id="issue-6510bec9"><a class="self-link" href="#issue-6510bec9"></a> there is a need redaction, even for open records such as insolvency and bankruptcy. <a href="https://github.com/openregister/specification/issues/31">&lt;https://github.com/openregister/specification/issues/31></a></p> <p class="issue" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted. <a href="https://github.com/openregister/specification/issues/32">&lt;https://github.com/openregister/specification/issues/32></a></p> <p class="issue" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a></p> <p class="issue" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a></p> <h2 class="heading settled" data-level="16" id="versioning-and-extensibility"><span class="secno">16. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2> <h3 class="heading settled" data-level="16.1" id="backwards-compatibility"><span class="secno">16.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3> <ul><li data-md=""><p>Semantics of a field cannot be significantly changed but not changed.</p> </li></ul> <h3 class="heading settled" data-level="16.2" id="forwards-compatibility"><span class="secno">16.2. </span><span class="content">Forwards compatibility</span><a class="self-link" href="#forwards-compatibility"></a></h3> <ul><li data-md=""><p>Must-ignore rule.</p> </li><li data-md=""><p>Defaulting empty or missing values</p> </li></ul> <h3 class="heading settled" data-level="16.3" id="extension-points"><span class="secno">16.3. </span><span class="content">Points of extensibility</span><a class="self-link" href="#extension-points"></a></h3> <h4 class="heading settled" data-level="16.3.1" id="extensibility-fields"><span class="secno">16.3.1. </span><span class="content">Fields</span><a class="self-link" href="#extensibility-fields"></a></h4> <h4 class="heading settled" data-level="16.3.2" id="extensibility-resources"><span class="secno">16.3.2. </span><span class="content">Resources</span><a class="self-link" href="#extensibility-resources"></a></h4> <h4 class="heading settled" data-level="16.3.3" id="extensibility-proofs"><span class="secno">16.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4> <h4 class="heading settled" data-level="16.3.4" id="extensibility-representations"><span class="secno">16.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4> <p>A register may provide additional, possibly domain specific representations.</p> <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§9.6 Point datatype</a> or <a href="#multipolygon-datatype">§9.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div> <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p> <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2> <h3 class="heading settled" data-level="17.1" id="mint-access-control"><span class="secno">17.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3> <h3 class="heading settled" data-level="17.2" id="compromised-proof"><span class="secno">17.2. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3> <h3 class="heading settled" data-level="17.3" id="stale-record"><span class="secno">17.3. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3> <h3 class="heading settled" data-level="17.4" id="denial-of-service"><span class="secno">17.4. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3> <h3 class="heading settled" data-level="17.5" id="DNS"><span class="secno">17.5. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3> <h3 class="heading settled" data-level="17.6" id="private-key"><span class="secno">17.6. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3> <h3 class="heading settled" data-level="17.7" id="compromised-private-key"><span class="secno">17.7. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3> <h3 class="heading settled" data-level="17.8" id="hash-clash"><span class="secno">17.8. </span><span class="content">Hash clash</span><a class="self-link" href="#hash-clash"></a></h3> <h2 class="heading settled" data-level="18" id="namespaces"><span class="secno">18. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2> <ul><li data-md=""><p>defined by this specification</p> </li><li data-md=""><p>defined by {#core-registers}</p> </li></ul> </em>
+   <p>The item MUST NOT contain empty fields.</p>
+   <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry? <a href="https://github.com/openregister/specification/issues/30">&lt;https://github.com/openregister/specification/issues/30></a></p>
+   <h2 class="heading settled" data-level="15" id="redaction"><span class="secno">15. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2>
+   <ul>
+    <li data-md="">
+     <p>An item may be removed from a register, but the entry MUST NOT be removed from the register.</p>
+   </ul>
+   <p class="issue" id="issue-6510bec9"><a class="self-link" href="#issue-6510bec9"></a> there is a need redaction, even for open records such as insolvency and bankruptcy. <a href="https://github.com/openregister/specification/issues/31">&lt;https://github.com/openregister/specification/issues/31></a></p>
+   <p class="issue" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted. <a href="https://github.com/openregister/specification/issues/32">&lt;https://github.com/openregister/specification/issues/32></a></p>
+   <p class="issue" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a></p>
+   <p class="issue" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a></p>
+   <h2 class="heading settled" data-level="16" id="versioning-and-extensibility"><span class="secno">16. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2>
+   <h3 class="heading settled" data-level="16.1" id="backwards-compatibility"><span class="secno">16.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3>
+   <ul>
+    <li data-md="">
+     <p>Semantics of a field cannot be significantly changed but not changed.</p>
+   </ul>
+   <h3 class="heading settled" data-level="16.2" id="forwards-compatibility"><span class="secno">16.2. </span><span class="content">Forwards compatibility</span><a class="self-link" href="#forwards-compatibility"></a></h3>
+   <ul>
+    <li data-md="">
+     <p>Must-ignore rule.</p>
+    <li data-md="">
+     <p>Defaulting empty or missing values</p>
+   </ul>
+   <h3 class="heading settled" data-level="16.3" id="extension-points"><span class="secno">16.3. </span><span class="content">Points of extensibility</span><a class="self-link" href="#extension-points"></a></h3>
+   <h4 class="heading settled" data-level="16.3.1" id="extensibility-fields"><span class="secno">16.3.1. </span><span class="content">Fields</span><a class="self-link" href="#extensibility-fields"></a></h4>
+   <h4 class="heading settled" data-level="16.3.2" id="extensibility-resources"><span class="secno">16.3.2. </span><span class="content">Resources</span><a class="self-link" href="#extensibility-resources"></a></h4>
+   <h4 class="heading settled" data-level="16.3.3" id="extensibility-proofs"><span class="secno">16.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4>
+   <h4 class="heading settled" data-level="16.3.4" id="extensibility-representations"><span class="secno">16.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4>
+   <p>A register may provide additional, possibly domain specific representations.</p>
+   <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§9.6 Point datatype</a> or <a href="#multipolygon-datatype">§9.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
+   <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p>
+   <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2>
+   <h3 class="heading settled" data-level="17.1" id="mint-access-control"><span class="secno">17.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3>
+   <h3 class="heading settled" data-level="17.2" id="compromised-proof"><span class="secno">17.2. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3>
+   <h3 class="heading settled" data-level="17.3" id="stale-record"><span class="secno">17.3. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3>
+   <h3 class="heading settled" data-level="17.4" id="denial-of-service"><span class="secno">17.4. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3>
+   <h3 class="heading settled" data-level="17.5" id="DNS"><span class="secno">17.5. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3>
+   <h3 class="heading settled" data-level="17.6" id="private-key"><span class="secno">17.6. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3>
+   <h3 class="heading settled" data-level="17.7" id="compromised-private-key"><span class="secno">17.7. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3>
+   <h3 class="heading settled" data-level="17.8" id="hash-clash"><span class="secno">17.8. </span><span class="content">Hash clash</span><a class="self-link" href="#hash-clash"></a></h3>
+   <h2 class="heading settled" data-level="18" id="namespaces"><span class="secno">18. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2>
+   <ul>
+    <li data-md="">
+     <p>defined by this specification</p>
+    <li data-md="">
+     <p>defined by {#core-registers}</p>
+   </ul>
   </main>
-  <em> <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2> <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
+  <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
+  <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
         The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
         in the normative parts of this document
         are to be interpreted as described in RFC 2119.
         However, for readability,
-        these words do not appear in all uppercase letters in this specification. </p><p> All of the text of this specification is normative
-        except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p><p> Examples in this specification are introduced with the words “for example”
-        or are set apart from the normative text with <code>class="example"</code>, like this: </p><div class="example" id="example-ae2b6bc0"><a class="self-link" href="#example-ae2b6bc0"></a> This is an example of an informative example. </div> <p> Informative notes begin with the word “Note”
-        and are set apart from the normative text with <code>class="note"</code>, like this: </p><p class="note" role="note"> Note, this is an informative note. </p></em>
+        these words do not appear in all uppercase letters in this specification. </p>
+  <p> All of the text of this specification is normative
+        except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+  <p> Examples in this specification are introduced with the words “for example”
+        or are set apart from the normative text with <code>class="example"</code>, like this: </p>
+  <div class="example" id="example-ae2b6bc0"><a class="self-link" href="#example-ae2b6bc0"></a> This is an example of an informative example. </div>
+  <p> Informative notes begin with the word “Note”
+        and are set apart from the normative text with <code>class="note"</code>, like this: </p>
+  <p class="note" role="note"> Note, this is an informative note. </p>
   <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>

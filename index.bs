@@ -116,8 +116,8 @@ The following example shows an entry in the [[#json-representation]]:
 <pre highlight="json">
 {
     "entry-number": "72",
-    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
-    "timestamp": "2015-08-20T08:15:30Z"
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f"
 }
 </pre>
 </div>
@@ -134,15 +134,11 @@ The following example shows a record in the [[#json-representation]]:
 
 <pre highlight="json">
 {
-    "entry": {
-      "entry-number": "72",
-      "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
-      "timestamp": "2015-08-20T08:15:30Z"
-    },
-    "item": {
-      "local-authority": "E09000019",
-      "name": "Islington"
-    }
+    "entry-number": "72",
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+    "local-authority": "E09000019",
+    "name": "Islington"
 }
 </pre>
 </div>
@@ -179,19 +175,15 @@ The following example shows a register in the [[#json-representation]]:
   "domain": ".register.gov.uk",
   "last-updated": "2016-01-21T21:09:59Z",
   "register-record": {
-    "entry": {
-      "entry-number": "12",
-      "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
-      "timestamp": "2015-08-20T08:15:30Z"
-    },
-    "item": {
-      "fields": [ "address", "end-date", "school", "start-date", "name", "website" ],
-      "name": "Schools in the UK",
-      "phase": "beta",
-      "register": "school",
-      "registry": "department-of-education",
-      "start-date": "2012-01-01"
-    }
+    "entry-number": "12",
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+    "fields": [ "address", "end-date", "school", "start-date", "name", "website" ],
+    "name": "Schools in the UK",
+    "phase": "beta",
+    "register": "school",
+    "registry": "department-of-education",
+    "start-date": "2012-01-01"
   }
   "total-entries": "109001",
   "total-items": "109009",
@@ -292,13 +284,13 @@ The following example shows a list of entries in the [[#json-representation]]:
 [
   {
     "entry-number": "72",
-    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591",
-    "timestamp": "2015-08-20T08:15:30Z"
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591"
   },
   {
     "entry-number": "21",
-    "item-hash": "1a0212ba5094383bcc2a0bbe1a55e3a1f1278984",
-    "timestamp": "2015-08-15T08:15:30Z"
+    "entry-timestamp": "2015-08-15T08:15:30Z",
+    "item-hash": "1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
   }
 ]
 </pre>
@@ -320,13 +312,13 @@ The following example shows a list of item entries in the [[#json-representation
 [
   {
     "entry-number": "121",
-    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782",
-    "timestamp": "2015-08-20T08:15:30Z"
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782"
   },
   {
     "entry-number": "133",
-    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591",
-    "timestamp": "2015-08-15T08:15:30Z"
+    "entry-timestamp": "2015-08-15T08:15:30Z",
+    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591"
   }
 ]
 </pre>
@@ -346,13 +338,13 @@ The following example shows a list of item entries in the [[#json-representation
 [
   {
     "entry-number": "121",
-    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782",
-    "timestamp": "2015-08-20T08:15:30Z"
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782"
   },
   {
     "entry-number": "133",
-    "item-hash": "ffb781149473e7244109e45165260702fe39cede",
-    "timestamp": "2015-08-15T08:15:30Z"
+    "entry-timestamp": "2015-08-15T08:15:30Z",
+    "item-hash": "ffb781149473e7244109e45165260702fe39cede"
   }
 ]
 </pre>
@@ -371,26 +363,18 @@ The following example shows a list of records in the [[#json-representation]]:
 <pre highlight="json">
 {
   "E09000019": {
-    "entry": {
-      "entry-number": "72",
-      "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
-      "timestamp": "2015-08-20T08:15:30Z"
-    },
-    "item": {
-      "local-authority": "E09000019",
-      "name": "Islington"
-    }
+    "entry-number": "72",
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"
+    "local-authority": "E09000019",
+    "name": "Islington"
   },
   "E09000016": {
-    "entry": {
-      "entry-number": "76",
-      "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
-      "timestamp": "2015-08-20T08:15:30Z"
-    },
-    "item": {
-      "local-authority": "E09000016",
-      "name": "Havering"
-    }
+    "entry-number": "76",
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
+    "local-authority": "E09000016",
+    "name": "Havering"
   }
 }
 </pre>
@@ -409,38 +393,30 @@ http://school.register.gov.uk/religious-character/Quaker.json
 <pre highlight="json">
 {
   "123278": {
-    "entry": {
-      "entry-number": "18371",
-      "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
-      "timestamp": "2016-01-01T00:00:00Z"
-    },
-    "item": {
-      "address": "10011891998",
-      "maximum-age": "18",
-      "minimum-age": "2",
-      "name": "Sibford School",
-      "religious-character": "Quaker",
-      "school": "123278",
-      "start-date": "1945-01-01",
-      "website": "http://www.sibford.oxon.sch.uk"
-    }
+    "entry-number": "18371",
+    "entry-timestamp": "2016-01-01T00:00:00Z",
+    "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
+    "address": "10011891998",
+    "maximum-age": "18",
+    "minimum-age": "2",
+    "name": "Sibford School",
+    "religious-character": "Quaker",
+    "school": "123278",
+    "start-date": "1945-01-01",
+    "website": "http://www.sibford.oxon.sch.uk"
   },
   "121728": {
-    "entry": {
-      "entry-number": "17164",
-      "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
-      "timestamp": "2016-01-01T00:00:00Z"
-    },
-    "item": {
-      "address": "200004778207",
-      "end-date": "2006-02-28",
-      "headteacher": "Mrs S Ratcliffe",
-      "name": "Boothan Junior School",
-      "religious-character": "Quaker",
-      "school": "121728",
-      "start-date": "1957-10-21",
-      "website": "http://www.bootham.york.sch.uk/ebor"
-    }
+    "entry-number": "17164",
+    "entry-timestamp": "2016-01-01T00:00:00Z",
+    "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
+    "address": "200004778207",
+    "end-date": "2006-02-28",
+    "headteacher": "Mrs S Ratcliffe",
+    "name": "Boothan Junior School",
+    "religious-character": "Quaker",
+    "school": "121728",
+    "start-date": "1957-10-21",
+    "website": "http://www.bootham.york.sch.uk/ebor"
   }
 }
 </pre>
@@ -804,7 +780,7 @@ ISSUE(openregister/specification#29): What happens when a key is rotated?
   * POST a new item in [[#json-representation]] to the ..mint url.. with the proposed new entry number.
   * The item will first appear as a new item in the store
   * <em> .. status codes and error cases </em>
-  * <em> .. 202 Accepted with a Location header of the [[#entry-resource]] for the new entry
+  * <em> .. 202 Accepted with a Location header of the [[#entry-resource]] for the new entry</em>
   * The proposer can only trust it has been secured when the entry
     is listed in the [[#entries-resource]] with the same [[#entry-number-field]],
     and the [[#entry-resource]] is a covered by one or more [[#digital-proofs]] for the register.
