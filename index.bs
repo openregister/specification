@@ -104,7 +104,7 @@ The following example shows an item in the [[#json-representation]]:
 </pre>
 </div>
 
-ISSUE(openregister/specification#3): IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item.
+ISSUE(openregister/specification#3): IMPLEMENTATION the current item URL returns a record, not an item.
 
 ## Entry resource ## {#entry-resource}
 
