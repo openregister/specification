@@ -469,6 +469,8 @@ http://school.register.gov.uk/religious-character/Quaker.json
 
 <dl class="resource"><dt>Path</dt><dd>/proofs</dd></dt></dl>
 
+All of the available proof algorithms that the register supports.
+
 <div class="example">
 The following example shows a set of register proofs in the [[#json-representation]]:
 
