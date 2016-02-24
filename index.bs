@@ -425,6 +425,8 @@ The following example shows a list of records in the [[#json-representation]]:
 
 <dl class="resource"><dt>Path</dt><dd>/records/{<a href="#field-field"">field-name</a>}/{<a href="#field-value"">field-value</a>}</dd></dt></dl>
 
+All [[#record-resource]]s in a register which have the same value in the given field.
+
 <div class="example">
 The following example shows a list of record entries matching a field in the [[#json-representation]]:
 
