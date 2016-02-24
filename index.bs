@@ -394,6 +394,8 @@ The following example shows a list of item entries in the [[#json-representation
 
 <dl class="resource"><dt>Path</dt><dd>/records</dd></dt></dl>
 
+All [[#record-resource]]s in a register.
+
 ISSUE(openregister/specification#13): IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.
 
 <div class="example">
