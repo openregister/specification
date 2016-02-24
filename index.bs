@@ -366,6 +366,8 @@ The following example shows a list of item entries in the [[#json-representation
 
 <dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}/entries</dd></dt></dl>
 
+All of the entries which have the given [[#primary-key-field]] value, in order of [[#entry-number-field]].
+
 ISSUE(openregister/specification#12): IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries
 
 <div class="example">
