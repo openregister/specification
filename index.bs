@@ -113,6 +113,16 @@ ISSUE(openregister/specification#3): IMPLEMENTATION the current item URL returns
 
 <dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}</dd></dt></dl>
 
+An entry is an update to a register.  The register as a whole is made
+up of an ordered list of entries.  New entries in a register are only
+ever appended to the end of the list; once an entry is created, it
+never gets changed.
+
+An entry is an [[#entry-number-field]], a timestamp, and an
+[[#item-hash-field]].  The entry-number is unique and defines the
+entry's position within the ordered list.  The item-hash identifies
+the [[#item-resource]] for the entry.
+
 <div class="example">
 The following example shows an entry in the [[#json-representation]]:
 

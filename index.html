@@ -1538,6 +1538,13 @@ The set of fields which MAY be included in an item are defined in the <a href="#
     <dt>Path
     <dd>/entry/{<a href="#entry-number-field">entry-number</a>}
    </dl>
+   <p>An entry is an update to a register.  The register as a whole is made
+up of an ordered list of entries.  New entries in a register are only
+ever appended to the end of the list; once an entry is created, it
+never gets changed.</p>
+   <p>An entry is an <a href="#entry-number-field">§10.3 entry-number</a>, a timestamp, and an <a href="#item-hash-field">§10.4 item-hash</a>.  The entry-number is unique and defines the
+entry’s position within the ordered list.  The item-hash identifies
+the <a href="#item-resource">§3.1 Item resource</a> for the entry.</p>
    <div class="example" id="example-55fab6ed">
     <a class="self-link" href="#example-55fab6ed"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
