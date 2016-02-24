@@ -75,6 +75,7 @@ Note: Data items in this specification are defined in terms of an information se
 * A data item is identified within the scope of the infoset by a [[#field-field]] value.
 * The contents of a data item is constrained by one of a number of different [[#datatypes]].
 
+ISSUE(openregister/specification#40): possible confusion: "data item" and "item" mean different things
 
 # Entity resources # {#entity-resources}
 
