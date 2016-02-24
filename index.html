@@ -2,7 +2,7 @@
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <title>Open Registers</title>
-  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
  *
@@ -11,7 +11,7 @@
  * Indices
  *   - .toc for the Table of Contents (<ol class="toc">)
  *     -> <span class="secno"> for the section numbers
- *   - #toc for the Table of Contents (<section id="toc">)
+ *   - #toc for the Table of Contents (<nav id="toc">)
  *   - ul.index for Indices (<a href="#ref">term</a><span>, in §N.M</span>)
  *   - table.index for Index Tables (e.g. for properties or elements)
  *
@@ -76,10 +76,10 @@
 		counter-reset: example figure issue;
 
 		/* Layout */
-		max-width: 50em;           /* limit line length to 50em for readability   */
-		margin: 0;                 /* start-align text within page                     */
-		padding: 1.6em 1em 2em 58px; /* assume 16px font size for downlevel clients */
-		padding: 1.6em 1em 2em calc(26px + 2em); /* leave space for status flag    */
+		max-width: 50em;               /* limit line length to 50em for readability   */
+		margin: 0 auto;                /* center text within page                     */
+		padding: 1.6em 1.5em 2em 50px; /* assume 16px font size for downlevel clients */
+		padding: 1.6em 1.5em 2em calc(26px + 1.5em); /* leave space for status flag     */
 
 		/* Typography */
 		line-height: 1.5;
@@ -93,19 +93,9 @@
 		/* Colors */
 		color: black;
 		background: white top left fixed no-repeat;
-		background-size: 25px 380px;
+		background-size: 25px auto;
 	}
 
-	.overlarge {
-		width: calc(100vw - 26px - 3em);
-		max-width: none;
-	}
-	div.figure img,    div.sidefigure img,    figure img,
-	div.figure object, div.sidefigure object, figure object,
-	table.data, table.index {
-		max-width: calc(100vw - 26px - 3em);
-		/* See below for sidebar-accommodating override. */
-	}
 
 /******************************************************************************/
 /*                         Front Matter & Navigation                          */
@@ -127,30 +117,6 @@
 	.head > :first-child {
 		float: right;
 		margin: 0;
-	}
-
-	@media screen {
-		.head > p:first-child > a {
-			display: inline-block;
-			background: url("logos/w3c-white.svg") no-repeat center / contain content-box border-box;
-			padding: .4rem .7rem;
-			border-radius: .4rem;
-			margin: .4rem 0 0 .4rem;
-			background-color: hsl(208, 71%, 35%);
-		}
-
-		.head > p:first-child > a > img {
-			visibility: hidden;
-		}
-
-		.head > p:first-child > a:hover,
-		.head > p:first-child > a:focus {
-			background-color: hsla(208, 71%, 35%,.8);
-		}
-
-		.head > p:first-child > a:active {
-			background-color: #c00;
-		}
 	}
 
 
@@ -291,22 +257,16 @@
 
 		body:not(.toc-inline) {
 			padding-left: 29em;
-			padding-right: 1.5em;
 		}
-		body:not(.toc-inline) .overlarge,
-		body:not(.toc-inline) div.figure img,
-		body:not(.toc-inline) div.sidefigure img,
-		body:not(.toc-inline) figure img,
-		body:not(.toc-inline) div.figure object,
-		body:not(.toc-inline) div.sidefigure object,
-		body:not(.toc-inline) figure object,
-		body:not(.toc-inline) table.data,
-		body:not(.toc-inline) table.index {
-			max-width: calc(100vw - 30.5em);
-		}
+		/* See also Overflow section at the bottom */
 
 		body:not(.toc-inline) #back-to-top :first-child {
 			display: none;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) {
+			margin: 0 4em;
 		}
 	}
 
@@ -479,6 +439,7 @@
 		font-size: .9em;
 		page-break-inside: avoid;
 		hyphens: none;
+		text-transform: none;
 	}
 	pre code,
 	code code {
@@ -503,17 +464,16 @@
 
 	/* We hyperlink a lot, so make it less intrusive */
 	a[href] {
-		color: inherit;
+		color: #034575;
 		text-decoration: none;
-		border-bottom: 2px solid #949494;
-		margin: 0 -0.1em 0;
+		border-bottom: 1px solid #707070;
+		/* Need a bit of extending for it to look okay */
+		padding: 0 1px 0;
+		margin: 0 -1px 0;
 	}
 	a:visited {
-		border-bottom-color: silver;
+		border-bottom-color: #BBB;
 	}
-	/* Consider making the border thinner, if not everywhere, then at least
-	   in .head and .index
-	   ... or only make it 2px in p/li/dd/dt/tr/div/pre (running text)  */
 
 	/* Use distinguishing colors when user is interacting with the link */
 	a[href]:focus,
@@ -521,7 +481,7 @@
 		background: #f8f8f8;
 		background: rgba(75%, 75%, 75%, .25);
 		border-bottom-width: 3px;
-		margin-bottom: -1px;
+		margin-bottom: -2px;
 	}
 	a[href]:active {
 		color: #C00;
@@ -546,16 +506,17 @@
 	   .caption::before, figcaption::before { content: "Figure " counter(figure) ". "; }
 	*/
 
-	figure, div.figure, div.sidefigure {
+	figure, .figure, .sidefigure {
 		page-break-inside: avoid;
-		text-align: center;
-	}
-
-	div.figure, p.figure, div.sidefigure, figure {
 		text-align: center;
 		margin: 2.5em 0;
 	}
-	div.figure pre, div.sidefigure pre, figure pre {
+	.figure img,    .sidefigure img,    figure img,
+	.figure object, .sidefigure object, figure object {
+		max-width: 100%;
+		margin: auto;
+	}
+	.figure pre, .sidefigure pre, figure pre {
 		text-align: left;
 		display: table;
 		margin: 1em auto;
@@ -563,24 +524,26 @@
 	.figure table, figure table {
 		margin: auto;
 	}
-	div.sidefigure, figure.sidefigure {
-		float: right;
-		width: 50%;
-		margin: 0 0 0.5em 0.5em
+	@media screen and (min-width: 20em) {
+		.sidefigure {
+			float: right;
+			width: 50%;
+			margin: 0 0 0.5em 0.5em
+		}
 	}
-	p.caption, figcaption, caption {
+	.caption, figcaption, caption {
 		font-style: italic;
 		font-size: 90%;
 	}
-	p.caption::before, figcaption::before, figcaption > .marker {
+	.caption::before, figcaption::before, figcaption > .marker {
 		font-weight: bold;
 	}
-	p.caption, figcaption {
+	.caption, figcaption {
 		counter-increment: figure;
 	}
 
 	/* DL list is indented 2em, but figure inside it is not */
-	dd > div.figure, dd > figure { margin-left: -2em }
+	dd > .figure, dd > figure { margin-left: -2em }
 
 /******************************************************************************/
 /*                             Colored Boxes                                  */
@@ -597,14 +560,10 @@
 		border-right-style: solid;
 	}
 
-	div.issue,
-	div.note,
-	details.note,
-	aside.note,
-	div.example,
-	div.advisement,
-	p.advisement,
-	strong.advisement,
+	.issue,
+	.note,
+	.example,
+	.advisement,
 	blockquote {
 		margin: 1em auto;
 	}
@@ -814,6 +773,8 @@
 	*/
 
 	table {
+		word-wrap: normal;
+		overflow-wrap: normal;
 		hyphens: manual;
 	}
 
@@ -824,12 +785,10 @@
 		width: 100%;
 		border: hidden;
 	}
-	table.data {
-		width: auto;
-	}
 	table.data caption,
 	table.index caption {
-		width: 100%;
+		max-width: 50em;
+		margin: 0 auto 1em;
 	}
 
 	table.data td,  table.data th,
@@ -870,9 +829,15 @@
 		padding-right: 1em;
 	}
 
+	table.data th[colspan],
+	table.data td[colspan] {
+		text-align: center;
+	}
+
 	table.complex.data th,
 	table.complex.data td {
 		border: 1px solid silver;
+		text-align: center;
 	}
 
 	table.data.longlastcol td:last-child,
@@ -941,8 +906,8 @@
 	/* ToC not indented until third level, but font style & margins show hierarchy */
 	.toc > li             { margin: 1.2em 0;   font-weight: bold;   }
 	.toc > li li          { margin: 0;         font-weight: normal; }
-	.toc > li li li       { margin-left:  2em; font-style:  italic; }
-	.toc > li li li li    { margin-left:    0; font-style:  normal; }
+	.toc > li li li       { margin-left:  1em; font-style:  italic; }
+	.toc > li li li li    { margin-left:  1em; font-style:  normal; }
 	.toc > li li li li li { margin-left: 1rem; font-style:  italic; font-size: 85%; }
 
 	.toc a {
@@ -950,10 +915,12 @@
 		padding-top: 0.1em;
 		/* Larger, more consistently-sized click target */
 		display: block;
-		/* Consistent layout across link hover effects */
-		border-bottom-style: solid;
-		border-bottom-width: 3px;
-		margin-bottom: -1px;
+		/* Reverse color scheme */
+		color: black;
+		border-color: #3980B5;
+	}
+	.toc a:visited {
+		border-color: #054572;
 	}
 	.toc a:not(:focus):not(:hover) {
 		/* Allow colors to cascade through from link styling */
@@ -969,10 +936,11 @@
 		float: left;
 		width: 4em;
 		margin-left: -4em;
+		white-space: nowrap;
 	}
 
 	.toc > li li li .secno {
-		margin-left: -6em;
+		margin-left: -5em;
 	}
 	.toc > li li li li .secno {
 		font-size: 85%;
@@ -1008,7 +976,7 @@
 			color: transparent; }
 		ul.index li a:hover + span,
 		ul.index li a:focus + span {
-			color: gray;
+			color: #707070;
 		}
 	}
 
@@ -1057,62 +1025,75 @@
 	}
 
 /******************************************************************************/
+/*                                    Legacy                                  */
+/******************************************************************************/
+
+	/* This rule is inherited from past style sheets. No idea what it's for. */
+	.hide { display: none }
+
+
+
+/******************************************************************************/
+/*                             Overflow Control                               */
+/******************************************************************************/
+
+	.figure .caption, .sidefigure .caption, figcaption {
+		/* in case figure is overlarge, limit caption to 50em */
+		max-width: 50rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@media (min-width: 55em) {
+		.overlarge {
+			margin-left: calc(13px + 26.5rem - 50vw);
+			margin-right: calc(13px + 26.5rem - 50vw);
+			max-width: none;
+		}
+	}
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) .overlarge {
+			/* 30.5em body padding 50em content area */
+			margin-left: calc(40em - 50vw) !important;
+			margin-right: calc(40em - 50vw) !important;
+		}
+	}
+	@media screen and (min-width: 90em) {
+		body:not(.toc-inline) .overlarge {
+			/* 4em html margin 30.5em body padding 50em content area */
+			margin-left: 0 !important;
+			margin-right: calc(84.5em - 100vw) !important;
+		}
+	}
+
+	@media not print {
+		.overlarge {
+			overflow-x: auto;
+			/* See Lea Verou's explanation background-attachment:
+			 * http://lea.verou.me/2012/04/background-attachment-local/
+			 *
+			background: top left  / 4em 100% linear-gradient(to right,  #ffffff, rgba(255, 255, 255, 0)) local,
+			            top right / 4em 100% linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0)) local,
+			            top left  / 1em 100% linear-gradient(to right,  #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+			            top right / 1em 100% linear-gradient(to left, #c3c3c5, rgba(195, 195, 197, 0)) scroll,
+			            white;
+			background-repeat: no-repeat;
+			*/
+		}
+	}
+
+/******************************************************************************/
 /*                                  Bikeshed                                  */
 /******************************************************************************/
 
 	/* Style for paragraphs I know are in MD-genned lists */
+	/* This is a weird hack for me not yet following the commonmark spec
+	   regarding paragraph and lists. */
 	[data-md] > :first-child {
 		margin-top: 0;
 	}
 	[data-md] > :last-child {
 		margin-bottom: 0;
-	}
-
-	/* This is mostly to make the list inside the CR exit criteria more compact. */
-
-	ol.inline, ol.inline li {
-		display: inline;
-		padding: 0; margin: 0;
-	}
-	ol.inline {
-		counter-reset: list-item;
-	}
-	ol.inline li {
-		counter-increment: list-item;
-	}
-	ol.inline li::before {
-		content: "(" counter(list-item) ") ";
-		font-weight: bold;
-	}
-
-/** Syntax-Highlighted Code ***************************************************/
-
-	.example pre[class*="language-"],
-	.example [class*="language-"] pre,
-	.example pre[class*="lang-"],
-	.example [class*="lang-"] pre {
-		background: transparent; /* Prism applies a gray background that doesn't work well in the template. */
-	}
-
-/** Example Code **************************************************************/
-
-	div.html, div.xml,
-	pre.html, pre.xml {
-		padding: 0.5em;
-		margin: 1em 0;
-		position: relative;
-		clear: both;
-		color: #600;
-	}
-	pre.example,
-	pre.html,
-	pre.xml {
-		padding-top: 1.5em;
-	}
-
-	pre.illegal, .illegal pre
-	pre.deprecated, .deprecated pre {
-		color: red;
 	}
 
 /** Inline CSS fragments ******************************************************/
@@ -1137,12 +1118,6 @@
 	}
 	pre .property::before, pre .property::after {
 		content: "";
-	}
-
-/** Inline markup fragments ***************************************************/
-
-	code.html, code.xml {
-		color: #660000;
 	}
 
 /** Autolinks produced using Bikeshed *****************************************/
@@ -1188,7 +1163,7 @@
 	}
 
 /** Self-Links ****************************************************************/
-	/* Auto-generated links from an element to its own anchor, for usability */
+/* Auto-generated links from an element to its own anchor, for usability */
 
 	.heading, .issue, .note, .example, li, dt {
 		position: relative;
@@ -1196,8 +1171,8 @@
 	a.self-link {
 		position: absolute;
 		top: 0;
-		left: -2.5em;
-		width: 2em;
+		left: calc(-1 * (3.5rem - 26px));
+		width: calc(3.5rem - 26px);
 		height: 2em;
 		text-align: center;
 		border: none;
@@ -1209,9 +1184,6 @@
 	}
 	.heading > a.self-link {
 		font-size: 83%;
-	}
-	li > a.self-link {
-		left: -3.5em;
 	}
 	dfn > a.self-link {
 		top: auto;
@@ -1235,29 +1207,9 @@
 	.heading > a.self-link::before { content: "§"; }
 	dfn > a.self-link::before      { content: "#"; }
 
-/******************************************************************************/
-/*                                    Images                                  */
-/******************************************************************************/
-
-	pre.ascii-art {
-		display: table; /* shrinkwrap */
-		margin: 1em auto;
-	}
-
-	/* Displaying the output of text layout, particularly when
-		 line-breaking is being invoked, and thus having a
-		 visible width is good. */
-	pre.output {
-		margin: 1em;
-		border: solid thin silver;
-		padding: 0.25em;
-		display: table;
-	}
-
-/******************************************************************************/
-/*                                  Counters                                  */
-/******************************************************************************/
-
+/** Counters ******************************************************************/
+/* Adds the auto-genned issue/example counters,
+   until Bikeshed fills in manual ones. */
 	.issue:not(.no-marker)::before {
 		content: "Issue " counter(issue);
 	}
@@ -1273,24 +1225,10 @@
 	}
 
 
-/** At-risk List **************************************************************/
-	/* Style for At Risk features (intended as editorial aid, not intended for publishing) */
 
-	.atrisk::before {
-	 float: right;
-	 margin-top: -0.25em;
-	 padding: 0.5em 1em 0.5em 0;
-	 text-indent: -0.9em;
-	 border: 1px solid;
-	 content: '\25C0    Not yet widely implemented';
-	 white-space: pre;
-	 font-size: small;
-	 background-color: white;
-	 color: gray;
-	 text-align: center;
-	}
-
-	.toc .atrisk::before { content:none }
+/********************************************
+ Remember to remove the logo section when copypasting freshly.
+ */
 </style>
   <meta content="Bikeshed 1.0.0" name="generator">
 <style>
@@ -1390,14 +1328,13 @@
         code.highlight { padding: .1em; border-radius: .3em; }
         pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
         </style>
- </head>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo">
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-19">19 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-24">24 February 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1608,7 +1545,7 @@ The set of fields which MAY be included in an item are defined in the <a href="#
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"d9178efd8febfebaaa42968648b7bdd023369c7f"</span>
 <span class="p">}</span></pre>
    </div>
-   <p class="issue" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a></p>
+   <p class="issue" data-inline-github="openregister specification 4" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a></p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
    <dl class="resource">
     <dt>Path
@@ -1697,8 +1634,8 @@ The set of fields which MAY be included in an item are defined in the <a href="#
   <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
 <span class="p">}</span></pre>
    </div>
-   <p class="issue" id="issue-0e9bdd5b"><a class="self-link" href="#issue-0e9bdd5b"></a> CT timestamp is inconsistent with <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/5">&lt;https://github.com/openregister/specification/issues/5></a></p>
-   <p class="issue" id="issue-ba4608f8"><a class="self-link" href="#issue-ba4608f8"></a> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a></p>
+   <p class="issue" data-inline-github="openregister specification 5" id="issue-0e9bdd5b"><a class="self-link" href="#issue-0e9bdd5b"></a> CT timestamp is inconsistent with <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/5">&lt;https://github.com/openregister/specification/issues/5></a></p>
+   <p class="issue" data-inline-github="openregister specification 6" id="issue-ba4608f8"><a class="self-link" href="#issue-ba4608f8"></a> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a></p>
    <h3 class="heading settled" data-level="3.6" id="proof-node-resource"><span class="secno">3.6. </span><span class="content">Proof node resource</span><a class="self-link" href="#proof-node-resource"></a></h3>
    <dl class="resource">
     <dt>Path
@@ -1720,14 +1657,14 @@ The set of fields which MAY be included in an item are defined in the <a href="#
 An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#entry-resource">§3.2 Entry resource</a> and <a href="#proof-node-resource">§3.6 Proof node resource</a> are all deemed to be immutable.</p>
    <h2 class="heading settled" data-level="5" id="list-resources"><span class="secno">5. </span><span class="content">Collection resources</span><a class="self-link" href="#list-resources"></a></h2>
    <p>There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.</p>
-   <p class="issue" id="issue-c647663d"><a class="self-link" href="#issue-c647663d"></a> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a></p>
-   <p class="issue" id="issue-ab2143f9"><a class="self-link" href="#issue-ab2143f9"></a> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a></p>
+   <p class="issue" data-inline-github="openregister specification 7" id="issue-c647663d"><a class="self-link" href="#issue-c647663d"></a> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a></p>
+   <p class="issue" data-inline-github="openregister specification 8" id="issue-ab2143f9"><a class="self-link" href="#issue-ab2143f9"></a> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a></p>
    <h3 class="heading settled" data-level="5.1" id="items-resource"><span class="secno">5.1. </span><span class="content">Items resource</span><a class="self-link" href="#items-resource"></a></h3>
    <dl class="resource">
     <dt>Path
     <dd>/items
    </dl>
-   <p class="issue" id="issue-9ee875b6"><a class="self-link" href="#issue-9ee875b6"></a> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a></p>
+   <p class="issue" data-inline-github="openregister specification 9" id="issue-9ee875b6"><a class="self-link" href="#issue-9ee875b6"></a> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a></p>
    <div class="example" id="example-107c4192">
     <a class="self-link" href="#example-107c4192"></a> The following example shows a set of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
@@ -1746,7 +1683,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dt>Path
     <dd>/entries
    </dl>
-   <p class="issue" id="issue-31859f20"><a class="self-link" href="#issue-31859f20"></a> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a></p>
+   <p class="issue" data-inline-github="openregister specification 10" id="issue-31859f20"><a class="self-link" href="#issue-31859f20"></a> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a></p>
    <div class="example" id="example-bbcc8e9d">
     <a class="self-link" href="#example-bbcc8e9d"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
@@ -1768,7 +1705,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dd>/item/{<a href="#item-hash-field">item-hash</a>}/entries
    </dl>
    <p>An ordered list of <a href="#entry-resource">§3.2 Entry resource</a> values which cite the item.</p>
-   <p class="issue" id="issue-1dc835c7"><a class="self-link" href="#issue-1dc835c7"></a> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a></p>
+   <p class="issue" data-inline-github="openregister specification 11" id="issue-1dc835c7"><a class="self-link" href="#issue-1dc835c7"></a> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a></p>
    <div class="example" id="example-e79d0d6b">
     <a class="self-link" href="#example-e79d0d6b"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
@@ -1789,7 +1726,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dt>Path
     <dd>/record/{<a href="#field-value">field-value</a>}/entries
    </dl>
-   <p class="issue" id="issue-8815c872"><a class="self-link" href="#issue-8815c872"></a> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a></p>
+   <p class="issue" data-inline-github="openregister specification 12" id="issue-8815c872"><a class="self-link" href="#issue-8815c872"></a> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a></p>
    <div class="example" id="example-4d56cd3a">
     <a class="self-link" href="#example-4d56cd3a"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
@@ -1810,7 +1747,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a>, <a href="#en
     <dt>Path
     <dd>/records
    </dl>
-   <p class="issue" id="issue-d994c4f5"><a class="self-link" href="#issue-d994c4f5"></a> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a></p>
+   <p class="issue" data-inline-github="openregister specification 13" id="issue-d994c4f5"><a class="self-link" href="#issue-d994c4f5"></a> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a></p>
    <div class="example" id="example-f58a369f">
     <a class="self-link" href="#example-f58a369f"></a> The following example shows a list of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
@@ -1908,11 +1845,11 @@ The archive file SHOULD be made available in a single file, but MAY be split int
      </ul>
    </ul>
    <p>A register archive MAY contain entry and item resources in the more space efficient <a href="#tsv-representation">§12.5 TSV representation</a>.</p>
-   <p class="issue" id="issue-a9ea3195"><a class="self-link" href="#issue-a9ea3195"></a> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a></p>
-   <p class="issue" id="issue-941daf47"><a class="self-link" href="#issue-941daf47"></a> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a></p>
-   <p class="issue" id="issue-37c7e097"><a class="self-link" href="#issue-37c7e097"></a> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a></p>
+   <p class="issue" data-inline-github="openregister specification 14" id="issue-a9ea3195"><a class="self-link" href="#issue-a9ea3195"></a> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a></p>
+   <p class="issue" data-inline-github="openregister specification 15" id="issue-941daf47"><a class="self-link" href="#issue-941daf47"></a> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a></p>
+   <p class="issue" data-inline-github="openregister specification 16" id="issue-37c7e097"><a class="self-link" href="#issue-37c7e097"></a> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a></p>
    <h2 class="heading settled" data-level="7" id="streaming-resources"><span class="secno">7. </span><span class="content">Streaming resources</span><a class="self-link" href="#streaming-resources"></a></h2>
-   <p class="issue" id="issue-073f5c29"><a class="self-link" href="#issue-073f5c29"></a> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a></p>
+   <p class="issue" data-inline-github="openregister specification 17" id="issue-073f5c29"><a class="self-link" href="#issue-073f5c29"></a> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a></p>
    <h2 class="heading settled" data-level="8" id="http-headers"><span class="secno">8. </span><span class="content">HTTP Headers</span><a class="self-link" href="#http-headers"></a></h2>
    <p>Table of link and other HTTP headers used by resources ..</p>
    <ul>
@@ -1942,8 +1879,8 @@ Vary: Accept-Encoding
 Content-Length: 522
 </pre>
    </div>
-   <p class="issue" id="issue-30cc7315"><a class="self-link" href="#issue-30cc7315"></a> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"? <a href="https://github.com/openregister/specification/issues/18">&lt;https://github.com/openregister/specification/issues/18></a></p>
-   <p class="issue" id="issue-70d0c866"><a class="self-link" href="#issue-70d0c866"></a> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>? <a href="https://github.com/openregister/specification/issues/19">&lt;https://github.com/openregister/specification/issues/19></a></p>
+   <p class="issue" data-inline-github="openregister specification 18" id="issue-30cc7315"><a class="self-link" href="#issue-30cc7315"></a> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"? <a href="https://github.com/openregister/specification/issues/18">&lt;https://github.com/openregister/specification/issues/18></a></p>
+   <p class="issue" data-inline-github="openregister specification 19" id="issue-70d0c866"><a class="self-link" href="#issue-70d0c866"></a> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>? <a href="https://github.com/openregister/specification/issues/19">&lt;https://github.com/openregister/specification/issues/19></a></p>
    <h2 class="heading settled" data-level="9" id="datatypes"><span class="secno">9. </span><span class="content">Datatypes</span><a class="self-link" href="#datatypes"></a></h2>
    <h3 class="heading settled" data-level="9.1" id="string-datatype"><span class="secno">9.1. </span><span class="content">String datatype</span><a class="self-link" href="#string-datatype"></a></h3>
    <ul>
@@ -2364,10 +2301,10 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    </ul>
    <h3 class="heading settled" data-level="9.10" id="item-hash-datatype"><span class="secno">9.10. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
     The object hash of the item’s contents may be used to identify the contents of an item, irrespective of where it is stored or presented. 
-   <p class="issue" id="issue-ebfdb117"><a class="self-link" href="#issue-ebfdb117"></a> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ? <a href="https://github.com/openregister/specification/issues/20">&lt;https://github.com/openregister/specification/issues/20></a></p>
+   <p class="issue" data-inline-github="openregister specification 20" id="issue-ebfdb117"><a class="self-link" href="#issue-ebfdb117"></a> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ? <a href="https://github.com/openregister/specification/issues/20">&lt;https://github.com/openregister/specification/issues/20></a></p>
    <h3 class="heading settled" data-level="9.11" id="entry-reference-datatype"><span class="secno">9.11. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
     Legal documents may need to cite an individual entry, rather than the latest entry of the record. 
-   <p class="issue" id="issue-420ac5c0"><a class="self-link" href="#issue-420ac5c0"></a> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof. <a href="https://github.com/openregister/specification/issues/21">&lt;https://github.com/openregister/specification/issues/21></a></p>
+   <p class="issue" data-inline-github="openregister specification 21" id="issue-420ac5c0"><a class="self-link" href="#issue-420ac5c0"></a> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof. <a href="https://github.com/openregister/specification/issues/21">&lt;https://github.com/openregister/specification/issues/21></a></p>
    <h3 class="heading settled" data-level="9.12" id="url-datatype"><span class="secno">9.12. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
     Used to link to an external website, or other resource not held in a register. 
    <ul>
@@ -2375,15 +2312,15 @@ Negative values are marked with a leading “-” character (<a data-link-type="
      <p>URL <a data-link-type="biblio" href="#biblio-uri">[URI]</a></p>
    </ul>
    <h2 class="heading settled" data-level="10" id="fields"><span class="secno">10. </span><span class="content">Fields</span><a class="self-link" href="#fields"></a></h2>
-   <p class="issue" id="issue-8d36d08b"><a class="self-link" href="#issue-8d36d08b"></a> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use? <a href="https://github.com/openregister/specification/issues/22">&lt;https://github.com/openregister/specification/issues/22></a></p>
+   <p class="issue" data-inline-github="openregister specification 22" id="issue-8d36d08b"><a class="self-link" href="#issue-8d36d08b"></a> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use? <a href="https://github.com/openregister/specification/issues/22">&lt;https://github.com/openregister/specification/issues/22></a></p>
    <p><em>Fields defined by this specification</em></p>
    <h3 class="heading settled" data-level="10.1" id="cardinality-field"><span class="secno">10.1. </span><span class="content">cardinality</span><a class="self-link" href="#cardinality-field"></a></h3>
    <h3 class="heading settled" data-level="10.2" id="domain-field"><span class="secno">10.2. </span><span class="content">domain</span><a class="self-link" href="#domain-field"></a></h3>
    <h3 class="heading settled" data-level="10.3" id="entry-number-field"><span class="secno">10.3. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
-   <p class="issue" id="issue-89016d43"><a class="self-link" href="#issue-89016d43"></a> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number <a href="https://github.com/openregister/specification/issues/23">&lt;https://github.com/openregister/specification/issues/23></a></p>
+   <p class="issue" data-inline-github="openregister specification 23" id="issue-89016d43"><a class="self-link" href="#issue-89016d43"></a> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number <a href="https://github.com/openregister/specification/issues/23">&lt;https://github.com/openregister/specification/issues/23></a></p>
    <h3 class="heading settled" data-level="10.4" id="item-hash-field"><span class="secno">10.4. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
-   <p class="issue" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a></p>
-   <p class="issue" id="issue-059eb690"><a class="self-link" href="#issue-059eb690"></a> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a></p>
+   <p class="issue" data-inline-github="openregister specification 24" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a></p>
+   <p class="issue" data-inline-github="openregister specification 25" id="issue-059eb690"><a class="self-link" href="#issue-059eb690"></a> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a></p>
    <ul>
     <li data-md="">
      <p><a href="https://github.com/benlaurie/objecthash">objecthash</a></p>
@@ -2400,13 +2337,13 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    <h3 class="heading settled" data-level="11.3" id="datatype-register"><span class="secno">11.3. </span><span class="content">Datatype register</span><a class="self-link" href="#datatype-register"></a></h3>
    <h2 class="heading settled" data-level="12" id="representations"><span class="secno">12. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
    <p class="note" role="note">Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.</p>
-   <p class="issue" id="issue-800c7c98"><a class="self-link" href="#issue-800c7c98"></a> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON. <a href="https://github.com/openregister/specification/issues/26">&lt;https://github.com/openregister/specification/issues/26></a></p>
+   <p class="issue" data-inline-github="openregister specification 26" id="issue-800c7c98"><a class="self-link" href="#issue-800c7c98"></a> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON. <a href="https://github.com/openregister/specification/issues/26">&lt;https://github.com/openregister/specification/issues/26></a></p>
    <h3 class="heading settled" data-level="12.1" id="html-representation"><span class="secno">12.1. </span><span class="content">HTML representation</span><a class="self-link" href="#html-representation"></a></h3>
    <ul>
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-html5">[HTML5]</a></p>
    </ul>
-   <p class="issue" id="issue-f79e8df8"><a class="self-link" href="#issue-f79e8df8"></a> do we specify RDFa or Schema.org markup? <a href="https://github.com/openregister/specification/issues/27">&lt;https://github.com/openregister/specification/issues/27></a></p>
+   <p class="issue" data-inline-github="openregister specification 27" id="issue-f79e8df8"><a class="self-link" href="#issue-f79e8df8"></a> do we specify RDFa or Schema.org markup? <a href="https://github.com/openregister/specification/issues/27">&lt;https://github.com/openregister/specification/issues/27></a></p>
    <h3 class="heading settled" data-level="12.2" id="json-representation"><span class="secno">12.2. </span><span class="content">JSON representation</span><a class="self-link" href="#json-representation"></a></h3>
    <ul>
     <li data-md="">
@@ -2417,7 +2354,7 @@ Negative values are marked with a leading “-” character (<a data-link-type="
      <p>specification: <a data-link-type="biblio" href="#biblio-json">[JSON]</a></p>
    </ul>
    <p>All field values MUST be encoded as JSON strings.</p>
-   <p class="issue" id="issue-fac8c80e"><a class="self-link" href="#issue-fac8c80e"></a> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means? <a href="https://github.com/openregister/specification/issues/28">&lt;https://github.com/openregister/specification/issues/28></a></p>
+   <p class="issue" data-inline-github="openregister specification 28" id="issue-fac8c80e"><a class="self-link" href="#issue-fac8c80e"></a> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means? <a href="https://github.com/openregister/specification/issues/28">&lt;https://github.com/openregister/specification/issues/28></a></p>
    <h3 class="heading settled" data-level="12.3" id="yaml-representation"><span class="secno">12.3. </span><span class="content">YAML representation</span><a class="self-link" href="#yaml-representation"></a></h3>
    <ul>
     <li data-md="">
@@ -2489,7 +2426,7 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    <h3 class="heading settled" data-level="13.1" id="using-certificate-transparency"><span class="secno">13.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
    <h4 class="heading settled" data-level="13.1.1" id="signed-tree-head"><span class="secno">13.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
-   <p class="issue" id="issue-a8551e06"><a class="self-link" href="#issue-a8551e06"></a> What happens when a key is rotated? <a href="https://github.com/openregister/specification/issues/29">&lt;https://github.com/openregister/specification/issues/29></a></p>
+   <p class="issue" data-inline-github="openregister specification 29" id="issue-a8551e06"><a class="self-link" href="#issue-a8551e06"></a> What happens when a key is rotated? <a href="https://github.com/openregister/specification/issues/29">&lt;https://github.com/openregister/specification/issues/29></a></p>
    <h4 class="heading settled" data-level="13.1.2" id="leaf-signature"><span class="secno">13.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
    <h4 class="heading settled" data-level="13.1.3" id="ct-verify-register"><span class="secno">13.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
    <h4 class="heading settled" data-level="13.1.4" id="ct-verify-entry"><span class="secno">13.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
@@ -2510,16 +2447,16 @@ is listed in the <a href="#entries-resource">§5.2 Entries resource</a> with the
 and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</p>
    </ul>
    <p>The item MUST NOT contain empty fields.</p>
-   <p class="issue" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry? <a href="https://github.com/openregister/specification/issues/30">&lt;https://github.com/openregister/specification/issues/30></a></p>
+   <p class="issue" data-inline-github="openregister specification 30" id="issue-72e39dac"><a class="self-link" href="#issue-72e39dac"></a> does a register have a standard URL to POST a new entry? <a href="https://github.com/openregister/specification/issues/30">&lt;https://github.com/openregister/specification/issues/30></a></p>
    <h2 class="heading settled" data-level="15" id="redaction"><span class="secno">15. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2>
    <ul>
     <li data-md="">
      <p>An item may be removed from a register, but the entry MUST NOT be removed from the register.</p>
    </ul>
-   <p class="issue" id="issue-6510bec9"><a class="self-link" href="#issue-6510bec9"></a> there is a need redaction, even for open records such as insolvency and bankruptcy. <a href="https://github.com/openregister/specification/issues/31">&lt;https://github.com/openregister/specification/issues/31></a></p>
-   <p class="issue" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted. <a href="https://github.com/openregister/specification/issues/32">&lt;https://github.com/openregister/specification/issues/32></a></p>
-   <p class="issue" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a></p>
-   <p class="issue" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a></p>
+   <p class="issue" data-inline-github="openregister specification 31" id="issue-6510bec9"><a class="self-link" href="#issue-6510bec9"></a> there is a need redaction, even for open records such as insolvency and bankruptcy. <a href="https://github.com/openregister/specification/issues/31">&lt;https://github.com/openregister/specification/issues/31></a></p>
+   <p class="issue" data-inline-github="openregister specification 32" id="issue-183a231c"><a class="self-link" href="#issue-183a231c"></a> need a mechanism to flag an item as redacted. <a href="https://github.com/openregister/specification/issues/32">&lt;https://github.com/openregister/specification/issues/32></a></p>
+   <p class="issue" data-inline-github="openregister specification 33" id="issue-65e174d1"><a class="self-link" href="#issue-65e174d1"></a> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a></p>
+   <p class="issue" data-inline-github="openregister specification 34" id="issue-20a577f7"><a class="self-link" href="#issue-20a577f7"></a> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a></p>
    <h2 class="heading settled" data-level="16" id="versioning-and-extensibility"><span class="secno">16. </span><span class="content">Versioning and extensibility</span><a class="self-link" href="#versioning-and-extensibility"></a></h2>
    <h3 class="heading settled" data-level="16.1" id="backwards-compatibility"><span class="secno">16.1. </span><span class="content">Backwards compitability</span><a class="self-link" href="#backwards-compatibility"></a></h3>
    <ul>
@@ -2558,28 +2495,30 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
      <p>defined by {#core-registers}</p>
    </ul>
   </main>
-  <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
-  <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
-        The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
-        in the normative parts of this document
-        are to be interpreted as described in RFC 2119.
-        However, for readability,
-        these words do not appear in all uppercase letters in this specification. </p>
-  <p> All of the text of this specification is normative
-        except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
-  <p> Examples in this specification are introduced with the words “for example”
-        or are set apart from the normative text with <code>class="example"</code>, like this: </p>
-  <div class="example" id="example-ae2b6bc0"><a class="self-link" href="#example-ae2b6bc0"></a> This is an example of an informative example. </div>
-  <p> Informative notes begin with the word “Note”
-        and are set apart from the normative text with <code>class="note"</code>, like this: </p>
-  <p class="note" role="note"> Note, this is an informative note. </p>
-  <h2 class="no-num heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
-  <h3 class="no-num heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
+  <div data-fill-with="conformance">
+   <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
+   <p> Conformance requirements are expressed with a combination of descriptive assertions and RFC 2119 terminology.
+            The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL”
+            in the normative parts of this document
+            are to be interpreted as described in RFC 2119.
+            However, for readability,
+            these words do not appear in all uppercase letters in this specification. </p>
+   <p> All of the text of this specification is normative
+            except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
+   <p> Examples in this specification are introduced with the words “for example”
+            or are set apart from the normative text with <code>class="example"</code>, like this: </p>
+   <div class="example" id="example-ae2b6bc0"><a class="self-link" href="#example-ae2b6bc0"></a> This is an example of an informative example. </div>
+   <p> Informative notes begin with the word “Note”
+            and are set apart from the normative text with <code>class="note"</code>, like this: </p>
+   <p class="note" role="note"> Note, this is an informative note. </p>
+  </div>
+  <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
   </dl>
-  <h3 class="no-num heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
@@ -2630,40 +2569,38 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <dt id="biblio-turtle"><a class="self-link" href="#biblio-turtle"></a>[TURTLE]
    <dd>Eric Prud'hommeaux; Gavin Carothers. <a href="http://www.w3.org/TR/turtle/">RDF 1.1 Turtle</a>. 25 February 2014. REC. URL: <a href="http://www.w3.org/TR/turtle/">http://www.w3.org/TR/turtle/</a>
   </dl>
-  <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> IMPLEMENTATION the path to an item is currently implemented as /hash/{item-hash} and returns a record, not an item. <a href="https://github.com/openregister/specification/issues/3">&lt;https://github.com/openregister/specification/issues/3></a><a href="#issue-a52ed4c7"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a><a href="#issue-850458d5"> ↵ </a></div>
-   <div class="issue"> CT timestamp is inconsistent with <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/5">&lt;https://github.com/openregister/specification/issues/5></a><a href="#issue-0e9bdd5b"> ↵ </a></div>
-   <div class="issue"> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a><a href="#issue-ba4608f8"> ↵ </a></div>
-   <div class="issue"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
-   <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a><a href="#issue-9ee875b6"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a><a href="#issue-31859f20"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a><a href="#issue-1dc835c7"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a><a href="#issue-8815c872"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a><a href="#issue-d994c4f5"> ↵ </a></div>
-   <div class="issue"> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a><a href="#issue-a9ea3195"> ↵ </a></div>
-   <div class="issue"> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a><a href="#issue-941daf47"> ↵ </a></div>
-   <div class="issue"> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a><a href="#issue-37c7e097"> ↵ </a></div>
-   <div class="issue"> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a><a href="#issue-073f5c29"> ↵ </a></div>
-   <div class="issue"> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"? <a href="https://github.com/openregister/specification/issues/18">&lt;https://github.com/openregister/specification/issues/18></a><a href="#issue-30cc7315"> ↵ </a></div>
-   <div class="issue"> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>? <a href="https://github.com/openregister/specification/issues/19">&lt;https://github.com/openregister/specification/issues/19></a><a href="#issue-70d0c866"> ↵ </a></div>
-   <div class="issue"> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ? <a href="https://github.com/openregister/specification/issues/20">&lt;https://github.com/openregister/specification/issues/20></a><a href="#issue-ebfdb117"> ↵ </a></div>
-   <div class="issue"> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof. <a href="https://github.com/openregister/specification/issues/21">&lt;https://github.com/openregister/specification/issues/21></a><a href="#issue-420ac5c0"> ↵ </a></div>
-   <div class="issue"> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use? <a href="https://github.com/openregister/specification/issues/22">&lt;https://github.com/openregister/specification/issues/22></a><a href="#issue-8d36d08b"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number <a href="https://github.com/openregister/specification/issues/23">&lt;https://github.com/openregister/specification/issues/23></a><a href="#issue-89016d43"> ↵ </a></div>
-   <div class="issue"> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a><a href="#issue-b730eb4a"> ↵ </a></div>
-   <div class="issue"> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a><a href="#issue-059eb690"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON. <a href="https://github.com/openregister/specification/issues/26">&lt;https://github.com/openregister/specification/issues/26></a><a href="#issue-800c7c98"> ↵ </a></div>
-   <div class="issue"> do we specify RDFa or Schema.org markup? <a href="https://github.com/openregister/specification/issues/27">&lt;https://github.com/openregister/specification/issues/27></a><a href="#issue-f79e8df8"> ↵ </a></div>
-   <div class="issue"> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means? <a href="https://github.com/openregister/specification/issues/28">&lt;https://github.com/openregister/specification/issues/28></a><a href="#issue-fac8c80e"> ↵ </a></div>
-   <div class="issue"> What happens when a key is rotated? <a href="https://github.com/openregister/specification/issues/29">&lt;https://github.com/openregister/specification/issues/29></a><a href="#issue-a8551e06"> ↵ </a></div>
-   <div class="issue"> does a register have a standard URL to POST a new entry? <a href="https://github.com/openregister/specification/issues/30">&lt;https://github.com/openregister/specification/issues/30></a><a href="#issue-72e39dac"> ↵ </a></div>
-   <div class="issue"> there is a need redaction, even for open records such as insolvency and bankruptcy. <a href="https://github.com/openregister/specification/issues/31">&lt;https://github.com/openregister/specification/issues/31></a><a href="#issue-6510bec9"> ↵ </a></div>
-   <div class="issue"> need a mechanism to flag an item as redacted. <a href="https://github.com/openregister/specification/issues/32">&lt;https://github.com/openregister/specification/issues/32></a><a href="#issue-183a231c"> ↵ </a></div>
-   <div class="issue"> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a><a href="#issue-65e174d1"> ↵ </a></div>
-   <div class="issue"> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a><a href="#issue-20a577f7"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 4"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a><a href="#issue-850458d5"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 5"> CT timestamp is inconsistent with <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/5">&lt;https://github.com/openregister/specification/issues/5></a><a href="#issue-0e9bdd5b"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 6"> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a><a href="#issue-ba4608f8"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 7"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 8"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 9"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a><a href="#issue-9ee875b6"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 10"> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a><a href="#issue-31859f20"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 11"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a><a href="#issue-1dc835c7"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 12"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a><a href="#issue-8815c872"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 13"> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a><a href="#issue-d994c4f5"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 14"> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a><a href="#issue-a9ea3195"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 15"> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a><a href="#issue-941daf47"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 16"> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a><a href="#issue-37c7e097"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 17"> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a><a href="#issue-073f5c29"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 18"> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"? <a href="https://github.com/openregister/specification/issues/18">&lt;https://github.com/openregister/specification/issues/18></a><a href="#issue-30cc7315"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 19"> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>? <a href="https://github.com/openregister/specification/issues/19">&lt;https://github.com/openregister/specification/issues/19></a><a href="#issue-70d0c866"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 20"> do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ? <a href="https://github.com/openregister/specification/issues/20">&lt;https://github.com/openregister/specification/issues/20></a><a href="#issue-ebfdb117"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 21"> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof. <a href="https://github.com/openregister/specification/issues/21">&lt;https://github.com/openregister/specification/issues/21></a><a href="#issue-420ac5c0"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 22"> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use? <a href="https://github.com/openregister/specification/issues/22">&lt;https://github.com/openregister/specification/issues/22></a><a href="#issue-8d36d08b"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 23"> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number <a href="https://github.com/openregister/specification/issues/23">&lt;https://github.com/openregister/specification/issues/23></a><a href="#issue-89016d43"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 24"> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a><a href="#issue-b730eb4a"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 25"> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a><a href="#issue-059eb690"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 26"> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON. <a href="https://github.com/openregister/specification/issues/26">&lt;https://github.com/openregister/specification/issues/26></a><a href="#issue-800c7c98"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 27"> do we specify RDFa or Schema.org markup? <a href="https://github.com/openregister/specification/issues/27">&lt;https://github.com/openregister/specification/issues/27></a><a href="#issue-f79e8df8"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 28"> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means? <a href="https://github.com/openregister/specification/issues/28">&lt;https://github.com/openregister/specification/issues/28></a><a href="#issue-fac8c80e"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 29"> What happens when a key is rotated? <a href="https://github.com/openregister/specification/issues/29">&lt;https://github.com/openregister/specification/issues/29></a><a href="#issue-a8551e06"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 30"> does a register have a standard URL to POST a new entry? <a href="https://github.com/openregister/specification/issues/30">&lt;https://github.com/openregister/specification/issues/30></a><a href="#issue-72e39dac"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 31"> there is a need redaction, even for open records such as insolvency and bankruptcy. <a href="https://github.com/openregister/specification/issues/31">&lt;https://github.com/openregister/specification/issues/31></a><a href="#issue-6510bec9"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 32"> need a mechanism to flag an item as redacted. <a href="https://github.com/openregister/specification/issues/32">&lt;https://github.com/openregister/specification/issues/32></a><a href="#issue-183a231c"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 33"> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a><a href="#issue-65e174d1"> ↵ </a></div>
+   <div class="issue" data-inline-github="openregister specification 34"> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a><a href="#issue-20a577f7"> ↵ </a></div>
   </div>
- </body>
-</html>
