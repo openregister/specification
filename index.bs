@@ -273,7 +273,7 @@ An instance of an [[#item-resource]] and an [[#entry-resource]] are both deemed 
 
 # Collection resources # {#list-resources}
 
-There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
+There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header [[RFC5988]], with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.
 
 ISSUE(openregister/specification#7): define query string parameters ..
 
@@ -308,7 +308,11 @@ ISSUE(openregister/specification#38): what does the items resource look like in 
 
 <dl class="resource"><dt>Path</dt><dd>/entries</dd></dt></dl>
 
+The entries resource returns the ordered list of all [[#entry-resource]]s in order.
+
 ISSUE(openregister/specification#10): IMPLEMENTATION /entries is currently implemented as also returning the item contents.
+
+ISSUE(openregister/specification#41): What order should /entries be in?
 
 <div class="example">
 The following example shows a list of entries in the [[#json-representation]]:
@@ -316,12 +320,12 @@ The following example shows a list of entries in the [[#json-representation]]:
 <pre highlight="json">
 [
   {
-    "entry-number": "72",
+    "entry-number": "2",
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
   },
   {
-    "entry-number": "21",
+    "entry-number": "1",
     "entry-timestamp": "2015-08-15T08:15:30Z",
     "item-hash": "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
   }

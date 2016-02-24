@@ -1677,7 +1677,7 @@ the latest one with the given primary key value.</p>
    <p>An immutable resource, is one whose contents will never change.
 An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a href="#entry-resource">§3.2 Entry resource</a> are both deemed to be immutable.</p>
    <h2 class="heading settled" data-level="5" id="list-resources"><span class="secno">5. </span><span class="content">Collection resources</span><a class="self-link" href="#list-resources"></a></h2>
-   <p>There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header (RFC 5988), with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.</p>
+   <p>There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header <a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a>, with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.</p>
    <p class="issue" id="issue-c647663d"><a class="self-link" href="#issue-c647663d"></a> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a></p>
    <p class="issue" id="issue-ab2143f9"><a class="self-link" href="#issue-ab2143f9"></a> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a></p>
    <h3 class="heading settled" data-level="5.1" id="items-resource"><span class="secno">5.1. </span><span class="content">Items resource</span><a class="self-link" href="#items-resource"></a></h3>
@@ -1705,17 +1705,19 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <dt>Path
     <dd>/entries
    </dl>
+   <p>The entries resource returns the ordered list of all <a href="#entry-resource">§3.2 Entry resource</a>s in order.</p>
    <p class="issue" id="issue-31859f20"><a class="self-link" href="#issue-31859f20"></a> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a></p>
-   <div class="example" id="example-a69be961">
-    <a class="self-link" href="#example-a69be961"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <p class="issue" id="issue-9c161095"><a class="self-link" href="#issue-9c161095"></a> What order should /entries be in? <a href="https://github.com/openregister/specification/issues/41">&lt;https://github.com/openregister/specification/issues/41></a></p>
+   <div class="example" id="example-5359d953">
+    <a class="self-link" href="#example-5359d953"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
-    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
     <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"</span>
   <span class="p">},</span>
   <span class="p">{</span>
-    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"21"</span><span class="p">,</span>
+    <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
     <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-15T08:15:30Z"</span><span class="p">,</span>
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span>
   <span class="p">}</span>
@@ -2609,6 +2611,7 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="issue"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a><a href="#issue-9ee875b6"> ↵ </a></div>
    <div class="issue"> what does the items resource look like in a register with multiple hashing algorithms available? <a href="https://github.com/openregister/specification/issues/38">&lt;https://github.com/openregister/specification/issues/38></a><a href="#issue-64bcb597"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a><a href="#issue-31859f20"> ↵ </a></div>
+   <div class="issue"> What order should /entries be in? <a href="https://github.com/openregister/specification/issues/41">&lt;https://github.com/openregister/specification/issues/41></a><a href="#issue-9c161095"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a><a href="#issue-1dc835c7"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a><a href="#issue-8815c872"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a><a href="#issue-d994c4f5"> ↵ </a></div>
