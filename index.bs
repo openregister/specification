@@ -218,8 +218,12 @@ The following example shows a register in the [[#json-representation]]:
 ## Register proof resource ## {#register-proof-resource}
 <dl class="resource"><dt>Path</dt><dd>/proof/{proof-identifier}</dd></dt></dl>
 
+A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.
+
+There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The [[#proofs-resource]] indicates which proofs are available.
+
 <div class="example">
-The following example shows a register proof in the [[#json-representation]]:
+The following example shows a Merkle-tree-based register proof in the [[#json-representation]]:
 
 <pre>
 https://school.register.gov.uk/proof/register/merkle:sha-256
@@ -241,8 +245,14 @@ ISSUE(openregister/specification#6): CT names should be mapped to a consistent "
 ## Entry proof resource ## {#entry-proof-resource}
 <dl class="resource"><dt>Path</dt><dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{proof-identifier}</dd></dt></dl>
 
+An entry proof is the information required to prove the integrity of a single entry within a register, given a [[#register-proof-resource]].
+
+The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.
+
+There may be different kinds of entry proof available.
+
 <div class="example">
-The following example shows an entry proof in the [[#json-representation]]:
+The following example shows a Merkle-tree-based entry proof in the [[#json-representation]]:
 
 <pre>
 https://school.register.gov.uk/proof/entry/123/merkle:sha-256

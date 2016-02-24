@@ -1639,8 +1639,10 @@ the latest one with the given primary key value.</p>
     <dt>Path
     <dd>/proof/{proof-identifier}
    </dl>
-   <div class="example" id="example-8770b3b3">
-    <a class="self-link" href="#example-8770b3b3"></a> The following example shows a register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
+   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.7 Proofs resource</a> indicates which proofs are available.</p>
+   <div class="example" id="example-adaa8951">
+    <a class="self-link" href="#example-adaa8951"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1658,8 +1660,11 @@ the latest one with the given primary key value.</p>
     <dt>Path
     <dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{proof-identifier}
    </dl>
-   <div class="example" id="example-88eb2981">
-    <a class="self-link" href="#example-88eb2981"></a> The following example shows an entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <p>An entry proof is the information required to prove the integrity of a single entry within a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
+   <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
+   <p>There may be different kinds of entry proof available.</p>
+   <div class="example" id="example-57aa826f">
+    <a class="self-link" href="#example-57aa826f"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/entry/123/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
