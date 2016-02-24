@@ -206,7 +206,7 @@ https://school.register.gov.uk/proof/register/merkle:sha-256
   "proof-identifier": "merkle:sha-256",
   "tree-size": "9803348",
   "timestamp": "2015-08-20T08:15:30Z",
-  "root-hash": "sha-256;JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU=",
+  "root-hash": "sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU",
   "tree-head-signature":
   "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
 }
