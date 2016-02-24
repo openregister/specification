@@ -142,11 +142,20 @@ ISSUE(openregister/specification#4): IMPLEMENTATION entry timestamps are current
 
 <dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}</dd></dt></dl>
 
+A record is the most up-to-date [[#infoset]] for a resource identified
+by a [[#primary-key-field]].  That is, it is the infoset corresponding
+to the [[#entry-resource]] with the highest [[#entry-number-field]]
+for a given primary key value.
+
+This resource is provided as a convenience: in principle, it can be
+computed by a client by replaying the log of all entries and finding
+the latest one with the given primary key value.
 
 <div class="example">
 The following example shows a record in the [[#json-representation]]:
 
 <pre highlight="json">
+https://local-authority.register.gov.uk/record/E09000019
 {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
@@ -659,6 +668,13 @@ Used to link to an external website, or other resource not held in a register.
 ISSUE(openregister/specification#22): We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?
 
 <em>Fields defined by this specification</em>
+
+## Primary key field ## {#primary-key-field}
+
+For each register, there is a field called the <em>primary key
+field</em>.  This field has the same name as the register itself: for
+example, in the "school" register the primary key field is also called
+"school".
 
 ## cardinality ## {#cardinality-field}
 

@@ -1418,12 +1418,13 @@ data held in an open register.</p>
     <li>
      <a href="#fields"><span class="secno">10</span> <span class="content">Fields</span></a>
      <ol class="toc">
-      <li><a href="#cardinality-field"><span class="secno">10.1</span> <span class="content">cardinality</span></a>
-      <li><a href="#domain-field"><span class="secno">10.2</span> <span class="content">domain</span></a>
-      <li><a href="#entry-number-field"><span class="secno">10.3</span> <span class="content">entry-number</span></a>
-      <li><a href="#item-hash-field"><span class="secno">10.4</span> <span class="content">item-hash</span></a>
-      <li><a href="#last-updated-field"><span class="secno">10.5</span> <span class="content">last-updated</span></a>
-      <li><a href="#field-field"><span class="secno">10.6</span> <span class="content">field</span></a>
+      <li><a href="#primary-key-field"><span class="secno">10.1</span> <span class="content">Primary key field</span></a>
+      <li><a href="#cardinality-field"><span class="secno">10.2</span> <span class="content">cardinality</span></a>
+      <li><a href="#domain-field"><span class="secno">10.3</span> <span class="content">domain</span></a>
+      <li><a href="#entry-number-field"><span class="secno">10.4</span> <span class="content">entry-number</span></a>
+      <li><a href="#item-hash-field"><span class="secno">10.5</span> <span class="content">item-hash</span></a>
+      <li><a href="#last-updated-field"><span class="secno">10.6</span> <span class="content">last-updated</span></a>
+      <li><a href="#field-field"><span class="secno">10.7</span> <span class="content">field</span></a>
      </ol>
     <li>
      <a href="#registers"><span class="secno">11</span> <span class="content">Registers</span></a>
@@ -1505,7 +1506,7 @@ data held in an open register.</p>
     <li data-md="">
      <p>An infoset is an unordered collection of data items.</p>
     <li data-md="">
-     <p>A data item is identified within the scope of the infoset by a <a href="#field-field">§10.6 field</a> value.</p>
+     <p>A data item is identified within the scope of the infoset by a <a href="#field-field">§10.7 field</a> value.</p>
     <li data-md="">
      <p>The contents of a data item is constrained by one of a number of different <a href="#datatypes">§9 Datatypes</a>.</p>
    </ul>
@@ -1518,7 +1519,7 @@ data held in an open register.</p>
    </dl>
    <p>An item is an unordered collection of <a href="#fields">§10 Fields</a> and values.
 The set of fields which MAY be included in an item are defined in the <a href="#fields-field"></a> field in the <a href="#register-register">§11.1 Register register</a> entry for the register.</p>
-   <p>An item is identified by the globally unique <a href="#item-hash-field">§10.4 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§10.4 item-hash</a>.</p>
+   <p>An item is identified by the globally unique <a href="#item-hash-field">§10.5 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§10.5 item-hash</a>.</p>
    <div class="example" id="example-52b809bb">
     <a class="self-link" href="#example-52b809bb"></a> The following example shows an item in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
@@ -1543,7 +1544,7 @@ The set of fields which MAY be included in an item are defined in the <a href="#
 up of an ordered list of entries.  New entries in a register are only
 ever appended to the end of the list; once an entry is created, it
 never gets changed.</p>
-   <p>An entry is an <a href="#entry-number-field">§10.3 entry-number</a>, a timestamp, and an <a href="#item-hash-field">§10.4 item-hash</a>.  The entry-number is unique and defines the
+   <p>An entry is an <a href="#entry-number-field">§10.4 entry-number</a>, a timestamp, and an <a href="#item-hash-field">§10.5 item-hash</a>.  The entry-number is unique and defines the
 entry’s position within the ordered list.  The item-hash identifies
 the <a href="#item-resource">§3.1 Item resource</a> for the entry.</p>
    <div class="example" id="example-55fab6ed">
@@ -1560,9 +1561,16 @@ the <a href="#item-resource">§3.1 Item resource</a> for the entry.</p>
     <dt>Path
     <dd>/record/{<a href="#field-value">field-value</a>}
    </dl>
-   <div class="example" id="example-fc8b4de3">
-    <a class="self-link" href="#example-fc8b4de3"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre class="highlight"><span class="p">{</span>
+   <p>A record is the most up-to-date <a href="#infoset">§2 Infoset</a> for a resource identified
+by a <a href="#primary-key-field">§10.1 Primary key field</a>.  That is, it is the infoset corresponding
+to the <a href="#entry-resource">§3.2 Entry resource</a> with the highest <a href="#entry-number-field">§10.4 entry-number</a> for a given primary key value.</p>
+   <p>This resource is provided as a convenience: in principle, it can be
+computed by a client by replaying the log of all entries and finding
+the latest one with the given primary key value.</p>
+   <div class="example" id="example-20676728">
+    <a class="self-link" href="#example-20676728"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre class="highlight"><span class="err">https://local-authority.register.gov.uk/record/E</span><span class="mi">09000019</span>
+<span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
     <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"</span><span class="p">,</span>
@@ -1578,11 +1586,11 @@ the <a href="#item-resource">§3.1 Item resource</a> for the entry.</p>
    <p>The register resource is <a href="#infoset">§2 Infoset</a> with the following fields:</p>
    <dl>
     <dt data-md="">
-     <p><a href="#domain-field">§10.2 domain</a></p>
+     <p><a href="#domain-field">§10.3 domain</a></p>
     <dd data-md="">
      <p>The Internet domain the register is available from.</p>
     <dt data-md="">
-     <p><a href="#last-updated-field">§10.5 last-updated</a></p>
+     <p><a href="#last-updated-field">§10.6 last-updated</a></p>
     <dd data-md="">
      <p>The date the register was last updated.</p>
    </dl>
@@ -1869,7 +1877,7 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p><a href="#immutable-resources">§4 Immutable resources</a> SHOULD be served with a long-lived Cache-Control max-age value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a>.</p>
     <li data-md="">
-     <p>the <a href="#item-hash-field">§10.4 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
+     <p>the <a href="#item-hash-field">§10.5 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
    </ul>
    <div class="example" id="example-1ddbf6d4">
     <a class="self-link" href="#example-1ddbf6d4"></a> The following example shows the HTTP headers for the <a href="#json-representation">§12.2 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
@@ -2326,11 +2334,16 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    <h2 class="heading settled" data-level="10" id="fields"><span class="secno">10. </span><span class="content">Fields</span><a class="self-link" href="#fields"></a></h2>
    <p class="issue" id="issue-8d36d08b"><a class="self-link" href="#issue-8d36d08b"></a> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use? <a href="https://github.com/openregister/specification/issues/22">&lt;https://github.com/openregister/specification/issues/22></a></p>
    <p><em>Fields defined by this specification</em></p>
-   <h3 class="heading settled" data-level="10.1" id="cardinality-field"><span class="secno">10.1. </span><span class="content">cardinality</span><a class="self-link" href="#cardinality-field"></a></h3>
-   <h3 class="heading settled" data-level="10.2" id="domain-field"><span class="secno">10.2. </span><span class="content">domain</span><a class="self-link" href="#domain-field"></a></h3>
-   <h3 class="heading settled" data-level="10.3" id="entry-number-field"><span class="secno">10.3. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
+   <h3 class="heading settled" data-level="10.1" id="primary-key-field"><span class="secno">10.1. </span><span class="content">Primary key field</span><a class="self-link" href="#primary-key-field"></a></h3>
+   <p>For each register, there is a field called the <em>primary key
+field</em>.  This field has the same name as the register itself: for
+example, in the "school" register the primary key field is also called
+"school".</p>
+   <h3 class="heading settled" data-level="10.2" id="cardinality-field"><span class="secno">10.2. </span><span class="content">cardinality</span><a class="self-link" href="#cardinality-field"></a></h3>
+   <h3 class="heading settled" data-level="10.3" id="domain-field"><span class="secno">10.3. </span><span class="content">domain</span><a class="self-link" href="#domain-field"></a></h3>
+   <h3 class="heading settled" data-level="10.4" id="entry-number-field"><span class="secno">10.4. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
    <p class="issue" id="issue-89016d43"><a class="self-link" href="#issue-89016d43"></a> IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number <a href="https://github.com/openregister/specification/issues/23">&lt;https://github.com/openregister/specification/issues/23></a></p>
-   <h3 class="heading settled" data-level="10.4" id="item-hash-field"><span class="secno">10.4. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
+   <h3 class="heading settled" data-level="10.5" id="item-hash-field"><span class="secno">10.5. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
    <p class="issue" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a></p>
    <p class="issue" id="issue-059eb690"><a class="self-link" href="#issue-059eb690"></a> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a></p>
    <ul>
@@ -2339,8 +2352,8 @@ Negative values are marked with a leading “-” character (<a data-link-type="
     <li data-md="">
      <p><a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="10.5" id="last-updated-field"><span class="secno">10.5. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
-   <h3 class="heading settled" data-level="10.6" id="field-field"><span class="secno">10.6. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
+   <h3 class="heading settled" data-level="10.6" id="last-updated-field"><span class="secno">10.6. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
+   <h3 class="heading settled" data-level="10.7" id="field-field"><span class="secno">10.7. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
    <h2 class="heading settled" data-level="11" id="registers"><span class="secno">11. </span><span class="content">Registers</span><a class="self-link" href="#registers"></a></h2>
    <h3 class="heading settled" data-level="11.1" id="register-register"><span class="secno">11.1. </span><span class="content">Register register</span><a class="self-link" href="#register-register"></a></h3>
    <h3 class="heading settled" data-level="11.2" id="field-register"><span class="secno">11.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
@@ -2454,7 +2467,7 @@ Negative values are marked with a leading “-” character (<a data-link-type="
      <p><em> .. 202 Accepted with a Location header of the <a href="#entry-resource">§3.2 Entry resource</a> for the new entry</em></p>
     <li data-md="">
      <p>The proposer can only trust it has been secured when the entry
-is listed in the <a href="#entries-resource">§5.2 Entries resource</a> with the same <a href="#entry-number-field">§10.3 entry-number</a>,
+is listed in the <a href="#entries-resource">§5.2 Entries resource</a> with the same <a href="#entry-number-field">§10.4 entry-number</a>,
 and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§13 Digital Proofs</a> for the register.</p>
    </ul>
    <p>The item MUST NOT contain empty fields.</p>
