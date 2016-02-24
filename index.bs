@@ -10,7 +10,7 @@ Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-off
 Editor: Daniel Appelquist, Government Digital Service, daniel.appelquist@digital.cabinet-office.gov.uk
 Group: openregister
 Indent: 2
-Inline Github Issues: true
+Inline Github Issues: false
 Abstract:
   This document defines the resources and representations which together
   provide an Application Programming Interface (API) for accessing 
