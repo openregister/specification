@@ -91,6 +91,9 @@ calculated from its contents. Changing the item data changes the [[#item-hash-fi
 
 <div class="example">
 The following example shows an item in the [[#json-representation]]:
+<pre>
+https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
+</pre>
 <pre highlight="json">
 {
   "business": "company:07228130",
@@ -104,7 +107,7 @@ The following example shows an item in the [[#json-representation]]:
 </pre>
 </div>
 
-ISSUE(openregister/specification#3): IMPLEMENTATION the current item URL returns a record, not an item.
+ISSUE(openregister/specification#3): IMPLEMENTATION the current item URL returns a record, not an item
 
 ## Entry resource ## {#entry-resource}
 
@@ -117,7 +120,7 @@ The following example shows an entry in the [[#json-representation]]:
 {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f"
+    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"
 }
 </pre>
 </div>
@@ -136,7 +139,7 @@ The following example shows a record in the [[#json-representation]]:
 {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f",
     "local-authority": "E09000019",
     "name": "Islington"
 }
@@ -177,7 +180,7 @@ The following example shows a register in the [[#json-representation]]:
   "register-record": {
     "entry-number": "12",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "d9178efd8febfebaaa42968648b7bdd023369c7f",
+    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f",
     "fields": [ "address", "end-date", "school", "start-date", "name", "website" ],
     "name": "Schools in the UK",
     "phase": "beta",
@@ -257,11 +260,11 @@ The following example shows a set of records in the [[#json-representation]]:
 
 <pre highlight="json">
 {
-  "1a0212ba5094383bcc2a0bbe1a55e3a1f1278984": {
+  "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984": {
     "local-authority": "E09000019",
     "name": "Islington"
   },
-  "d9178efd8febfebaaa42968648b7bdd023369c7f": {
+  "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f": {
     "local-authority": "E09000016",
     "name": "Havering"
   }
@@ -269,6 +272,7 @@ The following example shows a set of records in the [[#json-representation]]:
 </pre>
 </div>
 
+ISSUE(openregister/specification#38): what does the items resource look like in a register with multiple hashing algorithms available?
 
 ## Entries resource ## {#entries-resource}
 
@@ -284,12 +288,12 @@ The following example shows a list of entries in the [[#json-representation]]:
   {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591"
+    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
   },
   {
     "entry-number": "21",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
+    "item-hash": "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
   }
 ]
 </pre>
@@ -312,12 +316,12 @@ The following example shows a list of item entries in the [[#json-representation
   {
     "entry-number": "121",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    "item-hash": "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
   },
   {
     "entry-number": "133",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "13f6de75b9f6d970691985e72a7dfa211bad1591"
+    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
   }
 ]
 </pre>
@@ -338,12 +342,12 @@ The following example shows a list of item entries in the [[#json-representation
   {
     "entry-number": "121",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    "item-hash": "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
   },
   {
     "entry-number": "133",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "ffb781149473e7244109e45165260702fe39cede"
+    "item-hash": "sha-256:ffb781149473e7244109e45165260702fe39cede"
   }
 ]
 </pre>
@@ -364,14 +368,14 @@ The following example shows a list of records in the [[#json-representation]]:
   "E09000019": {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"
+    "item-hash": "sha-256:06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"
     "local-authority": "E09000019",
     "name": "Islington"
   },
   "E09000016": {
     "entry-number": "76",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
+    "item-hash": "sha-256:0ac85d452fdfd10414a7d113f990a617b590633f",
     "local-authority": "E09000016",
     "name": "Havering"
   }
@@ -394,7 +398,7 @@ http://school.register.gov.uk/religious-character/Quaker.json
   "123278": {
     "entry-number": "18371",
     "entry-timestamp": "2016-01-01T00:00:00Z",
-    "item-hash": "06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
+    "item-hash": "sha-256:06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
     "address": "10011891998",
     "maximum-age": "18",
     "minimum-age": "2",
@@ -407,7 +411,7 @@ http://school.register.gov.uk/religious-character/Quaker.json
   "121728": {
     "entry-number": "17164",
     "entry-timestamp": "2016-01-01T00:00:00Z",
-    "item-hash": "0ac85d452fdfd10414a7d113f990a617b590633f",
+    "item-hash": "sha-256:0ac85d452fdfd10414a7d113f990a617b590633f",
     "address": "200004778207",
     "end-date": "2006-02-28",
     "headteacher": "Mrs S Ratcliffe",
@@ -616,9 +620,18 @@ Used to identify a record, possibly in another register.
   * curie [[CURIE]]
 
 ## Item-hash datatype ## {#item-hash-datatype}
-The object hash of the item's contents may be used to identify the contents of an item, irrespective of where it is stored or presented.
 
-ISSUE(openregister/specification#20): do we need to include the alogrithm in the hash, eg "sha512:aa3344.." ?
+A hash of the item's contents may be used to identify the contents of an item, irrespective of where it is stored or presented.
+
+An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.
+
+Valid hash algorithms
+
+<div class="example">
+sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
+</div>
+
+ISSUE(openregister/specification#39): which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm?
 
 ## Entry-reference datatype ## {#entry-reference-datatype}
 Legal documents may need to cite an individual entry, rather than the latest entry of the record.
@@ -701,7 +714,7 @@ The following example shows a [[#record-resource]] in the [[#yaml-representation
 entry:
   entry-number: "30568"
   timestamp: "2015-01-02T23:59:01Z"
-  item-hash: "87963123bd04263c878b36ad7ce421b8b68a07f9"
+  item-hash: "sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9"
 item:
   address: "100101030506"
   name: "Glanaman Home Tution Centre"
@@ -736,7 +749,7 @@ The following example shows an [[#item-resource]] in the [[#ttl-representation]]
 <pre>
 @prefix field: &lt;http://field.register.gov.uk/field/&gt;.
 
-&lt;http://school.register.gov.uk/item/af3056bd04263c878b36ad7ce421b8b68a0799&gt;
+&lt;http://school.register.gov.uk/item/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799&gt;
  field:address &lt;http://address.register.gov.uk/address/100101030506&gt; ;
  field:name "Glanaman Home Tution Centre" ;
  field:school &lt;http://school.register.gov.uk/record/402175&gt; ;
