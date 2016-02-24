@@ -192,44 +192,43 @@ The following example shows a register in the [[#json-representation]]:
 </pre>
 </div>
 
-## Proof resource ## {#proof-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}</dd></dt></dl>
+## Register proof resource ## {#register-proof-resource}
+<dl class="resource"><dt>Path</dt><dd>/proof/{proof-identifier}</dd></dt></dl>
 
 <div class="example">
 The following example shows a register proof in the [[#json-representation]]:
 
 <pre>
-https://school.register.gov.uk/proof/certificate-transparency
+https://school.register.gov.uk/proof/register/merkle:sha-256
 </pre>
 <pre highlight="json">
 {
+  "proof-identifier": "merkle:sha-256",
   "tree-size": "9803348",
-  "timestamp": "1447421303202",
-  "sha256-root-hash": "JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU=",
+  "timestamp": "2015-08-20T08:15:30Z",
+  "root-hash": "sha-256;JATHxRF5gczvNPP1S1WuhD8jSx2bl+WoTt8bIE3YKvU=",
   "tree-head-signature":
   "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
 }
 </pre>
 </div>
 
-ISSUE(openregister/specification#5): CT timestamp is inconsistent with [[#timestamp-datatype]].
-
 ISSUE(openregister/specification#6): CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
 
-## Proof node resource ## {#proof-node-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/{<a href="#proof-identifier-field">proof-identifier</a>}/node/{<a href="#proof-node-hash-field">proof-node-hash</a>}</dd></dt></dl>
+## Entry proof resource ## {#entry-proof-resource}
+<dl class="resource"><dt>Path</dt><dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{proof-identifier}</dd></dt></dl>
 
 <div class="example">
-The following example shows a register proof in the [[#json-representation]]:
+The following example shows an entry proof in the [[#json-representation]]:
 
+<pre>
+https://school.register.gov.uk/proof/entry/123/merkle:sha-256
+</pre>
 <pre highlight="json">
 {
-  "proof": "certificate-transparency",
-  "proof-node-hashes": [
-    "zeC0N4isU4ZrwaeCJdjy31+X9avF8zt87NN6G+xOThQ=",
-    "WBb5QnpttrokZ3kMCNNyAymfQK/BfPgIdsh3izVZgK0=",
-    "lyzm0rW0RIi1OXHwnpQ4WVB+cbSzLplTeAWrIDZaavU="
-  ]
+  "proof-identifier": "merkle:sha-256",
+  "entry-number": "123",
+  "merkle-audit-path": [ "zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8=", "e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY=" ]
 }
 </pre>
 </div>
@@ -237,7 +236,7 @@ The following example shows a register proof in the [[#json-representation]]:
 # Immutable resources # {#immutable-resources}
 
 An immutable resource, is one whose contents will never change.
-An instance of an [[#item-resource]], [[#entry-resource]] and [[#proof-node-resource]] are all deemed to be immutable.
+An instance of an [[#item-resource]] and an [[#entry-resource]] are both deemed to be immutable.
 
 # Collection resources # {#list-resources}
 
@@ -430,17 +429,17 @@ http://school.register.gov.uk/religious-character/Quaker.json
 The following example shows a set of register proofs in the [[#json-representation]]:
 
 <pre highlight="json">
-['certificate-transparency']
+['merkle:sha-256']
 </pre>
 </div>
 
 Note: A register MAY have more than one proof, to support multiple types of proof in the future.
 
-## Entry proof nodes resource ## {#entry-proof-resource}
+## Entry proof nodes resource ## {#entry-proofs-resource}
 
 <dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs</dd></dt></dl>
 
-A set of links to the [[#proof-resource]]s and [[#proof-node-resource]]s which reference this entry.
+A set of links to the [[#register-proof-resource]]s and [[#entry-proof-resource]]s which reference this entry.
 
 
 # Archive resources # {#archive-resources}
@@ -656,10 +655,6 @@ ISSUE(openregister/specification#25): we need to ensure our objecthash generates
 
 ## last-updated ## {#last-updated-field}
 
-## proof-identifier ## {#proof-identifier-field}
-
-## proof-node-hash ## {#proof-node-hash-field}
-
 ## field ## {#field-field}
 
 
@@ -772,7 +767,7 @@ ISSUE(openregister/specification#29): What happens when a key is rotated?
 
 ### Verifying an entry ### {#ct-verify-entry}
 
-
+### Verifying consistency ### {#ct-verify-consistency}
 
 # Minting a new entry # {#minting}
 
