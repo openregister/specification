@@ -127,6 +127,7 @@ the [[#item-resource]] for the entry.
 <div class="example">
 The following example shows an entry in the [[#json-representation]]:
 
+<assert>
 <pre highlight="json">
 {
     "entry-number": "72",
@@ -134,6 +135,7 @@ The following example shows an entry in the [[#json-representation]]:
     "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"
 }
 </pre>
+</assert>
 </div>
 
 ISSUE(openregister/specification#4): IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the [[#timestamp-datatype]].

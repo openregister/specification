@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-02-24">24 February 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-02">2 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1547,14 +1547,11 @@ never gets changed.</p>
    <p>An entry is an <a href="#entry-number-field">§10.4 entry-number</a>, a timestamp, and an <a href="#item-hash-field">§10.5 item-hash</a>.  The entry-number is unique and defines the
 entry’s position within the ordered list.  The item-hash identifies
 the <a href="#item-resource">§3.1 Item resource</a> for the entry.</p>
-   <div class="example" id="example-55fab6ed">
-    <a class="self-link" href="#example-55fab6ed"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre class="highlight"><span class="p">{</span>
+   <div class="example" id="example-87daf11f"><a class="self-link" href="#example-87daf11f"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: <span id="assert-df4a8358"> <pre class="highlight"><span class="p">{</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
     <span class="nt">"entry-timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"</span>
-<span class="p">}</span></pre>
-   </div>
+<span class="p">}</span></pre> </span> </div>
    <p class="issue" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a></p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
    <dl class="resource">
