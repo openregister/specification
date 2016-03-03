@@ -218,7 +218,7 @@ The following example shows a register in the [[#json-representation]]:
 </div>
 
 ## Register proof resource ## {#register-proof-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/{proof-identifier}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/proof/register/{proof-identifier}</dd></dt></dl>
 
 A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.
 
@@ -264,6 +264,31 @@ https://school.register.gov.uk/proof/entry/123/merkle:sha-256
   "proof-identifier": "merkle:sha-256",
   "entry-number": "123",
   "merkle-audit-path": [ "zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8=", "e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY=" ]
+}
+</pre>
+</div>
+
+## Consistency proof resource ## {#consistency-proof-resource}
+<dl class="resource"><dt>Path</dt><dd>/proof/consistency/{total-entries-1}/{total-entries-2}/{proof-identifier}</dd></dl>
+
+A consistency proof proves the append-only property of a register.
+
+Assuming n is the greatest of total-entries-1 and total-entries-2 and m is the smallest of total-entries-1 and total-entries-2 (m <= n), a consistency proof for a register of n entries and a previous version of the same register with m entries is the information required to prove that the first m entries are equal for both, given a [[#register-proof-resource]] for both versions of the register.
+
+The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.
+
+There may be different kinds of consistency proof available.
+
+<div class="example">
+The following example shows a Merkle-tree-based consistency proof in the [[#json-representation]]:
+
+<pre>
+https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
+</pre>
+<pre highlight="json">
+{
+  "proof-identifier": "merkle:sha-256",
+  "merkle-consistency-path": [ "MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM=", "TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE=" ]
 }
 </pre>
 </div>

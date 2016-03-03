@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-02">2 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-03">3 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1378,6 +1378,7 @@ data held in an open register.</p>
       <li><a href="#register-resource"><span class="secno">3.4</span> <span class="content">Register resource</span></a>
       <li><a href="#register-proof-resource"><span class="secno">3.5</span> <span class="content">Register proof resource</span></a>
       <li><a href="#entry-proof-resource"><span class="secno">3.6</span> <span class="content">Entry proof resource</span></a>
+      <li><a href="#consistency-proof-resource"><span class="secno">3.7</span> <span class="content">Consistency proof resource</span></a>
      </ol>
     <li><a href="#immutable-resources"><span class="secno">4</span> <span class="content">Immutable resources</span></a>
     <li>
@@ -1634,7 +1635,7 @@ the latest one with the given primary key value.</p>
    <h3 class="heading settled" data-level="3.5" id="register-proof-resource"><span class="secno">3.5. </span><span class="content">Register proof resource</span><a class="self-link" href="#register-proof-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/proof/{proof-identifier}
+    <dd>/proof/register/{proof-identifier}
    </dl>
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
    <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.7 Proofs resource</a> indicates which proofs are available.</p>
@@ -1668,6 +1669,24 @@ the latest one with the given primary key value.</p>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
   <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"123"</span><span class="p">,</span>
   <span class="nt">"merkle-audit-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8="</span><span class="p">,</span> <span class="s2">"e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY="</span> <span class="p">]</span>
+<span class="p">}</span></pre>
+   </div>
+   <h3 class="heading settled" data-level="3.7" id="consistency-proof-resource"><span class="secno">3.7. </span><span class="content">Consistency proof resource</span><a class="self-link" href="#consistency-proof-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proof/consistency/{total-entries-1}/{total-entries-2}/{proof-identifier}
+   </dl>
+   <p>A consistency proof proves the append-only property of a register.</p>
+   <p>Assuming n is the greatest of total-entries-1 and total-entries-2 and m is the smallest of total-entries-1 and total-entries-2 (m &lt;= n), a consistency proof for a register of n entries and a previous version of the same register with m entries is the information required to prove that the first m entries are equal for both, given a <a href="#register-proof-resource">§3.5 Register proof resource</a> for both versions of the register.</p>
+   <p>The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.</p>
+   <p>There may be different kinds of consistency proof available.</p>
+   <div class="example" id="example-656e5533">
+    <a class="self-link" href="#example-656e5533"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre>https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
+</pre>
+<pre class="highlight"><span class="p">{</span>
+  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
+  <span class="nt">"merkle-consistency-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
    <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
