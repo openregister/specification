@@ -910,6 +910,10 @@ ISSUE(openregister/specification#29): What happens when a key is rotated?
 
 ### Verifying consistency ### {#ct-verify-consistency}
 
+### Verifying the records ### {#ct-verify-records}
+
+### Verifying a record ### {#ct-verify-record}
+
 # Minting a new entry # {#minting}
 
   To mint a new entry in the register:
