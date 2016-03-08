@@ -900,15 +900,31 @@ The following example shows an [[#item-resource]] in the [[#ttl-representation]]
 
 ### Signed tree head ### {#signed-tree-head}
 
+The signed tree head for a register is available from the [[#register-proof-resource]], specifiying the proof-identifier as merkle:sha-256.
+
+The signed tree head for a register is the signed Merkle tree hash ([[RFC6962]] section 2.1) of a Merkle tree containing all entries in the register. 
+
 ISSUE(openregister/specification#29): What happens when a key is rotated?
 
 ### Leaf signature ### {#leaf-signature}
 
 ### Verifying the register ### {#ct-verify-register}
 
+To verify a register obtained from the [[#download]], a client must compute the Merkle tree hash from the complete list of raw [[#entry-resource]], as per [[RFC6962]] section 2.1, ensuring that it equals the tree-hash of the [[#register-proof-resource]] and that they can verify the signed tree head. 
+
+The client must also verify that for each [[#entry-resource]] in the register there exists an item with the corresponding [[#item-hash-datatype]] and that the contents of the item generate the correct [[#item-hash-datatype]].
+
 ### Verifying an entry ### {#ct-verify-entry}
 
+The merkle-audit-path for the entry from the [[#entry-proof-resource]] provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree hash. 
+
+To verify an entry exists in the register, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per [[RFC6962]] section 2.1.1, and verify that the resulting Merkle tree hash is equal to the root-hash of the [[#register-proof-resource]].
+
 ### Verifying consistency ### {#ct-verify-consistency}
+
+The merkle-consistency-path from the [[#consistency-proof-resource]] for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.
+
+To verify the consistency of two versions of a register, the client must prove that given the [[#register-proof-resource]] for both registers, the root-hash for the larger register can be computed by combining the root-hash of the smaller register with each consecutive Merkle tree node in the merkle-consistency-path, as per [[RFC6962]] section 2.1.2.
 
 ### Verifying the records ### {#ct-verify-records}
 
