@@ -1660,9 +1660,9 @@ the latest one with the given primary key value.</p>
    <h3 class="heading settled" data-level="3.6" id="entry-proof-resource"><span class="secno">3.6. </span><span class="content">Entry proof resource</span><a class="self-link" href="#entry-proof-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{proof-identifier}
+    <dd>/proof/entry/{total-entries}/{<a href="#entry-number-field">entry-number</a>}/{proof-identifier}
    </dl>
-   <p>An entry proof is the information required to prove the integrity of a single entry within a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
+   <p>An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
    <p>There may be different kinds of entry proof available.</p>
    <div class="example" id="example-57aa826f">
@@ -1696,9 +1696,9 @@ the latest one with the given primary key value.</p>
    <h3 class="heading settled" data-level="3.8" id="record-proof-resource"><span class="secno">3.8. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/proof/record/{<a href="#field-value">field-value</a>}/{proof-identifier}
+    <dd>/proof/record/{total-entries}/{<a href="#field-value">field-value</a>}/{proof-identifier}
    </dl>
-   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record, given a <a href="#records-proof-resource">§5.7 Records proof resource</a></p>
+   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§5.7 Records proof resource</a></p>
    <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
    <p>There may different kinds of record proof available.</p>
    <div class="example" id="example-69887fa5">
@@ -2529,10 +2529,10 @@ example, in the "school" register the primary key field is also called
    <p>The client must also verify that for each <a href="#entry-resource">§3.2 Entry resource</a> in the register there exists an item with the corresponding <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> and that the contents of the item generate the correct <a href="#item-hash-datatype">§9.10 Item-hash datatype</a>.</p>
    <h4 class="heading settled" data-level="13.1.4" id="ct-verify-entry"><span class="secno">13.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
    <p>The merkle-audit-path for the entry from the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree hash.</p>
-   <p>To verify an entry exists in the register, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
+   <p>To verify an entry exists in a register, given that total-entries of the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> equals the tree-size of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <h4 class="heading settled" data-level="13.1.5" id="ct-verify-consistency"><span class="secno">13.1.5. </span><span class="content">Verifying consistency</span><a class="self-link" href="#ct-verify-consistency"></a></h4>
    <p>The merkle-consistency-path from the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.</p>
-   <p>To verify the consistency of two versions of a register, the client must prove that given the <a href="#register-proof-resource">§3.5 Register proof resource</a> for both registers, the root-hash for the larger register can be computed by combining the root-hash of the smaller register with each consecutive Merkle tree node in the merkle-consistency-path, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2.</p>
+   <p>To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> equal the tree-size of each <a href="#register-proof-resource">§3.5 Register proof resource</a>, the client must prove that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the larger register can be computed by combining the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the smaller register with each consecutive Merkle tree node in the merkle-consistency-path from the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a>, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2.</p>
    <h4 class="heading settled" data-level="13.1.6" id="ct-verify-records"><span class="secno">13.1.6. </span><span class="content">Verifying the records</span><a class="self-link" href="#ct-verify-records"></a></h4>
    <h4 class="heading settled" data-level="13.1.7" id="ct-verify-record"><span class="secno">13.1.7. </span><span class="content">Verifying a record</span><a class="self-link" href="#ct-verify-record"></a></h4>
    <h2 class="heading settled" data-level="14" id="minting"><span class="secno">14. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
