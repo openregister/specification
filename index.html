@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-03">3 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-08">8 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1379,6 +1379,7 @@ data held in an open register.</p>
       <li><a href="#register-proof-resource"><span class="secno">3.5</span> <span class="content">Register proof resource</span></a>
       <li><a href="#entry-proof-resource"><span class="secno">3.6</span> <span class="content">Entry proof resource</span></a>
       <li><a href="#consistency-proof-resource"><span class="secno">3.7</span> <span class="content">Consistency proof resource</span></a>
+      <li><a href="#record-proof-resource"><span class="secno">3.8</span> <span class="content">Record proof resource</span></a>
      </ol>
     <li><a href="#immutable-resources"><span class="secno">4</span> <span class="content">Immutable resources</span></a>
     <li>
@@ -1390,8 +1391,9 @@ data held in an open register.</p>
       <li><a href="#record-entries-resource"><span class="secno">5.4</span> <span class="content">Record entries resource</span></a>
       <li><a href="#records-resource"><span class="secno">5.5</span> <span class="content">Records resource</span></a>
       <li><a href="#faceted-records-resource"><span class="secno">5.6</span> <span class="content">Faceted records resource</span></a>
-      <li><a href="#proofs-resource"><span class="secno">5.7</span> <span class="content">Proofs resource</span></a>
-      <li><a href="#entry-proofs-resource"><span class="secno">5.8</span> <span class="content">Entry proof nodes resource</span></a>
+      <li><a href="#records-proof-resource"><span class="secno">5.7</span> <span class="content">Records proof resource</span></a>
+      <li><a href="#proofs-resource"><span class="secno">5.8</span> <span class="content">Proofs resource</span></a>
+      <li><a href="#entry-proofs-resource"><span class="secno">5.9</span> <span class="content">Entry proof nodes resource</span></a>
      </ol>
     <li>
      <a href="#archive-resources"><span class="secno">6</span> <span class="content">Archive resources</span></a>
@@ -1638,7 +1640,7 @@ the latest one with the given primary key value.</p>
     <dd>/proof/register/{proof-identifier}
    </dl>
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
-   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.7 Proofs resource</a> indicates which proofs are available.</p>
+   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.8 Proofs resource</a> indicates which proofs are available.</p>
    <div class="example" id="example-adaa8951">
     <a class="self-link" href="#example-adaa8951"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
@@ -1687,6 +1689,23 @@ the latest one with the given primary key value.</p>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
   <span class="nt">"merkle-consistency-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
+<span class="p">}</span></pre>
+   </div>
+   <h3 class="heading settled" data-level="3.8" id="record-proof-resource"><span class="secno">3.8. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proof/record/{<a href="#field-value">field-value</a>}/{proof-identifier}
+   </dl>
+   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record, given a <a href="#records-proof-resource">§5.7 Records proof resource</a></p>
+   <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
+   <p>There may different kinds of record proof available.</p>
+   <div class="example" id="example-69887fa5">
+    <a class="self-link" href="#example-69887fa5"></a> The following example shows a Merkle-tree-based record proof in the <a href="#json-representation">§12.2 JSON representation</a>. This particular proof algorithm would return an array of 256 Merkle tree nodes: 
+<pre>https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
+</pre>
+<pre class="highlight"><span class="p">{</span>
+  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
+  <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> <span class="err">...</span><span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
    <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
@@ -1847,7 +1866,30 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="5.7" id="proofs-resource"><span class="secno">5.7. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
+   <h3 class="heading settled" data-level="5.7" id="records-proof-resource"><span class="secno">5.7. </span><span class="content">Records proof resource</span><a class="self-link" href="#records-proof-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proof/records/{proof-identifier}
+   </dl>
+   <p>A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.</p>
+   <p>There may be different kinds of records proof available.</p>
+   <div class="example" id="example-b69bcfcb">
+    <a class="self-link" href="#example-b69bcfcb"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre>https://local-authority.register.gov.uk/proof/records/merkle:sha-256
+</pre>
+<pre class="highlight"><span class="p">{</span>
+  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
+  <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:h/gTTXO9M9KARSc35nWMY1zrkISUrQYjF2ZowZgGNQg="</span><span class="p">,</span>
+  <span class="nt">"register-proof"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"tree-size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
+    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
+    <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
+  <span class="p">},</span>
+  <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"</span>
+<span class="p">}</span></pre>
+   </div>
+   <h3 class="heading settled" data-level="5.8" id="proofs-resource"><span class="secno">5.8. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
    <dl class="resource">
     <dt>Path
     <dd>/proofs
@@ -1858,7 +1900,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
 <pre class="highlight"><span class="p">[</span><span class="err">'merkle:sha</span><span class="mi">-256</span><span class="err">'</span><span class="p">]</span></pre>
    </div>
    <p class="note" role="note">Note: A register MAY have more than one proof, to support multiple types of proof in the future.</p>
-   <h3 class="heading settled" data-level="5.8" id="entry-proofs-resource"><span class="secno">5.8. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proofs-resource"></a></h3>
+   <h3 class="heading settled" data-level="5.9" id="entry-proofs-resource"><span class="secno">5.9. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proofs-resource"></a></h3>
    <dl class="resource">
     <dt>Path
     <dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs
