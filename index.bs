@@ -273,7 +273,7 @@ https://school.register.gov.uk/proof/entry/123/merkle:sha-256
 
 A consistency proof proves the append-only property of a register.
 
-Assuming n is the greatest of total-entries-1 and total-entries-2 and m is the smallest of total-entries-1 and total-entries-2 (m <= n), a consistency proof for a register of n entries and a previous version of the same register with m entries is the information required to prove that the first m entries are equal for both, given a [[#register-proof-resource]] for both versions of the register.
+The consistency proof for a register containing total-entries-2 entries and a previous version of the same register containing total-entries-1 entries (total-entries-2 > total-entries-1) is the information required to prove that the first total-entries-1 entries are equal for both, given a [[#register-proof-resource]] for each version of the register.
 
 The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.
 
