@@ -906,7 +906,7 @@ The following example shows an [[#item-resource]] in the [[#ttl-representation]]
 
 The signed tree head for a register is available from the [[#register-proof-resource]], specifiying the proof-identifier as merkle:sha-256.
 
-The signed tree head for a register is the signed Merkle tree hash ([[RFC6962]] section 2.1) of a Merkle tree containing all entries in the register. 
+The signed tree head for a register is the signed Merkle tree root hash ([[RFC6962]] section 2.1) of a Merkle tree containing all entries in the register. 
 
 ISSUE(openregister/specification#29): What happens when a key is rotated?
 
@@ -920,9 +920,9 @@ The client must also verify that for each [[#entry-resource]] in the register th
 
 ### Verifying an entry ### {#ct-verify-entry}
 
-The merkle-audit-path for the entry from the [[#entry-proof-resource]] provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree hash.
+The merkle-audit-path for the entry from the [[#entry-proof-resource]] provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree root hash.
 
-To verify an entry exists in a register, given that total-entries of the [[#entry-proof-resource]] equals the tree-size of the [[#register-proof-resource]], a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per [[RFC6962]] section 2.1.1, and verify that the resulting Merkle tree hash is equal to the root-hash of the [[#register-proof-resource]].
+To verify an entry exists in a register, given that total-entries of the [[#entry-proof-resource]] equals the tree-size of the [[#register-proof-resource]], a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per [[RFC6962]] section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the [[#register-proof-resource]].
 
 ### Verifying consistency ### {#ct-verify-consistency}
 
