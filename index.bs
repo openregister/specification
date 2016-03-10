@@ -296,7 +296,7 @@ https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 ## Record proof resource ## {#record-proof-resource}
 <dl class="resource"><dt>Path</dt><dd>/proof/record/{total-entries}/{<a href="#field-value">field-value</a>}/{proof-identifier}</dd></dl>
 
-A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a [[#records-proof-resource]]
+A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a [[#records-proof-resource]].
 
 The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.
 
@@ -315,6 +315,8 @@ https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
 }
 </pre>
 </div>
+
+ISSUE(openregister/specification#46): Record proof resource is experimental.
 
 # Immutable resources # {#immutable-resources}
 
@@ -543,6 +545,8 @@ https://local-authority.register.gov.uk/proof/records/merkle:sha-256
 }
 </pre>
 </div>
+
+ISSUE(openregister/specification#46): Records proof resource is experimental.
 
 ## Proofs resource ## {#proofs-resource}
 

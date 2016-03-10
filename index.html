@@ -1698,7 +1698,7 @@ the latest one with the given primary key value.</p>
     <dt>Path
     <dd>/proof/record/{total-entries}/{<a href="#field-value">field-value</a>}/{proof-identifier}
    </dl>
-   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§5.7 Records proof resource</a></p>
+   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§5.7 Records proof resource</a>.</p>
    <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
    <p>There may different kinds of record proof available.</p>
    <div class="example" id="example-69887fa5">
@@ -1710,6 +1710,7 @@ the latest one with the given primary key value.</p>
   <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> <span class="err">...</span><span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
+   <p class="issue" id="issue-dd4ca9b1"><a class="self-link" href="#issue-dd4ca9b1"></a> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
    <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
    <p>An immutable resource, is one whose contents will never change.
 An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a href="#entry-resource">§3.2 Entry resource</a> are both deemed to be immutable.</p>
@@ -1891,6 +1892,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
   <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"</span>
 <span class="p">}</span></pre>
    </div>
+   <p class="issue" id="issue-06d108e8"><a class="self-link" href="#issue-06d108e8"></a> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
    <h3 class="heading settled" data-level="5.8" id="proofs-resource"><span class="secno">5.8. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
    <dl class="resource">
     <dt>Path
@@ -2680,6 +2682,7 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="issue"> IMPLEMENTATION the current item URL returns a record, not an item <a href="https://github.com/openregister/specification/issues/3">&lt;https://github.com/openregister/specification/issues/3></a><a href="#issue-76d8299f"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a><a href="#issue-850458d5"> ↵ </a></div>
    <div class="issue"> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a><a href="#issue-ba4608f8"> ↵ </a></div>
+   <div class="issue"> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a><a href="#issue-dd4ca9b1"> ↵ </a></div>
    <div class="issue"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a><a href="#issue-9ee875b6"> ↵ </a></div>
@@ -2689,6 +2692,7 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="issue"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a><a href="#issue-1dc835c7"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a><a href="#issue-8815c872"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a><a href="#issue-d994c4f5"> ↵ </a></div>
+   <div class="issue"> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a><a href="#issue-06d108e8"> ↵ </a></div>
    <div class="issue"> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a><a href="#issue-a9ea3195"> ↵ </a></div>
    <div class="issue"> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a><a href="#issue-941daf47"> ↵ </a></div>
    <div class="issue"> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a><a href="#issue-37c7e097"> ↵ </a></div>
