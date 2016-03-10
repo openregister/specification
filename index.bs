@@ -288,7 +288,7 @@ https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 <pre highlight="json">
 {
   "proof-identifier": "merkle:sha-256",
-  "merkle-consistency-path": [ "MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM=", "TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE=" ]
+  "merkle-consistency-nodes": [ "MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM=", "TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE=" ]
 }
 </pre>
 </div>
@@ -922,9 +922,9 @@ To verify an entry exists in a register, given that total-entries of the [[#entr
 
 ### Verifying consistency ### {#ct-verify-consistency}
 
-The merkle-consistency-path from the [[#consistency-proof-resource]] for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.
+The merkle-consistency-nodes from the [[#consistency-proof-resource]] for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.
 
-To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the [[#consistency-proof-resource]] equal the tree-size of each [[#register-proof-resource]], the client must prove that the root-hash of the [[#register-proof-resource]] for the larger register can be computed by combining the root-hash of the [[#register-proof-resource]] for the smaller register with each consecutive Merkle tree node in the merkle-consistency-path from the [[#consistency-proof-resource]], as per [[RFC6962]] section 2.1.2.
+To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the [[#consistency-proof-resource]] equal the tree-size of each [[#register-proof-resource]], the client must prove that the root-hash of the [[#register-proof-resource]] for the larger register can be computed by combining the root-hash of the [[#register-proof-resource]] for the smaller register with each consecutive Merkle tree node in the merkle-consistency-nodes from the [[#consistency-proof-resource]], as per [[RFC6962]] section 2.1.2.
 
 ### Verifying the records ### {#ct-verify-records}
 
