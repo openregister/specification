@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-08">8 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-11">11 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1558,6 +1558,7 @@ the <a href="#item-resource">§3.1 Item resource</a> for the entry.</p>
     <span class="nt">"item-hash"</span><span class="p">:</span> <span class="s2">"sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"</span>
 <span class="p">}</span></pre> </span> </div>
    <p class="issue" id="issue-850458d5"><a class="self-link" href="#issue-850458d5"></a> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a></p>
+   <p class="issue" id="issue-1de3eab4"><a class="self-link" href="#issue-1de3eab4"></a> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a></p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
    <dl class="resource">
     <dt>Path
@@ -2679,6 +2680,7 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="issue"> possible confusion: "data item" and "item" mean different things <a href="https://github.com/openregister/specification/issues/40">&lt;https://github.com/openregister/specification/issues/40></a><a href="#issue-395b98a4"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION the current item URL returns a record, not an item <a href="https://github.com/openregister/specification/issues/3">&lt;https://github.com/openregister/specification/issues/3></a><a href="#issue-76d8299f"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a><a href="#issue-850458d5"> ↵ </a></div>
+   <div class="issue"> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a><a href="#issue-1de3eab4"> ↵ </a></div>
    <div class="issue"> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a><a href="#issue-ba4608f8"> ↵ </a></div>
    <div class="issue"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>

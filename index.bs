@@ -140,6 +140,8 @@ The following example shows an entry in the [[#json-representation]]:
 
 ISSUE(openregister/specification#4): IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the [[#timestamp-datatype]].
 
+ISSUE(openregister/specification#48): Entry timestamp semantics are not defined.
+
 ## Record resource ## {#record-resource}
 
 <dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}</dd></dt></dl>
