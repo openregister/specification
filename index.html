@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-10">10 March 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-03-11">11 March 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1454,8 +1454,8 @@ data held in an open register.</p>
       <li>
        <a href="#using-certificate-transparency"><span class="secno">13.1</span> <span class="content">Certificate transparency</span></a>
        <ol class="toc">
-        <li><a href="#signed-tree-head"><span class="secno">13.1.1</span> <span class="content">Signed tree head</span></a>
-        <li><a href="#leaf-signature"><span class="secno">13.1.2</span> <span class="content">Leaf signature</span></a>
+        <li><a href="#entry-hash"><span class="secno">13.1.1</span> <span class="content">Entry hash</span></a>
+        <li><a href="#signed-tree-head"><span class="secno">13.1.2</span> <span class="content">Signed tree head</span></a>
         <li><a href="#ct-verify-register"><span class="secno">13.1.3</span> <span class="content">Verifying the register</span></a>
         <li><a href="#ct-verify-entry"><span class="secno">13.1.4</span> <span class="content">Verifying an entry</span></a>
         <li><a href="#ct-verify-consistency"><span class="secno">13.1.5</span> <span class="content">Verifying consistency</span></a>
@@ -2521,11 +2521,13 @@ example, in the "school" register the primary key field is also called
    <h2 class="heading settled" data-level="13" id="digital-proofs"><span class="secno">13. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
    <h3 class="heading settled" data-level="13.1" id="using-certificate-transparency"><span class="secno">13.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
-   <h4 class="heading settled" data-level="13.1.1" id="signed-tree-head"><span class="secno">13.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
+   <h4 class="heading settled" data-level="13.1.1" id="entry-hash"><span class="secno">13.1.1. </span><span class="content">Entry hash</span><a class="self-link" href="#entry-hash"></a></h4>
+   <p>The entry hash is the application of a supported hashing algorithm on the data contained in the <a href="#entry-resource">§3.2 Entry resource</a>. The <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> of the entry, rather than the item itself (<a href="#item-resource">§3.1 Item resource</a>), is part of the raw data hashed to create the entry hash.</p>
+   <p>The entry hash is required for many operations in Certificate Transparency.</p>
+   <h4 class="heading settled" data-level="13.1.2" id="signed-tree-head"><span class="secno">13.1.2. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
    <p>The signed tree head for a register is available from the <a href="#register-proof-resource">§3.5 Register proof resource</a>, specifiying the proof-identifier as merkle:sha-256.</p>
    <p>The signed tree head for a register is the signed Merkle tree root hash (<a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1) of a Merkle tree containing all entries in the register.</p>
    <p class="issue" id="issue-a8551e06"><a class="self-link" href="#issue-a8551e06"></a> What happens when a key is rotated? <a href="https://github.com/openregister/specification/issues/29">&lt;https://github.com/openregister/specification/issues/29></a></p>
-   <h4 class="heading settled" data-level="13.1.2" id="leaf-signature"><span class="secno">13.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
    <h4 class="heading settled" data-level="13.1.3" id="ct-verify-register"><span class="secno">13.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
    <p>To verify a register obtained from the <a href="#download">§6.1 Download page</a>, a client must compute the Merkle tree root hash from the complete list of raw <a href="#entry-resource">§3.2 Entry resource</a>, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1, ensuring that it equals the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> and that the same tree-head-signature can be generated by signing the root-hash against a public key.</p>
    <p>The client must also verify that for each <a href="#entry-resource">§3.2 Entry resource</a> in the register there exists an item with the corresponding <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> and that the contents of the item generate the correct <a href="#item-hash-datatype">§9.10 Item-hash datatype</a>.</p>

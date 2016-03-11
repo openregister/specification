@@ -902,6 +902,12 @@ The following example shows an [[#item-resource]] in the [[#ttl-representation]]
 ## Certificate transparency ## {#using-certificate-transparency}
   Certificate Transparency [[RFC6962]] is one of a number of possible methods of proving the integrity of a register.
 
+### Entry hash ### {#entry-hash}
+
+The entry hash is the application of a supported hashing algorithm on the data contained in the [[#entry-resource]]. The [[#item-hash-datatype]] of the entry, rather than the item itself ([[#item-resource]]), is part of the raw data hashed to create the entry hash.
+
+The entry hash is required for many operations in Certificate Transparency.
+
 ### Signed tree head ### {#signed-tree-head}
 
 The signed tree head for a register is available from the [[#register-proof-resource]], specifiying the proof-identifier as merkle:sha-256.
@@ -909,8 +915,6 @@ The signed tree head for a register is available from the [[#register-proof-reso
 The signed tree head for a register is the signed Merkle tree root hash ([[RFC6962]] section 2.1) of a Merkle tree containing all entries in the register. 
 
 ISSUE(openregister/specification#29): What happens when a key is rotated?
-
-### Leaf signature ### {#leaf-signature}
 
 ### Verifying the register ### {#ct-verify-register}
 
