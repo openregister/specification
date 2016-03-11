@@ -926,13 +926,13 @@ The client must also verify that for each [[#entry-resource]] in the register th
 
 The merkle-audit-path for the entry from the [[#entry-proof-resource]] provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree root hash.
 
-To verify an entry exists in a register, given that total-entries of the [[#entry-proof-resource]] equals the tree-size of the [[#register-proof-resource]], a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per [[RFC6962]] section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the [[#register-proof-resource]]. The client should also verify the computed root-hash against the [[#signed-tree-head]] using a public key.
+To verify an entry exists in a register, given that total-entries of the [[#entry-proof-resource]] equals the tree-size of the [[#register-proof-resource]], a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per [[RFC6962]] section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the [[#register-proof-resource]]. The client should also verify the [[#signed-tree-head]] against the computed root-hash using a public key.
 
 ### Verifying consistency ### {#ct-verify-consistency}
 
 The merkle-consistency-nodes from the [[#consistency-proof-resource]] for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.
 
-To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the [[#consistency-proof-resource]] equal the tree-size of each [[#register-proof-resource]], the client must prove that the root-hash of the [[#register-proof-resource]] for the larger register can be computed by combining the root-hash of the [[#register-proof-resource]] for the smaller register with each consecutive Merkle tree node in the merkle-consistency-nodes from the [[#consistency-proof-resource]], as per [[RFC6962]] section 2.1.2.
+To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the [[#consistency-proof-resource]] equal the tree-size of each [[#register-proof-resource]], the client must prove that the root-hash of the [[#register-proof-resource]] for the larger register can be computed using the set of consistency-proof-nodes and that the root-hash of the [[#register-proof-resource]] for the smaller register can be computed using a subset of the same consistency-proof-nodes, as per [[RFC6962]] section 2.1.2. The client must also verify the corresponding [[#signed-tree-head]] against each root-hash using a public key.
 
 ### Verifying the records ### {#ct-verify-records}
 
