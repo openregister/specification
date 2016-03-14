@@ -1379,7 +1379,8 @@ data held in an open register.</p>
       <li><a href="#register-proof-resource"><span class="secno">3.5</span> <span class="content">Register proof resource</span></a>
       <li><a href="#entry-proof-resource"><span class="secno">3.6</span> <span class="content">Entry proof resource</span></a>
       <li><a href="#consistency-proof-resource"><span class="secno">3.7</span> <span class="content">Consistency proof resource</span></a>
-      <li><a href="#record-proof-resource"><span class="secno">3.8</span> <span class="content">Record proof resource</span></a>
+      <li><a href="#records-proof-resource"><span class="secno">3.8</span> <span class="content">Records proof resource</span></a>
+      <li><a href="#record-proof-resource"><span class="secno">3.9</span> <span class="content">Record proof resource</span></a>
      </ol>
     <li><a href="#immutable-resources"><span class="secno">4</span> <span class="content">Immutable resources</span></a>
     <li>
@@ -1391,9 +1392,8 @@ data held in an open register.</p>
       <li><a href="#record-entries-resource"><span class="secno">5.4</span> <span class="content">Record entries resource</span></a>
       <li><a href="#records-resource"><span class="secno">5.5</span> <span class="content">Records resource</span></a>
       <li><a href="#faceted-records-resource"><span class="secno">5.6</span> <span class="content">Faceted records resource</span></a>
-      <li><a href="#records-proof-resource"><span class="secno">5.7</span> <span class="content">Records proof resource</span></a>
-      <li><a href="#proofs-resource"><span class="secno">5.8</span> <span class="content">Proofs resource</span></a>
-      <li><a href="#entry-proofs-resource"><span class="secno">5.9</span> <span class="content">Entry proof nodes resource</span></a>
+      <li><a href="#proofs-resource"><span class="secno">5.7</span> <span class="content">Proofs resource</span></a>
+      <li><a href="#entry-proofs-resource"><span class="secno">5.8</span> <span class="content">Entry proof nodes resource</span></a>
      </ol>
     <li>
      <a href="#archive-resources"><span class="secno">6</span> <span class="content">Archive resources</span></a>
@@ -1454,8 +1454,8 @@ data held in an open register.</p>
       <li>
        <a href="#using-certificate-transparency"><span class="secno">13.1</span> <span class="content">Certificate transparency</span></a>
        <ol class="toc">
-        <li><a href="#signed-tree-head"><span class="secno">13.1.1</span> <span class="content">Signed tree head</span></a>
-        <li><a href="#leaf-signature"><span class="secno">13.1.2</span> <span class="content">Leaf signature</span></a>
+        <li><a href="#entry-hash"><span class="secno">13.1.1</span> <span class="content">Entry hash</span></a>
+        <li><a href="#signed-tree-head"><span class="secno">13.1.2</span> <span class="content">Signed tree head</span></a>
         <li><a href="#ct-verify-register"><span class="secno">13.1.3</span> <span class="content">Verifying the register</span></a>
         <li><a href="#ct-verify-entry"><span class="secno">13.1.4</span> <span class="content">Verifying an entry</span></a>
         <li><a href="#ct-verify-consistency"><span class="secno">13.1.5</span> <span class="content">Verifying consistency</span></a>
@@ -1643,7 +1643,7 @@ the latest one with the given primary key value.</p>
     <dd>/proof/register/{proof-identifier}
    </dl>
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
-   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.8 Proofs resource</a> indicates which proofs are available.</p>
+   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.7 Proofs resource</a> indicates which proofs are available.</p>
    <div class="example" id="example-adaa8951">
     <a class="self-link" href="#example-adaa8951"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
@@ -1682,24 +1682,48 @@ the latest one with the given primary key value.</p>
     <dd>/proof/consistency/{total-entries-1}/{total-entries-2}/{proof-identifier}
    </dl>
    <p>A consistency proof proves the append-only property of a register.</p>
-   <p>Assuming n is the greatest of total-entries-1 and total-entries-2 and m is the smallest of total-entries-1 and total-entries-2 (m &lt;= n), a consistency proof for a register of n entries and a previous version of the same register with m entries is the information required to prove that the first m entries are equal for both, given a <a href="#register-proof-resource">§3.5 Register proof resource</a> for both versions of the register.</p>
+   <p>The consistency proof for a register containing total-entries-2 entries and a previous version of the same register containing total-entries-1 entries (total-entries-2 > total-entries-1) is the information required to prove that the first total-entries-1 entries are equal for both, given a <a href="#register-proof-resource">§3.5 Register proof resource</a> for each version of the register.</p>
    <p>The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.</p>
    <p>There may be different kinds of consistency proof available.</p>
-   <div class="example" id="example-656e5533">
-    <a class="self-link" href="#example-656e5533"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-ad2bfbc6">
+    <a class="self-link" href="#example-ad2bfbc6"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"merkle-consistency-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
+  <span class="nt">"merkle-consistency-nodes"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="3.8" id="record-proof-resource"><span class="secno">3.8. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
+   <h3 class="heading settled" data-level="3.8" id="records-proof-resource"><span class="secno">3.8. </span><span class="content">Records proof resource</span><a class="self-link" href="#records-proof-resource"></a></h3>
+   <dl class="resource">
+    <dt>Path
+    <dd>/proof/records/{proof-identifier}
+   </dl>
+   <p>A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.</p>
+   <p>There may be different kinds of records proof available.</p>
+   <div class="example" id="example-b69bcfcb">
+    <a class="self-link" href="#example-b69bcfcb"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre>https://local-authority.register.gov.uk/proof/records/merkle:sha-256
+</pre>
+<pre class="highlight"><span class="p">{</span>
+  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
+  <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:h/gTTXO9M9KARSc35nWMY1zrkISUrQYjF2ZowZgGNQg="</span><span class="p">,</span>
+  <span class="nt">"register-proof"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"tree-size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
+    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
+    <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
+    <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
+  <span class="p">},</span>
+  <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"</span>
+<span class="p">}</span></pre>
+   </div>
+   <p class="issue" id="issue-06d108e8"><a class="self-link" href="#issue-06d108e8"></a> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
+   <h3 class="heading settled" data-level="3.9" id="record-proof-resource"><span class="secno">3.9. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
    <dl class="resource">
     <dt>Path
     <dd>/proof/record/{total-entries}/{<a href="#field-value">field-value</a>}/{proof-identifier}
    </dl>
-   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§5.7 Records proof resource</a></p>
+   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§3.8 Records proof resource</a>.</p>
    <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
    <p>There may different kinds of record proof available.</p>
    <div class="example" id="example-69887fa5">
@@ -1711,6 +1735,7 @@ the latest one with the given primary key value.</p>
   <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> <span class="err">...</span><span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
+   <p class="issue" id="issue-dd4ca9b1"><a class="self-link" href="#issue-dd4ca9b1"></a> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
    <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
    <p>An immutable resource, is one whose contents will never change.
 An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a href="#entry-resource">§3.2 Entry resource</a> are both deemed to be immutable.</p>
@@ -1869,30 +1894,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
   <span class="p">}</span>
 <span class="p">}</span></pre>
    </div>
-   <h3 class="heading settled" data-level="5.7" id="records-proof-resource"><span class="secno">5.7. </span><span class="content">Records proof resource</span><a class="self-link" href="#records-proof-resource"></a></h3>
-   <dl class="resource">
-    <dt>Path
-    <dd>/proof/records/{proof-identifier}
-   </dl>
-   <p>A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.</p>
-   <p>There may be different kinds of records proof available.</p>
-   <div class="example" id="example-b69bcfcb">
-    <a class="self-link" href="#example-b69bcfcb"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre>https://local-authority.register.gov.uk/proof/records/merkle:sha-256
-</pre>
-<pre class="highlight"><span class="p">{</span>
-  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:h/gTTXO9M9KARSc35nWMY1zrkISUrQYjF2ZowZgGNQg="</span><span class="p">,</span>
-  <span class="nt">"register-proof"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"tree-size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
-    <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
-    <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
-  <span class="p">},</span>
-  <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"</span>
-<span class="p">}</span></pre>
-   </div>
-   <h3 class="heading settled" data-level="5.8" id="proofs-resource"><span class="secno">5.8. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
+   <h3 class="heading settled" data-level="5.7" id="proofs-resource"><span class="secno">5.7. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
    <dl class="resource">
     <dt>Path
     <dd>/proofs
@@ -1903,7 +1905,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
 <pre class="highlight"><span class="p">[</span><span class="err">'merkle:sha</span><span class="mi">-256</span><span class="err">'</span><span class="p">]</span></pre>
    </div>
    <p class="note" role="note">Note: A register MAY have more than one proof, to support multiple types of proof in the future.</p>
-   <h3 class="heading settled" data-level="5.9" id="entry-proofs-resource"><span class="secno">5.9. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proofs-resource"></a></h3>
+   <h3 class="heading settled" data-level="5.8" id="entry-proofs-resource"><span class="secno">5.8. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proofs-resource"></a></h3>
    <dl class="resource">
     <dt>Path
     <dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs
@@ -2520,20 +2522,22 @@ example, in the "school" register the primary key field is also called
    <h2 class="heading settled" data-level="13" id="digital-proofs"><span class="secno">13. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
    <h3 class="heading settled" data-level="13.1" id="using-certificate-transparency"><span class="secno">13.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
-   <h4 class="heading settled" data-level="13.1.1" id="signed-tree-head"><span class="secno">13.1.1. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
-   <p>The signed tree head for a register is available from the <a href="#register-proof-resource">§3.5 Register proof resource</a>, specifiying the proof-identifier as merkle:sha-256.</p>
-   <p>The signed tree head for a register is the signed Merkle tree hash (<a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1) of a Merkle tree containing all entries in the register.</p>
+   <h4 class="heading settled" data-level="13.1.1" id="entry-hash"><span class="secno">13.1.1. </span><span class="content">Entry hash</span><a class="self-link" href="#entry-hash"></a></h4>
+   <p>The entry hash is the application of a supported hashing algorithm on the data contained in the <a href="#entry-resource">§3.2 Entry resource</a>. The <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> of the entry, rather than the item itself (<a href="#item-resource">§3.1 Item resource</a>), is part of the raw data hashed to create the entry hash.</p>
+   <p>The entry hash is required for many operations in Certificate Transparency.</p>
+   <h4 class="heading settled" data-level="13.1.2" id="signed-tree-head"><span class="secno">13.1.2. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
+   <p>The signed tree head for a register is the tree-head-signature property of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, where the proof-identifier is specified as merkle:sha-256.</p>
+   <p>The signed tree head for a register is the signed Merkle tree root hash (<a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1) of a Merkle tree containing all entries in the register. The corresponding root-hash is also a property of the <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <p class="issue" id="issue-a8551e06"><a class="self-link" href="#issue-a8551e06"></a> What happens when a key is rotated? <a href="https://github.com/openregister/specification/issues/29">&lt;https://github.com/openregister/specification/issues/29></a></p>
-   <h4 class="heading settled" data-level="13.1.2" id="leaf-signature"><span class="secno">13.1.2. </span><span class="content">Leaf signature</span><a class="self-link" href="#leaf-signature"></a></h4>
    <h4 class="heading settled" data-level="13.1.3" id="ct-verify-register"><span class="secno">13.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
-   <p>To verify a register obtained from the <a href="#download">§6.1 Download page</a>, a client must compute the Merkle tree hash from the complete list of raw <a href="#entry-resource">§3.2 Entry resource</a>, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1, ensuring that it equals the tree-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> and that they can verify the signed tree head.</p>
+   <p>To verify a register obtained from the <a href="#download">§6.1 Download page</a>, a client must compute the Merkle tree root hash from the complete list of raw <a href="#entry-resource">§3.2 Entry resource</a>, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1, ensuring that it equals the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> and that the same <a href="#signed-tree-head">§13.1.2 Signed tree head</a> can be generated by signing the root-hash against a public key.</p>
    <p>The client must also verify that for each <a href="#entry-resource">§3.2 Entry resource</a> in the register there exists an item with the corresponding <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> and that the contents of the item generate the correct <a href="#item-hash-datatype">§9.10 Item-hash datatype</a>.</p>
    <h4 class="heading settled" data-level="13.1.4" id="ct-verify-entry"><span class="secno">13.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
-   <p>The merkle-audit-path for the entry from the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree hash.</p>
-   <p>To verify an entry exists in a register, given that total-entries of the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> equals the tree-size of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
+   <p>The merkle-audit-path for the entry from the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree root hash.</p>
+   <p>To verify an entry exists in a register, given that total-entries of the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> equals the tree-size of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>. The client should also verify the <a href="#signed-tree-head">§13.1.2 Signed tree head</a> against the computed root-hash using a public key.</p>
    <h4 class="heading settled" data-level="13.1.5" id="ct-verify-consistency"><span class="secno">13.1.5. </span><span class="content">Verifying consistency</span><a class="self-link" href="#ct-verify-consistency"></a></h4>
-   <p>The merkle-consistency-path from the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.</p>
-   <p>To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> equal the tree-size of each <a href="#register-proof-resource">§3.5 Register proof resource</a>, the client must prove that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the larger register can be computed by combining the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the smaller register with each consecutive Merkle tree node in the merkle-consistency-path from the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a>, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2.</p>
+   <p>The merkle-consistency-nodes from the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.</p>
+   <p>To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> equal the tree-size of each <a href="#register-proof-resource">§3.5 Register proof resource</a>, the client must prove that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the larger register can be computed using the set of consistency-proof-nodes and that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the smaller register can be computed using a subset of the same consistency-proof-nodes, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2. The client must also verify the corresponding <a href="#signed-tree-head">§13.1.2 Signed tree head</a> against each root-hash using a public key.</p>
    <h4 class="heading settled" data-level="13.1.6" id="ct-verify-records"><span class="secno">13.1.6. </span><span class="content">Verifying the records</span><a class="self-link" href="#ct-verify-records"></a></h4>
    <h4 class="heading settled" data-level="13.1.7" id="ct-verify-record"><span class="secno">13.1.7. </span><span class="content">Verifying a record</span><a class="self-link" href="#ct-verify-record"></a></h4>
    <h2 class="heading settled" data-level="14" id="minting"><span class="secno">14. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
@@ -2682,6 +2686,8 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="issue"> IMPLEMENTATION entry timestamps are currently being recorded in localtime with a "-05:00" suffix. We should force them to be UTC to match the <a href="#timestamp-datatype">§9.5 Timestamp datatype</a>. <a href="https://github.com/openregister/specification/issues/4">&lt;https://github.com/openregister/specification/issues/4></a><a href="#issue-850458d5"> ↵ </a></div>
    <div class="issue"> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a><a href="#issue-1de3eab4"> ↵ </a></div>
    <div class="issue"> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a><a href="#issue-ba4608f8"> ↵ </a></div>
+   <div class="issue"> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a><a href="#issue-06d108e8"> ↵ </a></div>
+   <div class="issue"> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a><a href="#issue-dd4ca9b1"> ↵ </a></div>
    <div class="issue"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a><a href="#issue-9ee875b6"> ↵ </a></div>
