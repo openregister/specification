@@ -142,6 +142,8 @@ ISSUE(openregister/specification#4): IMPLEMENTATION entry timestamps are current
 
 ISSUE(openregister/specification#48): Entry timestamp semantics are not defined.
 
+ISSUE(openregister/specification#50): Hypermedia link from entry to item?
+
 ## Record resource ## {#record-resource}
 
 <dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}</dd></dt></dl>
