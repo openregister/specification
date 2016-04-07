@@ -1768,7 +1768,6 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <dd>/entries
    </dl>
    <p>The entries resource returns the ordered list of all <a href="#entry-resource">§3.2 Entry resource</a>s in order.</p>
-   <p class="issue" id="issue-31859f20"><a class="self-link" href="#issue-31859f20"></a> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a></p>
    <p class="issue" id="issue-9c161095"><a class="self-link" href="#issue-9c161095"></a> What order should /entries be in? <a href="https://github.com/openregister/specification/issues/41">&lt;https://github.com/openregister/specification/issues/41></a></p>
    <div class="example" id="example-5359d953">
     <a class="self-link" href="#example-5359d953"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
@@ -2690,7 +2689,6 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a><a href="#issue-9ee875b6"> ↵ </a></div>
    <div class="issue"> what does the items resource look like in a register with multiple hashing algorithms available? <a href="https://github.com/openregister/specification/issues/38">&lt;https://github.com/openregister/specification/issues/38></a><a href="#issue-64bcb597"> ↵ </a></div>
-   <div class="issue"> IMPLEMENTATION /entries is currently implemented as also returning the item contents. <a href="https://github.com/openregister/specification/issues/10">&lt;https://github.com/openregister/specification/issues/10></a><a href="#issue-31859f20"> ↵ </a></div>
    <div class="issue"> What order should /entries be in? <a href="https://github.com/openregister/specification/issues/41">&lt;https://github.com/openregister/specification/issues/41></a><a href="#issue-9c161095"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a><a href="#issue-1dc835c7"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a><a href="#issue-8815c872"> ↵ </a></div>

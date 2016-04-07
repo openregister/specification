@@ -393,8 +393,6 @@ ISSUE(openregister/specification#38): what does the items resource look like in 
 
 The entries resource returns the ordered list of all [[#entry-resource]]s in order.
 
-ISSUE(openregister/specification#10): IMPLEMENTATION /entries is currently implemented as also returning the item contents.
-
 ISSUE(openregister/specification#41): What order should /entries be in?
 
 <div class="example">
