@@ -108,8 +108,6 @@ https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b41412
 </pre>
 </div>
 
-ISSUE(openregister/specification#3): IMPLEMENTATION the current item URL returns a record, not an item
-
 ## Entry resource ## {#entry-resource}
 
 <dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}</dd></dt></dl>
