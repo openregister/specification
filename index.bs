@@ -853,6 +853,8 @@ item:
 </pre>
 </div>
 
+ISSUE(openregister/specification#51): Which data types should we use from YAML?
+
 ## CSV representation ## {#csv-representation}
   * Suffix: .csv
   * Specification: [[tabular-data-model]]
