@@ -1482,14 +1482,20 @@ data held in an open register.</p>
     <li>
      <a href="#security-considerations"><span class="secno">17</span> <span class="content">Security considerations</span></a>
      <ol class="toc">
-      <li><a href="#mint-access-control"><span class="secno">17.1</span> <span class="content">Mint access control</span></a>
-      <li><a href="#compromised-proof"><span class="secno">17.2</span> <span class="content">Compromised proof</span></a>
-      <li><a href="#stale-record"><span class="secno">17.3</span> <span class="content">Stale record</span></a>
-      <li><a href="#denial-of-service"><span class="secno">17.4</span> <span class="content">Denial of service</span></a>
-      <li><a href="#DNS"><span class="secno">17.5</span> <span class="content">DNS</span></a>
-      <li><a href="#private-key"><span class="secno">17.6</span> <span class="content">Protecting the private key</span></a>
-      <li><a href="#compromised-private-key"><span class="secno">17.7</span> <span class="content">Compromised private key</span></a>
-      <li><a href="#hash-clash"><span class="secno">17.8</span> <span class="content">Hash clash</span></a>
+      <li>
+       <a href="#transport-layer-security"><span class="secno">17.1</span> <span class="content">Transport layer security</span></a>
+       <ol class="toc">
+        <li><a href="#strict-transport-security"><span class="secno">17.1.1</span> <span class="content">HTTP Strict Transport Security</span></a>
+        <li><a href="#content-security-policy"><span class="secno">17.1.2</span> <span class="content">Content-Security-Policy</span></a>
+       </ol>
+      <li><a href="#mint-access-control"><span class="secno">17.2</span> <span class="content">Mint access control</span></a>
+      <li><a href="#compromised-proof"><span class="secno">17.3</span> <span class="content">Compromised proof</span></a>
+      <li><a href="#stale-record"><span class="secno">17.4</span> <span class="content">Stale record</span></a>
+      <li><a href="#denial-of-service"><span class="secno">17.5</span> <span class="content">Denial of service</span></a>
+      <li><a href="#DNS"><span class="secno">17.6</span> <span class="content">DNS</span></a>
+      <li><a href="#private-key"><span class="secno">17.7</span> <span class="content">Protecting the private key</span></a>
+      <li><a href="#compromised-private-key"><span class="secno">17.8</span> <span class="content">Compromised private key</span></a>
+      <li><a href="#hash-clash"><span class="secno">17.9</span> <span class="content">Hash clash</span></a>
      </ol>
     <li><a href="#namespaces"><span class="secno">18</span> <span class="content">Namespaces</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
@@ -2588,14 +2594,38 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§9.6 Point datatype</a> or <a href="#multipolygon-datatype">§9.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
    <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p>
    <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2>
-   <h3 class="heading settled" data-level="17.1" id="mint-access-control"><span class="secno">17.1. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3>
-   <h3 class="heading settled" data-level="17.2" id="compromised-proof"><span class="secno">17.2. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3>
-   <h3 class="heading settled" data-level="17.3" id="stale-record"><span class="secno">17.3. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3>
-   <h3 class="heading settled" data-level="17.4" id="denial-of-service"><span class="secno">17.4. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3>
-   <h3 class="heading settled" data-level="17.5" id="DNS"><span class="secno">17.5. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3>
-   <h3 class="heading settled" data-level="17.6" id="private-key"><span class="secno">17.6. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3>
-   <h3 class="heading settled" data-level="17.7" id="compromised-private-key"><span class="secno">17.7. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3>
-   <h3 class="heading settled" data-level="17.8" id="hash-clash"><span class="secno">17.8. </span><span class="content">Hash clash</span><a class="self-link" href="#hash-clash"></a></h3>
+   <h3 class="heading settled" data-level="17.1" id="transport-layer-security"><span class="secno">17.1. </span><span class="content">Transport layer security</span><a class="self-link" href="#transport-layer-security"></a></h3>
+   <p>A register MUST only be available over HTTPS.  A register MUST NOT
+make content available over insecure HTTP, though a register SHOULD
+offer a redirect from HTTP to HTTPS.</p>
+   <p>A register contains authoritative data about a particular domain.  An
+attacker in the middle should not be able to compromise the integrity
+of the data in transit.  HTTPS is a basic control to prevent
+intermediaries from being able to alter the data in transit.  For
+people viewing a register via a web browser, HTTPS also prevents attackers
+from injecting malicious content such as javascript.</p>
+   <h4 class="heading settled" data-level="17.1.1" id="strict-transport-security"><span class="secno">17.1.1. </span><span class="content">HTTP Strict Transport Security</span><a class="self-link" href="#strict-transport-security"></a></h4>
+   <p>A register SHOULD enable HTTP Strict Transport Security <a data-link-type="biblio" href="#biblio-rfc6797">[RFC6797]</a>.</p>
+   <p>The <code>register.gov.uk</code> domain sets a
+Strict-Transport-Security policy for all subdomains.  This means that
+browsers which are aware of this policy will never attempt to use
+insecure HTTP to any <code>*.register.gov.uk</code> domain.</p>
+   <h4 class="heading settled" data-level="17.1.2" id="content-security-policy"><span class="secno">17.1.2. </span><span class="content">Content-Security-Policy</span><a class="self-link" href="#content-security-policy"></a></h4>
+   <p>A register SHOULD provide a Content-Security-Policy header <a data-link-type="biblio" href="#biblio-csp2">[CSP2]</a>.
+A basic Content-Security-Policy suitable for a register is:</p>
+<pre class="example" id="example-79abf726"><a class="self-link" href="#example-79abf726"></a>Content-Security-Policy: default-src 'self'
+</pre>
+   <p class="note" role="note">Note: if a register html view uses web assets (eg css or javascript)
+from another domain, the header will need to be modified to whitelist
+these assets.</p>
+   <h3 class="heading settled" data-level="17.2" id="mint-access-control"><span class="secno">17.2. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3>
+   <h3 class="heading settled" data-level="17.3" id="compromised-proof"><span class="secno">17.3. </span><span class="content">Compromised proof</span><a class="self-link" href="#compromised-proof"></a></h3>
+   <h3 class="heading settled" data-level="17.4" id="stale-record"><span class="secno">17.4. </span><span class="content">Stale record</span><a class="self-link" href="#stale-record"></a></h3>
+   <h3 class="heading settled" data-level="17.5" id="denial-of-service"><span class="secno">17.5. </span><span class="content">Denial of service</span><a class="self-link" href="#denial-of-service"></a></h3>
+   <h3 class="heading settled" data-level="17.6" id="DNS"><span class="secno">17.6. </span><span class="content">DNS</span><a class="self-link" href="#DNS"></a></h3>
+   <h3 class="heading settled" data-level="17.7" id="private-key"><span class="secno">17.7. </span><span class="content">Protecting the private key</span><a class="self-link" href="#private-key"></a></h3>
+   <h3 class="heading settled" data-level="17.8" id="compromised-private-key"><span class="secno">17.8. </span><span class="content">Compromised private key</span><a class="self-link" href="#compromised-private-key"></a></h3>
+   <h3 class="heading settled" data-level="17.9" id="hash-clash"><span class="secno">17.9. </span><span class="content">Hash clash</span><a class="self-link" href="#hash-clash"></a></h3>
    <h2 class="heading settled" data-level="18" id="namespaces"><span class="secno">18. </span><span class="content">Namespaces</span><a class="self-link" href="#namespaces"></a></h2>
    <ul>
     <li data-md="">
@@ -2629,6 +2659,8 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-csp2"><a class="self-link" href="#biblio-csp2"></a>[CSP2]
+   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="http://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 21 July 2015. CR. URL: <a href="http://www.w3.org/TR/CSP2/">http://www.w3.org/TR/CSP2/</a>
    <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson"><a class="self-link" href="#biblio-geojson"></a>[GEOJSON]
@@ -2671,6 +2703,8 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <dd>M. Nottingham, Ed.; R. Sayre, Ed.. <a href="https://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. December 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4287">https://tools.ietf.org/html/rfc4287</a>
    <dt id="biblio-rfc5988"><a class="self-link" href="#biblio-rfc5988"></a>[RFC5988]
    <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc5988">Web Linking</a>. October 2010. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc5988">https://tools.ietf.org/html/rfc5988</a>
+   <dt id="biblio-rfc6797"><a class="self-link" href="#biblio-rfc6797"></a>[RFC6797]
+   <dd>J. Hodges; C. Jackson; A. Barth. <a href="https://tools.ietf.org/html/rfc6797">HTTP Strict Transport Security (HSTS)</a>. November 2012. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6797">https://tools.ietf.org/html/rfc6797</a>
    <dt id="biblio-rfc7234"><a class="self-link" href="#biblio-rfc7234"></a>[RFC7234]
    <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7234">Hypertext Transfer Protocol (HTTP/1.1): Caching</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7234">https://tools.ietf.org/html/rfc7234</a>
    <dt id="biblio-tabular-data-model"><a class="self-link" href="#biblio-tabular-data-model"></a>[TABULAR-DATA-MODEL]
