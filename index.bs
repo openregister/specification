@@ -512,7 +512,7 @@ All [[#record-resource]]s in a register which have the same value in the given f
 The following example shows a list of record entries matching a field in the [[#json-representation]]:
 
 <pre highlight="http">
-http://school.register.gov.uk/religious-character/Quaker.json
+https://school.register.gov.uk/records/religious-character/Quaker.json
 </pre>
 <pre highlight="json">
 {
