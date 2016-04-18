@@ -153,6 +153,10 @@ This resource is provided as a convenience: in principle, it can be
 computed by a client by replaying the log of all entries and finding
 the latest one with the given primary key value.
 
+This resource SHOULD provide a Link: header [[RFC5988]] with a
+relation of <code>"version-history"</code> [[RFC5829]] to the
+[[#record-entries-resource]] for this record.
+
 <div class="example">
 The following example shows a record in the [[#json-representation]]:
 

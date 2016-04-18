@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-08">8 April 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-18">18 April 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1569,6 +1569,8 @@ to the <a href="#entry-resource">§3.2 Entry resource</a> with the highest <a hr
    <p>This resource is provided as a convenience: in principle, it can be
 computed by a client by replaying the log of all entries and finding
 the latest one with the given primary key value.</p>
+   <p>This resource SHOULD provide a Link: header <a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a> with a
+relation of <code>"version-history"</code> <a data-link-type="biblio" href="#biblio-rfc5829">[RFC5829]</a> to the <a href="#record-entries-resource">§5.4 Record entries resource</a> for this record.</p>
    <div class="example" id="example-20676728">
     <a class="self-link" href="#example-20676728"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="err">https://local-authority.register.gov.uk/record/E</span><span class="mi">09000019</span>
@@ -2669,6 +2671,8 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <dd>G. Klyne; C. Newman. <a href="https://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>. July 2002. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc3339">https://tools.ietf.org/html/rfc3339</a>
    <dt id="biblio-rfc4287"><a class="self-link" href="#biblio-rfc4287"></a>[RFC4287]
    <dd>M. Nottingham, Ed.; R. Sayre, Ed.. <a href="https://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. December 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4287">https://tools.ietf.org/html/rfc4287</a>
+   <dt id="biblio-rfc5829"><a class="self-link" href="#biblio-rfc5829"></a>[RFC5829]
+   <dd>A. Brown; G. Clemm; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc5829">Link Relation Types for Simple Version Navigation between Web Resources</a>. April 2010. Informational. URL: <a href="https://tools.ietf.org/html/rfc5829">https://tools.ietf.org/html/rfc5829</a>
    <dt id="biblio-rfc5988"><a class="self-link" href="#biblio-rfc5988"></a>[RFC5988]
    <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc5988">Web Linking</a>. October 2010. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc5988">https://tools.ietf.org/html/rfc5988</a>
    <dt id="biblio-rfc7234"><a class="self-link" href="#biblio-rfc7234"></a>[RFC7234]
