@@ -879,12 +879,12 @@ ISSUE(openregister/specification#51): Which data types should we use from YAML?
 <div class="example">
 The following example shows an [[#item-resource]] in the [[#ttl-representation]]:
 <pre>
-@prefix field: &lt;http://field.register.gov.uk/field/&gt;.
+@prefix field: &lt;https://field.register.gov.uk/field/&gt;.
 
-&lt;http://school.register.gov.uk/item/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799&gt;
- field:address &lt;http://address.register.gov.uk/address/100101030506&gt; ;
+&lt;https://school.register.gov.uk/item/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799&gt;
+ field:address &lt;https://address.register.gov.uk/address/100101030506&gt; ;
  field:name "Glanaman Home Tution Centre" ;
- field:school &lt;http://school.register.gov.uk/record/402175&gt; ;
+ field:school &lt;https://school.register.gov.uk/record/402175&gt; ;
  field:start-date "2007-11-07" ;
 </pre>
 </div>
