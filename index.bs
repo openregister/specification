@@ -789,8 +789,6 @@ example, in the "school" register the primary key field is also called
 
 ## entry-number ## {#entry-number-field}
 
-ISSUE(openregister/specification#23): IMPLEMENTATION serial-number is inconsistent and has therefore been renamed as entry-number
-
 ## item-hash ## {#item-hash-field}
 
 ISSUE(openregister/specification#24): objecthash isn't a specification, we'll need to define our algorithm here
