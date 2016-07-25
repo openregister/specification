@@ -249,7 +249,7 @@ https://school.register.gov.uk/proof/register/merkle:sha-256
 ISSUE(openregister/specification#6): CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
 
 ## Entry proof resource ## {#entry-proof-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/entry/{total-entries}/{<a href="#entry-number-field">entry-number</a>}/{proof-identifier}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{total-entries}/{proof-identifier}</dd></dt></dl>
 
 An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a [[#register-proof-resource]].
 
