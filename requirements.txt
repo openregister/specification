@@ -1,3 +1,3 @@
 Pygments==2.1
 lxml==3.5.0
--e git+git@github.com:tabatkins/bikeshed.git@41d8438d47b17f60359ac8ec4afca6b5ef56effd#egg=Bikeshed-master
+-e git+git@github.com:openregister/bikeshed.git@2ea965dedebe2671cf4b41da8bad0790c0241f77#egg=Bikeshed-master
