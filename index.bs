@@ -261,7 +261,7 @@ There may be different kinds of entry proof available.
 The following example shows a Merkle-tree-based entry proof in the [[#json-representation]]:
 
 <pre>
-https://school.register.gov.uk/proof/entry/123/merkle:sha-256
+https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
 </pre>
 <pre highlight="json">
 {
