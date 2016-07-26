@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-07-25">25 July 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-07-26">26 July 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1673,9 +1673,9 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
    <p>There may be different kinds of entry proof available.</p>
-   <div class="example" id="example-57aa826f">
-    <a class="self-link" href="#example-57aa826f"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre>https://school.register.gov.uk/proof/entry/123/merkle:sha-256
+   <div class="example" id="example-11900e87">
+    <a class="self-link" href="#example-11900e87"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre>https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
