@@ -750,13 +750,34 @@ Used to identify a record, possibly in another register.
 
 A hash of the item's contents may be used to identify the contents of an item, irrespective of where it is stored or presented.
 
-An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.
+An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.  Currently there is only one valid hashing algorithm, <code>sha-256</code>.  In future, other alternative hashing algorithms may be added to this specification.  They will be distinguished by having a different string prefix.
 
-Valid hash algorithms
+
+### SHA-256 item hash ### {#sha-256-item-hash}
 
 <div class="example">
-sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
+The SHA-256 item hash of the item with a field <code>field1</code> with a value of <code>"a"</code> and a field <code>field2</code> with a value of <code>"b"</code> is:
+
+<code>sha-256:129332749e67eb9ab7390d7da2e88173367d001ac3e9e39f06e41690cd05e3ae</code>
 </div>
+
+The <code>sha-256</code> item hash is computed by serialising the item to a canonical form of JSON, and computing the SHA-256 hash, defined in [[FIPS-180-4]], of the resulting serial form.
+
+The canonicalisation algorithm is as follows:
+
+ * JSON object values MUST be sorted into lexicographical order.  The
+   keys of a JSON object must be a valid field name, which is
+   restricted to the alphabet of lower case letters and hyphens, which
+   makes this ordering relatively simple to implement.
+ * All whitespace MUST be removed.
+ * Characters in strings must be represented as follows:
+   * For ASCII control characters (codepoints 0x00 - 0x1f):
+     * If it has a short representation (<code>\b</code>, <code>\f</code>, <code>\n</code>, <code>\r</code>, or <code>\t</code>), that short representation MUST be used.
+     * Other control characters (such as NULL) MUST be represented as a <code>\u00XX</code> escape sequence.  Hexadecimal digits MUST be upper-case.
+   * Backslash (<code>\</code>) and double quote (<code>"</code>) MUST be escaped as <code>\\</code> and <code>\"</code> respectively.
+   * All other characters MUST be included literally (ie unescaped).  This includes forward-slash (<code>/</code>).
+
+This canonicalisation algorithm is very similar to that used in [[JCS]], except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.
 
 ISSUE(openregister/specification#39): which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm?
 
@@ -791,12 +812,7 @@ example, in the "school" register the primary key field is also called
 
 ## item-hash ## {#item-hash-field}
 
-ISSUE(openregister/specification#24): objecthash isn't a specification, we'll need to define our algorithm here
-
-ISSUE(openregister/specification#25): we need to ensure our objecthash generates the same value for an empty and a missing field.
-
-  * <a href="https://github.com/benlaurie/objecthash">objecthash</a>
-  * [[FIPS-180-4]]
+The item-hash field contains the [[#item-hash-datatype]] of an item.
 
 ## last-updated ## {#last-updated-field}
 
@@ -1065,6 +1081,12 @@ spec:html5; type:element; text:script
       "title": "Common Markdown",
       "publisher": "CommonMark",
       "authors": [ "John MacFarlane", "David Greenspan", "Vicent Marti", "Neil Williams", "Benjamin Dumke-von der Ehe", "Jeff Atwood" ]
+  },
+  "JCS": {
+      "href": "https://cyberphone.github.io/doc/security/jcs.html",
+      "title": "JSON Cleartext Signature",
+      "publisher": "WebPKI",
+      "authors": [ "Anders Rundgren" ]
   },
   "KML": {
       "href": "http://www.opengeospatial.org/standards/kml/",

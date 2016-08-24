@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-07-26">26 July 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-08-24">24 August 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1414,7 +1414,11 @@ data held in an open register.</p>
       <li><a href="#multipolygon-datatype"><span class="secno">9.7</span> <span class="content">Multipolygon datatype</span></a>
       <li><a href="#text-datatype"><span class="secno">9.8</span> <span class="content">Text datatype</span></a>
       <li><a href="#curie-datatype"><span class="secno">9.9</span> <span class="content">CURIE datatype</span></a>
-      <li><a href="#item-hash-datatype"><span class="secno">9.10</span> <span class="content">Item-hash datatype</span></a>
+      <li>
+       <a href="#item-hash-datatype"><span class="secno">9.10</span> <span class="content">Item-hash datatype</span></a>
+       <ol class="toc">
+        <li><a href="#sha-256-item-hash"><span class="secno">9.10.1</span> <span class="content">SHA-256 item hash</span></a>
+       </ol>
       <li><a href="#entry-reference-datatype"><span class="secno">9.11</span> <span class="content">Entry-reference datatype</span></a>
       <li><a href="#url-datatype"><span class="secno">9.12</span> <span class="content">URL datatype</span></a>
      </ol>
@@ -2398,9 +2402,40 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    </ul>
    <h3 class="heading settled" data-level="9.10" id="item-hash-datatype"><span class="secno">9.10. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
    <p>A hash of the item’s contents may be used to identify the contents of an item, irrespective of where it is stored or presented.</p>
-   <p>An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.</p>
-   <p>Valid hash algorithms</p>
-   <div class="example" id="example-30605bbd"><a class="self-link" href="#example-30605bbd"></a> sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858 </div>
+   <p>An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.  Currently there is only one valid hashing algorithm, <code>sha-256</code>.  In future, other alternative hashing algorithms may be added to this specification.  They will be distinguished by having a different string prefix.</p>
+   <h4 class="heading settled" data-level="9.10.1" id="sha-256-item-hash"><span class="secno">9.10.1. </span><span class="content">SHA-256 item hash</span><a class="self-link" href="#sha-256-item-hash"></a></h4>
+   <div class="example" id="example-15bc165f">
+    <a class="self-link" href="#example-15bc165f"></a> The SHA-256 item hash of the item with a field <code>field1</code> with a value of <code>"a"</code> and a field <code>field2</code> with a value of <code>"b"</code> is: 
+    <p><code>sha-256:129332749e67eb9ab7390d7da2e88173367d001ac3e9e39f06e41690cd05e3ae</code></p>
+   </div>
+   <p>The <code>sha-256</code> item hash is computed by serialising the item to a canonical form of JSON, and computing the SHA-256 hash, defined in <a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a>, of the resulting serial form.</p>
+   <p>The canonicalisation algorithm is as follows:</p>
+   <ul>
+    <li data-md="">
+     <p>JSON object values MUST be sorted into lexicographical order.  The
+ keys of a JSON object must be a valid field name, which is
+ restricted to the alphabet of lower case letters and hyphens, which
+ makes this ordering relatively simple to implement.</p>
+    <li data-md="">
+     <p>All whitespace MUST be removed.</p>
+    <li data-md="">
+     <p>Characters in strings must be represented as follows:</p>
+     <ul>
+      <li data-md="">
+       <p>For ASCII control characters (codepoints 0x00 - 0x1f):</p>
+       <ul>
+        <li data-md="">
+         <p>If it has a short representation (<code>\b</code>, <code>\f</code>, <code>\n</code>, <code>\r</code>, or <code>\t</code>), that short representation MUST be used.</p>
+        <li data-md="">
+         <p>Other control characters (such as NULL) MUST be represented as a <code>\u00XX</code> escape sequence.  Hexadecimal digits MUST be upper-case.</p>
+       </ul>
+      <li data-md="">
+       <p>Backslash (<code>\</code>) and double quote (<code>"</code>) MUST be escaped as <code>\\</code> and <code>\"</code> respectively.</p>
+      <li data-md="">
+       <p>All other characters MUST be included literally (ie unescaped).  This includes forward-slash (<code>/</code>).</p>
+     </ul>
+   </ul>
+   <p>This canonicalisation algorithm is very similar to that used in <a data-link-type="biblio" href="#biblio-jcs">[JCS]</a>, except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.</p>
    <p class="issue" id="issue-0be82fb3"><a class="self-link" href="#issue-0be82fb3"></a> which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm? <a href="https://github.com/openregister/specification/issues/39">&lt;https://github.com/openregister/specification/issues/39></a></p>
    <h3 class="heading settled" data-level="9.11" id="entry-reference-datatype"><span class="secno">9.11. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
     Legal documents may need to cite an individual entry, rather than the latest entry of the record. 
@@ -2423,14 +2458,7 @@ example, in the "school" register the primary key field is also called
    <h3 class="heading settled" data-level="10.3" id="domain-field"><span class="secno">10.3. </span><span class="content">domain</span><a class="self-link" href="#domain-field"></a></h3>
    <h3 class="heading settled" data-level="10.4" id="entry-number-field"><span class="secno">10.4. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
    <h3 class="heading settled" data-level="10.5" id="item-hash-field"><span class="secno">10.5. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
-   <p class="issue" id="issue-b730eb4a"><a class="self-link" href="#issue-b730eb4a"></a> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a></p>
-   <p class="issue" id="issue-059eb690"><a class="self-link" href="#issue-059eb690"></a> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a></p>
-   <ul>
-    <li data-md="">
-     <p><a href="https://github.com/benlaurie/objecthash">objecthash</a></p>
-    <li data-md="">
-     <p><a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a></p>
-   </ul>
+   <p>The item-hash field contains the <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> of an item.</p>
    <h3 class="heading settled" data-level="10.6" id="last-updated-field"><span class="secno">10.6. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
    <h3 class="heading settled" data-level="10.7" id="field-field"><span class="secno">10.7. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
    <h2 class="heading settled" data-level="11" id="registers"><span class="secno">11. </span><span class="content">Registers</span><a class="self-link" href="#registers"></a></h2>
@@ -2670,6 +2698,8 @@ these assets.</p>
    <dd>Paul Lindner. <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">http://www.iana.org/assignments/media-types/text/tab-separated-values</a>
    <dt id="biblio-iso8601"><a class="self-link" href="#biblio-iso8601"></a>[ISO8601]
    <dd><cite>Representation of dates and times.</cite> International Organization for Standardization. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a> 
+   <dt id="biblio-jcs"><a class="self-link" href="#biblio-jcs"></a>[JCS]
+   <dd>Anders Rundgren. <a href="https://cyberphone.github.io/doc/security/jcs.html">JSON Cleartext Signature</a>. URL: <a href="https://cyberphone.github.io/doc/security/jcs.html">https://cyberphone.github.io/doc/security/jcs.html</a>
    <dt id="biblio-json"><a class="self-link" href="#biblio-json"></a>[JSON]
    <dd>D. Crockford. <a href="https://tools.ietf.org/html/rfc4627">The application/json Media Type for JavaScript Object Notation (JSON)</a>. July 2006. Informational. URL: <a href="https://tools.ietf.org/html/rfc4627">https://tools.ietf.org/html/rfc4627</a>
    <dt id="biblio-kml"><a class="self-link" href="#biblio-kml"></a>[KML]
@@ -2740,8 +2770,6 @@ these assets.</p>
    <div class="issue"> which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm? <a href="https://github.com/openregister/specification/issues/39">&lt;https://github.com/openregister/specification/issues/39></a><a href="#issue-0be82fb3"> ↵ </a></div>
    <div class="issue"> we don’t know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof. <a href="https://github.com/openregister/specification/issues/21">&lt;https://github.com/openregister/specification/issues/21></a><a href="#issue-420ac5c0"> ↵ </a></div>
    <div class="issue"> We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use? <a href="https://github.com/openregister/specification/issues/22">&lt;https://github.com/openregister/specification/issues/22></a><a href="#issue-8d36d08b"> ↵ </a></div>
-   <div class="issue"> objecthash isn’t a specification, we’ll need to define our algorithm here <a href="https://github.com/openregister/specification/issues/24">&lt;https://github.com/openregister/specification/issues/24></a><a href="#issue-b730eb4a"> ↵ </a></div>
-   <div class="issue"> we need to ensure our objecthash generates the same value for an empty and a missing field. <a href="https://github.com/openregister/specification/issues/25">&lt;https://github.com/openregister/specification/issues/25></a><a href="#issue-059eb690"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON. <a href="https://github.com/openregister/specification/issues/26">&lt;https://github.com/openregister/specification/issues/26></a><a href="#issue-800c7c98"> ↵ </a></div>
    <div class="issue"> do we specify RDFa or Schema.org markup? <a href="https://github.com/openregister/specification/issues/27">&lt;https://github.com/openregister/specification/issues/27></a><a href="#issue-f79e8df8"> ↵ </a></div>
    <div class="issue"> the JSON should be in a c14n format, but no spec exists, so we will need to define what that means? <a href="https://github.com/openregister/specification/issues/28">&lt;https://github.com/openregister/specification/issues/28></a><a href="#issue-fac8c80e"> ↵ </a></div>
