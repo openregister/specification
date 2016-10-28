@@ -575,9 +575,9 @@ A set of links to the [[#register-proof-resource]]s and [[#entry-proof-resource]
 
 # Archive resources # {#archive-resources}
 
-## Download page ## {#download}
+## Download resource ## {#download}
 
-<dl class="resource"><dt>Path</dt><dd>/download</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/download-register</dd></dt></dl>
 
 The contents of an open register MUST be made available as an archive.
 The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate [[#digital-proofs]].
