@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-10-25">25 October 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-11-18">18 November 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1677,14 +1677,14 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
    <p>There may be different kinds of entry proof available.</p>
-   <div class="example" id="example-11900e87">
-    <a class="self-link" href="#example-11900e87"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-7d8cc57c">
+    <a class="self-link" href="#example-7d8cc57c"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
   <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"123"</span><span class="p">,</span>
-  <span class="nt">"merkle-audit-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8="</span><span class="p">,</span> <span class="s2">"e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY="</span> <span class="p">]</span>
+  <span class="nt">"merkle-audit-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"sha-256:zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8="</span><span class="p">,</span> <span class="s2">"sha-256:e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY="</span> <span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
    <h3 class="heading settled" data-level="3.7" id="consistency-proof-resource"><span class="secno">3.7. </span><span class="content">Consistency proof resource</span><a class="self-link" href="#consistency-proof-resource"></a></h3>
@@ -1696,13 +1696,13 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>The consistency proof for a register containing total-entries-2 entries and a previous version of the same register containing total-entries-1 entries (total-entries-2 > total-entries-1) is the information required to prove that the first total-entries-1 entries are equal for both, given a <a href="#register-proof-resource">§3.5 Register proof resource</a> for each version of the register.</p>
    <p>The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.</p>
    <p>There may be different kinds of consistency proof available.</p>
-   <div class="example" id="example-ad2bfbc6">
-    <a class="self-link" href="#example-ad2bfbc6"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-da6f7b31">
+    <a class="self-link" href="#example-da6f7b31"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"merkle-consistency-nodes"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
+  <span class="nt">"merkle-consistency-nodes"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"sha-256:MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"sha-256:TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
    <h3 class="heading settled" data-level="3.8" id="records-proof-resource"><span class="secno">3.8. </span><span class="content">Records proof resource</span><a class="self-link" href="#records-proof-resource"></a></h3>
@@ -1737,13 +1737,13 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§3.8 Records proof resource</a>.</p>
    <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
    <p>There may different kinds of record proof available.</p>
-   <div class="example" id="example-69887fa5">
-    <a class="self-link" href="#example-69887fa5"></a> The following example shows a Merkle-tree-based record proof in the <a href="#json-representation">§12.2 JSON representation</a>. This particular proof algorithm would return an array of 256 Merkle tree nodes: 
+   <div class="example" id="example-61c3967d">
+    <a class="self-link" href="#example-61c3967d"></a> The following example shows a Merkle-tree-based record proof in the <a href="#json-representation">§12.2 JSON representation</a>. This particular proof algorithm would return an array of 256 Merkle tree nodes: 
 <pre>https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> <span class="err">...</span><span class="p">]</span>
+  <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sha-256:GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"sha-256:3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"sha-256:3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> <span class="err">...</span><span class="p">]</span>
 <span class="p">}</span></pre>
    </div>
    <p class="issue" id="issue-dd4ca9b1"><a class="self-link" href="#issue-dd4ca9b1"></a> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
@@ -2689,7 +2689,7 @@ these assets.</p>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-csp2"><a class="self-link" href="#biblio-csp2"></a>[CSP2]
-   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 21 July 2015. CR. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
+   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 8 November 2016. PR. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
    <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson"><a class="self-link" href="#biblio-geojson"></a>[GEOJSON]
