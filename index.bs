@@ -267,7 +267,7 @@ https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
 {
   "proof-identifier": "merkle:sha-256",
   "entry-number": "123",
-  "merkle-audit-path": [ "zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8=", "e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY=" ]
+  "merkle-audit-path": [ "sha-256:zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8=", "sha-256:e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY=" ]
 }
 </pre>
 </div>
@@ -292,7 +292,7 @@ https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 <pre highlight="json">
 {
   "proof-identifier": "merkle:sha-256",
-  "merkle-consistency-nodes": [ "MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM=", "TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE=" ]
+  "merkle-consistency-nodes": [ "sha-256:MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM=", "sha-256:TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE=" ]
 }
 </pre>
 </div>
@@ -346,7 +346,7 @@ https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
 <pre highlight="json">
 {
   "proof-identifier": "merkle:sha-256",
-  "merkle-record-path": ["GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY=", "3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw=", "3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g=", ...]
+  "merkle-record-path": ["sha-256:GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY=", "sha-256:3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw=", "sha-256:3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g=", ...]
 }
 </pre>
 </div>
