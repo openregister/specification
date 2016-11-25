@@ -117,10 +117,11 @@ up of an ordered list of entries.  New entries in a register are only
 ever appended to the end of the list; once an entry is created, it
 never gets changed.
 
-An entry is an [[#entry-number-field]], a timestamp, and an
-[[#item-hash-field]].  The entry-number is unique and defines the
+An entry is an [[#entry-number-field]], a timestamp, an
+[[#item-hash-field]] and a [[#key-field]].  The entry-number is unique and defines the
 entry's position within the ordered list.  The item-hash identifies
-the [[#item-resource]] for the entry.
+the [[#item-resource]] for the entry. The key references the [[#primary-key-field]]
+of the [[#item-resource]].
 
 <div class="example">
 The following example shows an entry in the [[#json-representation]]:
@@ -130,7 +131,8 @@ The following example shows an entry in the [[#json-representation]]:
 {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"
+    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f",
+    "key": "402019"
 }
 </pre>
 </assert>
@@ -213,7 +215,7 @@ The following example shows a register in the [[#json-representation]]:
     "register": "school",
     "registry": "department-of-education",
     "start-date": "2012-01-01"
-  }
+  },
   "total-entries": "109001",
   "total-items": "109009",
   "total-records": "30522"
@@ -407,12 +409,14 @@ The following example shows a list of entries in the [[#json-representation]]:
   {
     "entry-number": "2",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
+    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591",
+    "key": "402020"
   },
   {
     "entry-number": "1",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
+    "item-hash": "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984",
+    "key": "402019"
   }
 ]
 </pre>
@@ -435,12 +439,14 @@ The following example shows a list of item entries in the [[#json-representation
   {
     "entry-number": "121",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    "item-hash": "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782",
+    "key": "33010"
   },
   {
     "entry-number": "133",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
+    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591",
+    "key": "33016"
   }
 ]
 </pre>
@@ -491,7 +497,7 @@ The following example shows a list of records in the [[#json-representation]]:
   "E09000019": {
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:06ba6a095dc6244cf742bf0bac95b7d8d519c9d9"
+    "item-hash": "sha-256:06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
     "local-authority": "E09000019",
     "name": "Islington"
   },
@@ -818,6 +824,8 @@ The item-hash field contains the [[#item-hash-datatype]] of an item.
 
 ## field ## {#field-field}
 
+## key ## {#key-field}
+
 
 # Registers # {#registers}
 
@@ -862,7 +870,8 @@ The following example shows a [[#record-resource]] in the [[#yaml-representation
 entry:
   entry-number: "30568"
   timestamp: "2015-01-02T23:59:01Z"
-  item-hash: "sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9"
+  item-hash: "sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9",
+  key: "402175"
 item:
   address: "100101030506"
   name: "Glanaman Home Tution Centre"
