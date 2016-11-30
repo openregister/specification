@@ -2,6 +2,12 @@
 
 <https://openregister.github.io/specification/>
 
+# Process
+
+Changes to the specification should be raised as an issue before being added to the document.
+The specification may include changes ahead of being implemented in the registers platform,
+or other compliant implementations.
+
 # Default branch
 
 Note this repository doesn't have a master branch, the default is the gh-pages branch.
