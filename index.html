@@ -1334,7 +1334,7 @@
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-11-25">25 November 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-03-03">3 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1657,13 +1657,13 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    </dl>
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
    <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.7 Proofs resource</a> indicates which proofs are available.</p>
-   <div class="example" id="example-adaa8951">
-    <a class="self-link" href="#example-adaa8951"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-1b3828a7">
+    <a class="self-link" href="#example-1b3828a7"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"tree-size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
+  <span class="nt">"total-entries"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
   <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
   <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
   <span class="nt">"tree-head-signature"</span><span class="p">:</span>
@@ -1714,15 +1714,15 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    </dl>
    <p>A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.</p>
    <p>There may be different kinds of records proof available.</p>
-   <div class="example" id="example-b69bcfcb">
-    <a class="self-link" href="#example-b69bcfcb"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-4528d69c">
+    <a class="self-link" href="#example-4528d69c"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://local-authority.register.gov.uk/proof/records/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
   <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:h/gTTXO9M9KARSc35nWMY1zrkISUrQYjF2ZowZgGNQg="</span><span class="p">,</span>
   <span class="nt">"register-proof"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"tree-size"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
+    <span class="nt">"total-entries"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
     <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
     <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
     <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
@@ -2576,10 +2576,10 @@ example, in the "school" register the primary key field is also called
    <p>The client must also verify that for each <a href="#entry-resource">§3.2 Entry resource</a> in the register there exists an item with the corresponding <a href="#item-hash-datatype">§9.10 Item-hash datatype</a> and that the contents of the item generate the correct <a href="#item-hash-datatype">§9.10 Item-hash datatype</a>.</p>
    <h4 class="heading settled" data-level="13.1.4" id="ct-verify-entry"><span class="secno">13.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
    <p>The merkle-audit-path for the entry from the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree root hash.</p>
-   <p>To verify an entry exists in a register, given that total-entries of the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> equals the tree-size of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>. The client should also verify the <a href="#signed-tree-head">§13.1.2 Signed tree head</a> against the computed root-hash using a public key.</p>
+   <p>To verify an entry exists in a register, given that total-entries of the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> equals the total-entries of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>. The client should also verify the <a href="#signed-tree-head">§13.1.2 Signed tree head</a> against the computed root-hash using a public key.</p>
    <h4 class="heading settled" data-level="13.1.5" id="ct-verify-consistency"><span class="secno">13.1.5. </span><span class="content">Verifying consistency</span><a class="self-link" href="#ct-verify-consistency"></a></h4>
    <p>The merkle-consistency-nodes from the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> for two versions of a register provides the list of nodes in the Merkle tree required to verify that the first n entries (where n is the number of entries in the smaller register) are equal in both registers.</p>
-   <p>To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> equal the tree-size of each <a href="#register-proof-resource">§3.5 Register proof resource</a>, the client must prove that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the larger register can be computed using the set of consistency-proof-nodes and that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the smaller register can be computed using a subset of the same consistency-proof-nodes, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2. The client must also verify the corresponding <a href="#signed-tree-head">§13.1.2 Signed tree head</a> against each root-hash using a public key.</p>
+   <p>To verify the consistency of two versions of a register, given that total-entries-1 and total-entries-2 of the <a href="#consistency-proof-resource">§3.7 Consistency proof resource</a> equal the total-entries of each <a href="#register-proof-resource">§3.5 Register proof resource</a>, the client must prove that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the larger register can be computed using the set of consistency-proof-nodes and that the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> for the smaller register can be computed using a subset of the same consistency-proof-nodes, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2. The client must also verify the corresponding <a href="#signed-tree-head">§13.1.2 Signed tree head</a> against each root-hash using a public key.</p>
    <h4 class="heading settled" data-level="13.1.6" id="ct-verify-records"><span class="secno">13.1.6. </span><span class="content">Verifying the records</span><a class="self-link" href="#ct-verify-records"></a></h4>
    <h4 class="heading settled" data-level="13.1.7" id="ct-verify-record"><span class="secno">13.1.7. </span><span class="content">Verifying a record</span><a class="self-link" href="#ct-verify-record"></a></h4>
    <h2 class="heading settled" data-level="14" id="minting"><span class="secno">14. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
@@ -2697,7 +2697,7 @@ these assets.</p>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-csp2"><a class="self-link" href="#biblio-csp2"></a>[CSP2]
-   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 8 November 2016. PR. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
+   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 15 December 2016. REC. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
    <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson"><a class="self-link" href="#biblio-geojson"></a>[GEOJSON]
@@ -2705,7 +2705,7 @@ these assets.</p>
    <dt id="biblio-iana-tsv"><a class="self-link" href="#biblio-iana-tsv"></a>[IANA-TSV]
    <dd>Paul Lindner. <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">http://www.iana.org/assignments/media-types/text/tab-separated-values</a>
    <dt id="biblio-iso8601"><a class="self-link" href="#biblio-iso8601"></a>[ISO8601]
-   <dd><cite>Representation of dates and times.</cite> International Organization for Standardization. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a> 
+   <dd><a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">Representation of dates and times. ISO 8601:2004.</a>. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a>
    <dt id="biblio-jcs"><a class="self-link" href="#biblio-jcs"></a>[JCS]
    <dd>Anders Rundgren. <a href="https://cyberphone.github.io/doc/security/jcs.html">JSON Cleartext Signature</a>. URL: <a href="https://cyberphone.github.io/doc/security/jcs.html">https://cyberphone.github.io/doc/security/jcs.html</a>
    <dt id="biblio-json"><a class="self-link" href="#biblio-json"></a>[JSON]
