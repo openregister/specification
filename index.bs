@@ -117,23 +117,32 @@ up of an ordered list of entries.  New entries in a register are only
 ever appended to the end of the list; once an entry is created, it
 never gets changed.
 
-An entry is an [[#entry-number-field]], a timestamp, an
+An entry is an [[#entry-number-field]], an [[#index-entry-number-field]], a timestamp, an
 [[#item-hash-field]] and a [[#key-field]].  The entry-number is unique and defines the
-entry's position within the ordered list.  The item-hash identifies
-the [[#item-resource]] for the entry. The key references the [[#primary-key-field]]
-of the [[#item-resource]].
+entry's position within the ordered list of a register. The index-entry-number is unique
+and defines the entry's position within the ordered list of an index. For an entry in a register
+the entry-number and index-entry-number are always identical. The item-hash identifies
+the set of [[#item-resource]] for the entry. The key represents the primary key value
+for the entry.
+
+The entry resource returns an array containing a single entry.
 
 <div class="example">
 The following example shows an entry in the [[#json-representation]]:
 
 <assert>
 <pre highlight="json">
-{
+[
+  {
+    "index-entry-number": "72",
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f",
-    "key": "402019"
-}
+    "key": "402019",
+    "item-hash": [
+        "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"
+    ]
+  }
+]
 </pre>
 </assert>
 </div>
@@ -165,11 +174,18 @@ The following example shows a record in the [[#json-representation]]:
 <pre highlight="json">
 https://local-authority.register.gov.uk/record/E09000019
 {
+  "E09000019": {
+    "index-entry-number": "72",
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f",
-    "local-authority": "E09000019",
-    "name": "Islington"
+    "key": "E09000019",
+    "item": [
+        {
+          "local-authority": "E09000019",
+          "name": "Islington"
+        }
+    ]
+  }
 }
 </pre>
 </div>
@@ -407,16 +423,22 @@ The following example shows a list of entries in the [[#json-representation]]:
 <pre highlight="json">
 [
   {
+    "index-entry-number": "2",
     "entry-number": "2",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591",
-    "key": "402020"
+    "key": "402020",
+    "item-hash": [
+        "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
+    ]
   },
   {
+    "index-entry-number": "1",
     "entry-number": "1",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984",
-    "key": "402019"
+    "key": "402019",
+    "item-hash": [ 
+        "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
+    ]
   }
 ]
 </pre>
@@ -437,16 +459,22 @@ The following example shows a list of item entries in the [[#json-representation
 <pre highlight="json">
 [
   {
+    "index-entry-number": "121",
     "entry-number": "121",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782",
-    "key": "33010"
+    "key": "33010",
+    "item-hash": [
+        "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    ]
   },
   {
+    "index-entry-number": "133",
     "entry-number": "133",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591",
-    "key": "33016"
+    "key": "33010",
+    "item-hash": [
+        "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    ]
   }
 ]
 </pre>
@@ -467,14 +495,22 @@ The following example shows a list of item entries in the [[#json-representation
 <pre highlight="json">
 [
   {
+    "index-entry-number": "121",
     "entry-number": "121",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    "key": "33010",
+    "item-hash": [
+        "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
+    ]
   },
   {
+    "index-entry-number": "133",
     "entry-number": "133",
     "entry-timestamp": "2015-08-15T08:15:30Z",
-    "item-hash": "sha-256:ffb781149473e7244109e45165260702fe39cede"
+    "key": "33010",
+    "item-hash": [
+        "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
+    ]
   }
 ]
 </pre>
@@ -495,18 +531,28 @@ The following example shows a list of records in the [[#json-representation]]:
 <pre highlight="json">
 {
   "E09000019": {
+    "index-entry-number": "72",
     "entry-number": "72",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
-    "local-authority": "E09000019",
-    "name": "Islington"
+    "key": "E09000019",
+    "item": [
+        {
+          "local-authority": "E09000019",
+          "name": "Islington"
+        }
+    ]
   },
   "E09000016": {
+    "index-entry-number": "76",
     "entry-number": "76",
     "entry-timestamp": "2015-08-20T08:15:30Z",
-    "item-hash": "sha-256:0ac85d452fdfd10414a7d113f990a617b590633f",
-    "local-authority": "E09000016",
-    "name": "Havering"
+    "key": "E09000016",
+    "item": [
+        {
+          "local-authority": "E09000016",
+          "name": "Havering"
+        }
+    ]
   }
 }
 </pre>
@@ -527,30 +573,38 @@ https://school.register.gov.uk/records/religious-character/Quaker.json
 <pre highlight="json">
 {
   "123278": {
+    "index-entry-number": "18371",
     "entry-number": "18371",
     "entry-timestamp": "2016-01-01T00:00:00Z",
-    "item-hash": "sha-256:06ba6a095dc6244cf742bf0bac95b7d8d519c9d9",
-    "address": "10011891998",
-    "maximum-age": "18",
-    "minimum-age": "2",
-    "name": "Sibford School",
-    "religious-character": "Quaker",
-    "school": "123278",
-    "start-date": "1945-01-01",
-    "website": "http://www.sibford.oxon.sch.uk"
+    "item": [
+        {
+          "address": "10011891998",
+          "maximum-age": "18",
+          "minimum-age": "2",
+          "name": "Sibford School",
+          "religious-character": "Quaker",
+          "school": "123278",
+          "start-date": "1945-01-01",
+          "website": "http://www.sibford.oxon.sch.uk"
+        }
+    ]
   },
   "121728": {
+    "index-entry-number": "17164",
     "entry-number": "17164",
     "entry-timestamp": "2016-01-01T00:00:00Z",
-    "item-hash": "sha-256:0ac85d452fdfd10414a7d113f990a617b590633f",
-    "address": "200004778207",
-    "end-date": "2006-02-28",
-    "headteacher": "Mrs S Ratcliffe",
-    "name": "Boothan Junior School",
-    "religious-character": "Quaker",
-    "school": "121728",
-    "start-date": "1957-10-21",
-    "website": "http://www.bootham.york.sch.uk/ebor"
+    "item": [
+        {
+          "address": "200004778207",
+          "end-date": "2006-02-28",
+          "headteacher": "Mrs S Ratcliffe",
+          "name": "Boothan Junior School",
+          "religious-character": "Quaker",
+          "school": "121728",
+          "start-date": "1957-10-21",
+          "website": "http://www.bootham.york.sch.uk/ebor"
+        }
+    ]
   }
 }
 </pre>
@@ -815,6 +869,8 @@ example, in the "school" register the primary key field is also called
 ## domain ## {#domain-field}
 
 ## entry-number ## {#entry-number-field}
+
+## index-entry-number ## {#index-entry-number-field}
 
 ## item-hash ## {#item-hash-field}
 
