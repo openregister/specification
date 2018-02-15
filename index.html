@@ -1,7 +1,7 @@
 <!doctype html><html lang="en">
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <title>Open Registers</title>
+  <title>Registers</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
@@ -1333,8 +1333,8 @@
    <p data-fill-with="logo">
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
-   <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-05-16">16 May 2017</time></span></h2>
+   <h1 class="p-name no-ref" id="title">Registers</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-02-15">15 February 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1361,7 +1361,7 @@
    <p>This document defines the resources and representations which together
 
 provide an Application Programming Interface (API) for accessing
-data held in an open register.</p>
+data held in a register.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -1988,7 +1988,7 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <dt>Path
     <dd>/download-register
    </dl>
-   <p>The contents of an open register MUST be made available as an archive.
+   <p>The contents of an register MUST be made available as an archive.
 The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate <a href="#digital-proofs">§13 Digital Proofs</a>.
 The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large.</p>
    <p>The archive contains the following files in the following structure:</p>
@@ -2753,15 +2753,15 @@ these assets.</p>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-csp2"><a class="self-link" href="#biblio-csp2"></a>[CSP2]
-   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 21 July 2015. CR. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
+   <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 15 December 2016. REC. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
    <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
    <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson"><a class="self-link" href="#biblio-geojson"></a>[GEOJSON]
    <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
    <dt id="biblio-iana-tsv"><a class="self-link" href="#biblio-iana-tsv"></a>[IANA-TSV]
-   <dd>Paul Lindner. <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">http://www.iana.org/assignments/media-types/text/tab-separated-values</a>
+   <dd>Paul Lindner. <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
    <dt id="biblio-iso8601"><a class="self-link" href="#biblio-iso8601"></a>[ISO8601]
-   <dd><cite>Representation of dates and times.</cite> International Organization for Standardization. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a> 
+   <dd><a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">Representation of dates and times. ISO 8601:2004.</a>. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a>
    <dt id="biblio-jcs"><a class="self-link" href="#biblio-jcs"></a>[JCS]
    <dd>Anders Rundgren. <a href="https://cyberphone.github.io/doc/security/jcs.html">JSON Cleartext Signature</a>. URL: <a href="https://cyberphone.github.io/doc/security/jcs.html">https://cyberphone.github.io/doc/security/jcs.html</a>
    <dt id="biblio-json"><a class="self-link" href="#biblio-json"></a>[JSON]
@@ -2773,7 +2773,7 @@ these assets.</p>
    <dt id="biblio-rfc6962"><a class="self-link" href="#biblio-rfc6962"></a>[RFC6962]
    <dd>B. Laurie; A. Langley; E. Kasper. <a href="https://tools.ietf.org/html/rfc6962">Certificate Transparency</a>. URL: <a href="https://tools.ietf.org/html/rfc6962">https://tools.ietf.org/html/rfc6962</a>
    <dt id="biblio-unicode"><a class="self-link" href="#biblio-unicode"></a>[UNICODE]
-   <dd><a href="http://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a>
+   <dd><a href="https://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
    <dt id="biblio-uri"><a class="self-link" href="#biblio-uri"></a>[URI]
    <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>
    <dt id="biblio-utf-8"><a class="self-link" href="#biblio-utf-8"></a>[UTF-8]
@@ -2781,9 +2781,9 @@ these assets.</p>
    <dt id="biblio-yaml"><a class="self-link" href="#biblio-yaml"></a>[YAML]
    <dd>Oren Ben-Kiki; Clark Evans; Ingy döt Net. <a href="http://yaml.org/spec/1.2/spec.html">YAML Ain’t Markup Language (YAML™) Version 1.2</a>. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
    <dt id="biblio-zip"><a class="self-link" href="#biblio-zip"></a>[ZIP]
-   <dd><a href="http://www.pkware.com/documents/casestudies/APPNOTE.TXT">.ZIP File Format Specification</a>. 1 September 2012. Final. URL: <a href="http://www.pkware.com/documents/casestudies/APPNOTE.TXT">http://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>
+   <dd><a href="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">.ZIP File Format Specification</a>. 1 September 2012. Final. URL: <a href="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">https://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>
    <dt id="biblio-curie"><a class="self-link" href="#biblio-curie"></a>[CURIE]
-   <dd>Mark Birbeck; Shane McCarron. <a href="https://www.w3.org/TR/curie">CURIE Syntax 1.0</a>. 16 December 2010. NOTE. URL: <a href="https://www.w3.org/TR/curie">https://www.w3.org/TR/curie</a>
+   <dd>Mark Birbeck; Shane McCarron. <a href="https://www.w3.org/TR/curie/">CURIE Syntax 1.0</a>. 16 December 2010. NOTE. URL: <a href="https://www.w3.org/TR/curie/">https://www.w3.org/TR/curie/</a>
    <dt id="biblio-eventsource"><a class="self-link" href="#biblio-eventsource"></a>[EVENTSOURCE]
    <dd>Ian Hickson. <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>. 3 February 2015. REC. URL: <a href="https://www.w3.org/TR/eventsource/">https://www.w3.org/TR/eventsource/</a>
    <dt id="biblio-gml"><a class="self-link" href="#biblio-gml"></a>[GML]
