@@ -6,8 +6,8 @@ Status: ED
 ED: https://openregister.github.io/specification/
 Shortname: openregister-core
 Level: 1
-Editor: Paul Downey, Government Digital Service, paul.downey@digital.cabinet-office.gov.uk
-Editor: Daniel Appelquist, Government Digital Service, daniel.appelquist@digital.cabinet-office.gov.uk
+Editor: Arnau Siches, Government Digital Service, arnau.siches@digital.cabinet-office.gov.uk
+Editor: Michaela Benyohai, Government Digital Service, michaela.benyohai@digital.cabinet-office.gov.uk
 Group: openregister
 Indent: 2
 Inline Github Issues: false
