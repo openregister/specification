@@ -10,7 +10,7 @@
  *
  * Indices
  *   - .toc for the Table of Contents (<ol class="toc">)
- *     -> <span class="secno"> for the section numbers
+ *     + <span class="secno"> for the section numbers
  *   - #toc for the Table of Contents (<nav id="toc">)
  *   - ul.index for Indices (<a href="#ref">term</a><span>, in §N.M</span>)
  *   - table.index for Index Tables (e.g. for properties or elements)
@@ -34,6 +34,7 @@
  *   - .note       for informative notes             (div, p, span, aside, details)
  *   - .example    for informative examples          (div, p, pre, span)
  *   - .issue      for issues                        (div, p, span)
+ *   - .assertion  for assertions                    (div, p, span)
  *   - .advisement for loud normative statements     (div, p, strong)
  *   - .annoying-warning for spec obsoletion notices (div, aside, details)
  *
@@ -48,9 +49,9 @@
  *   - ::before styled for CSS-generated issue/example/figure numbers:
  *     -> Documents wishing to use this only need to add
  *        figcaption::before,
- *        .caption::before { content: "Figure "  counter(figure);  }
- *        .example::before { content: "Example " counter(example); }
- *        .issue::before   { content: "Issue "   counter(issue);   }
+ *        .caption::before { content: "Figure "  counter(figure) " ";  }
+ *        .example::before { content: "Example " counter(example) " "; }
+ *        .issue::before   { content: "Issue "   counter(issue) " ";   }
  *
  * Header Stuff (ignore, just don't conflict with these classes)
  *   - .head for the header
@@ -63,8 +64,7 @@
  *     Note that this styling basically doesn't help at all when printing,
  *     since A4 paper isn't much wider than the max-width here.
  *     It's better to design things to fit into a narrower measure if possible.
- *   - back-to-top link:
- *     <p role=navigation id="back-to-top"><a href="#toc"><abbr title="Back to Top">&uarr;</abbr>
+ *   - js-added ToC jump links (see fixup.js)
  *
  ******************************************************************************/
 
@@ -114,11 +114,36 @@
 
 	div.head h2 { margin-bottom: 1.5em;}
 
-	.head > :first-child {
+/** W3C Logo ******************************************************************/
+
+	.head .logo {
 		float: right;
-		margin: 0;
+		margin: 0.4rem 0 0.2rem .4rem;
 	}
 
+	.head img[src*="logos/W3C"] {
+		display: block;
+		border: solid #1a5e9a;
+		border-width: .65rem .7rem .6rem;
+		border-radius: .4rem;
+		background: #1a5e9a;
+		color: white;
+		font-weight: bold;
+	}
+
+	.head a:hover > img[src*="logos/W3C"],
+	.head a:focus > img[src*="logos/W3C"] {
+		opacity: .8;
+	}
+
+	.head a:active > img[src*="logos/W3C"] {
+		background: #c00;
+		border-color: #c00;
+	}
+
+	/* see also additional rules in Link Styling section */
+
+/** Copyright *****************************************************************/
 
 	p.copyright,
 	p.copyright small { font-size: small }
@@ -126,48 +151,60 @@
 /** Back to Top / ToC Toggle **************************************************/
 
 	@media print {
-		#back-to-top,
-		.toc-toggle {
+		#toc-nav {
 			display: none;
 		}
 	}
 	@media not print {
-		#back-to-top,
-		body > #toc-toggle {
+		#toc-nav {
 			position: fixed;
 			z-index: 2;
 			bottom: 0; left: 0;
 			margin: 0;
-			width: 26px;
-			text-align: center;
-			border-top-right-radius: 26px;
+			min-width: 1.33em;
+			border-top-right-radius: 2rem;
 			box-shadow: 0 0 2px;
-			font: 1em monospace;
-			font: 1rem monospace;
+			font-size: 1.5em;
 			color: black;
 		}
-		#back-to-top a,
-		body > #toc-toggle {
+		#toc-nav > a {
 			display: block;
-			width: 22px;
-			height: 22px;
-			padding: 4px 4px 0 0;
+			white-space: nowrap;
+
+			height: 1.33em;
+			padding: .1em 0.3em;
 			margin: 0;
-			border: none;
-			border-top-right-radius: 26px;
-		}
-		#back-to-top :first-child {
-			display: block;
-			padding-bottom: 22px;
-			margin-bottom: -22px;
-		}
-		#back-to-top > a {
+
 			background: white;
 			box-shadow: 0 0 2px;
+			border: none;
+			border-top-right-radius: 1.33em;
+			background: white;
 		}
-		#back-to-top > a:hover,
-		#back-to-top > a:focus {
+		#toc-nav > #toc-jump {
+			padding-bottom: 2em;
+			margin-bottom: -1.9em;
+		}
+
+		#toc-nav > a:hover,
+		#toc-nav > a:focus {
 			background: #f8f8f8;
+		}
+		#toc-nav > a:not(:hover):not(:focus) {
+			color: #707070;
+		}
+
+		/* statusbar gets in the way on keyboard focus; remove once browsers fix */
+		#toc-nav > a[href="#toc"]:not(:hover):focus:last-child {
+			padding-bottom: 1.5rem;
+		}
+
+		#toc-nav:not(:hover) > a:not(:focus) > span + span {
+			/* Ideally this uses :focus-within on #toc-nav */
+			display: none;
+		}
+		#toc-nav > a > span + span {
+			padding-right: 0.2em;
 		}
 
 		#toc-toggle-inline {
@@ -186,14 +223,8 @@
 			left: -1px;
 		}
 
-		.toc-toggle:active,
-		#back-to-top :active {
+		#toc-nav :active {
 			color: #C00;
-		}
-
-		#back-to-top abbr {
-			border: none;
-			text-decoration: none;
 		}
 	}
 
@@ -206,6 +237,8 @@
 			top: 0; bottom: 0;
 			left: 0;
 			width: 23.5em;
+			max-width: 80%;
+			max-width: calc(100% - 2em - 26px);
 			overflow: auto;
 			padding: 0 1em;
 			padding-left: 42px;
@@ -224,8 +257,18 @@
 			color: gray;
 			color: hsla(203,20%,40%,.7);
 		}
-		body.toc-sidebar #back-to-top :first-child {
-			display: none;
+		body.toc-sidebar #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+	}
+	/* Hide main scroller when only the ToC is visible anyway */
+	@media screen and (max-width: 28em) {
+		body.toc-sidebar {
+			overflow: hidden;
 		}
 	}
 
@@ -260,8 +303,12 @@
 		}
 		/* See also Overflow section at the bottom */
 
-		body:not(.toc-inline) #back-to-top :first-child {
-			display: none;
+		body:not(.toc-inline) #toc-jump:not(:focus) {
+			width: 0;
+			height: 0;
+			padding: 0;
+			position: absolute;
+			overflow: hidden;
 		}
 	}
 	@media screen and (min-width: 90em) {
@@ -282,6 +329,7 @@
 		font: 100% sans-serif;   /* Reset all font styling to clear out UA styles */
 		font-family: inherit;    /* Inherit the font family. */
 		line-height: 1.2;        /* Keep wrapped headings compact */
+		hyphens: manual;         /* Hyphenated headings look weird */
 	}
 
 	h2, h3, h4, h5, h6 {
@@ -353,27 +401,39 @@
 	}
 
 	dl dd {
-		margin: 0 0 1em 2em;
+		margin: 0 0 .5em 2em;
 	}
 
-	.head dd + dt {
-		margin-top: .5em;
-	}
-
-	.head dd { /* undo for header */
-		margin-bottom: 0;
+	.head dd + dd { /* compact for header */
+		margin-top: -.5em;
 	}
 
 	/* Style for algorithms */
-	ol.algorithm ol:not(.algorithm) {
+	ol.algorithm ol:not(.algorithm),
+	.algorithm > ol ol:not(.algorithm) {
 	 border-left: 0.5em solid #DEF;
 	}
 
+	/* Put nice boxes around each algorithm. */
+	[data-algorithm]:not(.heading) {
+	  padding: .5em;
+	  border: thin solid #ddd; border-radius: .5em;
+	  margin: .5em calc(-0.5em - 1px);
+	}
+	[data-algorithm]:not(.heading) > :first-child {
+	  margin-top: 0;
+	}
+	[data-algorithm]:not(.heading) > :last-child {
+	  margin-bottom: 0;
+	}
+
 	/* Style for switch/case <dl>s */
-	dl.switch > dd > ol.only {
+	dl.switch > dd > ol.only,
+	dl.switch > dd > .only > ol {
 	 margin-left: 0;
 	}
-	dl.switch > dd > ol.algorithm {
+	dl.switch > dd > ol.algorithm,
+	dl.switch > dd > .algorithm > ol {
 	 margin-left: -2em;
 	}
 	dl.switch {
@@ -410,7 +470,7 @@
 		font-style: normal;
 	}
 	dt dfn code, code.idl {
-		font-size: inherit;
+		font-size: medium;
 	}
 	dfn var {
 		font-style: normal;
@@ -489,9 +549,11 @@
 	}
 
 	/* Backout above styling for W3C logo */
-	.head > p:first-child > a {
+	.head .logo,
+	.head .logo a {
 		border: none;
 		text-decoration: none;
+		background: transparent;
 	}
 
 /******************************************************************************/
@@ -549,7 +611,7 @@
 /*                             Colored Boxes                                  */
 /******************************************************************************/
 
-	.issue, .note, .example, .advisement, blockquote {
+	.issue, .note, .example, .assertion, .advisement, blockquote {
 		padding: .5em;
 		border: .5em;
 		border-left-style: solid;
@@ -564,6 +626,7 @@
 	.note,
 	.example,
 	.advisement,
+	.assertion,
 	blockquote {
 		margin: 1em auto;
 	}
@@ -596,7 +659,7 @@
 		padding-right: 1em;
 		text-transform: uppercase;
 	}
-	/* Add .issue::before { content: "Issue " counter(issue); } for autogen numbers,
+	/* Add .issue::before { content: "Issue " counter(issue) " "; } for autogen numbers,
 	   or use class="marker" to mark up the issue number in source. */
 
 /** Example *******************************************************************/
@@ -614,7 +677,7 @@
 		min-width: 7.5em;
 		display: block;
 	}
-	/* Add .example::before { content: "Example " counter(example); } for autogen numbers,
+	/* Add .example::before { content: "Example " counter(example) " "; } for autogen numbers,
 	   or use class="marker" to mark up the example number in source. */
 
 /** Non-normative Note ********************************************************/
@@ -641,6 +704,14 @@
 	}
 	details.note[open] > summary {
 		border-bottom: 1px silver solid;
+	}
+
+/** Assertion Box *************************************************************/
+	/*  for assertions in algorithms */
+
+	.assertion {
+		border-color: #AAA;
+		background: #EEE;
 	}
 
 /** Advisement Box ************************************************************/
@@ -740,6 +811,7 @@
 		font-style: italic;
 		font-weight: normal;
 		padding-left: 1em;
+		width: 3em;
 	}
 
 	/* For when values are extra-complex and need formatting for readability */
@@ -782,8 +854,8 @@
 	table.index {
 		margin: 1em auto;
 		border-collapse: collapse;
-		width: 100%;
 		border: hidden;
+		width: 100%;
 	}
 	table.data caption,
 	table.index caption {
@@ -804,11 +876,6 @@
 		border: 0;
 	}
 
-	table.data  thead th[scope="row"],
-	table.index thead th[scope="row"] {
-		text-align: right;
-	}
-
 	table.data  thead,
 	table.index thead,
 	table.data  tbody,
@@ -823,7 +890,6 @@
 
 	table.data  tbody th:first-child,
 	table.index tbody th:first-child  {
-		text-align: right;
 		border-right: 2px solid;
 		border-top: 1px solid silver;
 		padding-right: 1em;
@@ -852,10 +918,7 @@
 
 
 /*
-	a.property {
-		font-weight: bold;
-		color: hsla(203, 90%, 30%,.8);
-	}
+Alternate table alignment rules
 
 	table.data,
 	table.index {
@@ -871,6 +934,8 @@
 	table.index tbody th:first-child  {
 		text-align: right;
 	}
+
+Possible extra rowspan handling
 
 	table.data  tbody th[rowspan]:not([rowspan='1']),
 	table.index tbody th[rowspan]:not([rowspan='1']),
@@ -895,29 +960,16 @@
 
 /** Table of Contents *********************************************************/
 
-	.toc, .toc ol, .toc ul, .toc li {
-		list-style: none; /* Numbers must be inlined into source */
-		/* because generated content isn't search/selectable and markers can't do multilevel yet */
-		margin:  0;
-		padding: 0;
-		line-height: 1.2rem; /* consistent spacing */
-	}
-
-	/* ToC not indented until third level, but font style & margins show hierarchy */
-	.toc > li             { margin: 1.2em 0;   font-weight: bold;   }
-	.toc > li li          { margin: 0;         font-weight: normal; }
-	.toc > li li li       { margin-left:  1em; font-style:  italic; }
-	.toc > li li li li    { margin-left:  1em; font-style:  normal; }
-	.toc > li li li li li { margin-left: 1rem; font-style:  italic; font-size: 85%; }
-
 	.toc a {
 		/* More spacing; use padding to make it part of the click target. */
-		padding-top: 0.1em;
+		padding-top: 0.1rem;
 		/* Larger, more consistently-sized click target */
 		display: block;
 		/* Reverse color scheme */
 		color: black;
 		border-color: #3980B5;
+		border-bottom-width: 3px !important;
+		margin-bottom: 0px !important;
 	}
 	.toc a:visited {
 		border-color: #054572;
@@ -927,31 +979,67 @@
 		border-bottom-color: transparent;
 	}
 
-	/* Section numbers in a column of their own */
-	:not(li) > .toc {
-		margin-left: 4em;
+	.toc, .toc ol, .toc ul, .toc li {
+		list-style: none; /* Numbers must be inlined into source */
+		/* because generated content isn't search/selectable and markers can't do multilevel yet */
+		margin:  0;
+		padding: 0;
+		line-height: 1.1rem; /* consistent spacing */
 	}
 
+	/* ToC not indented until third level, but font style & margins show hierarchy */
+	.toc > li             { font-weight: bold;   }
+	.toc > li li          { font-weight: normal; }
+	.toc > li li li       { font-size:   95%;    }
+	.toc > li li li li    { font-size:   90%;    }
+	.toc > li li li li li { font-size:   85%;    }
+
+	.toc > li             { margin: 1.5rem 0;    }
+	.toc > li li          { margin: 0.3rem 0;    }
+	.toc > li li li       { margin-left: 2rem;   }
+
+	/* Section numbers in a column of their own */
 	.toc .secno {
 		float: left;
-		width: 4em;
-		margin-left: -4em;
+		width: 4rem;
 		white-space: nowrap;
-	}
-
-	.toc > li li li .secno {
-		margin-left: -5em;
 	}
 	.toc > li li li li .secno {
 		font-size: 85%;
-		margin-left: -7.06em;
-		margin-left: -6rem;
 	}
 	.toc > li li li li li .secno {
-		margin-left: -8.24em;
-		margin-left: -7rem;
 		font-size: 100%;
 	}
+
+	:not(li) > .toc              { margin-left:  5rem; }
+	.toc .secno                  { margin-left: -5rem; }
+	.toc > li li li .secno       { margin-left: -7rem; }
+	.toc > li li li li .secno    { margin-left: -9rem; }
+	.toc > li li li li li .secno { margin-left: -11rem; }
+
+	/* Tighten up indentation in narrow ToCs */
+	@media (max-width: 30em) {
+		:not(li) > .toc              { margin-left:  4rem; }
+		.toc .secno                  { margin-left: -4rem; }
+		.toc > li li li              { margin-left:  1rem; }
+		.toc > li li li .secno       { margin-left: -5rem; }
+		.toc > li li li li .secno    { margin-left: -6rem; }
+		.toc > li li li li li .secno { margin-left: -7rem; }
+	}
+	@media screen and (min-width: 78em) {
+		body:not(.toc-inline) :not(li) > .toc              { margin-left:  4rem; }
+		body:not(.toc-inline) .toc .secno                  { margin-left: -4rem; }
+		body:not(.toc-inline) .toc > li li li              { margin-left:  1rem; }
+		body:not(.toc-inline) .toc > li li li .secno       { margin-left: -5rem; }
+		body:not(.toc-inline) .toc > li li li li .secno    { margin-left: -6rem; }
+		body:not(.toc-inline) .toc > li li li li li .secno { margin-left: -7rem; }
+	}
+	body.toc-sidebar #toc :not(li) > .toc              { margin-left:  4rem; }
+	body.toc-sidebar #toc .toc .secno                  { margin-left: -4rem; }
+	body.toc-sidebar #toc .toc > li li li              { margin-left:  1rem; }
+	body.toc-sidebar #toc .toc > li li li .secno       { margin-left: -5rem; }
+	body.toc-sidebar #toc .toc > li li li li .secno    { margin-left: -6rem; }
+	body.toc-sidebar #toc .toc > li li li li li .secno { margin-left: -7rem; }
 
 	.toc li {
 		clear: both;
@@ -961,7 +1049,7 @@
 /** Index *********************************************************************/
 
 	/* Index Lists: Layout */
-	ul.index       { margin-left: 0; columns: 15em; -webkit-columns: 15em; -moz-columns: 15em; text-indent: 1em hanging; }
+	ul.index       { margin-left: 0; columns: 15em; text-indent: 1em hanging; }
 	ul.index li    { margin-left: 0; list-style: none; break-inside: avoid; }
 	ul.index li li { margin-left: 1em }
 	ul.index dl    { margin-top: 0; }
@@ -1043,6 +1131,12 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.overlarge > table {
+		/* limit preferred width of table */
+		max-width: 50em;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 	@media (min-width: 55em) {
 		.overlarge {
@@ -1081,156 +1175,9 @@
 			*/
 		}
 	}
-
-/******************************************************************************/
-/*                                  Bikeshed                                  */
-/******************************************************************************/
-
-	/* Style for paragraphs I know are in MD-genned lists */
-	/* This is a weird hack for me not yet following the commonmark spec
-	   regarding paragraph and lists. */
-	[data-md] > :first-child {
-		margin-top: 0;
-	}
-	[data-md] > :last-child {
-		margin-bottom: 0;
-	}
-
-/** Inline CSS fragments ******************************************************/
-
-	.css.css, .property.property, .descriptor.descriptor {
-		color: #005a9c;
-		font-size: inherit;
-		font-family: inherit;
-	}
-	.css::before, .property::before, .descriptor::before {
-		content: "‘";
-	}
-	.css::after, .property::after, .descriptor::after {
-		content: "’";
-	}
-	.property, .descriptor {
-		/* Don't wrap property and descriptor names */
-		white-space: nowrap;
-	}
-	.type { /* CSS value <type> */
-		font-style: italic;
-	}
-	pre .property::before, pre .property::after {
-		content: "";
-	}
-
-/** Autolinks produced using Bikeshed *****************************************/
-
-	[data-link-type="property"]::before,
-	[data-link-type="propdesc"]::before,
-	[data-link-type="descriptor"]::before,
-	[data-link-type="value"]::before,
-	[data-link-type="function"]::before,
-	[data-link-type="at-rule"]::before,
-	[data-link-type="selector"]::before,
-	[data-link-type="maybe"]::before {
-		content: "‘";
-	}
-	[data-link-type="property"]::after,
-	[data-link-type="propdesc"]::after,
-	[data-link-type="descriptor"]::after,
-	[data-link-type="value"]::after,
-	[data-link-type="function"]::after,
-	[data-link-type="at-rule"]::after,
-	[data-link-type="selector"]::after,
-	[data-link-type="maybe"]::after {
-		content: "’";
-	}
-
-	[data-link-type].production::before,
-	[data-link-type].production::after,
-	.prod [data-link-type]::before,
-	.prod [data-link-type]::after {
-		content: "";
-	}
-
-	[data-link-type=element],
-	[data-link-type=element-attr] {
-		font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
-		font-size: .9em;
-	}
-	[data-link-type=element]::before { content: "<" }
-	[data-link-type=element]::after  { content: ">" }
-
-	[data-link-type=biblio] {
-		white-space: pre;
-	}
-
-/** Self-Links ****************************************************************/
-/* Auto-generated links from an element to its own anchor, for usability */
-
-	.heading, .issue, .note, .example, li, dt {
-		position: relative;
-	}
-	a.self-link {
-		position: absolute;
-		top: 0;
-		left: calc(-1 * (3.5rem - 26px));
-		width: calc(3.5rem - 26px);
-		height: 2em;
-		text-align: center;
-		border: none;
-		transition: opacity .2s;
-		opacity: .5;
-	}
-	a.self-link:hover {
-		opacity: 1;
-	}
-	.heading > a.self-link {
-		font-size: 83%;
-	}
-	dfn > a.self-link {
-		top: auto;
-		left: auto;
-		opacity: 0;
-		width: 1.5em;
-		height: 1.5em;
-		background: gray;
-		color: white;
-		font-style: normal;
-		transition: opacity .2s, background-color .2s, color .2s;
-	}
-	dfn:hover > a.self-link {
-		opacity: 1;
-	}
-	dfn > a.self-link:hover {
-		color: black;
-	}
-
-	a.self-link::before            { content: "¶"; }
-	.heading > a.self-link::before { content: "§"; }
-	dfn > a.self-link::before      { content: "#"; }
-
-/** Counters ******************************************************************/
-/* Adds the auto-genned issue/example counters,
-   until Bikeshed fills in manual ones. */
-	.issue:not(.no-marker)::before {
-		content: "Issue " counter(issue);
-	}
-
-	.example:not(.no-marker)::before {
-		content: "Example";
-		content: "Example " counter(example);
-	}
-	.invalid.example:not(.no-marker)::before,
-	.illegal.example:not(.no-marker)::before {
-		content: "Invalid Example";
-		content: "Invalid Example" counter(example);
-	}
-
-
-
-/********************************************
- Remember to remove the logo section when copypasting freshly.
- */
 </style>
-  <meta content="Bikeshed 1.0.0" name="generator">
+  <meta content="Bikeshed version ae5d415446a9edf0c07d32303ac1d21767d86d57" name="generator">
+  <link href="https://openregister.github.io/specification/" rel="canonical">
 <style>
   svg.railroad-diagram { width: 100%; }
 
@@ -1265,21 +1212,168 @@
     padding: 0 0.25em;
   }
 </style>
-<style>svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3;stroke:black;fill:hsl(120,100%,90%);}</style>
-<style>svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3;stroke:black;fill:hsl(120,100%,90%);}</style>
-<style>svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3;stroke:black;fill:hsl(120,100%,90%);}</style>
-<style>.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #ffffff; }
+<style>/* style-md-lists */
+
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}</style>
+<style>/* style-selflinks */
+
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: gray;
+    color: white;
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: black;
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }</style>
+<style>/* style-counters */
+
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}</style>
+<style>/* style-autolinks */
+
+.css.css, .property.property, .descriptor.descriptor {
+    color: #005a9c;
+    font-size: inherit;
+    font-family: inherit;
+}
+.css::before, .property::before, .descriptor::before {
+    content: "‘";
+}
+.css::after, .property::after, .descriptor::after {
+    content: "’";
+}
+.property, .descriptor {
+    /* Don't wrap property and descriptor names */
+    white-space: nowrap;
+}
+.type { /* CSS value <type> */
+    font-style: italic;
+}
+pre .property::before, pre .property::after {
+    content: "";
+}
+[data-link-type="property"]::before,
+[data-link-type="propdesc"]::before,
+[data-link-type="descriptor"]::before,
+[data-link-type="value"]::before,
+[data-link-type="function"]::before,
+[data-link-type="at-rule"]::before,
+[data-link-type="selector"]::before,
+[data-link-type="maybe"]::before {
+    content: "‘";
+}
+[data-link-type="property"]::after,
+[data-link-type="propdesc"]::after,
+[data-link-type="descriptor"]::after,
+[data-link-type="value"]::after,
+[data-link-type="function"]::after,
+[data-link-type="at-rule"]::after,
+[data-link-type="selector"]::after,
+[data-link-type="maybe"]::after {
+    content: "’";
+}
+
+[data-link-type].production::before,
+[data-link-type].production::after,
+.prod [data-link-type]::before,
+.prod [data-link-type]::after {
+    content: "";
+}
+
+[data-link-type=element],
+[data-link-type=element-attr] {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: .9em;
+}
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
+
+[data-link-type=biblio] {
+    white-space: pre;
+}</style>
+<style>/* style-railroad */
+svg.railroad-diagram{background-color:hsl(30,20%,95%);}svg.railroad-diagram path{stroke-width:3px;stroke:black;fill:rgba(0,0,0,0);}svg.railroad-diagram text{font:bold 14px monospace;text-anchor:middle;}svg.railroad-diagram text.label{text-anchor:start;}svg.railroad-diagram text.comment{font:italic 12px monospace;}svg.railroad-diagram rect{stroke-width:3px;stroke:black;fill:hsl(120,100%,90%);}</style>
+<style>/* style-syntax-highlighting */
+
+.highlight:not(.idl) { background: hsl(24, 20%, 95%); }
+code.highlight { padding: .1em; border-radius: .3em; }
+pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 .highlight .c { color: #708090 } /* Comment */
 .highlight .k { color: #990055 } /* Keyword */
 .highlight .l { color: #000000 } /* Literal */
 .highlight .n { color: #0077aa } /* Name */
 .highlight .o { color: #999999 } /* Operator */
 .highlight .p { color: #999999 } /* Punctuation */
-.highlight .ch { color: #708090 } /* Comment.Hashbang */
 .highlight .cm { color: #708090 } /* Comment.Multiline */
 .highlight .cp { color: #708090 } /* Comment.Preproc */
-.highlight .cpf { color: #708090 } /* Comment.PreprocFile */
 .highlight .c1 { color: #708090 } /* Comment.Single */
 .highlight .cs { color: #708090 } /* Comment.Special */
 .highlight .kc { color: #990055 } /* Keyword.Constant */
@@ -1302,7 +1396,7 @@
 .highlight .nn { color: #0077aa } /* Name.Namespace */
 .highlight .py { color: #0077aa } /* Name.Property */
 .highlight .nt { color: #669900 } /* Name.Tag */
-.highlight .nv { color: #0077aa } /* Name.Variable */
+.highlight .nv { color: #222222 } /* Name.Variable */
 .highlight .ow { color: #999999 } /* Operator.Word */
 .highlight .mb { color: #000000 } /* Literal.Number.Bin */
 .highlight .mf { color: #000000 } /* Literal.Number.Float */
@@ -1324,17 +1418,14 @@
 .highlight .vg { color: #0077aa } /* Name.Variable.Global */
 .highlight .vi { color: #0077aa } /* Name.Variable.Instance */
 .highlight .il { color: #000000 } /* Literal.Number.Integer.Long */
-        .highlight { background: hsl(24, 20%, 95%); }
-        code.highlight { padding: .1em; border-radius: .3em; }
-        pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
-        </style>
+</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo">
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
-   <h1 class="p-name no-ref" id="title">Open Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2018-02-15">15 February 2018</time></span></h2>
+   <h1>Open Registers</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">, <time class="dt-updated" datetime="2018-02-16">16 February 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1343,11 +1434,15 @@
      <dd><a href="https://github.com/openregister/specification/commits/gh-pages/index.bs">https://github.com/openregister/specification/commits/gh-pages/index.bs</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/openregister/specification/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:arnau.siches@digital.cabinet-office.gov.uk">Arnau Siches</a> (<span class="p-org org">Government Digital Service</span>)
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:michaela.benyohai@digital.cabinet-office.gov.uk">Michaela Benyohai</a> (<span class="p-org org">Government Digital Service</span>)
+     <dt class="editor">Former Editors:
+     <dd class="editor p-author h-card vcard"><span class="p-name fn">Paul Downey</span> (<span class="p-org org">Government Digital Service</span>)
+     <dd class="editor p-author h-card vcard"><span class="p-name fn">Daniel Appelquist</span> (<span class="p-org org">Government Digital Service</span>)
      <dt>Bug Reports:
-     <dd><span><a href="https://github.com/openregister/specification/issues">via the openregister/specification repository on GitHub</a></span>
+     <dd><a href="https://github.com/openregister/specification/issues">via the openregister/specification repository on GitHub</a>
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -1356,8 +1451,8 @@
    </p>
    <hr title="Separator for header">
   </div>
-  <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
   <div class="p-summary" data-fill-with="abstract">
+   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>This document defines the resources and representations which together
 
 provide an Application Programming Interface (API) for accessing
@@ -1518,7 +1613,7 @@ data held in an open register.</p>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><em>An introduction to the product, independent of HMG’s use of registers ..</em></p>
    <h2 class="heading settled" data-level="2" id="infoset"><span class="secno">2. </span><span class="content">Infoset</span><a class="self-link" href="#infoset"></a></h2>
-   <p class="note" role="note">Note: Data items in this specification are defined in terms of an information set which can be mapped to one of a number of different representations. There is no canonical representation.</p>
+   <p class="note" role="note"><span>Note:</span> Data items in this specification are defined in terms of an information set which can be mapped to one of a number of different representations. There is no canonical representation.</p>
    <ul>
     <li data-md="">
      <p>An infoset is an unordered collection of data items.</p>
@@ -1537,8 +1632,8 @@ data held in an open register.</p>
    <p>An item is an unordered collection of <a href="#fields">§10 Fields</a> and values.
 The set of fields which MAY be included in an item are defined in the <a href="#fields-field"></a> field in the <a href="#register-register">§11.1 Register register</a> entry for the register.</p>
    <p>An item is identified by the globally unique <a href="#item-hash-field">§10.6 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§10.6 item-hash</a>.</p>
-   <div class="example" id="example-52b809bb">
-    <a class="self-link" href="#example-52b809bb"></a> The following example shows an item in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-58632420">
+    <a class="self-link" href="#example-58632420"></a> The following example shows an item in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1549,7 +1644,8 @@ The set of fields which MAY be included in an item are defined in the <a href="#
   <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Roy’s Rolls"</span><span class="p">,</span>
   <span class="nt">"premises"</span><span class="p">:</span> <span class="s2">"13456079000"</span><span class="p">,</span>
   <span class="nt">"start-date"</span><span class="p">:</span> <span class="s2">"2015-03-01"</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="3.2" id="entry-resource"><span class="secno">3.2. </span><span class="content">Entry resource</span><a class="self-link" href="#entry-resource"></a></h3>
    <dl class="resource">
@@ -1567,7 +1663,7 @@ the entry-number and index-entry-number are always identical. The item-hash iden
 the set of <a href="#item-resource">§3.1 Item resource</a> for the entry. The key represents the primary key value
 for the entry.</p>
    <p>The entry resource returns an array containing a single entry.</p>
-   <div class="example" id="example-f7122eba"><a class="self-link" href="#example-f7122eba"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: <span id="assert-ba2e957d"> <pre class="highlight"><span class="p">[</span>
+   <div class="example" id="example-ce10e4f7"><a class="self-link" href="#example-ce10e4f7"></a> The following example shows an entry in the <a href="#json-representation">§12.2 JSON representation</a>: <span id="assert-106b5c58"> <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1577,7 +1673,8 @@ for the entry.</p>
         <span class="s2">"sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">]</span></pre> </span> </div>
+<span class="p">]</span>
+</pre></span> </div>
    <p class="issue" id="issue-1de3eab4"><a class="self-link" href="#issue-1de3eab4"></a> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a></p>
    <p class="issue" id="issue-112c8311"><a class="self-link" href="#issue-112c8311"></a> Hypermedia link from entry to item? <a href="https://github.com/openregister/specification/issues/50">&lt;https://github.com/openregister/specification/issues/50></a></p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
@@ -1593,9 +1690,9 @@ computed by a client by replaying the log of all entries and finding
 the latest one with the given primary key value.</p>
    <p>This resource SHOULD provide a Link: header <a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a> with a
 relation of <code>"version-history"</code> <a data-link-type="biblio" href="#biblio-rfc5829">[RFC5829]</a> to the <a href="#record-entries-resource">§5.4 Record entries resource</a> for this record.</p>
-   <div class="example" id="example-77c540e4">
-    <a class="self-link" href="#example-77c540e4"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre class="highlight"><span class="err">https://local-authority.register.gov.uk/record/E</span><span class="mi">09000019</span>
+   <div class="example" id="example-9fea54eb">
+    <a class="self-link" href="#example-9fea54eb"></a> The following example shows a record in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre class="highlight">https://local-authority.register.gov.uk/record/E<span class="mi">09000019</span>
 <span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1609,7 +1706,8 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
         <span class="p">}</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="3.4" id="register-resource"><span class="secno">3.4. </span><span class="content">Register resource</span><a class="self-link" href="#register-resource"></a></h3>
    <dl class="resource">
@@ -1618,36 +1716,30 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    </dl>
    <p>The register resource is <a href="#infoset">§2 Infoset</a> with the following fields:</p>
    <dl>
-    <dt data-md="">
-     <p><a href="#domain-field">§10.3 domain</a></p>
+    <dt data-md=""><a href="#domain-field">§10.3 domain</a>
     <dd data-md="">
      <p>The Internet domain the register is available from.</p>
-    <dt data-md="">
-     <p><a href="#last-updated-field">§10.7 last-updated</a></p>
+    <dt data-md=""><a href="#last-updated-field">§10.7 last-updated</a>
     <dd data-md="">
      <p>The date the register was last updated.</p>
    </dl>
    <p>The register resource also contains the following data items:</p>
    <dl>
-    <dt data-md="">
-     <p>register-record</p>
+    <dt data-md="">register-record
     <dd data-md="">
      <p>A copy of the <a href="#register-register">§11.1 Register register</a> <a href="#record-resource">§3.3 Record resource</a> entity describing this register.</p>
-    <dt data-md="">
-     <p>total-items</p>
+    <dt data-md="">total-items
     <dd data-md="">
      <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#item-resource">§3.1 Item resource</a> entities currently stored in the register.</p>
-    <dt data-md="">
-     <p>total-entries</p>
+    <dt data-md="">total-entries
     <dd data-md="">
      <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#entry-resource">§3.2 Entry resource</a> entities currently stored in the register.</p>
-    <dt data-md="">
-     <p>total-records</p>
+    <dt data-md="">total-records
     <dd data-md="">
      <p>An <a href="#integer-datatype">§9.3 Integer datatype</a> value representing the number of <a href="#record-resource">§3.3 Record resource</a> entities currently stored in the register.</p>
    </dl>
-   <div class="example" id="example-7e89c3f6">
-    <a class="self-link" href="#example-7e89c3f6"></a> The following example shows a register in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-6a52e87b">
+    <a class="self-link" href="#example-6a52e87b"></a> The following example shows a register in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"domain"</span><span class="p">:</span> <span class="s2">".register.gov.uk"</span><span class="p">,</span>
   <span class="nt">"last-updated"</span><span class="p">:</span> <span class="s2">"2016-01-21T21:09:59Z"</span><span class="p">,</span>
@@ -1665,7 +1757,8 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
   <span class="nt">"total-entries"</span><span class="p">:</span> <span class="s2">"109001"</span><span class="p">,</span>
   <span class="nt">"total-items"</span><span class="p">:</span> <span class="s2">"109009"</span><span class="p">,</span>
   <span class="nt">"total-records"</span><span class="p">:</span> <span class="s2">"30522"</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="3.5" id="register-proof-resource"><span class="secno">3.5. </span><span class="content">Register proof resource</span><a class="self-link" href="#register-proof-resource"></a></h3>
    <dl class="resource">
@@ -1674,8 +1767,8 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    </dl>
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
    <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.7 Proofs resource</a> indicates which proofs are available.</p>
-   <div class="example" id="example-1b3828a7">
-    <a class="self-link" href="#example-1b3828a7"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-d9b9cd23">
+    <a class="self-link" href="#example-d9b9cd23"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1685,7 +1778,8 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
   <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
   <span class="nt">"tree-head-signature"</span><span class="p">:</span>
   <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <p class="issue" id="issue-ba4608f8"><a class="self-link" href="#issue-ba4608f8"></a> CT names should be mapped to a consistent "proof" field names, or held inside an envelope. <a href="https://github.com/openregister/specification/issues/6">&lt;https://github.com/openregister/specification/issues/6></a></p>
    <h3 class="heading settled" data-level="3.6" id="entry-proof-resource"><span class="secno">3.6. </span><span class="content">Entry proof resource</span><a class="self-link" href="#entry-proof-resource"></a></h3>
@@ -1696,15 +1790,16 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
    <p>There may be different kinds of entry proof available.</p>
-   <div class="example" id="example-7d8cc57c">
-    <a class="self-link" href="#example-7d8cc57c"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-5efe3a55">
+    <a class="self-link" href="#example-5efe3a55"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
   <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"123"</span><span class="p">,</span>
   <span class="nt">"merkle-audit-path"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"sha-256:zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8="</span><span class="p">,</span> <span class="s2">"sha-256:e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY="</span> <span class="p">]</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="3.7" id="consistency-proof-resource"><span class="secno">3.7. </span><span class="content">Consistency proof resource</span><a class="self-link" href="#consistency-proof-resource"></a></h3>
    <dl class="resource">
@@ -1715,14 +1810,15 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>The consistency proof for a register containing total-entries-2 entries and a previous version of the same register containing total-entries-1 entries (total-entries-2 > total-entries-1) is the information required to prove that the first total-entries-1 entries are equal for both, given a <a href="#register-proof-resource">§3.5 Register proof resource</a> for each version of the register.</p>
    <p>The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.</p>
    <p>There may be different kinds of consistency proof available.</p>
-   <div class="example" id="example-da6f7b31">
-    <a class="self-link" href="#example-da6f7b31"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-89ae3559">
+    <a class="self-link" href="#example-89ae3559"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
   <span class="nt">"merkle-consistency-nodes"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"sha-256:MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM="</span><span class="p">,</span> <span class="s2">"sha-256:TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE="</span> <span class="p">]</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="3.8" id="records-proof-resource"><span class="secno">3.8. </span><span class="content">Records proof resource</span><a class="self-link" href="#records-proof-resource"></a></h3>
    <dl class="resource">
@@ -1731,8 +1827,8 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    </dl>
    <p>A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.</p>
    <p>There may be different kinds of records proof available.</p>
-   <div class="example" id="example-4528d69c">
-    <a class="self-link" href="#example-4528d69c"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-1c346af0">
+    <a class="self-link" href="#example-1c346af0"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre>https://local-authority.register.gov.uk/proof/records/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1745,7 +1841,8 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
     <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
   <span class="p">},</span>
   <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <p class="issue" id="issue-06d108e8"><a class="self-link" href="#issue-06d108e8"></a> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
    <h3 class="heading settled" data-level="3.9" id="record-proof-resource"><span class="secno">3.9. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
@@ -1756,14 +1853,15 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§3.8 Records proof resource</a>.</p>
    <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
    <p>There may different kinds of record proof available.</p>
-   <div class="example" id="example-61c3967d">
-    <a class="self-link" href="#example-61c3967d"></a> The following example shows a Merkle-tree-based record proof in the <a href="#json-representation">§12.2 JSON representation</a>. This particular proof algorithm would return an array of 256 Merkle tree nodes: 
+   <div class="example" id="example-df53b38e">
+    <a class="self-link" href="#example-df53b38e"></a> The following example shows a Merkle-tree-based record proof in the <a href="#json-representation">§12.2 JSON representation</a>. This particular proof algorithm would return an array of 256 Merkle tree nodes: 
 <pre>https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sha-256:GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"sha-256:3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"sha-256:3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> <span class="err">...</span><span class="p">]</span>
-<span class="p">}</span></pre>
+  <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sha-256:GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"sha-256:3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"sha-256:3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> ...<span class="p">]</span>
+<span class="p">}</span>
+</pre>
    </div>
    <p class="issue" id="issue-dd4ca9b1"><a class="self-link" href="#issue-dd4ca9b1"></a> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
    <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
@@ -1779,8 +1877,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <dd>/items
    </dl>
    <p class="issue" id="issue-9ee875b6"><a class="self-link" href="#issue-9ee875b6"></a> IMPLEMENTATION /items isn’t yet implemented. There may not be a need for this resource as it’s available in the archive. <a href="https://github.com/openregister/specification/issues/9">&lt;https://github.com/openregister/specification/issues/9></a></p>
-   <div class="example" id="example-0ecf6e2a">
-    <a class="self-link" href="#example-0ecf6e2a"></a> The following example shows a set of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-343be005">
+    <a class="self-link" href="#example-343be005"></a> The following example shows a set of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
@@ -1790,7 +1888,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000016"</span><span class="p">,</span>
     <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Havering"</span>
   <span class="p">}</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <p class="issue" id="issue-64bcb597"><a class="self-link" href="#issue-64bcb597"></a> what does the items resource look like in a register with multiple hashing algorithms available? <a href="https://github.com/openregister/specification/issues/38">&lt;https://github.com/openregister/specification/issues/38></a></p>
    <h3 class="heading settled" data-level="5.2" id="entries-resource"><span class="secno">5.2. </span><span class="content">Entries resource</span><a class="self-link" href="#entries-resource"></a></h3>
@@ -1800,8 +1899,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
    </dl>
    <p>The entries resource returns the ordered list of all <a href="#entry-resource">§3.2 Entry resource</a>s in order.</p>
    <p class="issue" id="issue-9c161095"><a class="self-link" href="#issue-9c161095"></a> What order should /entries be in? <a href="https://github.com/openregister/specification/issues/41">&lt;https://github.com/openregister/specification/issues/41></a></p>
-   <div class="example" id="example-714bafc6">
-    <a class="self-link" href="#example-714bafc6"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-3ac1204b">
+    <a class="self-link" href="#example-3ac1204b"></a> The following example shows a list of entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
@@ -1821,7 +1920,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
         <span class="s2">"sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">]</span></pre>
+<span class="p">]</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="5.3" id="item-entries-resource"><span class="secno">5.3. </span><span class="content">Item entries resource</span><a class="self-link" href="#item-entries-resource"></a></h3>
    <dl class="resource">
@@ -1830,8 +1930,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
    </dl>
    <p>An ordered list of <a href="#entry-resource">§3.2 Entry resource</a> values which cite the item.</p>
    <p class="issue" id="issue-1dc835c7"><a class="self-link" href="#issue-1dc835c7"></a> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a></p>
-   <div class="example" id="example-6c5a1a2f">
-    <a class="self-link" href="#example-6c5a1a2f"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-caae10ce">
+    <a class="self-link" href="#example-caae10ce"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
@@ -1851,7 +1951,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
         <span class="s2">"sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">]</span></pre>
+<span class="p">]</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="5.4" id="record-entries-resource"><span class="secno">5.4. </span><span class="content">Record entries resource</span><a class="self-link" href="#record-entries-resource"></a></h3>
    <dl class="resource">
@@ -1860,8 +1961,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
    </dl>
    <p>All of the entries which have the given <a href="#primary-key-field">§10.1 Primary key field</a> value, in order of <a href="#entry-number-field">§10.4 entry-number</a>.</p>
    <p class="issue" id="issue-8815c872"><a class="self-link" href="#issue-8815c872"></a> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a></p>
-   <div class="example" id="example-685f1973">
-    <a class="self-link" href="#example-685f1973"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-3063a308">
+    <a class="self-link" href="#example-3063a308"></a> The following example shows a list of item entries in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
@@ -1881,7 +1982,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
         <span class="s2">"sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">]</span></pre>
+<span class="p">]</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="5.5" id="records-resource"><span class="secno">5.5. </span><span class="content">Records resource</span><a class="self-link" href="#records-resource"></a></h3>
    <dl class="resource">
@@ -1890,8 +1992,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
    </dl>
    <p>All <a href="#record-resource">§3.3 Record resource</a>s in a register.</p>
    <p class="issue" id="issue-d994c4f5"><a class="self-link" href="#issue-d994c4f5"></a> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a></p>
-   <div class="example" id="example-4b11ed24">
-    <a class="self-link" href="#example-4b11ed24"></a> The following example shows a list of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
+   <div class="example" id="example-b283dc78">
+    <a class="self-link" href="#example-b283dc78"></a> The following example shows a list of records in the <a href="#json-representation">§12.2 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1917,7 +2019,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
         <span class="p">}</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="5.6" id="faceted-records-resource"><span class="secno">5.6. </span><span class="content">Faceted records resource</span><a class="self-link" href="#faceted-records-resource"></a></h3>
    <dl class="resource">
@@ -1925,9 +2028,10 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <dd>/records/{<a U00022="" href="#field-field">field-name</a>}/{<a U00022="" href="#field-value">field-value</a>}
    </dl>
    <p>All <a href="#record-resource">§3.3 Record resource</a>s in a register which have the same value in the given field.</p>
-   <div class="example" id="example-56b89710">
-    <a class="self-link" href="#example-56b89710"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre class="highlight"><span class="err">https://school.register.gov.uk/records/religious-character/Quaker.json</span></pre>
+   <div class="example" id="example-4b7fedf9">
+    <a class="self-link" href="#example-4b7fedf9"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre class="highlight">https://school.register.gov.uk/records/religious-character/Quaker.json
+</pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"123278"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"18371"</span><span class="p">,</span>
@@ -1963,7 +2067,8 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
         <span class="p">}</span>
     <span class="p">]</span>
   <span class="p">}</span>
-<span class="p">}</span></pre>
+<span class="p">}</span>
+</pre>
    </div>
    <h3 class="heading settled" data-level="5.7" id="proofs-resource"><span class="secno">5.7. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
    <dl class="resource">
@@ -1971,11 +2076,12 @@ An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a hre
     <dd>/proofs
    </dl>
    <p>All of the available proof algorithms that the register supports.</p>
-   <div class="example" id="example-6b2c9e10">
-    <a class="self-link" href="#example-6b2c9e10"></a> The following example shows a set of register proofs in the <a href="#json-representation">§12.2 JSON representation</a>: 
-<pre class="highlight"><span class="p">[</span><span class="err">'merkle:sha</span><span class="mi">-256</span><span class="err">'</span><span class="p">]</span></pre>
+   <div class="example" id="example-fea8fd17">
+    <a class="self-link" href="#example-fea8fd17"></a> The following example shows a set of register proofs in the <a href="#json-representation">§12.2 JSON representation</a>: 
+<pre class="highlight"><span class="p">[</span>'merkle:sha<span class="mi">-256</span>'<span class="p">]</span>
+</pre>
    </div>
-   <p class="note" role="note">Note: A register MAY have more than one proof, to support multiple types of proof in the future.</p>
+   <p class="note" role="note"><span>Note:</span> A register MAY have more than one proof, to support multiple types of proof in the future.</p>
    <h3 class="heading settled" data-level="5.8" id="entry-proofs-resource"><span class="secno">5.8. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proofs-resource"></a></h3>
    <dl class="resource">
     <dt>Path
@@ -2007,11 +2113,11 @@ The archive file SHOULD be made available in a single file, but MAY be split int
      </ul>
    </ul>
    <p>A register archive MAY contain entry and item resources in the more space efficient <a href="#tsv-representation">§12.5 TSV representation</a>.</p>
-   <p class="issue" id="issue-a9ea3195"><a class="self-link" href="#issue-a9ea3195"></a> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a></p>
+   <p class="issue" id="issue-7bde4f59"><a class="self-link" href="#issue-7bde4f59"></a> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a></p>
    <p class="issue" id="issue-941daf47"><a class="self-link" href="#issue-941daf47"></a> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a></p>
    <p class="issue" id="issue-37c7e097"><a class="self-link" href="#issue-37c7e097"></a> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a></p>
    <h2 class="heading settled" data-level="7" id="streaming-resources"><span class="secno">7. </span><span class="content">Streaming resources</span><a class="self-link" href="#streaming-resources"></a></h2>
-   <p class="issue" id="issue-073f5c29"><a class="self-link" href="#issue-073f5c29"></a> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a></p>
+   <p class="issue" id="issue-fd623635"><a class="self-link" href="#issue-fd623635"></a> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a></p>
    <h2 class="heading settled" data-level="8" id="http-headers"><span class="secno">8. </span><span class="content">HTTP Headers</span><a class="self-link" href="#http-headers"></a></h2>
    <p>Table of link and other HTTP headers used by resources ..</p>
    <ul>
@@ -2024,8 +2130,8 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p>the <a href="#item-hash-field">§10.6 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
    </ul>
-   <div class="example" id="example-1ddbf6d4">
-    <a class="self-link" href="#example-1ddbf6d4"></a> The following example shows the HTTP headers for the <a href="#json-representation">§12.2 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
+   <div class="example" id="example-03bbffe0">
+    <a class="self-link" href="#example-03bbffe0"></a> The following example shows the HTTP headers for the <a href="#json-representation">§12.2 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
 <pre>HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Expires: Sun, 22 Jan 2017 08:00:08 GMT
@@ -2052,81 +2158,93 @@ Content-Length: 522
    <h3 class="heading settled" data-level="9.2" id="fieldname-datatype"><span class="secno">9.2. </span><span class="content">Field-name datatype</span><a class="self-link" href="#fieldname-datatype"></a></h3>
    <h3 class="heading settled" data-level="9.3" id="integer-datatype"><span class="secno">9.3. </span><span class="content">Integer datatype</span><a class="self-link" href="#integer-datatype"></a></h3>
    <div class="railroad">
-    <svg class="railroad-diagram" height="111" viewBox="0 0 501 111" width="501">
+    <svg class="railroad-diagram" height="110" viewBox="0 0 500 110" width="500">
      <g transform="translate(.5 .5)">
-      <path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5" data-type="start" data-updown="10 10"></path>
-      <g data-type="choice" data-updown="11 60">
-       <path d="M40 31h0.0"></path>
-       <path d="M460.0 31h0.0"></path>
-       <path d="M40.0 31h20"></path>
-       <path d="M440.0 31h20"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M60.0 31h176.0"></path>
-        <path d="M264.0 31h176.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="236.0" y="20"></rect>
-        <text x="250.0" y="35"> 0</text>
+      <path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path>
+      <g>
+       <path d="M40 31h0"></path>
+       <path d="M460 31h0"></path>
+       <path d="M40 31h20"></path>
+       <g class="terminal">
+        <path d="M60 31h176"></path>
+        <path d="M264 31h176"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="236" y="20"></rect>
+        <a href="">
+         <text x="250" y="35">0</text>
+         <text x="250" y="35">0</text>
+        </a>
        </g>
-       <path d="M40.0 31a10 10 0 0 1 10 10v20a10 10 0 0 0 10 10"></path>
-       <path d="M440.0 71a10 10 0 0 0 10 -10v-20a10 10 0 0 1 10 -10"></path>
-       <g data-type="sequence" data-updown="21 20">
-        <path d="M60.0 71h0.0"></path>
-        <path d="M440.0 71h0.0"></path>
-        <g data-type="choice" data-updown="21 11">
-         <path d="M60.0 71h0.0"></path>
-         <path d="M128.0 71h0.0"></path>
-         <path d="M60.0 71a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
-         <path d="M108.0 51a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
-         <g data-type="skip" data-updown="0 0">
-          <path d="M80.0 51h28"></path>
+       <path d="M440 31h20"></path>
+       <path d="M40 31a10 10 0 0 1 10 10v19a10 10 0 0 0 10 10"></path>
+       <g>
+        <path d="M60 70h0"></path>
+        <path d="M440 70h0"></path>
+        <g>
+         <path d="M60 70h0"></path>
+         <path d="M128 70h0"></path>
+         <path d="M60 70a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+         <g>
+          <path d="M80 50h28"></path>
          </g>
-         <path d="M60.0 71h20"></path>
-         <path d="M108.0 71h20"></path>
-         <g data-type="terminal" data-updown="11 11">
-          <path d="M80.0 71h0.0"></path>
-          <path d="M108.0 71h0.0"></path>
-          <rect height="22" rx="10" ry="10" width="28" x="80.0" y="60"></rect>
-          <text x="94.0" y="75"> -</text>
+         <path d="M108 50a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+         <path d="M60 70h20"></path>
+         <g class="terminal">
+          <path d="M80 70h0"></path>
+          <path d="M108 70h0"></path>
+          <rect height="22" rx="10" ry="10" width="28" x="80" y="59"></rect>
+          <a href="">
+           <text x="94" y="74">-</text>
+           <text x="94" y="74">-</text>
+          </a>
          </g>
+         <path d="M108 70h20"></path>
         </g>
-        <path d="M128.0 71h10"></path>
-        <path d="M254.0 71h10"></path>
-        <g data-type="non-terminal" data-updown="11 11">
-         <path d="M138.0 71h0.0"></path>
-         <path d="M254.0 71h0.0"></path>
-         <rect height="22" width="116" x="138.0" y="60"></rect>
-         <text x="196.0" y="75"> digit 1 to 9</text>
+        <path d="M128 70h10"></path>
+        <g class="non-terminal">
+         <path d="M138 70h0"></path>
+         <path d="M254 70h0"></path>
+         <rect height="22" width="116" x="138" y="59"></rect>
+         <a href="">
+          <text x="196" y="74">digit 1 to 9</text>
+          <text x="196" y="74">digit 1 to 9</text>
+         </a>
         </g>
-        <g data-type="choice" data-updown="21 20">
-         <path d="M264.0 71h0.0"></path>
-         <path d="M440.0 71h0.0"></path>
-         <path d="M264.0 71a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
-         <path d="M420.0 51a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
-         <g data-type="skip" data-updown="0 0">
-          <path d="M284.0 51h136"></path>
+        <path d="M254 70h10"></path>
+        <g>
+         <path d="M264 70h0"></path>
+         <path d="M440 70h0"></path>
+         <path d="M264 70a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+         <g>
+          <path d="M284 50h136"></path>
          </g>
-         <path d="M264.0 71h20"></path>
-         <path d="M420.0 71h20"></path>
-         <g data-type="oneormore" data-updown="11 20">
-          <path d="M284.0 71h0.0"></path>
-          <path d="M420.0 71h0.0"></path>
-          <path d="M284.0 71h10"></path>
-          <path d="M410.0 71h10"></path>
-          <path d="M294.0 71a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
-          <path d="M410.0 91a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
-          <g data-type="non-terminal" data-updown="11 11">
-           <path d="M294.0 71h0.0"></path>
-           <path d="M410.0 71h0.0"></path>
-           <rect height="22" width="116" x="294.0" y="60"></rect>
-           <text x="352.0" y="75"> digit 0 to 9</text>
+         <path d="M420 50a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+         <path d="M264 70h20"></path>
+         <g>
+          <path d="M284 70h0"></path>
+          <path d="M420 70h0"></path>
+          <path d="M284 70h10"></path>
+          <g class="non-terminal">
+           <path d="M294 70h0"></path>
+           <path d="M410 70h0"></path>
+           <rect height="22" width="116" x="294" y="59"></rect>
+           <a href="">
+            <text x="352" y="74">digit 0 to 9</text>
+            <text x="352" y="74">digit 0 to 9</text>
+           </a>
           </g>
-          <g data-type="skip" data-updown="0 0">
-           <path d="M294.0 91h116"></path>
+          <path d="M410 70h10"></path>
+          <path d="M294 70a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+          <g>
+           <path d="M294 90h116"></path>
           </g>
+          <path d="M410 90a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
          </g>
+         <path d="M420 70h20"></path>
         </g>
        </g>
+       <path d="M440 70a10 10 0 0 0 10 -10v-19a10 10 0 0 1 10 -10"></path>
       </g>
-      <path d="M 460 31 h 20 m -10 -10 v 20 m 10 -20 v 20" data-type="end" data-updown="10 10"></path>
+      <path d="M 460 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
      </g>
     </svg>
    </div>
@@ -2139,173 +2257,200 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    </div>
    <h3 class="heading settled" data-level="9.4" id="datetime-datatype"><span class="secno">9.4. </span><span class="content">Datetime datatype</span><a class="self-link" href="#datetime-datatype"></a></h3>
    <div class="railroad">
-    <svg class="railroad-diagram" height="112" viewBox="0 0 873 112" width="873">
+    <svg class="railroad-diagram" height="103" viewBox="0 0 812 103" width="812">
      <g transform="translate(.5 .5)">
-      <path d="M 20 71 v 20 m 10 -20 v 20 m -10 -10 h 20.5" data-type="start" data-updown="10 10"></path>
-      <path d="M40 81h10"></path>
-      <path d="M102 81h10"></path>
-      <g data-type="terminal" data-updown="11 11">
-       <path d="M50 81h0.0"></path>
-       <path d="M102.0 81h0.0"></path>
-       <rect height="22" rx="10" ry="10" width="52" x="50.0" y="70"></rect>
-       <text x="76.0" y="85"> YYYY</text>
+      <path d="M 20 62 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path>
+      <path d="M40 72h10"></path>
+      <g class="terminal">
+       <path d="M50 72h0"></path>
+       <path d="M102 72h0"></path>
+       <rect height="22" rx="10" ry="10" width="52" x="50" y="61"></rect>
+       <a href="">
+        <text x="76" y="76">YYYY</text>
+        <text x="76" y="76">YYYY</text>
+       </a>
       </g>
-      <g data-type="choice" data-updown="61 11">
-       <path d="M112 81h0.0"></path>
-       <path d="M832.0 81h0.0"></path>
-       <path d="M112.0 81a10 10 0 0 0 10 -10v-39a10 10 0 0 1 10 -10"></path>
-       <path d="M812.0 22a10 10 0 0 1 10 10v39a10 10 0 0 0 10 10"></path>
-       <g data-type="skip" data-updown="0 0">
-        <path d="M132.0 22h680"></path>
+      <path d="M102 72h10"></path>
+      <g>
+       <path d="M112 72h0"></path>
+       <path d="M772 72h0"></path>
+       <path d="M112 72a10 10 0 0 0 10 -10v-32a10 10 0 0 1 10 -10"></path>
+       <g>
+        <path d="M132 20h620"></path>
        </g>
-       <path d="M112.0 81h20"></path>
-       <path d="M812.0 81h20"></path>
-       <g data-type="sequence" data-updown="51 11">
-        <path d="M132.0 81h0.0"></path>
-        <path d="M812.0 81h0.0"></path>
-        <path d="M132.0 81h10"></path>
-        <path d="M170.0 81h10"></path>
-        <g data-type="terminal" data-updown="11 11">
-         <path d="M142.0 81h0.0"></path>
-         <path d="M170.0 81h0.0"></path>
-         <rect height="22" rx="10" ry="10" width="28" x="142.0" y="70"></rect>
-         <text x="156.0" y="85"> -</text>
+       <path d="M752 20a10 10 0 0 1 10 10v32a10 10 0 0 0 10 10"></path>
+       <path d="M112 72h20"></path>
+       <g>
+        <path d="M132 72h0"></path>
+        <path d="M752 72h0"></path>
+        <g class="terminal">
+         <path d="M132 72h0"></path>
+         <path d="M160 72h0"></path>
+         <rect height="22" rx="10" ry="10" width="28" x="132" y="61"></rect>
+         <a href="">
+          <text x="146" y="76">-</text>
+          <text x="146" y="76">-</text>
+         </a>
         </g>
-        <path d="M180.0 81h10"></path>
-        <path d="M226.0 81h10"></path>
-        <g data-type="terminal" data-updown="11 11">
-         <path d="M190.0 81h0.0"></path>
-         <path d="M226.0 81h0.0"></path>
-         <rect height="22" rx="10" ry="10" width="36" x="190.0" y="70"></rect>
-         <text x="208.0" y="85"> MM</text>
+        <path d="M160 72h10"></path>
+        <path d="M170 72h10"></path>
+        <g class="terminal">
+         <path d="M180 72h0"></path>
+         <path d="M216 72h0"></path>
+         <rect height="22" rx="10" ry="10" width="36" x="180" y="61"></rect>
+         <a href="">
+          <text x="198" y="76">MM</text>
+          <text x="198" y="76">MM</text>
+         </a>
         </g>
-        <g data-type="choice" data-updown="51 11">
-         <path d="M236.0 81h0.0"></path>
-         <path d="M812.0 81h0.0"></path>
-         <path d="M236.0 81a10 10 0 0 0 10 -10v-29a10 10 0 0 1 10 -10"></path>
-         <path d="M792.0 32a10 10 0 0 1 10 10v29a10 10 0 0 0 10 10"></path>
-         <g data-type="skip" data-updown="0 0">
-          <path d="M256.0 32h536"></path>
+        <path d="M216 72h10"></path>
+        <g>
+         <path d="M226 72h0"></path>
+         <path d="M752 72h0"></path>
+         <path d="M226 72a10 10 0 0 0 10 -10v-24a10 10 0 0 1 10 -10"></path>
+         <g>
+          <path d="M246 28h486"></path>
          </g>
-         <path d="M236.0 81h20"></path>
-         <path d="M792.0 81h20"></path>
-         <g data-type="sequence" data-updown="41 11">
-          <path d="M256.0 81h0.0"></path>
-          <path d="M792.0 81h0.0"></path>
-          <path d="M256.0 81h10"></path>
-          <path d="M294.0 81h10"></path>
-          <g data-type="terminal" data-updown="11 11">
-           <path d="M266.0 81h0.0"></path>
-           <path d="M294.0 81h0.0"></path>
-           <rect height="22" rx="10" ry="10" width="28" x="266.0" y="70"></rect>
-           <text x="280.0" y="85"> -</text>
+         <path d="M732 28a10 10 0 0 1 10 10v24a10 10 0 0 0 10 10"></path>
+         <path d="M226 72h20"></path>
+         <g>
+          <path d="M246 72h0"></path>
+          <path d="M732 72h0"></path>
+          <g class="terminal">
+           <path d="M246 72h0"></path>
+           <path d="M274 72h0"></path>
+           <rect height="22" rx="10" ry="10" width="28" x="246" y="61"></rect>
+           <a href="">
+            <text x="260" y="76">-</text>
+            <text x="260" y="76">-</text>
+           </a>
           </g>
-          <path d="M304.0 81h10"></path>
-          <path d="M350.0 81h10"></path>
-          <g data-type="terminal" data-updown="11 11">
-           <path d="M314.0 81h0.0"></path>
-           <path d="M350.0 81h0.0"></path>
-           <rect height="22" rx="10" ry="10" width="36" x="314.0" y="70"></rect>
-           <text x="332.0" y="85"> DD</text>
+          <path d="M274 72h10"></path>
+          <path d="M284 72h10"></path>
+          <g class="terminal">
+           <path d="M294 72h0"></path>
+           <path d="M330 72h0"></path>
+           <rect height="22" rx="10" ry="10" width="36" x="294" y="61"></rect>
+           <a href="">
+            <text x="312" y="76">DD</text>
+            <text x="312" y="76">DD</text>
+           </a>
           </g>
-          <g data-type="choice" data-updown="41 11">
-           <path d="M360.0 81h0.0"></path>
-           <path d="M792.0 81h0.0"></path>
-           <path d="M360.0 81a10 10 0 0 0 10 -10v-19a10 10 0 0 1 10 -10"></path>
-           <path d="M772.0 42a10 10 0 0 1 10 10v19a10 10 0 0 0 10 10"></path>
-           <g data-type="skip" data-updown="0 0">
-            <path d="M380.0 42h392"></path>
+          <path d="M330 72h10"></path>
+          <g>
+           <path d="M340 72h0"></path>
+           <path d="M732 72h0"></path>
+           <path d="M340 72a10 10 0 0 0 10 -10v-16a10 10 0 0 1 10 -10"></path>
+           <g>
+            <path d="M360 36h352"></path>
            </g>
-           <path d="M360.0 81h20"></path>
-           <path d="M772.0 81h20"></path>
-           <g data-type="sequence" data-updown="31 11">
-            <path d="M380.0 81h0.0"></path>
-            <path d="M772.0 81h0.0"></path>
-            <path d="M380.0 81h10"></path>
-            <path d="M418.0 81h10"></path>
-            <g data-type="terminal" data-updown="11 11">
-             <path d="M390.0 81h0.0"></path>
-             <path d="M418.0 81h0.0"></path>
-             <rect height="22" rx="10" ry="10" width="28" x="390.0" y="70"></rect>
-             <text x="404.0" y="85"> T</text>
+           <path d="M712 36a10 10 0 0 1 10 10v16a10 10 0 0 0 10 10"></path>
+           <path d="M340 72h20"></path>
+           <g>
+            <path d="M360 72h0"></path>
+            <path d="M712 72h0"></path>
+            <g class="terminal">
+             <path d="M360 72h0"></path>
+             <path d="M388 72h0"></path>
+             <rect height="22" rx="10" ry="10" width="28" x="360" y="61"></rect>
+             <a href="">
+              <text x="374" y="76">T</text>
+              <text x="374" y="76">T</text>
+             </a>
             </g>
-            <path d="M428.0 81h10"></path>
-            <path d="M474.0 81h10"></path>
-            <g data-type="terminal" data-updown="11 11">
-             <path d="M438.0 81h0.0"></path>
-             <path d="M474.0 81h0.0"></path>
-             <rect height="22" rx="10" ry="10" width="36" x="438.0" y="70"></rect>
-             <text x="456.0" y="85"> HH</text>
+            <path d="M388 72h10"></path>
+            <path d="M398 72h10"></path>
+            <g class="terminal">
+             <path d="M408 72h0"></path>
+             <path d="M444 72h0"></path>
+             <rect height="22" rx="10" ry="10" width="36" x="408" y="61"></rect>
+             <a href="">
+              <text x="426" y="76">HH</text>
+              <text x="426" y="76">HH</text>
+             </a>
             </g>
-            <g data-type="choice" data-updown="31 11">
-             <path d="M484.0 81h0.0"></path>
-             <path d="M772.0 81h0.0"></path>
-             <path d="M484.0 81a10 10 0 0 0 10 -10v-9a10 10 0 0 1 10 -10"></path>
-             <path d="M752.0 52a10 10 0 0 1 10 10v9a10 10 0 0 0 10 10"></path>
-             <g data-type="skip" data-updown="0 0">
-              <path d="M504.0 52h248"></path>
+            <path d="M444 72h10"></path>
+            <g>
+             <path d="M454 72h0"></path>
+             <path d="M712 72h0"></path>
+             <path d="M454 72a10 10 0 0 0 10 -10v-8a10 10 0 0 1 10 -10"></path>
+             <g>
+              <path d="M474 44h218"></path>
              </g>
-             <path d="M484.0 81h20"></path>
-             <path d="M752.0 81h20"></path>
-             <g data-type="sequence" data-updown="21 11">
-              <path d="M504.0 81h0.0"></path>
-              <path d="M752.0 81h0.0"></path>
-              <path d="M504.0 81h10"></path>
-              <path d="M542.0 81h10"></path>
-              <g data-type="terminal" data-updown="11 11">
-               <path d="M514.0 81h0.0"></path>
-               <path d="M542.0 81h0.0"></path>
-               <rect height="22" rx="10" ry="10" width="28" x="514.0" y="70"></rect>
-               <text x="528.0" y="85"> :</text>
+             <path d="M692 44a10 10 0 0 1 10 10v8a10 10 0 0 0 10 10"></path>
+             <path d="M454 72h20"></path>
+             <g>
+              <path d="M474 72h0"></path>
+              <path d="M692 72h0"></path>
+              <g class="terminal">
+               <path d="M474 72h0"></path>
+               <path d="M502 72h0"></path>
+               <rect height="22" rx="10" ry="10" width="28" x="474" y="61"></rect>
+               <a href="">
+                <text x="488" y="76">:</text>
+                <text x="488" y="76">:</text>
+               </a>
               </g>
-              <path d="M552.0 81h10"></path>
-              <path d="M598.0 81h10"></path>
-              <g data-type="terminal" data-updown="11 11">
-               <path d="M562.0 81h0.0"></path>
-               <path d="M598.0 81h0.0"></path>
-               <rect height="22" rx="10" ry="10" width="36" x="562.0" y="70"></rect>
-               <text x="580.0" y="85"> MM</text>
+              <path d="M502 72h10"></path>
+              <path d="M512 72h10"></path>
+              <g class="terminal">
+               <path d="M522 72h0"></path>
+               <path d="M558 72h0"></path>
+               <rect height="22" rx="10" ry="10" width="36" x="522" y="61"></rect>
+               <a href="">
+                <text x="540" y="76">MM</text>
+                <text x="540" y="76">MM</text>
+               </a>
               </g>
-              <g data-type="choice" data-updown="21 11">
-               <path d="M608.0 81h0.0"></path>
-               <path d="M752.0 81h0.0"></path>
-               <path d="M608.0 81a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
-               <path d="M732.0 61a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
-               <g data-type="skip" data-updown="0 0">
-                <path d="M628.0 61h104"></path>
+              <path d="M558 72h10"></path>
+              <g>
+               <path d="M568 72h0"></path>
+               <path d="M692 72h0"></path>
+               <path d="M568 72a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+               <g>
+                <path d="M588 52h84"></path>
                </g>
-               <path d="M608.0 81h20"></path>
-               <path d="M732.0 81h20"></path>
-               <g data-type="sequence" data-updown="11 11">
-                <path d="M628.0 81h0.0"></path>
-                <path d="M732.0 81h0.0"></path>
-                <path d="M628.0 81h10"></path>
-                <path d="M666.0 81h10"></path>
-                <g data-type="terminal" data-updown="11 11">
-                 <path d="M638.0 81h0.0"></path>
-                 <path d="M666.0 81h0.0"></path>
-                 <rect height="22" rx="10" ry="10" width="28" x="638.0" y="70"></rect>
-                 <text x="652.0" y="85"> :</text>
+               <path d="M672 52a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+               <path d="M568 72h20"></path>
+               <g>
+                <path d="M588 72h0"></path>
+                <path d="M672 72h0"></path>
+                <g class="terminal">
+                 <path d="M588 72h0"></path>
+                 <path d="M616 72h0"></path>
+                 <rect height="22" rx="10" ry="10" width="28" x="588" y="61"></rect>
+                 <a href="">
+                  <text x="602" y="76">:</text>
+                  <text x="602" y="76">:</text>
+                 </a>
                 </g>
-                <path d="M676.0 81h10"></path>
-                <path d="M722.0 81h10"></path>
-                <g data-type="terminal" data-updown="11 11">
-                 <path d="M686.0 81h0.0"></path>
-                 <path d="M722.0 81h0.0"></path>
-                 <rect height="22" rx="10" ry="10" width="36" x="686.0" y="70"></rect>
-                 <text x="704.0" y="85"> SS</text>
+                <path d="M616 72h10"></path>
+                <path d="M626 72h10"></path>
+                <g class="terminal">
+                 <path d="M636 72h0"></path>
+                 <path d="M672 72h0"></path>
+                 <rect height="22" rx="10" ry="10" width="36" x="636" y="61"></rect>
+                 <a href="">
+                  <text x="654" y="76">SS</text>
+                  <text x="654" y="76">SS</text>
+                 </a>
                 </g>
                </g>
+               <path d="M672 72h20"></path>
               </g>
              </g>
+             <path d="M692 72h20"></path>
             </g>
            </g>
+           <path d="M712 72h20"></path>
           </g>
          </g>
+         <path d="M732 72h20"></path>
         </g>
        </g>
+       <path d="M752 72h20"></path>
       </g>
-      <path d="M 832 81 h 20 m -10 -10 v 20 m 10 -20 v 20" data-type="end" data-updown="10 10"></path>
+      <path d="M 772 72 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
      </g>
     </svg>
    </div>
@@ -2324,110 +2469,146 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    </div>
    <h3 class="heading settled" data-level="9.5" id="timestamp-datatype"><span class="secno">9.5. </span><span class="content">Timestamp datatype</span><a class="self-link" href="#timestamp-datatype"></a></h3>
    <div class="railroad">
-    <svg class="railroad-diagram" height="62" viewBox="0 0 721 62" width="721">
+    <svg class="railroad-diagram" height="62" viewBox="0 0 720 62" width="720">
      <g transform="translate(.5 .5)">
-      <path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5" data-type="start" data-updown="10 10"></path>
-      <g data-type="sequence" data-updown="11 11">
-       <path d="M40 31h0.0"></path>
-       <path d="M680.0 31h0.0"></path>
-       <path d="M40.0 31h10"></path>
-       <path d="M102.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M50.0 31h0.0"></path>
-        <path d="M102.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="52" x="50.0" y="20"></rect>
-        <text x="76.0" y="35"> YYYY</text>
+      <path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path>
+      <path d="M40 31h10"></path>
+      <g>
+       <path d="M50 31h0"></path>
+       <path d="M670 31h0"></path>
+       <g class="terminal">
+        <path d="M50 31h0"></path>
+        <path d="M102 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="52" x="50" y="20"></rect>
+        <a href="">
+         <text x="76" y="35">YYYY</text>
+         <text x="76" y="35">YYYY</text>
+        </a>
        </g>
-       <path d="M112.0 31h10"></path>
-       <path d="M150.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M122.0 31h0.0"></path>
-        <path d="M150.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="122.0" y="20"></rect>
-        <text x="136.0" y="35"> -</text>
+       <path d="M102 31h10"></path>
+       <path d="M112 31h10"></path>
+       <g class="terminal">
+        <path d="M122 31h0"></path>
+        <path d="M150 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="122" y="20"></rect>
+        <a href="">
+         <text x="136" y="35">-</text>
+         <text x="136" y="35">-</text>
+        </a>
        </g>
-       <path d="M160.0 31h10"></path>
-       <path d="M206.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M170.0 31h0.0"></path>
-        <path d="M206.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="36" x="170.0" y="20"></rect>
-        <text x="188.0" y="35"> MM</text>
+       <path d="M150 31h10"></path>
+       <path d="M160 31h10"></path>
+       <g class="terminal">
+        <path d="M170 31h0"></path>
+        <path d="M206 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="36" x="170" y="20"></rect>
+        <a href="">
+         <text x="188" y="35">MM</text>
+         <text x="188" y="35">MM</text>
+        </a>
        </g>
-       <path d="M216.0 31h10"></path>
-       <path d="M254.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M226.0 31h0.0"></path>
-        <path d="M254.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="226.0" y="20"></rect>
-        <text x="240.0" y="35"> -</text>
+       <path d="M206 31h10"></path>
+       <path d="M216 31h10"></path>
+       <g class="terminal">
+        <path d="M226 31h0"></path>
+        <path d="M254 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="226" y="20"></rect>
+        <a href="">
+         <text x="240" y="35">-</text>
+         <text x="240" y="35">-</text>
+        </a>
        </g>
-       <path d="M264.0 31h10"></path>
-       <path d="M310.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M274.0 31h0.0"></path>
-        <path d="M310.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="36" x="274.0" y="20"></rect>
-        <text x="292.0" y="35"> DD</text>
+       <path d="M254 31h10"></path>
+       <path d="M264 31h10"></path>
+       <g class="terminal">
+        <path d="M274 31h0"></path>
+        <path d="M310 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="36" x="274" y="20"></rect>
+        <a href="">
+         <text x="292" y="35">DD</text>
+         <text x="292" y="35">DD</text>
+        </a>
        </g>
-       <path d="M320.0 31h10"></path>
-       <path d="M358.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M330.0 31h0.0"></path>
-        <path d="M358.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="330.0" y="20"></rect>
-        <text x="344.0" y="35"> T</text>
+       <path d="M310 31h10"></path>
+       <path d="M320 31h10"></path>
+       <g class="terminal">
+        <path d="M330 31h0"></path>
+        <path d="M358 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="330" y="20"></rect>
+        <a href="">
+         <text x="344" y="35">T</text>
+         <text x="344" y="35">T</text>
+        </a>
        </g>
-       <path d="M368.0 31h10"></path>
-       <path d="M414.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M378.0 31h0.0"></path>
-        <path d="M414.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="36" x="378.0" y="20"></rect>
-        <text x="396.0" y="35"> HH</text>
+       <path d="M358 31h10"></path>
+       <path d="M368 31h10"></path>
+       <g class="terminal">
+        <path d="M378 31h0"></path>
+        <path d="M414 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="36" x="378" y="20"></rect>
+        <a href="">
+         <text x="396" y="35">HH</text>
+         <text x="396" y="35">HH</text>
+        </a>
        </g>
-       <path d="M424.0 31h10"></path>
-       <path d="M462.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M434.0 31h0.0"></path>
-        <path d="M462.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="434.0" y="20"></rect>
-        <text x="448.0" y="35"> :</text>
+       <path d="M414 31h10"></path>
+       <path d="M424 31h10"></path>
+       <g class="terminal">
+        <path d="M434 31h0"></path>
+        <path d="M462 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="434" y="20"></rect>
+        <a href="">
+         <text x="448" y="35">:</text>
+         <text x="448" y="35">:</text>
+        </a>
        </g>
-       <path d="M472.0 31h10"></path>
-       <path d="M518.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M482.0 31h0.0"></path>
-        <path d="M518.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="36" x="482.0" y="20"></rect>
-        <text x="500.0" y="35"> MM</text>
+       <path d="M462 31h10"></path>
+       <path d="M472 31h10"></path>
+       <g class="terminal">
+        <path d="M482 31h0"></path>
+        <path d="M518 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="36" x="482" y="20"></rect>
+        <a href="">
+         <text x="500" y="35">MM</text>
+         <text x="500" y="35">MM</text>
+        </a>
        </g>
-       <path d="M528.0 31h10"></path>
-       <path d="M566.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M538.0 31h0.0"></path>
-        <path d="M566.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="538.0" y="20"></rect>
-        <text x="552.0" y="35"> :</text>
+       <path d="M518 31h10"></path>
+       <path d="M528 31h10"></path>
+       <g class="terminal">
+        <path d="M538 31h0"></path>
+        <path d="M566 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="538" y="20"></rect>
+        <a href="">
+         <text x="552" y="35">:</text>
+         <text x="552" y="35">:</text>
+        </a>
        </g>
-       <path d="M576.0 31h10"></path>
-       <path d="M622.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M586.0 31h0.0"></path>
-        <path d="M622.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="36" x="586.0" y="20"></rect>
-        <text x="604.0" y="35"> SS</text>
+       <path d="M566 31h10"></path>
+       <path d="M576 31h10"></path>
+       <g class="terminal">
+        <path d="M586 31h0"></path>
+        <path d="M622 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="36" x="586" y="20"></rect>
+        <a href="">
+         <text x="604" y="35">SS</text>
+         <text x="604" y="35">SS</text>
+        </a>
        </g>
-       <path d="M632.0 31h10"></path>
-       <path d="M670.0 31h10"></path>
-       <g data-type="terminal" data-updown="11 11">
-        <path d="M642.0 31h0.0"></path>
-        <path d="M670.0 31h0.0"></path>
-        <rect height="22" rx="10" ry="10" width="28" x="642.0" y="20"></rect>
-        <text x="656.0" y="35"> Z</text>
+       <path d="M622 31h10"></path>
+       <path d="M632 31h10"></path>
+       <g class="terminal">
+        <path d="M642 31h0"></path>
+        <path d="M670 31h0"></path>
+        <rect height="22" rx="10" ry="10" width="28" x="642" y="20"></rect>
+        <a href="">
+         <text x="656" y="35">Z</text>
+         <text x="656" y="35">Z</text>
+        </a>
        </g>
       </g>
-      <path d="M 680 31 h 20 m -10 -10 v 20 m 10 -20 v 20" data-type="end" data-updown="10 10"></path>
+      <path d="M670 31h10"></path>
+      <path d="M 680 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
      </g>
     </svg>
    </div>
@@ -2529,7 +2710,7 @@ example, in the "school" register the primary key field is also called
    <h3 class="heading settled" data-level="11.2" id="field-register"><span class="secno">11.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
    <h3 class="heading settled" data-level="11.3" id="datatype-register"><span class="secno">11.3. </span><span class="content">Datatype register</span><a class="self-link" href="#datatype-register"></a></h3>
    <h2 class="heading settled" data-level="12" id="representations"><span class="secno">12. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
-   <p class="note" role="note">Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.</p>
+   <p class="note" role="note"><span>Note:</span> JSON and other representations can have a field which is missing. These have the same semantics as an empty field.</p>
    <p class="issue" id="issue-800c7c98"><a class="self-link" href="#issue-800c7c98"></a> IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON. <a href="https://github.com/openregister/specification/issues/26">&lt;https://github.com/openregister/specification/issues/26></a></p>
    <h3 class="heading settled" data-level="12.1" id="html-representation"><span class="secno">12.1. </span><span class="content">HTML representation</span><a class="self-link" href="#html-representation"></a></h3>
    <ul>
@@ -2557,18 +2738,19 @@ example, in the "school" register the primary key field is also called
     <li data-md="">
      <p>Specification: <a data-link-type="biblio" href="#biblio-yaml">[YAML]</a></p>
    </ul>
-   <div class="example" id="example-f6c52e8a">
-    <a class="self-link" href="#example-f6c52e8a"></a> The following example shows a <a href="#record-resource">§3.3 Record resource</a> in the <a href="#yaml-representation">§12.3 YAML representation</a>: 
-<pre class="highlight"><span class="l l-Scalar l-Scalar-Plain">entry</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">entry-number</span><span class="p p-Indicator">:</span> <span class="s">"30568"</span>
-  <span class="l l-Scalar l-Scalar-Plain">timestamp</span><span class="p p-Indicator">:</span> <span class="s">"2015-01-02T23:59:01Z"</span>
-  <span class="l l-Scalar l-Scalar-Plain">item-hash</span><span class="p p-Indicator">:</span> <span class="s">"sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9"</span><span class="err">,</span>
-  <span class="l l-Scalar l-Scalar-Plain">key</span><span class="p p-Indicator">:</span> <span class="s">"402175"</span>
-<span class="l l-Scalar l-Scalar-Plain">item</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">address</span><span class="p p-Indicator">:</span> <span class="s">"100101030506"</span>
-  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">"Glanaman</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Tution</span><span class="nv"> </span><span class="s">Centre"</span>
-  <span class="l l-Scalar l-Scalar-Plain">school</span><span class="p p-Indicator">:</span> <span class="s">"402175"</span>
-  <span class="l l-Scalar l-Scalar-Plain">start-date</span><span class="p p-Indicator">:</span> <span class="s">"2007-11-07"</span></pre>
+   <div class="example" id="example-684704ec">
+    <a class="self-link" href="#example-684704ec"></a> The following example shows a <a href="#record-resource">§3.3 Record resource</a> in the <a href="#yaml-representation">§12.3 YAML representation</a>: 
+<pre class="highlight">entry:
+  entry-number: <span class="s">"30568"</span>
+  timestamp: <span class="s">"2015-01-02T23:59:01Z"</span>
+  item-hash: <span class="s">"sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9"</span>,
+  key: <span class="s">"402175"</span>
+item:
+  address: <span class="s">"100101030506"</span>
+  name: <span class="s">"Glanaman</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Tution</span><span class="nv"> </span><span class="s">Centre"</span>
+  school: <span class="s">"402175"</span>
+  start-date: <span class="s">"2007-11-07"</span>
+</pre>
    </div>
    <p class="issue" id="issue-e14b6cf0"><a class="self-link" href="#issue-e14b6cf0"></a> Which data types should we use from YAML? <a href="https://github.com/openregister/specification/issues/51">&lt;https://github.com/openregister/specification/issues/51></a></p>
    <h3 class="heading settled" data-level="12.4" id="csv-representation"><span class="secno">12.4. </span><span class="content">CSV representation</span><a class="self-link" href="#csv-representation"></a></h3>
@@ -2601,8 +2783,8 @@ example, in the "school" register the primary key field is also called
     <li data-md="">
      <p>Specification: <a data-link-type="biblio" href="#biblio-turtle">[TURTLE]</a></p>
    </ul>
-   <div class="example" id="example-f48f9600">
-    <a class="self-link" href="#example-f48f9600"></a> The following example shows an <a href="#item-resource">§3.1 Item resource</a> in the <a href="#ttl-representation">§12.7 Turtle representation</a>: 
+   <div class="example" id="example-255c6e35">
+    <a class="self-link" href="#example-255c6e35"></a> The following example shows an <a href="#item-resource">§3.1 Item resource</a> in the <a href="#ttl-representation">§12.7 Turtle representation</a>: 
 <pre>@prefix field: &lt;https://field.register.gov.uk/field/>.
 
 &lt;https://school.register.gov.uk/item/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799>
@@ -2684,7 +2866,7 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <h4 class="heading settled" data-level="16.3.3" id="extensibility-proofs"><span class="secno">16.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4>
    <h4 class="heading settled" data-level="16.3.4" id="extensibility-representations"><span class="secno">16.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4>
    <p>A register may provide additional, possibly domain specific representations.</p>
-   <div class="example" id="example-6b5da283"><a class="self-link" href="#example-6b5da283"></a> A register containing fields with <a href="#point-datatype">§9.6 Point datatype</a> or <a href="#multipolygon-datatype">§9.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
+   <div class="example" id="example-40512a5b"><a class="self-link" href="#example-40512a5b"></a> A register containing fields with <a href="#point-datatype">§9.6 Point datatype</a> or <a href="#multipolygon-datatype">§9.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
    <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p>
    <h2 class="heading settled" data-level="17" id="security-considerations"><span class="secno">17. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <h3 class="heading settled" data-level="17.1" id="transport-layer-security"><span class="secno">17.1. </span><span class="content">Transport layer security</span><a class="self-link" href="#transport-layer-security"></a></h3>
@@ -2708,7 +2890,7 @@ insecure HTTP to any <code>*.register.gov.uk</code> domain.</p>
 A basic Content-Security-Policy suitable for a register is:</p>
 <pre class="example" id="example-79abf726"><a class="self-link" href="#example-79abf726"></a>Content-Security-Policy: default-src 'self'
 </pre>
-   <p class="note" role="note">Note: if a register html view uses web assets (eg css or javascript)
+   <p class="note" role="note"><span>Note:</span> if a register html view uses web assets (eg css or javascript)
 from another domain, the header will need to be modified to whitelist
 these assets.</p>
    <h3 class="heading settled" data-level="17.2" id="mint-access-control"><span class="secno">17.2. </span><span class="content">Mint access control</span><a class="self-link" href="#mint-access-control"></a></h3>
@@ -2739,75 +2921,204 @@ these assets.</p>
             except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119">[RFC2119]</a> </p>
    <p> Examples in this specification are introduced with the words “for example”
             or are set apart from the normative text with <code>class="example"</code>, like this: </p>
-   <div class="example" id="example-ae2b6bc0"><a class="self-link" href="#example-ae2b6bc0"></a> This is an example of an informative example. </div>
+   <div class="example" id="example-example"><a class="self-link" href="#example-example"></a> This is an example of an informative example. </div>
    <p> Informative notes begin with the word “Note”
             and are set apart from the normative text with <code>class="note"</code>, like this: </p>
    <p class="note" role="note"> Note, this is an informative note. </p>
   </div>
+<script>
+(function() {
+  "use strict";
+  var collapseSidebarText = '<span aria-hidden="true">←</span> '
+                          + '<span>Collapse Sidebar</span>';
+  var expandSidebarText   = '<span aria-hidden="true">→</span> '
+                          + '<span>Pop Out Sidebar</span>';
+  var tocJumpText         = '<span aria-hidden="true">↑</span> '
+                          + '<span>Jump to Table of Contents</span>';
+
+  var sidebarMedia = window.matchMedia('screen and (min-width: 78em)');
+  var autoToggle   = function(e){ toggleSidebar(e.matches) };
+  if(sidebarMedia.addListener) {
+    sidebarMedia.addListener(autoToggle);
+  }
+
+  function toggleSidebar(on) {
+    if (on == undefined) {
+      on = !document.body.classList.contains('toc-sidebar');
+    }
+
+    /* Don’t scroll to compensate for the ToC if we’re above it already. */
+    var headY = 0;
+    var head = document.querySelector('.head');
+    if (head) {
+      // terrible approx of "top of ToC"
+      headY += head.offsetTop + head.offsetHeight;
+    }
+    var skipScroll = window.scrollY < headY;
+
+    var toggle = document.getElementById('toc-toggle');
+    var tocNav = document.getElementById('toc');
+    if (on) {
+      var tocHeight = tocNav.offsetHeight;
+      document.body.classList.add('toc-sidebar');
+      document.body.classList.remove('toc-inline');
+      toggle.innerHTML = collapseSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, 0 - tocHeight);
+      }
+      tocNav.focus();
+      sidebarMedia.addListener(autoToggle); // auto-collapse when out of room
+    }
+    else {
+      document.body.classList.add('toc-inline');
+      document.body.classList.remove('toc-sidebar');
+      toggle.innerHTML = expandSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, tocNav.offsetHeight);
+      }
+      if (toggle.matches(':hover')) {
+        /* Unfocus button when not using keyboard navigation,
+           because I don’t know where else to send the focus. */
+        toggle.blur();
+      }
+    }
+  }
+
+  function createSidebarToggle() {
+    /* Create the sidebar toggle in JS; it shouldn’t exist when JS is off. */
+    var toggle = document.createElement('a');
+      /* This should probably be a button, but appearance isn’t standards-track.*/
+    toggle.id = 'toc-toggle';
+    toggle.class = 'toc-toggle';
+    toggle.href = '#toc';
+    toggle.innerHTML = collapseSidebarText;
+
+    sidebarMedia.addListener(autoToggle);
+    var toggler = function(e) {
+      e.preventDefault();
+      sidebarMedia.removeListener(autoToggle); // persist explicit off states
+      toggleSidebar();
+      return false;
+    }
+    toggle.addEventListener('click', toggler, false);
+
+
+    /* Get <nav id=toc-nav>, or make it if we don’t have one. */
+    var tocNav = document.getElementById('toc-nav');
+    if (!tocNav) {
+      tocNav = document.createElement('p');
+      tocNav.id = 'toc-nav';
+      /* Prepend for better keyboard navigation */
+      document.body.insertBefore(tocNav, document.body.firstChild);
+    }
+    /* While we’re at it, make sure we have a Jump to Toc link. */
+    var tocJump = document.getElementById('toc-jump');
+    if (!tocJump) {
+      tocJump = document.createElement('a');
+      tocJump.id = 'toc-jump';
+      tocJump.href = '#toc';
+      tocJump.innerHTML = tocJumpText;
+      tocNav.appendChild(tocJump);
+    }
+
+    tocNav.appendChild(toggle);
+  }
+
+  var toc = document.getElementById('toc');
+  if (toc) {
+    createSidebarToggle();
+    toggleSidebar(sidebarMedia.matches);
+
+    /* If the sidebar has been manually opened and is currently overlaying the text
+       (window too small for the MQ to add the margin to body),
+       then auto-close the sidebar once you click on something in there. */
+    toc.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() == "a" && document.body.classList.contains('toc-sidebar') && !sidebarMedia.matches) {
+        toggleSidebar(false);
+      }
+    }, false);
+  }
+  else {
+    console.warn("Can’t find Table of Contents. Please use <nav id='toc'> around the ToC.");
+  }
+
+  /* Wrap tables in case they overflow */
+  var tables = document.querySelectorAll(':not(.overlarge) > table.data, :not(.overlarge) > table.index');
+  var numTables = tables.length;
+  for (var i = 0; i < numTables; i++) {
+    var table = tables[i];
+    var wrapper = document.createElement('div');
+    wrapper.className = 'overlarge';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  }
+
+})();
+</script>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
-   <dt id="biblio-rfc2119"><a class="self-link" href="#biblio-rfc2119"></a>[RFC2119]
+   <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
-   <dt id="biblio-csp2"><a class="self-link" href="#biblio-csp2"></a>[CSP2]
+   <dt id="biblio-csp2">[CSP2]
    <dd>Mike West; Adam Barth; Daniel Veditz. <a href="https://www.w3.org/TR/CSP2/">Content Security Policy Level 2</a>. 15 December 2016. REC. URL: <a href="https://www.w3.org/TR/CSP2/">https://www.w3.org/TR/CSP2/</a>
-   <dt id="biblio-fips-180-4"><a class="self-link" href="#biblio-fips-180-4"></a>[FIPS-180-4]
-   <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
-   <dt id="biblio-geojson"><a class="self-link" href="#biblio-geojson"></a>[GEOJSON]
-   <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
-   <dt id="biblio-iana-tsv"><a class="self-link" href="#biblio-iana-tsv"></a>[IANA-TSV]
-   <dd>Paul Lindner. <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
-   <dt id="biblio-iso8601"><a class="self-link" href="#biblio-iso8601"></a>[ISO8601]
-   <dd><a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">Representation of dates and times. ISO 8601:2004.</a>. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a>
-   <dt id="biblio-jcs"><a class="self-link" href="#biblio-jcs"></a>[JCS]
-   <dd>Anders Rundgren. <a href="https://cyberphone.github.io/doc/security/jcs.html">JSON Cleartext Signature</a>. URL: <a href="https://cyberphone.github.io/doc/security/jcs.html">https://cyberphone.github.io/doc/security/jcs.html</a>
-   <dt id="biblio-json"><a class="self-link" href="#biblio-json"></a>[JSON]
-   <dd>D. Crockford. <a href="https://tools.ietf.org/html/rfc4627">The application/json Media Type for JavaScript Object Notation (JSON)</a>. July 2006. Informational. URL: <a href="https://tools.ietf.org/html/rfc4627">https://tools.ietf.org/html/rfc4627</a>
-   <dt id="biblio-kml"><a class="self-link" href="#biblio-kml"></a>[KML]
-   <dd><a href="http://www.opengeospatial.org/standards/kml/">KML 2.3</a>. URL: <a href="http://www.opengeospatial.org/standards/kml/">http://www.opengeospatial.org/standards/kml/</a>
-   <dt id="biblio-markdown"><a class="self-link" href="#biblio-markdown"></a>[MARKDOWN]
-   <dd>John MacFarlane; et al. <a href="http://spec.commonmark.org/0.24/">Common Markdown</a>. URL: <a href="http://spec.commonmark.org/0.24/">http://spec.commonmark.org/0.24/</a>
-   <dt id="biblio-rfc6962"><a class="self-link" href="#biblio-rfc6962"></a>[RFC6962]
-   <dd>B. Laurie; A. Langley; E. Kasper. <a href="https://tools.ietf.org/html/rfc6962">Certificate Transparency</a>. URL: <a href="https://tools.ietf.org/html/rfc6962">https://tools.ietf.org/html/rfc6962</a>
-   <dt id="biblio-unicode"><a class="self-link" href="#biblio-unicode"></a>[UNICODE]
-   <dd><a href="https://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
-   <dt id="biblio-uri"><a class="self-link" href="#biblio-uri"></a>[URI]
-   <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>
-   <dt id="biblio-utf-8"><a class="self-link" href="#biblio-utf-8"></a>[UTF-8]
-   <dd>F. Yergeau. <a href="https://tools.ietf.org/html/rfc3629">UTF-8, a transformation format of ISO 10646</a>. November 2003. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3629">https://tools.ietf.org/html/rfc3629</a>
-   <dt id="biblio-yaml"><a class="self-link" href="#biblio-yaml"></a>[YAML]
-   <dd>Oren Ben-Kiki; Clark Evans; Ingy döt Net. <a href="http://yaml.org/spec/1.2/spec.html">YAML Ain’t Markup Language (YAML™) Version 1.2</a>. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
-   <dt id="biblio-zip"><a class="self-link" href="#biblio-zip"></a>[ZIP]
-   <dd><a href="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">.ZIP File Format Specification</a>. 1 September 2012. Final. URL: <a href="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">https://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>
-   <dt id="biblio-curie"><a class="self-link" href="#biblio-curie"></a>[CURIE]
+   <dt id="biblio-curie">[CURIE]
    <dd>Mark Birbeck; Shane McCarron. <a href="https://www.w3.org/TR/curie/">CURIE Syntax 1.0</a>. 16 December 2010. NOTE. URL: <a href="https://www.w3.org/TR/curie/">https://www.w3.org/TR/curie/</a>
-   <dt id="biblio-eventsource"><a class="self-link" href="#biblio-eventsource"></a>[EVENTSOURCE]
+   <dt id="biblio-eventsource">[EVENTSOURCE]
    <dd>Ian Hickson. <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>. 3 February 2015. REC. URL: <a href="https://www.w3.org/TR/eventsource/">https://www.w3.org/TR/eventsource/</a>
-   <dt id="biblio-gml"><a class="self-link" href="#biblio-gml"></a>[GML]
+   <dt id="biblio-fips-180-4">[FIPS-180-4]
+   <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
+   <dt id="biblio-geojson">[GEOJSON]
+   <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
+   <dt id="biblio-gml">[GML]
    <dd><a href="http://www.opengeospatial.org/standards/gml">Geography Markup Language (GML) Encoding Standard</a>. URL: <a href="http://www.opengeospatial.org/standards/gml">http://www.opengeospatial.org/standards/gml</a>
-   <dt id="biblio-html5"><a class="self-link" href="#biblio-html5"></a>[HTML5]
+   <dt id="biblio-html5">[HTML5]
    <dd>Ian Hickson; et al. <a href="https://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="https://www.w3.org/TR/html5/">https://www.w3.org/TR/html5/</a>
-   <dt id="biblio-json-ld"><a class="self-link" href="#biblio-json-ld"></a>[JSON-LD]
+   <dt id="biblio-iana-tsv">[IANA-TSV]
+   <dd>Paul Lindner. <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
+   <dt id="biblio-iso8601">[ISO8601]
+   <dd><a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">Representation of dates and times. ISO 8601:2004.</a>. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a>
+   <dt id="biblio-jcs">[JCS]
+   <dd>Anders Rundgren. <a href="https://cyberphone.github.io/doc/security/jcs.html">JSON Cleartext Signature</a>. URL: <a href="https://cyberphone.github.io/doc/security/jcs.html">https://cyberphone.github.io/doc/security/jcs.html</a>
+   <dt id="biblio-json">[JSON]
+   <dd>T. Bray, Ed.. <a href="https://tools.ietf.org/html/rfc8259">The JavaScript Object Notation (JSON) Data Interchange Format</a>. December 2017. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc8259">https://tools.ietf.org/html/rfc8259</a>
+   <dt id="biblio-json-ld">[JSON-LD]
    <dd>Manu Sporny; Gregg Kellogg; Markus Lanthaler. <a href="https://www.w3.org/TR/json-ld/">JSON-LD 1.0</a>. 16 January 2014. REC. URL: <a href="https://www.w3.org/TR/json-ld/">https://www.w3.org/TR/json-ld/</a>
-   <dt id="biblio-rfc3339"><a class="self-link" href="#biblio-rfc3339"></a>[RFC3339]
+   <dt id="biblio-kml">[KML]
+   <dd><a href="http://www.opengeospatial.org/standards/kml/">KML 2.3</a>. URL: <a href="http://www.opengeospatial.org/standards/kml/">http://www.opengeospatial.org/standards/kml/</a>
+   <dt id="biblio-markdown">[MARKDOWN]
+   <dd>John MacFarlane; et al. <a href="http://spec.commonmark.org/0.24/">Common Markdown</a>. URL: <a href="http://spec.commonmark.org/0.24/">http://spec.commonmark.org/0.24/</a>
+   <dt id="biblio-rfc3339">[RFC3339]
    <dd>G. Klyne; C. Newman. <a href="https://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>. July 2002. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc3339">https://tools.ietf.org/html/rfc3339</a>
-   <dt id="biblio-rfc4287"><a class="self-link" href="#biblio-rfc4287"></a>[RFC4287]
+   <dt id="biblio-rfc4287">[RFC4287]
    <dd>M. Nottingham, Ed.; R. Sayre, Ed.. <a href="https://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. December 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4287">https://tools.ietf.org/html/rfc4287</a>
-   <dt id="biblio-rfc5829"><a class="self-link" href="#biblio-rfc5829"></a>[RFC5829]
+   <dt id="biblio-rfc5829">[RFC5829]
    <dd>A. Brown; G. Clemm; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc5829">Link Relation Types for Simple Version Navigation between Web Resources</a>. April 2010. Informational. URL: <a href="https://tools.ietf.org/html/rfc5829">https://tools.ietf.org/html/rfc5829</a>
-   <dt id="biblio-rfc5988"><a class="self-link" href="#biblio-rfc5988"></a>[RFC5988]
-   <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc5988">Web Linking</a>. October 2010. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc5988">https://tools.ietf.org/html/rfc5988</a>
-   <dt id="biblio-rfc6797"><a class="self-link" href="#biblio-rfc6797"></a>[RFC6797]
+   <dt id="biblio-rfc5988">[RFC5988]
+   <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc8288">Web Linking</a>. October 2017. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc8288">https://tools.ietf.org/html/rfc8288</a>
+   <dt id="biblio-rfc6797">[RFC6797]
    <dd>J. Hodges; C. Jackson; A. Barth. <a href="https://tools.ietf.org/html/rfc6797">HTTP Strict Transport Security (HSTS)</a>. November 2012. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6797">https://tools.ietf.org/html/rfc6797</a>
-   <dt id="biblio-rfc7234"><a class="self-link" href="#biblio-rfc7234"></a>[RFC7234]
+   <dt id="biblio-rfc6962">[RFC6962]
+   <dd>B. Laurie; A. Langley; E. Kasper. <a href="https://tools.ietf.org/html/rfc6962">Certificate Transparency</a>. URL: <a href="https://tools.ietf.org/html/rfc6962">https://tools.ietf.org/html/rfc6962</a>
+   <dt id="biblio-rfc7234">[RFC7234]
    <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7234">Hypertext Transfer Protocol (HTTP/1.1): Caching</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7234">https://tools.ietf.org/html/rfc7234</a>
-   <dt id="biblio-tabular-data-model"><a class="self-link" href="#biblio-tabular-data-model"></a>[TABULAR-DATA-MODEL]
+   <dt id="biblio-tabular-data-model">[TABULAR-DATA-MODEL]
    <dd>Jeni Tennison; Gregg Kellogg. <a href="https://www.w3.org/TR/tabular-data-model/">Model for Tabular Data and Metadata on the Web</a>. 17 December 2015. REC. URL: <a href="https://www.w3.org/TR/tabular-data-model/">https://www.w3.org/TR/tabular-data-model/</a>
-   <dt id="biblio-turtle"><a class="self-link" href="#biblio-turtle"></a>[TURTLE]
+   <dt id="biblio-turtle">[TURTLE]
    <dd>Eric Prud'hommeaux; Gavin Carothers. <a href="https://www.w3.org/TR/turtle/">RDF 1.1 Turtle</a>. 25 February 2014. REC. URL: <a href="https://www.w3.org/TR/turtle/">https://www.w3.org/TR/turtle/</a>
+   <dt id="biblio-unicode">[UNICODE]
+   <dd><a href="https://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
+   <dt id="biblio-uri">[URI]
+   <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>
+   <dt id="biblio-utf-8">[UTF-8]
+   <dd>F. Yergeau. <a href="https://tools.ietf.org/html/rfc3629">UTF-8, a transformation format of ISO 10646</a>. November 2003. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3629">https://tools.ietf.org/html/rfc3629</a>
+   <dt id="biblio-yaml">[YAML]
+   <dd>Oren Ben-Kiki; Clark Evans; Ingy döt Net. <a href="http://yaml.org/spec/1.2/spec.html">YAML Ain’t Markup Language (YAML™) Version 1.2</a>. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
+   <dt id="biblio-zip">[ZIP]
+   <dd><a href="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">.ZIP File Format Specification</a>. 1 September 2012. Final. URL: <a href="https://www.pkware.com/documents/casestudies/APPNOTE.TXT">https://www.pkware.com/documents/casestudies/APPNOTE.TXT</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
@@ -2825,10 +3136,10 @@ these assets.</p>
    <div class="issue"> IMPLEMENTATION The resource is /item/{item-hash}/entries is new. <a href="https://github.com/openregister/specification/issues/11">&lt;https://github.com/openregister/specification/issues/11></a><a href="#issue-1dc835c7"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries <a href="https://github.com/openregister/specification/issues/12">&lt;https://github.com/openregister/specification/issues/12></a><a href="#issue-8815c872"> ↵ </a></div>
    <div class="issue"> IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key. <a href="https://github.com/openregister/specification/issues/13">&lt;https://github.com/openregister/specification/issues/13></a><a href="#issue-d994c4f5"> ↵ </a></div>
-   <div class="issue"> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a><a href="#issue-a9ea3195"> ↵ </a></div>
+   <div class="issue"> Do we provide downloads in tar.gz or <a data-link-type="biblio" href="#biblio-zip">[ZIP]</a> (the ISO/IEC 21320-1:2015 profile is open)? <a href="https://github.com/openregister/specification/issues/14">&lt;https://github.com/openregister/specification/issues/14></a><a href="#issue-7bde4f59"> ↵ </a></div>
    <div class="issue"> What is the naming convention for the archive files themselves? <a href="https://github.com/openregister/specification/issues/15">&lt;https://github.com/openregister/specification/issues/15></a><a href="#issue-941daf47"> ↵ </a></div>
    <div class="issue"> How about a "record" archive containing only the latest entries for each record? <a href="https://github.com/openregister/specification/issues/16">&lt;https://github.com/openregister/specification/issues/16></a><a href="#issue-37c7e097"> ↵ </a></div>
-   <div class="issue"> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a><a href="#issue-073f5c29"> ↵ </a></div>
+   <div class="issue"> we don’t yet know how to support updating an index or a cache, beyond polling. Maybe <a data-link-type="biblio" href="#biblio-eventsource">[EVENTSOURCE]</a>? <a href="https://github.com/openregister/specification/issues/17">&lt;https://github.com/openregister/specification/issues/17></a><a href="#issue-fd623635"> ↵ </a></div>
    <div class="issue"> should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"? <a href="https://github.com/openregister/specification/issues/18">&lt;https://github.com/openregister/specification/issues/18></a><a href="#issue-30cc7315"> ↵ </a></div>
    <div class="issue"> should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>? <a href="https://github.com/openregister/specification/issues/19">&lt;https://github.com/openregister/specification/issues/19></a><a href="#issue-70d0c866"> ↵ </a></div>
    <div class="issue"> which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm? <a href="https://github.com/openregister/specification/issues/39">&lt;https://github.com/openregister/specification/issues/39></a><a href="#issue-0be82fb3"> ↵ </a></div>
