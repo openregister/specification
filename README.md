@@ -1,4 +1,4 @@
-# Open Registers Specifications
+# Registers Specifications
 
 <https://openregister.github.io/specification/>
 
@@ -21,8 +21,8 @@ The specification is made using [Bikeshed](https://github.com/tabatkins/bikeshed
 Use make to build a local copy of the register data
 — we recommend using a [Python virtual environment](http://virtualenvwrapper.readthedocs.org/en/latest/):
 
-    $ mkvirtualenv -p python openregister-specification
-    $ workon openregister-specification
+    $ mkvirtualenv -p python registers-specification
+    $ workon registers-specification
     $ make init
     $ make
 

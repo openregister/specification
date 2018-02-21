@@ -1,22 +1,22 @@
-<h1>Open Registers</h1>
+<h1>Registers</h1>
 <pre class="metadata">
 Repository: openregister/specification
 Logo: https://assets.digital.cabinet-office.gov.uk/static/images/gov.uk_logotype_crown.png
 Status: LS-COMMIT
 ED: https://openregister.github.io/specification/
-Shortname: openregister-core
+Shortname: registers
 Level: 1
 Editor: Arnau Siches, Government Digital Service, arnau.siches@digital.cabinet-office.gov.uk
 Editor: Michaela Benyohai, Government Digital Service, michaela.benyohai@digital.cabinet-office.gov.uk
 Former Editor: Paul Downey, Government Digital Service
 Former Editor: Daniel Appelquist, Government Digital Service
-Group: openregister
+Group: registers
 Indent: 2
 Inline Github Issues: false
 Abstract:
   This document defines the resources and representations which together
   provide an Application Programming Interface (API) for accessing 
-  data held in an open register.
+  data held in a register.
 
 Version History: https://github.com/openregister/specification/commits/gh-pages/index.bs
 !Bug Reports: <a href="[REPOSITORYURL]/issues">via the openregister/specification repository on GitHub</a>
@@ -641,7 +641,7 @@ A set of links to the [[#register-proof-resource]]s and [[#entry-proof-resource]
 
 <dl class="resource"><dt>Path</dt><dd>/download-register</dd></dt></dl>
 
-The contents of an open register MUST be made available as an archive.
+The contents of an register MUST be made available as an archive.
 The archive file MUST be capable of being used as backup of the register, with the exception of secrets used to generate [[#digital-proofs]].
 The archive file SHOULD be made available in a single file, but MAY be split into multiple parts if it deemed too large.
 
