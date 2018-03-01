@@ -390,8 +390,6 @@ ISSUE(openregister/specification#8): if /records and /items are sets, what does 
 
 <dl class="resource"><dt>Path</dt><dd>/items</dd></dt></dl>
 
-ISSUE(openregister/specification#9): IMPLEMENTATION /items isn't yet implemented. There may not be a need for this resource as it's available in the archive.
-
 <div class="example">
 The following example shows a set of records in the [[#json-representation]]:
 
@@ -461,8 +459,6 @@ The following example shows a list of entries in the [[#json-representation]]:
 
 An ordered list of [[#entry-resource]] values which cite the item.
 
-ISSUE(openregister/specification#11): IMPLEMENTATION The resource is /item/{item-hash}/entries is new.
-
 <div class="example">
 The following example shows a list of item entries in the [[#json-representation]]:
 
@@ -497,8 +493,6 @@ The following example shows a list of item entries in the [[#json-representation
 
 All of the entries which have the given [[#primary-key-field]] value, in order of [[#entry-number-field]].
 
-ISSUE(openregister/specification#12): IMPLEMENTATION the path /{key-field-name}/{field-value}/history is replaced by {record}/entries and {item}/entries
-
 <div class="example">
 The following example shows a list of item entries in the [[#json-representation]]:
 
@@ -532,8 +526,6 @@ The following example shows a list of item entries in the [[#json-representation
 <dl class="resource"><dt>Path</dt><dd>/records</dd></dt></dl>
 
 All [[#record-resource]]s in a register.
-
-ISSUE(openregister/specification#13): IMPLEMENTATION this is a set, so have changed it from a list to a hash with the record id as the key.
 
 <div class="example">
 The following example shows a list of records in the [[#json-representation]]:
@@ -907,8 +899,6 @@ The item-hash field contains the [[#item-hash-datatype]] of an item.
 # Representations # {#representations}
 
 Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.
-
-ISSUE(openregister/specification#26): IMPLEMENTATION currently presentation is emitting names without double-quotes, which according to <a href="http://jsonlint.com/">jsonlint.com</a> is not valid JSON.
 
 ## HTML representation ## {#html-representation}
   * [[HTML5]]
