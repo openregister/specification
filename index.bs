@@ -619,18 +619,6 @@ The archive contains the following files in the following structure:
 
 A register archive MAY contain entry and item resources in the more space efficient [[#tsv-representation]].
 
-ISSUE(openregister/specification#14): Do we provide downloads in tar.gz or [[ZIP]] (the ISO/IEC 21320-1:2015 profile is open)?
-
-ISSUE(openregister/specification#15): What is the naming convention for the archive files themselves?
-
-ISSUE(openregister/specification#16): How about a "record" archive containing only the latest entries for each record?
-
-
-# Streaming resources # {#streaming-resources}
-
-ISSUE(openregister/specification#17): we don't yet know how to support updating an index or a cache, beyond polling. Maybe [[EVENTSOURCE]]?
-
-
 
 # HTTP Headers # {#http-headers}
 
@@ -661,9 +649,6 @@ Content-Length: 522
 </pre>
 </div>
 
-ISSUE(openregister/specification#18): should provide more Content-Security-Policy values such as "https:", "data:" "unsafe-inline" and "unsafe-eval"?
-
-ISSUE(openregister/specification#19): should we specify <a href="https://scotthelme.co.uk/hpkp-http-public-key-pinning/">HTTP Public Key Pinning (HPKP)</a>?
 
 # Datatypes # {#datatypes}
 
@@ -810,16 +795,12 @@ ISSUE(openregister/specification#39): which hashing algorithms are allowed? wher
 ## Entry-reference datatype ## {#entry-reference-datatype}
 Legal documents may need to cite an individual entry, rather than the latest entry of the record.
 
-ISSUE(openregister/specification#21): we don't know how to globally reference an entry, by its entry-number "register[33]", the tuple of entry-number, item-hash tuple or its fingerprint from the digital proof.
-
 ## URL datatype ## {#url-datatype}
 Used to link to an external website, or other resource not held in a register.
   * URL [[URI]]
 
 
 # Fields # {#fields}
-
-ISSUE(openregister/specification#22): We use semicolons to separate fields in a TSV/CSV value. Is this the best delimiter to use?
 
 <em>Fields defined by this specification</em>
 
@@ -867,16 +848,13 @@ Note: JSON and other representations can have a field which is missing. These ha
 ## HTML representation ## {#html-representation}
   * [[HTML5]]
 
-ISSUE(openregister/specification#27): do we specify RDFa or Schema.org markup?
-
 ## JSON representation ## {#json-representation}
   * suffix: .json
   * media-type: application/json
   * specification: [[JSON]] 
 
-  All field values MUST be encoded as JSON strings.
-
-ISSUE(openregister/specification#28): the JSON should be in a c14n format, but no spec exists, so we will need to define what that means?
+  All field values MUST be encoded as JSON strings. When JSON needs to be in a
+  canonical format, use the procedure defined in [[#sha-256-item-hash]]
 
 ## YAML representation ## {#yaml-representation}
 
@@ -961,7 +939,6 @@ The signed tree head for a register is the tree-head-signature property of the [
 
 The signed tree head for a register is the signed Merkle tree root hash ([[RFC6962]] section 2.1) of a Merkle tree containing all entries in the register. The corresponding root-hash is also a property of the [[#register-proof-resource]].
 
-ISSUE(openregister/specification#29): What happens when a key is rotated?
 
 ### Verifying the register ### {#ct-verify-register}
 
@@ -998,16 +975,9 @@ To verify the consistency of two versions of a register, given that total-entrie
 
 The item MUST NOT contain empty fields.
 
-ISSUE(openregister/specification#30): does a register have a standard URL to POST a new entry?
-
-
 # Redaction # {#redaction}
 
 * An item may be removed from a register, but the entry MUST NOT be removed from the register.
-
-ISSUE(openregister/specification#31): there is a need redaction, even for open records such as insolvency and bankruptcy.
-
-ISSUE(openregister/specification#32): need a mechanism to flag an item as redacted.
 
 ISSUE(openregister/specification#33): need a mechanism to mark a proof as deprecated.
 
