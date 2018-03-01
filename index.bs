@@ -453,40 +453,6 @@ The following example shows a list of entries in the [[#json-representation]]:
 </div>
 
 
-## Item entries resource ## {#item-entries-resource}
-
-<dl class="resource"><dt>Path</dt><dd>/item/{<a href="#item-hash-field">item-hash</a>}/entries</dd></dt></dl>
-
-An ordered list of [[#entry-resource]] values which cite the item.
-
-<div class="example">
-The following example shows a list of item entries in the [[#json-representation]]:
-
-<pre highlight="json">
-[
-  {
-    "index-entry-number": "121",
-    "entry-number": "121",
-    "entry-timestamp": "2015-08-20T08:15:30Z",
-    "key": "33010",
-    "item-hash": [
-        "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
-    ]
-  },
-  {
-    "index-entry-number": "133",
-    "entry-number": "133",
-    "entry-timestamp": "2015-08-15T08:15:30Z",
-    "key": "33010",
-    "item-hash": [
-        "sha-256:c8844f3961a9a90812b8992ad8dbd5495e0f4782"
-    ]
-  }
-]
-</pre>
-</div>
-
-
 ## Record entries resource ## {#record-entries-resource}
 
 <dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}/entries</dd></dt></dl>
