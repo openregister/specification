@@ -266,8 +266,6 @@ https://school.register.gov.uk/proof/register/merkle:sha-256
 </pre>
 </div>
 
-ISSUE(openregister/specification#6): CT names should be mapped to a consistent "proof" field names, or held inside an envelope.
-
 ## Entry proof resource ## {#entry-proof-resource}
 <dl class="resource"><dt>Path</dt><dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{total-entries}/{proof-identifier}</dd></dt></dl>
 
