@@ -744,6 +744,98 @@ Sequence:
   </pre>
 </div>
 
+
+## Period datatype ## {#period-datatype}
+
+<pre class='railroad'>
+Choice:
+  Sequence:
+    N: start
+    T: /
+    N: end
+  Sequence:
+    N: start
+    T: /
+    N: duration
+  Sequence:
+    N: duration
+    T: /
+    N: end
+  T: duration
+</pre>
+
+Where "start" and "end" are [[#datetime-datatype]] and "duration" is a
+[[#duration-pattern]].
+
+* Period values are all valid [[ISO8601]]
+* When a Period value contains a datetime value it MUST follow the same
+  principles described in [[#datetime-datatype]].
+
+<div class="example">
+  The following examples are all valid Period values:
+
+  <pre>
+    "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
+    "2007-03-01T13:00:00Z/P1Y2M10DT2H30M"
+    "P1Y2M10DT2H30M/2008-05-11T15:30:00Z"
+    "P1Y2M10DT2H30M"
+  </pre>
+</div>
+
+### Duration pattern ### {#duration-pattern}
+
+<pre class='railroad'>
+T: P
+OneOrMore:
+  Stack:
+    Sequence:
+      Optional:
+        Sequence:
+          OneOrMore:
+            N: 1-9
+          T: Y
+      Optional:
+        Sequence:
+          OneOrMore:
+            N: 1-9
+          T: M
+      Optional:
+        Sequence:
+          OneOrMore:
+            N: 1-9
+          T: D
+    Optional:
+      Sequence:
+        T: T
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: H
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: M
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: S
+</pre>
+
+Note that durations with atoms with a value of 0 MUST be removed. E.g.
+
+* <code>P0Y1M</code> normalises to <code>P1M</code>.
+* <code>PT0H1M0S</code> normalises to <code>PT1M</code>.
+
+Also note that a duration MUST NOT be empty. These are invalid patterns: <code>P</code>,
+<code>PT</code>.
+
+This specification chooses not to allow any decimal points in the smallest
+time atom.
+
+
 ## Point datatype ## {#point-datatype}
   * point [[GEOJSON]]
 
