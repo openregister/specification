@@ -832,8 +832,8 @@ Note that durations with atoms with a value of 0 MUST be removed. E.g.
 * <code>P0Y1M</code> normalises to <code>P1M</code>.
 * <code>PT0H1M0SZ</code> normalises to <code>PT1MZ</code>.
 
-Also note that a duration MUST NOT be empty. These are invalid patterns: `P`,
-`PT`.
+Also note that a duration MUST NOT be empty. These are invalid patterns: <code>P</code>,
+<code>PT</code>.
 
 This specification chooses not to allow any decimal points in the smallest
 time atom.
