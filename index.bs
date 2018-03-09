@@ -87,7 +87,7 @@ ISSUE(openregister/specification#40): possible confusion: "data item" and "item"
 
 An item is an unordered collection of [[#fields]] and values.
 The set of fields which MAY be included in an item are defined in the 
-[[#fields-field]] field in the [[#register-register]] entry for the register.
+<code>fields</code> field in the [[#register-register]] entry for the register.
 
 An item is identified by the globally unique [[#item-hash-field]]
 calculated from its contents. Changing the item data changes the [[#item-hash-field]].
