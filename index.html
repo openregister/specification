@@ -1691,7 +1691,7 @@ to the <a href="#entry-resource">§3.2 Entry resource</a> with the highest <a hr
    <p>This resource is provided as a convenience: in principle, it can be
 computed by a client by replaying the log of all entries and finding
 the latest one with the given primary key value.</p>
-   <p>This resource SHOULD provide a Link: header <a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a> with a
+   <p>This resource SHOULD provide a <code>Link:</code> header <a data-link-type="biblio" href="#biblio-rfc8288">[RFC8288]</a> with a
 relation of <code>"version-history"</code> <a data-link-type="biblio" href="#biblio-rfc5829">[RFC5829]</a> to the <a href="#record-entries-resource">§5.3 Record entries resource</a> for this record.</p>
    <div class="example" id="example-9fea54eb">
     <a class="self-link" href="#example-9fea54eb"></a> The following example shows a record in the <a href="#json-representation">§11.2 JSON representation</a>: 
@@ -1870,7 +1870,12 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>An immutable resource, is one whose contents will never change.
 An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a href="#entry-resource">§3.2 Entry resource</a> are both deemed to be immutable.</p>
    <h2 class="heading settled" data-level="5" id="list-resources"><span class="secno">5. </span><span class="content">Collection resources</span><a class="self-link" href="#list-resources"></a></h2>
-   <p>There is a limit to how many records or entries can be returned in a single request. To fetch more, pagination is used. Pagination is supported through an http link header <a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a>, with a link rel="next" for the next page, and rel="previous" for the previous page. On the first page, there is no "previous" link, and on the last page there is no "next" link.</p>
+   <p>There is a limit to how many records or entries can be returned in a single
+request. To fetch more, pagination is used. Pagination is supported through an
+http link header <a data-link-type="biblio" href="#biblio-rfc8288">[RFC8288]</a>, with a link <code>rel="next"</code> for the next
+page, and <code>rel="previous"</code> for the previous page. On the first
+page, there is no <code>"previous"</code> link, and on the last page there is
+no <code>"next"</code> link.</p>
    <p class="issue" id="issue-c647663d"><a class="self-link" href="#issue-c647663d"></a> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a></p>
    <p class="issue" id="issue-ab2143f9"><a class="self-link" href="#issue-ab2143f9"></a> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a></p>
    <h3 class="heading settled" data-level="5.1" id="items-resource"><span class="secno">5.1. </span><span class="content">Items resource</span><a class="self-link" href="#items-resource"></a></h3>
@@ -2094,7 +2099,7 @@ The archive file SHOULD be made available in a single file, but MAY be split int
    <p>Table of link and other HTTP headers used by resources ..</p>
    <ul>
     <li data-md="">
-     <p><a data-link-type="biblio" href="#biblio-rfc5988">[RFC5988]</a></p>
+     <p><a data-link-type="biblio" href="#biblio-rfc8288">[RFC8288]</a></p>
     <li data-md="">
      <p><a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">link-relations</a></p>
     <li data-md="">
@@ -3563,14 +3568,14 @@ these assets.</p>
    <dd>M. Nottingham, Ed.; R. Sayre, Ed.. <a href="https://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. December 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4287">https://tools.ietf.org/html/rfc4287</a>
    <dt id="biblio-rfc5829">[RFC5829]
    <dd>A. Brown; G. Clemm; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc5829">Link Relation Types for Simple Version Navigation between Web Resources</a>. April 2010. Informational. URL: <a href="https://tools.ietf.org/html/rfc5829">https://tools.ietf.org/html/rfc5829</a>
-   <dt id="biblio-rfc5988">[RFC5988]
-   <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc8288">Web Linking</a>. October 2017. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc8288">https://tools.ietf.org/html/rfc8288</a>
    <dt id="biblio-rfc6797">[RFC6797]
    <dd>J. Hodges; C. Jackson; A. Barth. <a href="https://tools.ietf.org/html/rfc6797">HTTP Strict Transport Security (HSTS)</a>. November 2012. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6797">https://tools.ietf.org/html/rfc6797</a>
    <dt id="biblio-rfc6962">[RFC6962]
    <dd>B. Laurie; A. Langley; E. Kasper. <a href="https://tools.ietf.org/html/rfc6962">Certificate Transparency</a>. URL: <a href="https://tools.ietf.org/html/rfc6962">https://tools.ietf.org/html/rfc6962</a>
    <dt id="biblio-rfc7234">[RFC7234]
    <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7234">Hypertext Transfer Protocol (HTTP/1.1): Caching</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7234">https://tools.ietf.org/html/rfc7234</a>
+   <dt id="biblio-rfc8288">[RFC8288]
+   <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc8288">Web Linking</a>. October 2017. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc8288">https://tools.ietf.org/html/rfc8288</a>
    <dt id="biblio-tabular-data-model">[TABULAR-DATA-MODEL]
    <dd>Jeni Tennison; Gregg Kellogg. <a href="https://www.w3.org/TR/tabular-data-model/">Model for Tabular Data and Metadata on the Web</a>. 17 December 2015. REC. URL: <a href="https://www.w3.org/TR/tabular-data-model/">https://www.w3.org/TR/tabular-data-model/</a>
    <dt id="biblio-turtle">[TURTLE]
