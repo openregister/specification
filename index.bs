@@ -782,29 +782,28 @@ Where "start" and "end" are [[#datetime-datatype]] and "duration" is a
   </pre>
 </div>
 
-### Duration pattern
+### Duration pattern ### {#duration-pattern}
 
 <pre class='railroad'>
 T: P
 OneOrMore:
   Stack:
     Sequence:
-      Sequence:
-        Optional:
-          Sequence:
-            OneOrMore:
-              N: 1-9
-            T: Y
-        Optional:
-          Sequence:
-            OneOrMore:
-              N: 1-9
-            T: M
-        Optional:
-          Sequence:
-            OneOrMore:
-              N: 1-9
-            T: D
+      Optional:
+        Sequence:
+          OneOrMore:
+            N: 1-9
+          T: Y
+      Optional:
+        Sequence:
+          OneOrMore:
+            N: 1-9
+          T: M
+      Optional:
+        Sequence:
+          OneOrMore:
+            N: 1-9
+          T: D
     Optional:
       Sequence:
         T: T
@@ -832,6 +831,12 @@ Note that durations with atoms with a value of 0 MUST be removed. E.g.
 
 * <code>P0Y1M</code> normalises to <code>P1M</code>.
 * <code>PT0H1M0SZ</code> normalises to <code>PT1MZ</code>.
+
+Also note that a duration MUST NOT be empty. These are invalid patterns: `P`,
+`PT`.
+
+This specification chooses not to allow any decimal points in the smallest
+time atom.
 
 
 ## Point datatype ## {#point-datatype}
