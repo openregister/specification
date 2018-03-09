@@ -764,57 +764,12 @@ Choice:
   T: duration
 </pre>
 
-Where "start" and "end" are [[#datetime-datatype]] and "duration" is defined
-as:
+Where "start" and "end" are [[#datetime-datatype]] and "duration" is a
+[[#duration-pattern]].
 
-<pre class='railroad'>
-T: P
-OneOrMore:
-  Stack:
-    Sequence:
-      Sequence:
-        Optional:
-          Sequence:
-            N: 0-9
-            N: 0-9
-            N: 0-9
-            N: 0-9
-            T: Y
-        Optional:
-          Sequence:
-            N: 0-9
-            T: M
-        Optional:
-          Sequence:
-            N: 0-9
-            N: 0-9
-            T: D
-    Sequence:
-      Sequence:
-        T: T
-        Optional:
-          Sequence:
-            N: 0-9
-            N: 0-9
-            T: H
-        Optional:
-          Sequence:
-            N: 0-9
-            N: 0-9
-            T: M
-        Optional:
-          Sequence:
-            N: 0-9
-            N: 0-9
-            T: S
-        Optional:
-          Sequence:
-            T: Z
-</pre>
-
-  * Period values are all valid [[ISO8601]]
-  * When a Period value contains a datetime value it MUST follow the same
-    principles described in [[#datetime-datatype]].
+* Period values are all valid [[ISO8601]]
+* When a Period value contains a datetime value it MUST follow the same
+  principles described in [[#datetime-datatype]].
 
 <div class="example">
   The following examples are all valid Period values:
@@ -826,6 +781,58 @@ OneOrMore:
     "P1Y2M10DT2H30M"
   </pre>
 </div>
+
+### Duration pattern
+
+<pre class='railroad'>
+T: P
+OneOrMore:
+  Stack:
+    Sequence:
+      Sequence:
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: Y
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: M
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: D
+    Optional:
+      Sequence:
+        T: T
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: H
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: M
+        Optional:
+          Sequence:
+            OneOrMore:
+              N: 1-9
+            T: S
+        Optional:
+          Sequence:
+            T: Z
+</pre>
+
+Note that durations with atoms with a value of 0 MUST be removed. E.g.
+
+* <code>P0Y1M</code> normalises to <code>P1M</code>.
+* <code>PT0H1M0SZ</code> normalises to <code>PT1MZ</code>.
+
 
 ## Point datatype ## {#point-datatype}
   * point [[GEOJSON]]
