@@ -822,15 +822,12 @@ OneOrMore:
             OneOrMore:
               N: 1-9
             T: S
-        Optional:
-          Sequence:
-            T: Z
 </pre>
 
 Note that durations with atoms with a value of 0 MUST be removed. E.g.
 
 * <code>P0Y1M</code> normalises to <code>P1M</code>.
-* <code>PT0H1M0SZ</code> normalises to <code>PT1MZ</code>.
+* <code>PT0H1M0S</code> normalises to <code>PT1M</code>.
 
 Also note that a duration MUST NOT be empty. These are invalid patterns: <code>P</code>,
 <code>PT</code>.
