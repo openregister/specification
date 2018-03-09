@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-03-08">8 March 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-03-09">9 March 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1503,17 +1503,22 @@ data held in a register.</p>
       <li><a href="#integer-datatype"><span class="secno">8.3</span> <span class="content">Integer datatype</span></a>
       <li><a href="#datetime-datatype"><span class="secno">8.4</span> <span class="content">Datetime datatype</span></a>
       <li><a href="#timestamp-datatype"><span class="secno">8.5</span> <span class="content">Timestamp datatype</span></a>
-      <li><a href="#point-datatype"><span class="secno">8.6</span> <span class="content">Point datatype</span></a>
-      <li><a href="#multipolygon-datatype"><span class="secno">8.7</span> <span class="content">Multipolygon datatype</span></a>
-      <li><a href="#text-datatype"><span class="secno">8.8</span> <span class="content">Text datatype</span></a>
-      <li><a href="#curie-datatype"><span class="secno">8.9</span> <span class="content">CURIE datatype</span></a>
       <li>
-       <a href="#item-hash-datatype"><span class="secno">8.10</span> <span class="content">Item-hash datatype</span></a>
+       <a href="#period-datatype"><span class="secno">8.6</span> <span class="content">Period datatype</span></a>
        <ol class="toc">
-        <li><a href="#sha-256-item-hash"><span class="secno">8.10.1</span> <span class="content">SHA-256 item hash</span></a>
+        <li><a href="#duration-pattern"><span class="secno">8.6.1</span> <span class="content">Duration pattern</span></a>
        </ol>
-      <li><a href="#entry-reference-datatype"><span class="secno">8.11</span> <span class="content">Entry-reference datatype</span></a>
-      <li><a href="#url-datatype"><span class="secno">8.12</span> <span class="content">URL datatype</span></a>
+      <li><a href="#point-datatype"><span class="secno">8.7</span> <span class="content">Point datatype</span></a>
+      <li><a href="#multipolygon-datatype"><span class="secno">8.8</span> <span class="content">Multipolygon datatype</span></a>
+      <li><a href="#text-datatype"><span class="secno">8.9</span> <span class="content">Text datatype</span></a>
+      <li><a href="#curie-datatype"><span class="secno">8.10</span> <span class="content">CURIE datatype</span></a>
+      <li>
+       <a href="#item-hash-datatype"><span class="secno">8.11</span> <span class="content">Item-hash datatype</span></a>
+       <ol class="toc">
+        <li><a href="#sha-256-item-hash"><span class="secno">8.11.1</span> <span class="content">SHA-256 item hash</span></a>
+       </ol>
+      <li><a href="#entry-reference-datatype"><span class="secno">8.12</span> <span class="content">Entry-reference datatype</span></a>
+      <li><a href="#url-datatype"><span class="secno">8.13</span> <span class="content">URL datatype</span></a>
      </ol>
     <li>
      <a href="#fields"><span class="secno">9</span> <span class="content">Fields</span></a>
@@ -2586,31 +2591,537 @@ Negative values are marked with a leading “-” character (<a data-link-type="
 <pre>"2001-01-31T23:20:55Z"
 </pre>
    </div>
-   <h3 class="heading settled" data-level="8.6" id="point-datatype"><span class="secno">8.6. </span><span class="content">Point datatype</span><a class="self-link" href="#point-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.6" id="period-datatype"><span class="secno">8.6. </span><span class="content">Period datatype</span><a class="self-link" href="#period-datatype"></a></h3>
+   <div class="railroad">
+    <svg class="railroad-diagram" height="152" viewBox="0 0 332 152" width="332">
+     <g transform="translate(.5 .5)">
+      <path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path>
+      <g>
+       <path d="M40 31h0"></path>
+       <path d="M292 31h0"></path>
+       <path d="M40 31h20"></path>
+       <g>
+        <path d="M60 31h20"></path>
+        <path d="M252 31h20"></path>
+        <g class="non-terminal">
+         <path d="M80 31h0"></path>
+         <path d="M140 31h0"></path>
+         <rect height="22" width="60" x="80" y="20"></rect>
+         <a href="">
+          <text x="110" y="35">start</text>
+          <text x="110" y="35">start</text>
+         </a>
+        </g>
+        <path d="M140 31h10"></path>
+        <path d="M150 31h10"></path>
+        <g class="terminal">
+         <path d="M160 31h0"></path>
+         <path d="M188 31h0"></path>
+         <rect height="22" rx="10" ry="10" width="28" x="160" y="20"></rect>
+         <a href="">
+          <text x="174" y="35">/</text>
+          <text x="174" y="35">/</text>
+         </a>
+        </g>
+        <path d="M188 31h10"></path>
+        <path d="M198 31h10"></path>
+        <g class="non-terminal">
+         <path d="M208 31h0"></path>
+         <path d="M252 31h0"></path>
+         <rect height="22" width="44" x="208" y="20"></rect>
+         <a href="">
+          <text x="230" y="35">end</text>
+          <text x="230" y="35">end</text>
+         </a>
+        </g>
+       </g>
+       <path d="M272 31h20"></path>
+       <path d="M40 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10"></path>
+       <g>
+        <path d="M60 61h0"></path>
+        <path d="M272 61h0"></path>
+        <g class="non-terminal">
+         <path d="M60 61h0"></path>
+         <path d="M120 61h0"></path>
+         <rect height="22" width="60" x="60" y="50"></rect>
+         <a href="">
+          <text x="90" y="65">start</text>
+          <text x="90" y="65">start</text>
+         </a>
+        </g>
+        <path d="M120 61h10"></path>
+        <path d="M130 61h10"></path>
+        <g class="terminal">
+         <path d="M140 61h0"></path>
+         <path d="M168 61h0"></path>
+         <rect height="22" rx="10" ry="10" width="28" x="140" y="50"></rect>
+         <a href="">
+          <text x="154" y="65">/</text>
+          <text x="154" y="65">/</text>
+         </a>
+        </g>
+        <path d="M168 61h10"></path>
+        <path d="M178 61h10"></path>
+        <g class="non-terminal">
+         <path d="M188 61h0"></path>
+         <path d="M272 61h0"></path>
+         <rect height="22" width="84" x="188" y="50"></rect>
+         <a href="">
+          <text x="230" y="65">duration</text>
+          <text x="230" y="65">duration</text>
+         </a>
+        </g>
+       </g>
+       <path d="M272 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10"></path>
+       <path d="M40 31a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10"></path>
+       <g>
+        <path d="M60 91h8"></path>
+        <path d="M264 91h8"></path>
+        <g class="non-terminal">
+         <path d="M68 91h0"></path>
+         <path d="M152 91h0"></path>
+         <rect height="22" width="84" x="68" y="80"></rect>
+         <a href="">
+          <text x="110" y="95">duration</text>
+          <text x="110" y="95">duration</text>
+         </a>
+        </g>
+        <path d="M152 91h10"></path>
+        <path d="M162 91h10"></path>
+        <g class="terminal">
+         <path d="M172 91h0"></path>
+         <path d="M200 91h0"></path>
+         <rect height="22" rx="10" ry="10" width="28" x="172" y="80"></rect>
+         <a href="">
+          <text x="186" y="95">/</text>
+          <text x="186" y="95">/</text>
+         </a>
+        </g>
+        <path d="M200 91h10"></path>
+        <path d="M210 91h10"></path>
+        <g class="non-terminal">
+         <path d="M220 91h0"></path>
+         <path d="M264 91h0"></path>
+         <rect height="22" width="44" x="220" y="80"></rect>
+         <a href="">
+          <text x="242" y="95">end</text>
+          <text x="242" y="95">end</text>
+         </a>
+        </g>
+       </g>
+       <path d="M272 91a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10"></path>
+       <path d="M40 31a10 10 0 0 1 10 10v70a10 10 0 0 0 10 10"></path>
+       <g class="terminal">
+        <path d="M60 121h64"></path>
+        <path d="M208 121h64"></path>
+        <rect height="22" rx="10" ry="10" width="84" x="124" y="110"></rect>
+        <a href="">
+         <text x="166" y="125">duration</text>
+         <text x="166" y="125">duration</text>
+        </a>
+       </g>
+       <path d="M272 121a10 10 0 0 0 10 -10v-70a10 10 0 0 1 10 -10"></path>
+      </g>
+      <path d="M 292 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
+     </g>
+    </svg>
+   </div>
+   <p>Where "start" and "end" are <a href="#datetime-datatype">§8.4 Datetime datatype</a> and "duration" is a <a href="#duration-pattern">§8.6.1 Duration pattern</a>.</p>
+   <ul>
+    <li data-md="">
+     <p>Period values are all valid <a data-link-type="biblio" href="#biblio-iso8601">[ISO8601]</a></p>
+    <li data-md="">
+     <p>When a Period value contains a datetime value it MUST follow the same
+principles described in <a href="#datetime-datatype">§8.4 Datetime datatype</a>.</p>
+   </ul>
+   <div class="example" id="example-8d3b4373">
+    <a class="self-link" href="#example-8d3b4373"></a> The following examples are all valid Period values: 
+<pre>"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
+"2007-03-01T13:00:00Z/P1Y2M10DT2H30M"
+"P1Y2M10DT2H30M/2008-05-11T15:30:00Z"
+"P1Y2M10DT2H30M"
+</pre>
+   </div>
+   <h4 class="heading settled" data-level="8.6.1" id="duration-pattern"><span class="secno">8.6.1. </span><span class="content">Duration pattern</span><a class="self-link" href="#duration-pattern"></a></h4>
+   <div class="railroad">
+    <svg class="railroad-diagram" height="152" viewBox="0 0 722 152" width="722">
+     <g transform="translate(.5 .5)">
+      <path d="M 20 30 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path>
+      <path d="M40 40h10"></path>
+      <g class="terminal">
+       <path d="M50 40h0"></path>
+       <path d="M78 40h0"></path>
+       <rect height="22" rx="10" ry="10" width="28" x="50" y="29"></rect>
+       <a href="">
+        <text x="64" y="44">P</text>
+        <text x="64" y="44">P</text>
+       </a>
+      </g>
+      <path d="M78 40h10"></path>
+      <path d="M88 40h10"></path>
+      <g>
+       <path d="M98 40h0"></path>
+       <path d="M672 104h0"></path>
+       <path d="M98 40h10"></path>
+       <g>
+        <path d="M108 40h0"></path>
+        <path d="M108 40h10"></path>
+        <g>
+         <path d="M118 40h39"></path>
+         <path d="M613 40h39"></path>
+         <g>
+          <path d="M157 40h0"></path>
+          <path d="M309 40h0"></path>
+          <path d="M157 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+          <g>
+           <path d="M177 20h112"></path>
+          </g>
+          <path d="M289 20a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+          <path d="M157 40h20"></path>
+          <g>
+           <path d="M177 40h0"></path>
+           <path d="M289 40h0"></path>
+           <g>
+            <path d="M177 40h0"></path>
+            <path d="M241 40h0"></path>
+            <path d="M177 40h10"></path>
+            <g class="non-terminal">
+             <path d="M187 40h0"></path>
+             <path d="M231 40h0"></path>
+             <rect height="22" width="44" x="187" y="29"></rect>
+             <a href="">
+              <text x="209" y="44">1-9</text>
+              <text x="209" y="44">1-9</text>
+             </a>
+            </g>
+            <path d="M231 40h10"></path>
+            <path d="M187 40a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+            <g>
+             <path d="M187 60h44"></path>
+            </g>
+            <path d="M231 60a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+           </g>
+           <path d="M241 40h10"></path>
+           <path d="M251 40h10"></path>
+           <g class="terminal">
+            <path d="M261 40h0"></path>
+            <path d="M289 40h0"></path>
+            <rect height="22" rx="10" ry="10" width="28" x="261" y="29"></rect>
+            <a href="">
+             <text x="275" y="44">Y</text>
+             <text x="275" y="44">Y</text>
+            </a>
+           </g>
+          </g>
+          <path d="M289 40h20"></path>
+         </g>
+         <g>
+          <path d="M309 40h0"></path>
+          <path d="M461 40h0"></path>
+          <path d="M309 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+          <g>
+           <path d="M329 20h112"></path>
+          </g>
+          <path d="M441 20a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+          <path d="M309 40h20"></path>
+          <g>
+           <path d="M329 40h0"></path>
+           <path d="M441 40h0"></path>
+           <g>
+            <path d="M329 40h0"></path>
+            <path d="M393 40h0"></path>
+            <path d="M329 40h10"></path>
+            <g class="non-terminal">
+             <path d="M339 40h0"></path>
+             <path d="M383 40h0"></path>
+             <rect height="22" width="44" x="339" y="29"></rect>
+             <a href="">
+              <text x="361" y="44">1-9</text>
+              <text x="361" y="44">1-9</text>
+             </a>
+            </g>
+            <path d="M383 40h10"></path>
+            <path d="M339 40a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+            <g>
+             <path d="M339 60h44"></path>
+            </g>
+            <path d="M383 60a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+           </g>
+           <path d="M393 40h10"></path>
+           <path d="M403 40h10"></path>
+           <g class="terminal">
+            <path d="M413 40h0"></path>
+            <path d="M441 40h0"></path>
+            <rect height="22" rx="10" ry="10" width="28" x="413" y="29"></rect>
+            <a href="">
+             <text x="427" y="44">M</text>
+             <text x="427" y="44">M</text>
+            </a>
+           </g>
+          </g>
+          <path d="M441 40h20"></path>
+         </g>
+         <g>
+          <path d="M461 40h0"></path>
+          <path d="M613 40h0"></path>
+          <path d="M461 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+          <g>
+           <path d="M481 20h112"></path>
+          </g>
+          <path d="M593 20a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+          <path d="M461 40h20"></path>
+          <g>
+           <path d="M481 40h0"></path>
+           <path d="M593 40h0"></path>
+           <g>
+            <path d="M481 40h0"></path>
+            <path d="M545 40h0"></path>
+            <path d="M481 40h10"></path>
+            <g class="non-terminal">
+             <path d="M491 40h0"></path>
+             <path d="M535 40h0"></path>
+             <rect height="22" width="44" x="491" y="29"></rect>
+             <a href="">
+              <text x="513" y="44">1-9</text>
+              <text x="513" y="44">1-9</text>
+             </a>
+            </g>
+            <path d="M535 40h10"></path>
+            <path d="M491 40a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+            <g>
+             <path d="M491 60h44"></path>
+            </g>
+            <path d="M535 60a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+           </g>
+           <path d="M545 40h10"></path>
+           <path d="M555 40h10"></path>
+           <g class="terminal">
+            <path d="M565 40h0"></path>
+            <path d="M593 40h0"></path>
+            <rect height="22" rx="10" ry="10" width="28" x="565" y="29"></rect>
+            <a href="">
+             <text x="579" y="44">D</text>
+             <text x="579" y="44">D</text>
+            </a>
+           </g>
+          </g>
+          <path d="M593 40h20"></path>
+         </g>
+        </g>
+        <path d="M652 40a10 10 0 0 1 10 10v8a10 10 0 0 1 -10 10h-534a10 10 0 0 0 -10 10v16a10 10 0 0 0 10 10"></path>
+        <g>
+         <path d="M118 104h0"></path>
+         <path d="M652 104h0"></path>
+         <path d="M118 104a10 10 0 0 0 10 -10v-8a10 10 0 0 1 10 -10"></path>
+         <g>
+          <path d="M138 76h494"></path>
+         </g>
+         <path d="M632 76a10 10 0 0 1 10 10v8a10 10 0 0 0 10 10"></path>
+         <path d="M118 104h20"></path>
+         <g>
+          <path d="M138 104h0"></path>
+          <path d="M632 104h0"></path>
+          <g class="terminal">
+           <path d="M138 104h0"></path>
+           <path d="M166 104h0"></path>
+           <rect height="22" rx="10" ry="10" width="28" x="138" y="93"></rect>
+           <a href="">
+            <text x="152" y="108">T</text>
+            <text x="152" y="108">T</text>
+           </a>
+          </g>
+          <path d="M166 104h10"></path>
+          <g>
+           <path d="M176 104h0"></path>
+           <path d="M328 104h0"></path>
+           <path d="M176 104a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+           <g>
+            <path d="M196 84h112"></path>
+           </g>
+           <path d="M308 84a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+           <path d="M176 104h20"></path>
+           <g>
+            <path d="M196 104h0"></path>
+            <path d="M308 104h0"></path>
+            <g>
+             <path d="M196 104h0"></path>
+             <path d="M260 104h0"></path>
+             <path d="M196 104h10"></path>
+             <g class="non-terminal">
+              <path d="M206 104h0"></path>
+              <path d="M250 104h0"></path>
+              <rect height="22" width="44" x="206" y="93"></rect>
+              <a href="">
+               <text x="228" y="108">1-9</text>
+               <text x="228" y="108">1-9</text>
+              </a>
+             </g>
+             <path d="M250 104h10"></path>
+             <path d="M206 104a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+             <g>
+              <path d="M206 124h44"></path>
+             </g>
+             <path d="M250 124a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+            </g>
+            <path d="M260 104h10"></path>
+            <path d="M270 104h10"></path>
+            <g class="terminal">
+             <path d="M280 104h0"></path>
+             <path d="M308 104h0"></path>
+             <rect height="22" rx="10" ry="10" width="28" x="280" y="93"></rect>
+             <a href="">
+              <text x="294" y="108">H</text>
+              <text x="294" y="108">H</text>
+             </a>
+            </g>
+           </g>
+           <path d="M308 104h20"></path>
+          </g>
+          <g>
+           <path d="M328 104h0"></path>
+           <path d="M480 104h0"></path>
+           <path d="M328 104a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+           <g>
+            <path d="M348 84h112"></path>
+           </g>
+           <path d="M460 84a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+           <path d="M328 104h20"></path>
+           <g>
+            <path d="M348 104h0"></path>
+            <path d="M460 104h0"></path>
+            <g>
+             <path d="M348 104h0"></path>
+             <path d="M412 104h0"></path>
+             <path d="M348 104h10"></path>
+             <g class="non-terminal">
+              <path d="M358 104h0"></path>
+              <path d="M402 104h0"></path>
+              <rect height="22" width="44" x="358" y="93"></rect>
+              <a href="">
+               <text x="380" y="108">1-9</text>
+               <text x="380" y="108">1-9</text>
+              </a>
+             </g>
+             <path d="M402 104h10"></path>
+             <path d="M358 104a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+             <g>
+              <path d="M358 124h44"></path>
+             </g>
+             <path d="M402 124a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+            </g>
+            <path d="M412 104h10"></path>
+            <path d="M422 104h10"></path>
+            <g class="terminal">
+             <path d="M432 104h0"></path>
+             <path d="M460 104h0"></path>
+             <rect height="22" rx="10" ry="10" width="28" x="432" y="93"></rect>
+             <a href="">
+              <text x="446" y="108">M</text>
+              <text x="446" y="108">M</text>
+             </a>
+            </g>
+           </g>
+           <path d="M460 104h20"></path>
+          </g>
+          <g>
+           <path d="M480 104h0"></path>
+           <path d="M632 104h0"></path>
+           <path d="M480 104a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+           <g>
+            <path d="M500 84h112"></path>
+           </g>
+           <path d="M612 84a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+           <path d="M480 104h20"></path>
+           <g>
+            <path d="M500 104h0"></path>
+            <path d="M612 104h0"></path>
+            <g>
+             <path d="M500 104h0"></path>
+             <path d="M564 104h0"></path>
+             <path d="M500 104h10"></path>
+             <g class="non-terminal">
+              <path d="M510 104h0"></path>
+              <path d="M554 104h0"></path>
+              <rect height="22" width="44" x="510" y="93"></rect>
+              <a href="">
+               <text x="532" y="108">1-9</text>
+               <text x="532" y="108">1-9</text>
+              </a>
+             </g>
+             <path d="M554 104h10"></path>
+             <path d="M510 104a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+             <g>
+              <path d="M510 124h44"></path>
+             </g>
+             <path d="M554 124a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+            </g>
+            <path d="M564 104h10"></path>
+            <path d="M574 104h10"></path>
+            <g class="terminal">
+             <path d="M584 104h0"></path>
+             <path d="M612 104h0"></path>
+             <rect height="22" rx="10" ry="10" width="28" x="584" y="93"></rect>
+             <a href="">
+              <text x="598" y="108">S</text>
+              <text x="598" y="108">S</text>
+             </a>
+            </g>
+           </g>
+           <path d="M612 104h20"></path>
+          </g>
+         </g>
+         <path d="M632 104h20"></path>
+        </g>
+        <path d="M652 104h10"></path>
+        <path d="M662 104h0"></path>
+       </g>
+       <path d="M662 104h10"></path>
+       <path d="M108 40a10 10 0 0 0 -10 10v72a10 10 0 0 0 10 10"></path>
+       <g>
+        <path d="M108 132h554"></path>
+       </g>
+       <path d="M662 132a10 10 0 0 0 10 -10v-8a10 10 0 0 0 -10 -10"></path>
+      </g>
+      <path d="M672 104h10"></path>
+      <path d="M 682 104 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
+     </g>
+    </svg>
+   </div>
+   <p>Note that durations with atoms with a value of 0 MUST be removed. E.g.</p>
+   <ul>
+    <li data-md="">
+     <p><code>P0Y1M</code> normalises to <code>P1M</code>.</p>
+    <li data-md="">
+     <p><code>PT0H1M0S</code> normalises to <code>PT1M</code>.</p>
+   </ul>
+   <p>Also note that a duration MUST NOT be empty. These are invalid patterns: <code>P</code>, <code>PT</code>.</p>
+   <p>This specification chooses not to allow any decimal points in the smallest
+time atom.</p>
+   <h3 class="heading settled" data-level="8.7" id="point-datatype"><span class="secno">8.7. </span><span class="content">Point datatype</span><a class="self-link" href="#point-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>point <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.7" id="multipolygon-datatype"><span class="secno">8.7. </span><span class="content">Multipolygon datatype</span><a class="self-link" href="#multipolygon-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.8" id="multipolygon-datatype"><span class="secno">8.8. </span><span class="content">Multipolygon datatype</span><a class="self-link" href="#multipolygon-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>multipolygon <a data-link-type="biblio" href="#biblio-geojson">[GEOJSON]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.8" id="text-datatype"><span class="secno">8.8. </span><span class="content">Text datatype</span><a class="self-link" href="#text-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.9" id="text-datatype"><span class="secno">8.9. </span><span class="content">Text datatype</span><a class="self-link" href="#text-datatype"></a></h3>
    <ul>
     <li data-md="">
      <p>text <a data-link-type="biblio" href="#biblio-markdown">[MARKDOWN]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.9" id="curie-datatype"><span class="secno">8.9. </span><span class="content">CURIE datatype</span><a class="self-link" href="#curie-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.10" id="curie-datatype"><span class="secno">8.10. </span><span class="content">CURIE datatype</span><a class="self-link" href="#curie-datatype"></a></h3>
     Used to identify a record, possibly in another register. 
    <ul>
     <li data-md="">
      <p>curie <a data-link-type="biblio" href="#biblio-curie">[CURIE]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="8.10" id="item-hash-datatype"><span class="secno">8.10. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.11" id="item-hash-datatype"><span class="secno">8.11. </span><span class="content">Item-hash datatype</span><a class="self-link" href="#item-hash-datatype"></a></h3>
    <p>A hash of the item’s contents may be used to identify the contents of an item, irrespective of where it is stored or presented.</p>
    <p>An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.  Currently there is only one valid hashing algorithm, <code>sha-256</code>.  In future, other alternative hashing algorithms may be added to this specification.  They will be distinguished by having a different string prefix.</p>
-   <h4 class="heading settled" data-level="8.10.1" id="sha-256-item-hash"><span class="secno">8.10.1. </span><span class="content">SHA-256 item hash</span><a class="self-link" href="#sha-256-item-hash"></a></h4>
+   <h4 class="heading settled" data-level="8.11.1" id="sha-256-item-hash"><span class="secno">8.11.1. </span><span class="content">SHA-256 item hash</span><a class="self-link" href="#sha-256-item-hash"></a></h4>
    <div class="example" id="example-15bc165f">
     <a class="self-link" href="#example-15bc165f"></a> The SHA-256 item hash of the item with a field <code>field1</code> with a value of <code>"a"</code> and a field <code>field2</code> with a value of <code>"b"</code> is: 
     <p><code>sha-256:129332749e67eb9ab7390d7da2e88173367d001ac3e9e39f06e41690cd05e3ae</code></p>
@@ -2644,9 +3155,9 @@ Negative values are marked with a leading “-” character (<a data-link-type="
    </ul>
    <p>This canonicalisation algorithm is very similar to that used in <a data-link-type="biblio" href="#biblio-jcs">[JCS]</a>, except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.</p>
    <p class="issue" id="issue-0be82fb3"><a class="self-link" href="#issue-0be82fb3"></a> which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm? <a href="https://github.com/openregister/specification/issues/39">&lt;https://github.com/openregister/specification/issues/39></a></p>
-   <h3 class="heading settled" data-level="8.11" id="entry-reference-datatype"><span class="secno">8.11. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.12" id="entry-reference-datatype"><span class="secno">8.12. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
     Legal documents may need to cite an individual entry, rather than the latest entry of the record. 
-   <h3 class="heading settled" data-level="8.12" id="url-datatype"><span class="secno">8.12. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
+   <h3 class="heading settled" data-level="8.13" id="url-datatype"><span class="secno">8.13. </span><span class="content">URL datatype</span><a class="self-link" href="#url-datatype"></a></h3>
     Used to link to an external website, or other resource not held in a register. 
    <ul>
     <li data-md="">
@@ -2664,7 +3175,7 @@ example, in the "school" register the primary key field is also called
    <h3 class="heading settled" data-level="9.4" id="entry-number-field"><span class="secno">9.4. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
    <h3 class="heading settled" data-level="9.5" id="index-entry-number-field"><span class="secno">9.5. </span><span class="content">index-entry-number</span><a class="self-link" href="#index-entry-number-field"></a></h3>
    <h3 class="heading settled" data-level="9.6" id="item-hash-field"><span class="secno">9.6. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
-   <p>The item-hash field contains the <a href="#item-hash-datatype">§8.10 Item-hash datatype</a> of an item.</p>
+   <p>The item-hash field contains the <a href="#item-hash-datatype">§8.11 Item-hash datatype</a> of an item.</p>
    <h3 class="heading settled" data-level="9.7" id="last-updated-field"><span class="secno">9.7. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
    <h3 class="heading settled" data-level="9.8" id="field-field"><span class="secno">9.8. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
    <h3 class="heading settled" data-level="9.9" id="key-field"><span class="secno">9.9. </span><span class="content">key</span><a class="self-link" href="#key-field"></a></h3>
@@ -2689,7 +3200,7 @@ example, in the "school" register the primary key field is also called
      <p>specification: <a data-link-type="biblio" href="#biblio-json">[JSON]</a></p>
    </ul>
    <p>All field values MUST be encoded as JSON strings. When JSON needs to be in a
-  canonical format, use the procedure defined in <a href="#sha-256-item-hash">§8.10.1 SHA-256 item hash</a></p>
+  canonical format, use the procedure defined in <a href="#sha-256-item-hash">§8.11.1 SHA-256 item hash</a></p>
    <h3 class="heading settled" data-level="11.3" id="yaml-representation"><span class="secno">11.3. </span><span class="content">YAML representation</span><a class="self-link" href="#yaml-representation"></a></h3>
    <ul>
     <li data-md="">
@@ -2764,14 +3275,14 @@ item:
    <h3 class="heading settled" data-level="12.1" id="using-certificate-transparency"><span class="secno">12.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
    <h4 class="heading settled" data-level="12.1.1" id="entry-hash"><span class="secno">12.1.1. </span><span class="content">Entry hash</span><a class="self-link" href="#entry-hash"></a></h4>
-   <p>The entry hash is the application of a supported hashing algorithm on the data contained in the <a href="#entry-resource">§3.2 Entry resource</a>. The <a href="#item-hash-datatype">§8.10 Item-hash datatype</a> of the entry, rather than the item itself (<a href="#item-resource">§3.1 Item resource</a>), is part of the raw data hashed to create the entry hash.</p>
+   <p>The entry hash is the application of a supported hashing algorithm on the data contained in the <a href="#entry-resource">§3.2 Entry resource</a>. The <a href="#item-hash-datatype">§8.11 Item-hash datatype</a> of the entry, rather than the item itself (<a href="#item-resource">§3.1 Item resource</a>), is part of the raw data hashed to create the entry hash.</p>
    <p>The entry hash is required for many operations in Certificate Transparency.</p>
    <h4 class="heading settled" data-level="12.1.2" id="signed-tree-head"><span class="secno">12.1.2. </span><span class="content">Signed tree head</span><a class="self-link" href="#signed-tree-head"></a></h4>
    <p>The signed tree head for a register is the tree-head-signature property of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, where the proof-identifier is specified as merkle:sha-256.</p>
    <p>The signed tree head for a register is the signed Merkle tree root hash (<a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1) of a Merkle tree containing all entries in the register. The corresponding root-hash is also a property of the <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <h4 class="heading settled" data-level="12.1.3" id="ct-verify-register"><span class="secno">12.1.3. </span><span class="content">Verifying the register</span><a class="self-link" href="#ct-verify-register"></a></h4>
    <p>To verify a register obtained from the <a href="#download">§6.1 Download resource</a>, a client must compute the Merkle tree root hash from the complete list of raw <a href="#entry-resource">§3.2 Entry resource</a>, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1, ensuring that it equals the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a> and that the same <a href="#signed-tree-head">§12.1.2 Signed tree head</a> can be generated by signing the root-hash against a public key.</p>
-   <p>The client must also verify that for each <a href="#entry-resource">§3.2 Entry resource</a> in the register there exists an item with the corresponding <a href="#item-hash-datatype">§8.10 Item-hash datatype</a> and that the contents of the item generate the correct <a href="#item-hash-datatype">§8.10 Item-hash datatype</a>.</p>
+   <p>The client must also verify that for each <a href="#entry-resource">§3.2 Entry resource</a> in the register there exists an item with the corresponding <a href="#item-hash-datatype">§8.11 Item-hash datatype</a> and that the contents of the item generate the correct <a href="#item-hash-datatype">§8.11 Item-hash datatype</a>.</p>
    <h4 class="heading settled" data-level="12.1.4" id="ct-verify-entry"><span class="secno">12.1.4. </span><span class="content">Verifying an entry</span><a class="self-link" href="#ct-verify-entry"></a></h4>
    <p>The merkle-audit-path for the entry from the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> provides the shortest list of additional nodes in the Merkle tree required to compute the Merkle tree root hash.</p>
    <p>To verify an entry exists in a register, given that total-entries of the <a href="#entry-proof-resource">§3.6 Entry proof resource</a> equals the total-entries of the <a href="#register-proof-resource">§3.5 Register proof resource</a>, a client must combine the hash of the entry with each Merkle tree node in the merkle-audit-path consecutively, as per <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> section 2.1.1, and verify that the resulting Merkle tree root hash is equal to the root-hash of the <a href="#register-proof-resource">§3.5 Register proof resource</a>. The client should also verify the <a href="#signed-tree-head">§12.1.2 Signed tree head</a> against the computed root-hash using a public key.</p>
@@ -2823,7 +3334,7 @@ and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one o
    <h4 class="heading settled" data-level="15.3.3" id="extensibility-proofs"><span class="secno">15.3.3. </span><span class="content">Proofs</span><a class="self-link" href="#extensibility-proofs"></a></h4>
    <h4 class="heading settled" data-level="15.3.4" id="extensibility-representations"><span class="secno">15.3.4. </span><span class="content">Representations</span><a class="self-link" href="#extensibility-representations"></a></h4>
    <p>A register may provide additional, possibly domain specific representations.</p>
-   <div class="example" id="example-40512a5b"><a class="self-link" href="#example-40512a5b"></a> A register containing fields with <a href="#point-datatype">§8.6 Point datatype</a> or <a href="#multipolygon-datatype">§8.7 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
+   <div class="example" id="example-40512a5b"><a class="self-link" href="#example-40512a5b"></a> A register containing fields with <a href="#point-datatype">§8.7 Point datatype</a> or <a href="#multipolygon-datatype">§8.8 Multipolygon datatype</a> values may also serve a list of items as <a data-link-type="biblio" href="#biblio-gml">[GML]</a>, <a data-link-type="biblio" href="#biblio-kml">[KML]</a> or other geographical representation. </div>
    <p>Additional representations for resources SHOULD be linked to from the HTML representation of the resource.</p>
    <h2 class="heading settled" data-level="16" id="security-considerations"><span class="secno">16. </span><span class="content">Security considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <h3 class="heading settled" data-level="16.1" id="transport-layer-security"><span class="secno">16.1. </span><span class="content">Transport layer security</span><a class="self-link" href="#transport-layer-security"></a></h3>
@@ -3025,7 +3536,7 @@ these assets.</p>
    <dt id="biblio-curie">[CURIE]
    <dd>Mark Birbeck; Shane McCarron. <a href="https://www.w3.org/TR/curie/">CURIE Syntax 1.0</a>. 16 December 2010. NOTE. URL: <a href="https://www.w3.org/TR/curie/">https://www.w3.org/TR/curie/</a>
    <dt id="biblio-fips-180-4">[FIPS-180-4]
-   <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
+   <dd><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson">[GEOJSON]
    <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
    <dt id="biblio-gml">[GML]
