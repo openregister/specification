@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-03-09">9 March 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-03-15">15 March 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1633,7 +1633,7 @@ data held in a register.</p>
     <dd>/item/{<a href="#item-hash-field">item-hash</a>}
    </dl>
    <p>An item is an unordered collection of <a href="#fields">§9 Fields</a> and values.
-The set of fields which MAY be included in an item are defined in the <a href="#fields-field"></a> field in the <a href="#register-register">§10.1 Register register</a> entry for the register.</p>
+The set of fields which MAY be included in an item are defined in the <code>fields</code> field in the <a href="#register-register">§10.1 Register register</a> entry for the register.</p>
    <p>An item is identified by the globally unique <a href="#item-hash-field">§9.6 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§9.6 item-hash</a>.</p>
    <div class="example" id="example-58632420">
     <a class="self-link" href="#example-58632420"></a> The following example shows an item in the <a href="#json-representation">§11.2 JSON representation</a>: 
@@ -1683,7 +1683,7 @@ for the entry.</p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/record/{<a href="#field-value">field-value</a>}
+    <dd>/record/{field-value}
    </dl>
    <p>A record is the most up-to-date <a href="#infoset">§2 Infoset</a> for a resource identified
 by a <a href="#primary-key-field">§9.1 Primary key field</a>.  That is, it is the infoset corresponding
@@ -1850,7 +1850,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <h3 class="heading settled" data-level="3.9" id="record-proof-resource"><span class="secno">3.9. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/proof/record/{total-entries}/{<a href="#field-value">field-value</a>}/{proof-identifier}
+    <dd>/proof/record/{total-entries}/{field-value}/{proof-identifier}
    </dl>
    <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§3.8 Records proof resource</a>.</p>
    <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
@@ -1941,7 +1941,7 @@ ordered by entry number in ascending order.</p>
    <h3 class="heading settled" data-level="5.3" id="record-entries-resource"><span class="secno">5.3. </span><span class="content">Record entries resource</span><a class="self-link" href="#record-entries-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/record/{<a href="#field-value">field-value</a>}/entries
+    <dd>/record/{field-value}/entries
    </dl>
    <p>All of the entries which have the given <a href="#primary-key-field">§9.1 Primary key field</a> value, in order of <a href="#entry-number-field">§9.4 entry-number</a>.</p>
    <div class="example" id="example-3063a308">
@@ -2007,7 +2007,7 @@ ordered by entry number in ascending order.</p>
    <h3 class="heading settled" data-level="5.5" id="faceted-records-resource"><span class="secno">5.5. </span><span class="content">Faceted records resource</span><a class="self-link" href="#faceted-records-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/records/{<a U00022="" href="#field-field">field-name</a>}/{<a U00022="" href="#field-value">field-value</a>}
+    <dd>/records/{<a U00022="" href="#field-field">field-name</a>}/{field-value}
    </dl>
    <p>All <a href="#record-resource">§3.3 Record resource</a>s in a register which have the same value in the given field.</p>
    <div class="example" id="example-4b7fedf9">
@@ -2223,7 +2223,7 @@ Content-Length: 522
      </g>
     </svg>
    </div>
-   <p>All values are decimal. Leading zeros are not allowed, except for the integer <a class="property" data-link-type="propdesc">0</a>, which is represented as the string “0”.
+   <p>All values are decimal. Leading zeros are not allowed, except for the integer <code>0</code>, which is represented as the string “0”.
 Negative values are marked with a leading “-” character (<a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> 0x2D HYPHEN-MINUS).</p>
    <div class="example" id="example-ce32c22e">
     <a class="self-link" href="#example-ce32c22e"></a> The following examples are all valid integer values: 
@@ -3541,7 +3541,7 @@ these assets.</p>
    <dt id="biblio-curie">[CURIE]
    <dd>Mark Birbeck; Shane McCarron. <a href="https://www.w3.org/TR/curie/">CURIE Syntax 1.0</a>. 16 December 2010. NOTE. URL: <a href="https://www.w3.org/TR/curie/">https://www.w3.org/TR/curie/</a>
    <dt id="biblio-fips-180-4">[FIPS-180-4]
-   <dd><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
+   <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson">[GEOJSON]
    <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
    <dt id="biblio-gml">[GML]
