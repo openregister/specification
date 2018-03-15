@@ -87,7 +87,7 @@ ISSUE(openregister/specification#40): possible confusion: "data item" and "item"
 
 An item is an unordered collection of [[#fields]] and values.
 The set of fields which MAY be included in an item are defined in the 
-[[#fields-field]] field in the [[#register-register]] entry for the register.
+<code>fields</code> field in the [[#register-register]] entry for the register.
 
 An item is identified by the globally unique [[#item-hash-field]]
 calculated from its contents. Changing the item data changes the [[#item-hash-field]].
@@ -155,7 +155,7 @@ ISSUE(openregister/specification#50): Hypermedia link from entry to item?
 
 ## Record resource ## {#record-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/record/{field-value}</dd></dt></dl>
 
 A record is the most up-to-date [[#infoset]] for a resource identified
 by a [[#primary-key-field]].  That is, it is the infoset corresponding
@@ -347,7 +347,7 @@ https://local-authority.register.gov.uk/proof/records/merkle:sha-256
 ISSUE(openregister/specification#46): Records proof resource is experimental.
 
 ## Record proof resource ## {#record-proof-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/record/{total-entries}/{<a href="#field-value">field-value</a>}/{proof-identifier}</dd></dl>
+<dl class="resource"><dt>Path</dt><dd>/proof/record/{total-entries}/{field-value</a>}/{proof-identifier}</dd></dl>
 
 A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a [[#records-proof-resource]].
 
@@ -458,7 +458,7 @@ The following example shows a list of entries in the [[#json-representation]]:
 
 ## Record entries resource ## {#record-entries-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/record/{<a href="#field-value">field-value</a>}/entries</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/record/{field-value}/entries</dd></dt></dl>
 
 All of the entries which have the given [[#primary-key-field]] value, in order of [[#entry-number-field]].
 
@@ -531,7 +531,7 @@ The following example shows a list of records in the [[#json-representation]]:
 
 ## Faceted records resource ## {#faceted-records-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/records/{<a href="#field-field"">field-name</a>}/{<a href="#field-value"">field-value</a>}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/records/{<a href="#field-field"">field-name</a>}/{field-value}</dd></dt></dl>
 
 All [[#record-resource]]s in a register which have the same value in the given field.
 
@@ -674,7 +674,7 @@ Choice:
     ZeroOrMore:
       N: digit 0 to 9
 </pre>
-All values are decimal. Leading zeros are not allowed, except for the integer '0', which is represented as the string “0”.
+All values are decimal. Leading zeros are not allowed, except for the integer <code>0</code>, which is represented as the string “0”.
 Negative values are marked with a leading “-” character ([[UNICODE]] 0x2D HYPHEN-MINUS).
 
 <div class="example">
