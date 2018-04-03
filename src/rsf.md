@@ -7,10 +7,35 @@ RSF is a positional line-based textual format separated by tabs `\t`. Each
 command accepts a different number of arguments but the general is:
 
 ```
-[event-type]	[arg	...]
+[command]	[arg	...]
 ```
 
-TODO: Write proper EBNF.
+### Syntax Notation
+
+This specification uses the Augmented Backus-Naur Form (ABNF) as defined by
+[RFC5234](https://tools.ietf.org/html/rfc5234) and refined by
+[RFC7405](https://tools.ietf.org/html/rfc7405), including the following core
+ABNF syntax rules defined by that specification: ALPHA (letters), CR (carriage
+return), DIGIT (decimal digits), HEXDIG (hexadecimal digits), HTAB (horizontal
+tab) and LF (line feed). And [CANONREP][canon-rep] (canonical representation)
+as defined by the Register specification.
+
+```abnf
+rsf_document = command *(command CRLF)
+command      = add_item / append_entry
+
+add_item     = %s"add-item" HTAB CANONREP
+
+append_entry = %s"append-entry" HTAB type HTAB key HTAB timestamp HTAB hash_list
+type         = "user" / "system"
+key          = alphanum
+timestamp    = yyyy-MM-ddThh:mm:ssZ
+hash_list    = hash *(";" hash)
+hash         = "sha-256:" 64(HEXDIG)
+
+alphanum     = ALPHA / DIGIT
+CRLF         = CR LF
+```
 
 
 ## Commands
@@ -51,7 +76,7 @@ For example (the append-entry command that corresponds to the above add-item
 command):
 
 ```
-append-entry	user	GB	2010-11-12T13:14:15Z	sha-256:76b00a0f779941f0147e18a24b7a52853a89b5d1c11c9b132400dff11a468155
+append-entry	user	GB	2010-11-12T13:14:15Z sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
 ```
 
 
@@ -59,5 +84,5 @@ append-entry	user	GB	2010-11-12T13:14:15Z	sha-256:76b00a0f779941f0147e18a24b7a52
 
 * [item-res]: https://openregister.github.io/specification/#item-resource
 * [entry-res]: https://openregister.github.io/specification/#entry-resource
-* [canon-rep]: http://openregister.github.io/specification/#sha-256-item-hash
+* [canon-rep]: https://openregister.github.io/specification/#sha-256-item-hash
 
