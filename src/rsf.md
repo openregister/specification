@@ -6,7 +6,7 @@ The Register Serialisation Format, from now on RSF, is an event log describing
 the evolution of the Register data and metadata.
 
 
-### RSF Grammar
+## RSF Grammar
 
 RSF is a positional line-based textual format separated by tabs. Each
 line defines a command to apply to a Register state to obtain the next state.
@@ -34,7 +34,7 @@ type             = "user" / "system"
 key              = alphanum / %x2D / %x5F
 hash-list        = hash *(list-separator hash)
 hash             = "sha-256:" 64(HEXDIG) ; sha-256
-list-separator   = %x3B
+list-separator   = %x3B ; ; (semi-colon) list separator
 
 alphanum         = ALPHA / DIGIT
 
@@ -48,13 +48,13 @@ century          = 2DIGIT  ; 00-99
 year             = 2DIGIT  ; 00-99
 month            = 2DIGIT  ; 01-12
 day              = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
-DSEP             = %x2D    ; - date separator
+DSEP             = %x2D    ; - (hyphen) date separator
 
 ;                time
 hour             = 2DIGIT  ; 00-24
 minute           = 2DIGIT  ; 00-59
 second           = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap-second rules
-TSEP             = %x3A    ; : time separator
+TSEP             = %x3A    ; : (colon) time separator
 TZ               = %x5A    ; Z timezone
 ```
 
