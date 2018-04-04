@@ -10,7 +10,7 @@ command accepts a different number of arguments but the general is:
 [command]	[arg	...]
 ```
 
-### Syntax Notation
+### RSF Grammar
 
 This specification uses the Augmented Backus-Naur Form (ABNF) as defined by
 [RFC5234](https://tools.ietf.org/html/rfc5234) and refined by
@@ -23,38 +23,40 @@ definitions:
   Note that, in turn, it depends on [RFC8259](https://tools.ietf.org/html/rfc8259).
 
 ```abnf
-rsf-document   = command *(command CRLF)
-command        = add-item / append-entry
+rsf-document     = command *(CRLF command) [CRLF]
+command          = add-item / append-entry / assert-root-hash
 
-add-item       = %s"add-item" HTAB CANONREP
+assert-root-hash = %s"assert-root-hash" HTAB hash
 
-append-entry   = %s"append-entry" HTAB type HTAB key HTAB timestamp HTAB hash-list
-type           = "user" / "system"
-key            = alphanum
-hash-list      = hash *(list-separator hash)
-hash           = "sha-256:" 64(HEXDIG) ; sha-256
-list-separator = %x3B
+add-item         = %s"add-item" HTAB CANONREP
 
-alphanum       = ALPHA / DIGIT
+append-entry     = %s"append-entry" HTAB type HTAB key HTAB timestamp HTAB hash-list
+type             = "user" / "system"
+key              = alphanum
+hash-list        = hash *(list-separator hash)
+hash             = "sha-256:" 64(HEXDIG) ; sha-256
+list-separator   = %x3B
 
-; timestamp
-timestamp = date "T" time
-date      = century year DSEP month DSEP day ; date YYYY-MM-DD
-time      = hour TSEP minute TSEP second TZ ; time HH:MM:SSZ
+alphanum         = ALPHA / DIGIT
 
-; date
-century   = 2DIGIT  ; 00-99
-year      = 2DIGIT  ; 00-99
-month     = 2DIGIT  ; 01-12
-day       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
-DSEP      = %x2D    ; - date separator
+;                timestamp
+timestamp        = date "T" time
+date             = century year DSEP month DSEP day ; date YYYY-MM-DD
+time             = hour TSEP minute TSEP second TZ ; time HH:MM:SSZ
 
-; time
-hour      = 2DIGIT  ; 00-24
-minute    = 2DIGIT  ; 00-59
-second    = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap-second rules
-TSEP      = %x3A    ; : time separator
-TZ        = %x5A    ; Z timezone
+;                date
+century          = 2DIGIT  ; 00-99
+year             = 2DIGIT  ; 00-99
+month            = 2DIGIT  ; 01-12
+day              = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
+DSEP             = %x2D    ; - date separator
+
+;                time
+hour             = 2DIGIT  ; 00-24
+minute           = 2DIGIT  ; 00-59
+second           = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap-second rules
+TSEP             = %x3A    ; : time separator
+TZ               = %x5A    ; Z timezone
 ```
 
 
