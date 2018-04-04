@@ -110,7 +110,7 @@ Appends a new [Entry resource][entry-res] to the register.
 For example:
 
 ```
-append-entry	user	GB	2010-11-12T13:14:15Z sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
+append-entry	user	GB	2010-11-12T13:14:15Z	sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
 ```
 
 ## Rules
@@ -136,7 +136,7 @@ A RSF list of commands is expected to conform to the following rules:
 
 ```
 add-item	{"country":"GB","name":"United Kingdom","official-name":"The United Kingdom of Great Britain and Northern Ireland"}
-append-entry	user	GB	2010-11-12T13:14:15Z sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
+append-entry	user	GB	2010-11-12T13:14:15Z	sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
 ```
 
 ## Glossary
