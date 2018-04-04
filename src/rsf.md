@@ -21,20 +21,29 @@ tab) and LF (line feed). And [CANONREP][canon-rep] (canonical representation)
 as defined by the Register specification.
 
 ```abnf
-rsf_document = command *(command CRLF)
-command      = add_item / append_entry
+rsf-document = command *(command CRLF)
+command      = add-item / append-entry
 
-add_item     = %s"add-item" HTAB CANONREP
+add-item     = %s"add-item" HTAB CANONREP
 
-append_entry = %s"append-entry" HTAB type HTAB key HTAB timestamp HTAB hash_list
+append-entry = "append-entry" HTAB type HTAB key HTAB timestamp HTAB hash-list
 type         = "user" / "system"
 key          = alphanum
-timestamp    = yyyy-MM-ddThh:mm:ssZ
-hash_list    = hash *(";" hash)
-hash         = "sha-256:" 64(HEXDIG)
+timestamp    = alphanum ;yyyy-MM-ddThh:mm:ssZ
+hash-list    = hash *(SC hash)
+hash         = "sha-256:" 64(HEXDIG) ; sha-256
 
 alphanum     = ALPHA / DIGIT
 CRLF         = CR LF
+SC           = %x3B
+
+CANONREP = alphanum
+
+CR             =  %x0D ; carriage return
+DIGIT          =  %x30-39 ; 0-9
+HEXDIG         =  DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
+HTAB           =  %x09 ; horizontal tab
+LF             =  %x0A ; linefeed
 ```
 
 
