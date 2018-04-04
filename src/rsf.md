@@ -14,36 +14,47 @@ command accepts a different number of arguments but the general is:
 
 This specification uses the Augmented Backus-Naur Form (ABNF) as defined by
 [RFC5234](https://tools.ietf.org/html/rfc5234) and refined by
-[RFC7405](https://tools.ietf.org/html/rfc7405), including the following core
-ABNF syntax rules defined by that specification: ALPHA (letters), CR (carriage
-return), DIGIT (decimal digits), HEXDIG (hexadecimal digits), HTAB (horizontal
-tab) and LF (line feed). And [CANONREP][canon-rep] (canonical representation)
-as defined by the Register specification.
+[RFC7405](https://tools.ietf.org/html/rfc7405). It assumes the following
+definitions:
+
+* RFC5234: `ALPHA` (letters), `CRLF` (carriage return, line feed), `DIGIT`
+  (decimal digits), `HEXDIG` (hexadecimal digits) and `HTAB` (horizontal tab).
+* Registers specification: [`CANONREP`][canon-rep] (canonical representation).
+  Note that, in turn, it depends on [RFC8259](https://tools.ietf.org/html/rfc8259).
 
 ```abnf
-rsf-document = command *(command CRLF)
-command      = add-item / append-entry
+rsf-document   = command *(command CRLF)
+command        = add-item / append-entry
 
-add-item     = %s"add-item" HTAB CANONREP
+add-item       = %s"add-item" HTAB CANONREP
 
-append-entry = "append-entry" HTAB type HTAB key HTAB timestamp HTAB hash-list
-type         = "user" / "system"
-key          = alphanum
-timestamp    = alphanum ;yyyy-MM-ddThh:mm:ssZ
-hash-list    = hash *(SC hash)
-hash         = "sha-256:" 64(HEXDIG) ; sha-256
+append-entry   = %s"append-entry" HTAB type HTAB key HTAB timestamp HTAB hash-list
+type           = "user" / "system"
+key            = alphanum
+hash-list      = hash *(list-separator hash)
+hash           = "sha-256:" 64(HEXDIG) ; sha-256
+list-separator = %x3B
 
-alphanum     = ALPHA / DIGIT
-CRLF         = CR LF
-SC           = %x3B
+alphanum       = ALPHA / DIGIT
 
-CANONREP = alphanum
+; timestamp
+timestamp = date "T" time
+date      = century year DSEP month DSEP day ; date YYYY-MM-DD
+time      = hour TSEP minute TSEP second TZ ; time HH:MM:SSZ
 
-CR             =  %x0D ; carriage return
-DIGIT          =  %x30-39 ; 0-9
-HEXDIG         =  DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
-HTAB           =  %x09 ; horizontal tab
-LF             =  %x0A ; linefeed
+; date
+century   = 2DIGIT  ; 00-99
+year      = 2DIGIT  ; 00-99
+month     = 2DIGIT  ; 01-12
+day       = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
+DSEP      = %x2D    ; - date separator
+
+; time
+hour      = 2DIGIT  ; 00-24
+minute    = 2DIGIT  ; 00-59
+second    = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap-second rules
+TSEP      = %x3A    ; : time separator
+TZ        = %x5A    ; Z timezone
 ```
 
 
