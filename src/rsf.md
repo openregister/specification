@@ -63,14 +63,26 @@ TZ               = %x5A    ; Z timezone
 
 ## <a id="assert-root-hash-command">`assert-root-hash` command</a>
 
-TODO
+Asserts that the provided root hash is the same as the one computed from the
+current entry log as defined in the [Digital Proofs][digital-proofs]
+specification.
+
+#### Arguments
+
+1. The `hash` of the root tree.
+
+For example:
+
+```
+assert-root-hash	sha-256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+```
 
 ## <a id="add-item-command">`add-item` command</a>
 
 Adds a new [Item resource][item-res] to the register. It will require an
 [`append-entry` command](#append-entry-command) to make it visible to users.
 
-This event expects one argument:
+#### Arguments
 
 1. The [canonical representation][canon-rep] of the item.
 
@@ -84,9 +96,7 @@ add-item	{"country":"GB","name":"United Kingdom","official-name":"The United Kin
 
 Appends a new [Entry resource][entry-res] to the register.
 
-This event expects four arguments:
-
-TODO: Link to the Spec when appropriate
+#### Arguments
 
 1. The `type` of the entry determines if the entry belongs to the data log
    (`user`) or to the metadata log (`system`).
@@ -134,4 +144,4 @@ append-entry	user	GB	2010-11-12T13:14:15Z sha-256:08bef0039a4f0fb52f3a5ce4b97d79
 * [item-res]: https://openregister.github.io/specification/#item-resource
 * [entry-res]: https://openregister.github.io/specification/#entry-resource
 * [canon-rep]: https://openregister.github.io/specification/#sha-256-item-hash
-
+* [digital-proofs]: http://openregister.github.io/specification/#digital-proofs
