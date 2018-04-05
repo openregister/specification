@@ -34,7 +34,7 @@ type             = "user" / "system"
 key              = alphanum / %x2D / %x5F
 hash-list        = hash *(list-separator hash)
 hash             = "sha-256:" 64(HEXDIG) ; sha-256
-list-separator   = %x3B ; ; (semi-colon) list separator
+list-separator   = ";" ; hash list separator
 
 alphanum         = ALPHA / DIGIT
 
@@ -44,24 +44,24 @@ date             = century year DSEP month DSEP day ; date YYYY-MM-DD
 time             = hour TSEP minute TSEP second TZ ; time HH:MM:SSZ
 
 ;                date
-century          = 2DIGIT  ; 00-99
-year             = 2DIGIT  ; 00-99
-month            = 2DIGIT  ; 01-12
-day              = 2DIGIT  ; 01-28, 01-29, 01-30, 01-31 based on month/year
-DSEP             = %x2D    ; - (hyphen) date separator
+century          = 2DIGIT ; 00-99
+year             = 2DIGIT ; 00-99
+month            = 2DIGIT ; 01-12
+day              = 2DIGIT ; 01-28, 01-29, 01-30, 01-31 based on month/year
+DSEP             = "-"    ; date separator
 
 ;                time
-hour             = 2DIGIT  ; 00-24
-minute           = 2DIGIT  ; 00-59
-second           = 2DIGIT  ; 00-58, 00-59, 00-60 based on leap-second rules
-TSEP             = %x3A    ; : (colon) time separator
-TZ               = %x5A    ; Z timezone
+hour             = 2DIGIT ; 00-24
+minute           = 2DIGIT ; 00-59
+second           = 2DIGIT ; 00-58, 00-59, 00-60 based on leap-second rules
+TSEP             = ":"    ; time separator
+TZ               = "Z"    ; timezone
 ```
 
 
 ## Commands
 
-## <a id="assert-root-hash-command">`assert-root-hash` command</a>
+### <a id="assert-root-hash-command">`assert-root-hash` command</a>
 
 Asserts that the provided root hash is the same as the one computed from the
 current entry log as defined in the [Digital Proofs][digital-proofs]
@@ -77,7 +77,7 @@ For example:
 assert-root-hash	sha-256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 ```
 
-## <a id="add-item-command">`add-item` command</a>
+### <a id="add-item-command">`add-item` command</a>
 
 Adds a new [Item resource][item-res] to the register. It will require an
 [`append-entry` command](#append-entry-command) to make it visible to users.
@@ -92,7 +92,7 @@ For exeample:
 add-item	{"country":"GB","name":"United Kingdom","official-name":"The United Kingdom of Great Britain and Northern Ireland"}
 ```
 
-## <a id="append-entry-command">`append-entry` command</a>
+### <a id="append-entry-command">`append-entry` command</a>
 
 Appends a new [Entry resource][entry-res] to the register.
 
@@ -113,6 +113,7 @@ For example:
 append-entry	user	GB	2010-11-12T13:14:15Z	sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
 ```
 
+
 ## Rules
 
 A RSF list of commands is expected to conform to the following rules:
@@ -130,6 +131,7 @@ A RSF list of commands is expected to conform to the following rules:
   item previously introduced by an `add-item` command.
 * The item in the `add-item` command must always be in the canonical form.
 
+
 ## Examples
 
 ### Simple RSF
@@ -139,9 +141,9 @@ add-item	{"country":"GB","name":"United Kingdom","official-name":"The United Kin
 append-entry	user	GB	2010-11-12T13:14:15Z	sha-256:08bef0039a4f0fb52f3a5ce4b97d7927bf159bc254b8881c45d95945617237f6
 ```
 
-## Glossary
 
-* [item-res]: https://openregister.github.io/specification/#item-resource
-* [entry-res]: https://openregister.github.io/specification/#entry-resource
-* [canon-rep]: https://openregister.github.io/specification/#sha-256-item-hash
-* [digital-proofs]: http://openregister.github.io/specification/#digital-proofs
+
+[item-res]: https://openregister.github.io/specification/#item-resource
+[entry-res]: https://openregister.github.io/specification/#entry-resource
+[canon-rep]: https://openregister.github.io/specification/#sha-256-item-hash
+[digital-proofs]: http://openregister.github.io/specification/#digital-proofs
