@@ -315,62 +315,6 @@ https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 </pre>
 </div>
 
-## Records proof resource ## {#records-proof-resource}
-
-<dl class="resource"><dt>Path</dt><dd>/proof/records/{proof-identifier}</dd></dt></dl>
-
-A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a [[#register-proof-resource]]. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.
-
-There may be different kinds of records proof available.
-
-<div class="example">
-The following example shows a Merkle-tree-based records proof in the [[#json-representation]]:
-
-<pre>
-https://local-authority.register.gov.uk/proof/records/merkle:sha-256
-</pre>
-<pre highlight="json">
-{
-  "proof-identifier": "merkle:sha-256",
-  "root-hash": "sha-256:h/gTTXO9M9KARSc35nWMY1zrkISUrQYjF2ZowZgGNQg=",
-  "register-proof": {
-    "total-entries": "9803348",
-    "timestamp": "2015-08-20T08:15:30Z",
-    "root-hash": "sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU",
-    "tree-head-signature": "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
-  },
-  "tree-head-signature": "YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"
-}
-</pre>
-</div>
-
-ISSUE(openregister/specification#46): Records proof resource is experimental.
-
-## Record proof resource ## {#record-proof-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/record/{total-entries}/{field-value</a>}/{proof-identifier}</dd></dl>
-
-A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a [[#records-proof-resource]].
-
-The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.
-
-There may different kinds of record proof available.
-
-<div class="example">
-The following example shows a Merkle-tree-based record proof in the [[#json-representation]]. This particular proof algorithm would return an array of 256 Merkle tree nodes:
-
-<pre>
-https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
-</pre>
-<pre highlight="json">
-{
-  "proof-identifier": "merkle:sha-256",
-  "merkle-record-path": ["sha-256:GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY=", "sha-256:3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw=", "sha-256:3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g=", ...]
-}
-</pre>
-</div>
-
-ISSUE(openregister/specification#46): Record proof resource is experimental.
-
 # Immutable resources # {#immutable-resources}
 
 An immutable resource, is one whose contents will never change.
