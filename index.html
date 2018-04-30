@@ -1626,14 +1626,14 @@ data held in a register.</p>
    <h3 class="heading settled" data-level="3.1" id="item-resource"><span class="secno">3.1. </span><span class="content">Item resource</span><a class="self-link" href="#item-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/item/{<a href="#item-hash-field">item-hash</a>}
+    <dd>/items/{<a href="#item-hash-field">item-hash</a>}
    </dl>
    <p>An item is an unordered collection of <a href="#fields">§9 Fields</a> and values.
 The set of fields which MAY be included in an item are defined in the <code>fields</code> field in the <a href="#register-register">§10.1 Register register</a> entry for the register.</p>
    <p>An item is identified by the globally unique <a href="#item-hash-field">§9.6 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§9.6 item-hash</a>.</p>
-   <div class="example" id="example-58632420">
-    <a class="self-link" href="#example-58632420"></a> The following example shows an item in the <a href="#json-representation">§11.2 JSON representation</a>: 
-<pre>https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
+   <div class="example" id="example-a6b79b3f">
+    <a class="self-link" href="#example-a6b79b3f"></a> The following example shows an item in the <a href="#json-representation">§11.2 JSON representation</a>: 
+<pre>https://food-premises.register.gov.uk/items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"business"</span><span class="p">:</span> <span class="s2">"company:07228130"</span><span class="p">,</span>
@@ -1649,7 +1649,7 @@ The set of fields which MAY be included in an item are defined in the <code>fiel
    <h3 class="heading settled" data-level="3.2" id="entry-resource"><span class="secno">3.2. </span><span class="content">Entry resource</span><a class="self-link" href="#entry-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/entry/{<a href="#entry-number-field">entry-number</a>}
+    <dd>/entries/{<a href="#entry-number-field">entry-number</a>}
    </dl>
    <p>An entry is an update to a register.  The register as a whole is made
 up of an ordered list of entries.  New entries in a register are only
@@ -1679,7 +1679,7 @@ for the entry.</p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/record/{field-value}
+    <dd>/records/{field-value}
    </dl>
    <p>A record is the most up-to-date <a href="#infoset">§2 Infoset</a> for a resource identified
 by a <a href="#primary-key-field">§9.1 Primary key field</a>.  That is, it is the infoset corresponding
@@ -1689,9 +1689,9 @@ computed by a client by replaying the log of all entries and finding
 the latest one with the given primary key value.</p>
    <p>This resource SHOULD provide a <code>Link:</code> header <a data-link-type="biblio" href="#biblio-rfc8288">[RFC8288]</a> with a
 relation of <code>"version-history"</code> <a data-link-type="biblio" href="#biblio-rfc5829">[RFC5829]</a> to the <a href="#record-entries-resource">§5.3 Record entries resource</a> for this record.</p>
-   <div class="example" id="example-9fea54eb">
-    <a class="self-link" href="#example-9fea54eb"></a> The following example shows a record in the <a href="#json-representation">§11.2 JSON representation</a>: 
-<pre class="highlight">https://local-authority.register.gov.uk/record/E<span class="mi">09000019</span>
+   <div class="example" id="example-436f9463">
+    <a class="self-link" href="#example-436f9463"></a> The following example shows a record in the <a href="#json-representation">§11.2 JSON representation</a>: 
+<pre class="highlight">https://local-authority.register.gov.uk/records/E<span class="mi">09000019</span>
 <span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1783,14 +1783,14 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <h3 class="heading settled" data-level="3.6" id="entry-proof-resource"><span class="secno">3.6. </span><span class="content">Entry proof resource</span><a class="self-link" href="#entry-proof-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{total-entries}/{proof-identifier}
+    <dd>/proof/entries/{<a href="#entry-number-field">entry-number</a>}/{total-entries}/{proof-identifier}
    </dl>
    <p>An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>.</p>
    <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
    <p>There may be different kinds of entry proof available.</p>
-   <div class="example" id="example-5efe3a55">
-    <a class="self-link" href="#example-5efe3a55"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
-<pre>https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
+   <div class="example" id="example-4b0bc626">
+    <a class="self-link" href="#example-4b0bc626"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
+<pre>https://school.register.gov.uk/proof/entries/123/130/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
@@ -1893,7 +1893,7 @@ ordered by entry number in ascending order.</p>
    <h3 class="heading settled" data-level="5.3" id="record-entries-resource"><span class="secno">5.3. </span><span class="content">Record entries resource</span><a class="self-link" href="#record-entries-resource"></a></h3>
    <dl class="resource">
     <dt>Path
-    <dd>/record/{field-value}/entries
+    <dd>/records/{field-value}/entries
    </dl>
    <p>All of the entries which have the given <a href="#primary-key-field">§9.1 Primary key field</a> value, in order of <a href="#entry-number-field">§9.4 entry-number</a>.</p>
    <div class="example" id="example-3063a308">
@@ -3194,14 +3194,14 @@ item:
     <li data-md="">
      <p>Specification: <a data-link-type="biblio" href="#biblio-turtle">[TURTLE]</a></p>
    </ul>
-   <div class="example" id="example-255c6e35">
-    <a class="self-link" href="#example-255c6e35"></a> The following example shows an <a href="#item-resource">§3.1 Item resource</a> in the <a href="#ttl-representation">§11.7 Turtle representation</a>: 
+   <div class="example" id="example-f78b0b5b">
+    <a class="self-link" href="#example-f78b0b5b"></a> The following example shows an <a href="#item-resource">§3.1 Item resource</a> in the <a href="#ttl-representation">§11.7 Turtle representation</a>: 
 <pre>@prefix field: &lt;https://field.register.gov.uk/field/>.
 
-&lt;https://school.register.gov.uk/item/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799>
+&lt;https://school.register.gov.uk/items/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799>
  field:address &lt;https://address.register.gov.uk/address/100101030506> ;
  field:name "Glanaman Home Tution Centre" ;
- field:school &lt;https://school.register.gov.uk/record/402175> ;
+ field:school &lt;https://school.register.gov.uk/records/402175> ;
  field:start-date "2007-11-07" ;
 </pre>
    </div>
