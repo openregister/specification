@@ -83,7 +83,7 @@ ISSUE(openregister/specification#40): possible confusion: "data item" and "item"
 
 ## Item resource ## {#item-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/item/{<a href="#item-hash-field">item-hash</a>}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/items/{<a href="#item-hash-field">item-hash</a>}</dd></dt></dl>
 
 An item is an unordered collection of [[#fields]] and values.
 The set of fields which MAY be included in an item are defined in the 
@@ -95,7 +95,7 @@ calculated from its contents. Changing the item data changes the [[#item-hash-fi
 <div class="example">
 The following example shows an item in the [[#json-representation]]:
 <pre>
-https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
+https://food-premises.register.gov.uk/items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
 </pre>
 <pre highlight="json">
 {
@@ -112,7 +112,7 @@ https://food-premises.register.gov.uk/item/sha-256:bdc7f29f7d2ef36f9db1ec7b41412
 
 ## Entry resource ## {#entry-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/entries/{<a href="#entry-number-field">entry-number</a>}</dd></dt></dl>
 
 An entry is an update to a register.  The register as a whole is made
 up of an ordered list of entries.  New entries in a register are only
@@ -155,7 +155,7 @@ ISSUE(openregister/specification#50): Hypermedia link from entry to item?
 
 ## Record resource ## {#record-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/record/{field-value}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/records/{field-value}</dd></dt></dl>
 
 A record is the most up-to-date [[#infoset]] for a resource identified
 by a [[#primary-key-field]].  That is, it is the infoset corresponding
@@ -174,7 +174,7 @@ relation of <code>"version-history"</code> [[RFC5829]] to the
 The following example shows a record in the [[#json-representation]]:
 
 <pre highlight="json">
-https://local-authority.register.gov.uk/record/E09000019
+https://local-authority.register.gov.uk/records/E09000019
 {
   "E09000019": {
     "index-entry-number": "72",
@@ -267,7 +267,7 @@ https://school.register.gov.uk/proof/register/merkle:sha-256
 </div>
 
 ## Entry proof resource ## {#entry-proof-resource}
-<dl class="resource"><dt>Path</dt><dd>/proof/entry/{<a href="#entry-number-field">entry-number</a>}/{total-entries}/{proof-identifier}</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/proof/entries/{<a href="#entry-number-field">entry-number</a>}/{total-entries}/{proof-identifier}</dd></dt></dl>
 
 An entry proof is the information required to prove the integrity of a single entry within a register of size total-entries, given a [[#register-proof-resource]].
 
@@ -279,7 +279,7 @@ There may be different kinds of entry proof available.
 The following example shows a Merkle-tree-based entry proof in the [[#json-representation]]:
 
 <pre>
-https://school.register.gov.uk/proof/entry/123/130/merkle:sha-256
+https://school.register.gov.uk/proof/entries/123/130/merkle:sha-256
 </pre>
 <pre highlight="json">
 {
@@ -402,7 +402,7 @@ The following example shows a list of entries in the [[#json-representation]]:
 
 ## Record entries resource ## {#record-entries-resource}
 
-<dl class="resource"><dt>Path</dt><dd>/record/{field-value}/entries</dd></dt></dl>
+<dl class="resource"><dt>Path</dt><dd>/records/{field-value}/entries</dd></dt></dl>
 
 All of the entries which have the given [[#primary-key-field]] value, in order of [[#entry-number-field]].
 
@@ -924,10 +924,10 @@ The following example shows an [[#item-resource]] in the [[#ttl-representation]]
 <pre>
 @prefix field: &lt;https://field.register.gov.uk/field/&gt;.
 
-&lt;https://school.register.gov.uk/item/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799&gt;
+&lt;https://school.register.gov.uk/items/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799&gt;
  field:address &lt;https://address.register.gov.uk/address/100101030506&gt; ;
  field:name "Glanaman Home Tution Centre" ;
- field:school &lt;https://school.register.gov.uk/record/402175&gt; ;
+ field:school &lt;https://school.register.gov.uk/records/402175&gt; ;
  field:start-date "2007-11-07" ;
 </pre>
 </div>
