@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-03-15">15 March 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-04-30">30 April 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1474,8 +1474,6 @@ data held in a register.</p>
       <li><a href="#register-proof-resource"><span class="secno">3.5</span> <span class="content">Register proof resource</span></a>
       <li><a href="#entry-proof-resource"><span class="secno">3.6</span> <span class="content">Entry proof resource</span></a>
       <li><a href="#consistency-proof-resource"><span class="secno">3.7</span> <span class="content">Consistency proof resource</span></a>
-      <li><a href="#records-proof-resource"><span class="secno">3.8</span> <span class="content">Records proof resource</span></a>
-      <li><a href="#record-proof-resource"><span class="secno">3.9</span> <span class="content">Record proof resource</span></a>
      </ol>
     <li><a href="#immutable-resources"><span class="secno">4</span> <span class="content">Immutable resources</span></a>
     <li>
@@ -1486,8 +1484,6 @@ data held in a register.</p>
       <li><a href="#record-entries-resource"><span class="secno">5.3</span> <span class="content">Record entries resource</span></a>
       <li><a href="#records-resource"><span class="secno">5.4</span> <span class="content">Records resource</span></a>
       <li><a href="#faceted-records-resource"><span class="secno">5.5</span> <span class="content">Faceted records resource</span></a>
-      <li><a href="#proofs-resource"><span class="secno">5.6</span> <span class="content">Proofs resource</span></a>
-      <li><a href="#entry-proofs-resource"><span class="secno">5.7</span> <span class="content">Entry proof nodes resource</span></a>
      </ol>
     <li>
      <a href="#archive-resources"><span class="secno">6</span> <span class="content">Archive resources</span></a>
@@ -1769,7 +1765,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
     <dd>/proof/register/{proof-identifier}
    </dl>
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
-   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The <a href="#proofs-resource">§5.6 Proofs resource</a> indicates which proofs are available.</p>
+   <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.</p>
    <div class="example" id="example-d9b9cd23">
     <a class="self-link" href="#example-d9b9cd23"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
@@ -1822,50 +1818,6 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
 <span class="p">}</span>
 </pre>
    </div>
-   <h3 class="heading settled" data-level="3.8" id="records-proof-resource"><span class="secno">3.8. </span><span class="content">Records proof resource</span><a class="self-link" href="#records-proof-resource"></a></h3>
-   <dl class="resource">
-    <dt>Path
-    <dd>/proof/records/{proof-identifier}
-   </dl>
-   <p>A records proof is a digitally-signed demonstration of the integrity of all the records in a register, given a <a href="#register-proof-resource">§3.5 Register proof resource</a>. Given a records proof, it is possible to verify that all the entries and items that make up the records in a register are correct.</p>
-   <p>There may be different kinds of records proof available.</p>
-   <div class="example" id="example-1c346af0">
-    <a class="self-link" href="#example-1c346af0"></a> The following example shows a Merkle-tree-based records proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
-<pre>https://local-authority.register.gov.uk/proof/records/merkle:sha-256
-</pre>
-<pre class="highlight"><span class="p">{</span>
-  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:h/gTTXO9M9KARSc35nWMY1zrkISUrQYjF2ZowZgGNQg="</span><span class="p">,</span>
-  <span class="nt">"register-proof"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">"total-entries"</span><span class="p">:</span> <span class="s2">"9803348"</span><span class="p">,</span>
-    <span class="nt">"timestamp"</span><span class="p">:</span> <span class="s2">"2015-08-20T08:15:30Z"</span><span class="p">,</span>
-    <span class="nt">"root-hash"</span><span class="p">:</span> <span class="s2">"sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU"</span><span class="p">,</span>
-    <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"</span>
-  <span class="p">},</span>
-  <span class="nt">"tree-head-signature"</span><span class="p">:</span> <span class="s2">"YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS/BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5"</span>
-<span class="p">}</span>
-</pre>
-   </div>
-   <p class="issue" id="issue-06d108e8"><a class="self-link" href="#issue-06d108e8"></a> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
-   <h3 class="heading settled" data-level="3.9" id="record-proof-resource"><span class="secno">3.9. </span><span class="content">Record proof resource</span><a class="self-link" href="#record-proof-resource"></a></h3>
-   <dl class="resource">
-    <dt>Path
-    <dd>/proof/record/{total-entries}/{field-value}/{proof-identifier}
-   </dl>
-   <p>A record proof is the information required to prove that a particular entry is the most recent entry for a record in a register of size total-entries, given a <a href="#records-proof-resource">§3.8 Records proof resource</a>.</p>
-   <p>The important characteristic of a record proof is that it means that the client does not need to download the entire register just to verify that an entry is the latest for a record.</p>
-   <p>There may different kinds of record proof available.</p>
-   <div class="example" id="example-df53b38e">
-    <a class="self-link" href="#example-df53b38e"></a> The following example shows a Merkle-tree-based record proof in the <a href="#json-representation">§11.2 JSON representation</a>. This particular proof algorithm would return an array of 256 Merkle tree nodes: 
-<pre>https://local-authority.register.gov.uk/record/E09000019/merkle:sha-256
-</pre>
-<pre class="highlight"><span class="p">{</span>
-  <span class="nt">"proof-identifier"</span><span class="p">:</span> <span class="s2">"merkle:sha-256"</span><span class="p">,</span>
-  <span class="nt">"merkle-record-path"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sha-256:GRt2OZyET3cslEaq1Mme/KJ46hsmk5dV2o6utknQwtY="</span><span class="p">,</span> <span class="s2">"sha-256:3+8RvKuH5nhFLzQr6jFzt8jaH2Fp+rBqhbfSsPVWtcw="</span><span class="p">,</span> <span class="s2">"sha-256:3KN32Lo6Z3eCaisbhL4OB4O0XyLuPW37Zj23nzN/h9g="</span><span class="p">,</span> ...<span class="p">]</span>
-<span class="p">}</span>
-</pre>
-   </div>
-   <p class="issue" id="issue-dd4ca9b1"><a class="self-link" href="#issue-dd4ca9b1"></a> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a></p>
    <h2 class="heading settled" data-level="4" id="immutable-resources"><span class="secno">4. </span><span class="content">Immutable resources</span><a class="self-link" href="#immutable-resources"></a></h2>
    <p>An immutable resource, is one whose contents will never change.
 An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a href="#entry-resource">§3.2 Entry resource</a> are both deemed to be immutable.</p>
@@ -2052,24 +2004,6 @@ ordered by entry number in ascending order.</p>
 <span class="p">}</span>
 </pre>
    </div>
-   <h3 class="heading settled" data-level="5.6" id="proofs-resource"><span class="secno">5.6. </span><span class="content">Proofs resource</span><a class="self-link" href="#proofs-resource"></a></h3>
-   <dl class="resource">
-    <dt>Path
-    <dd>/proofs
-   </dl>
-   <p>All of the available proof algorithms that the register supports.</p>
-   <div class="example" id="example-fea8fd17">
-    <a class="self-link" href="#example-fea8fd17"></a> The following example shows a set of register proofs in the <a href="#json-representation">§11.2 JSON representation</a>: 
-<pre class="highlight"><span class="p">[</span>'merkle:sha<span class="mi">-256</span>'<span class="p">]</span>
-</pre>
-   </div>
-   <p class="note" role="note"><span>Note:</span> A register MAY have more than one proof, to support multiple types of proof in the future.</p>
-   <h3 class="heading settled" data-level="5.7" id="entry-proofs-resource"><span class="secno">5.7. </span><span class="content">Entry proof nodes resource</span><a class="self-link" href="#entry-proofs-resource"></a></h3>
-   <dl class="resource">
-    <dt>Path
-    <dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs
-   </dl>
-   <p>A set of links to the <a href="#register-proof-resource">§3.5 Register proof resource</a>s and <a href="#entry-proof-resource">§3.6 Entry proof resource</a>s which reference this entry.</p>
    <h2 class="heading settled" data-level="6" id="archive-resources"><span class="secno">6. </span><span class="content">Archive resources</span><a class="self-link" href="#archive-resources"></a></h2>
    <h3 class="heading settled" data-level="6.1" id="download"><span class="secno">6.1. </span><span class="content">Download resource</span><a class="self-link" href="#download"></a></h3>
    <dl class="resource">
@@ -3541,7 +3475,7 @@ these assets.</p>
    <dt id="biblio-curie">[CURIE]
    <dd>Mark Birbeck; Shane McCarron. <a href="https://www.w3.org/TR/curie/">CURIE Syntax 1.0</a>. 16 December 2010. NOTE. URL: <a href="https://www.w3.org/TR/curie/">https://www.w3.org/TR/curie/</a>
    <dt id="biblio-fips-180-4">[FIPS-180-4]
-   <dd><a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
+   <dd><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4 Secure Hash Standard</a>. URL: <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
    <dt id="biblio-geojson">[GEOJSON]
    <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
    <dt id="biblio-gml">[GML]
@@ -3594,8 +3528,6 @@ these assets.</p>
    <div class="issue"> possible confusion: "data item" and "item" mean different things <a href="https://github.com/openregister/specification/issues/40">&lt;https://github.com/openregister/specification/issues/40></a><a href="#issue-395b98a4"> ↵ </a></div>
    <div class="issue"> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a><a href="#issue-1de3eab4"> ↵ </a></div>
    <div class="issue"> Hypermedia link from entry to item? <a href="https://github.com/openregister/specification/issues/50">&lt;https://github.com/openregister/specification/issues/50></a><a href="#issue-112c8311"> ↵ </a></div>
-   <div class="issue"> Records proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a><a href="#issue-06d108e8"> ↵ </a></div>
-   <div class="issue"> Record proof resource is experimental. <a href="https://github.com/openregister/specification/issues/46">&lt;https://github.com/openregister/specification/issues/46></a><a href="#issue-dd4ca9b1"> ↵ </a></div>
    <div class="issue"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
    <div class="issue"> what does the items resource look like in a register with multiple hashing algorithms available? <a href="https://github.com/openregister/specification/issues/38">&lt;https://github.com/openregister/specification/issues/38></a><a href="#issue-64bcb597"> ↵ </a></div>
