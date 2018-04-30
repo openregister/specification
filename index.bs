@@ -246,7 +246,7 @@ The following example shows a register in the [[#json-representation]]:
 
 A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.
 
-There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.  The [[#proofs-resource]] indicates which proofs are available.
+There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.
 
 <div class="example">
 The following example shows a Merkle-tree-based register proof in the [[#json-representation]]:
@@ -524,22 +524,6 @@ https://school.register.gov.uk/records/religious-character/Quaker.json
 }
 </pre>
 </div>
-
-## Proofs resource ## {#proofs-resource}
-
-<dl class="resource"><dt>Path</dt><dd>/proofs</dd></dt></dl>
-
-All of the available proof algorithms that the register supports.
-
-<div class="example">
-The following example shows a set of register proofs in the [[#json-representation]]:
-
-<pre highlight="json">
-['merkle:sha-256']
-</pre>
-</div>
-
-Note: A register MAY have more than one proof, to support multiple types of proof in the future.
 
 # Archive resources # {#archive-resources}
 
