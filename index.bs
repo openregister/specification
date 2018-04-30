@@ -541,13 +541,6 @@ The following example shows a set of register proofs in the [[#json-representati
 
 Note: A register MAY have more than one proof, to support multiple types of proof in the future.
 
-## Entry proof nodes resource ## {#entry-proofs-resource}
-
-<dl class="resource"><dt>Path</dt><dd>/entry/{<a href="#entry-number-field">entry-number</a>}/proofs</dd></dt></dl>
-
-A set of links to the [[#register-proof-resource]]s and [[#entry-proof-resource]]s which reference this entry.
-
-
 # Archive resources # {#archive-resources}
 
 ## Download resource ## {#download}
