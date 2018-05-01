@@ -119,7 +119,8 @@ up of an ordered list of entries.  New entries in a register are only
 ever appended to the end of the list; once an entry is created, it
 never gets changed.
 
-An entry is an [[#entry-number-field]], an [[#index-entry-number-field]], a timestamp, an
+An entry is an [[#entry-number-field]], an [[#index-entry-number-field]], an
+[[#entry-timestamp-field]], an
 [[#item-hash-field]] and a [[#key-field]].  The entry-number is unique and defines the
 entry's position within the ordered list of a register. The index-entry-number is unique
 and defines the entry's position within the ordered list of an index. For an entry in a register
@@ -148,8 +149,6 @@ The following example shows an entry in the [[#json-representation]]:
 </pre>
 </assert>
 </div>
-
-ISSUE(openregister/specification#48): Entry timestamp semantics are not defined.
 
 ISSUE(openregister/specification#50): Hypermedia link from entry to item?
 
@@ -836,6 +835,12 @@ example, in the "school" register the primary key field is also called
 ## entry-number ## {#entry-number-field}
 
 ## index-entry-number ## {#index-entry-number-field}
+
+## entry-timestamp ## {#entry-timestamp-field}
+
+The timestamp in an [[#entry-resource]] is the time when the entry was minted,
+qualifying for being part of a given register. This means that the timestamp
+is no guarantee of entry order. The [[#entry-number-field]] is.
 
 ## item-hash ## {#item-hash-field}
 
