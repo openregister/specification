@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-04-30">30 April 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-05-03">3 May 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1524,10 +1524,11 @@ data held in a register.</p>
       <li><a href="#domain-field"><span class="secno">9.3</span> <span class="content">domain</span></a>
       <li><a href="#entry-number-field"><span class="secno">9.4</span> <span class="content">entry-number</span></a>
       <li><a href="#index-entry-number-field"><span class="secno">9.5</span> <span class="content">index-entry-number</span></a>
-      <li><a href="#item-hash-field"><span class="secno">9.6</span> <span class="content">item-hash</span></a>
-      <li><a href="#last-updated-field"><span class="secno">9.7</span> <span class="content">last-updated</span></a>
-      <li><a href="#field-field"><span class="secno">9.8</span> <span class="content">field</span></a>
-      <li><a href="#key-field"><span class="secno">9.9</span> <span class="content">key</span></a>
+      <li><a href="#entry-timestamp-field"><span class="secno">9.6</span> <span class="content">entry-timestamp</span></a>
+      <li><a href="#item-hash-field"><span class="secno">9.7</span> <span class="content">item-hash</span></a>
+      <li><a href="#last-updated-field"><span class="secno">9.8</span> <span class="content">last-updated</span></a>
+      <li><a href="#field-field"><span class="secno">9.9</span> <span class="content">field</span></a>
+      <li><a href="#key-field"><span class="secno">9.10</span> <span class="content">key</span></a>
      </ol>
     <li>
      <a href="#registers"><span class="secno">10</span> <span class="content">Registers</span></a>
@@ -1617,7 +1618,7 @@ data held in a register.</p>
     <li data-md="">
      <p>An infoset is an unordered collection of data items.</p>
     <li data-md="">
-     <p>A data item is identified within the scope of the infoset by a <a href="#field-field">§9.8 field</a> value.</p>
+     <p>A data item is identified within the scope of the infoset by a <a href="#field-field">§9.9 field</a> value.</p>
     <li data-md="">
      <p>The contents of a data item is constrained by one of a number of different <a href="#datatypes">§8 Datatypes</a>.</p>
    </ul>
@@ -1630,7 +1631,7 @@ data held in a register.</p>
    </dl>
    <p>An item is an unordered collection of <a href="#fields">§9 Fields</a> and values.
 The set of fields which MAY be included in an item are defined in the <code>fields</code> field in the <a href="#register-register">§10.1 Register register</a> entry for the register.</p>
-   <p>An item is identified by the globally unique <a href="#item-hash-field">§9.6 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§9.6 item-hash</a>.</p>
+   <p>An item is identified by the globally unique <a href="#item-hash-field">§9.7 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§9.7 item-hash</a>.</p>
    <div class="example" id="example-a6b79b3f">
     <a class="self-link" href="#example-a6b79b3f"></a> The following example shows an item in the <a href="#json-representation">§11.2 JSON representation</a>: 
 <pre>https://food-premises.register.gov.uk/items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
@@ -1655,7 +1656,7 @@ The set of fields which MAY be included in an item are defined in the <code>fiel
 up of an ordered list of entries.  New entries in a register are only
 ever appended to the end of the list; once an entry is created, it
 never gets changed.</p>
-   <p>An entry is an <a href="#entry-number-field">§9.4 entry-number</a>, an <a href="#index-entry-number-field">§9.5 index-entry-number</a>, a timestamp, an <a href="#item-hash-field">§9.6 item-hash</a> and a <a href="#key-field">§9.9 key</a>.  The entry-number is unique and defines the
+   <p>An entry is an <a href="#entry-number-field">§9.4 entry-number</a>, an <a href="#index-entry-number-field">§9.5 index-entry-number</a>, an <a href="#entry-timestamp-field">§9.6 entry-timestamp</a>, an <a href="#item-hash-field">§9.7 item-hash</a> and a <a href="#key-field">§9.10 key</a>.  The entry-number is unique and defines the
 entry’s position within the ordered list of a register. The index-entry-number is unique
 and defines the entry’s position within the ordered list of an index. For an entry in a register
 the entry-number and index-entry-number are always identical. The item-hash identifies
@@ -1674,7 +1675,6 @@ for the entry.</p>
   <span class="p">}</span>
 <span class="p">]</span>
 </pre></span> </div>
-   <p class="issue" id="issue-1de3eab4"><a class="self-link" href="#issue-1de3eab4"></a> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a></p>
    <p class="issue" id="issue-112c8311"><a class="self-link" href="#issue-112c8311"></a> Hypermedia link from entry to item? <a href="https://github.com/openregister/specification/issues/50">&lt;https://github.com/openregister/specification/issues/50></a></p>
    <h3 class="heading settled" data-level="3.3" id="record-resource"><span class="secno">3.3. </span><span class="content">Record resource</span><a class="self-link" href="#record-resource"></a></h3>
    <dl class="resource">
@@ -1718,7 +1718,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
     <dt data-md=""><a href="#domain-field">§9.3 domain</a>
     <dd data-md="">
      <p>The Internet domain the register is available from.</p>
-    <dt data-md=""><a href="#last-updated-field">§9.7 last-updated</a>
+    <dt data-md=""><a href="#last-updated-field">§9.8 last-updated</a>
     <dd data-md="">
      <p>The date the register was last updated.</p>
    </dl>
@@ -2039,7 +2039,7 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p><a href="#immutable-resources">§4 Immutable resources</a> SHOULD be served with a long-lived Cache-Control max-age value <a data-link-type="biblio" href="#biblio-rfc7234">[RFC7234]</a>.</p>
     <li data-md="">
-     <p>the <a href="#item-hash-field">§9.6 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
+     <p>the <a href="#item-hash-field">§9.7 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
    </ul>
    <div class="example" id="example-03bbffe0">
     <a class="self-link" href="#example-03bbffe0"></a> The following example shows the HTTP headers for the <a href="#json-representation">§11.2 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
@@ -3113,11 +3113,15 @@ example, in the "school" register the primary key field is also called
    <h3 class="heading settled" data-level="9.3" id="domain-field"><span class="secno">9.3. </span><span class="content">domain</span><a class="self-link" href="#domain-field"></a></h3>
    <h3 class="heading settled" data-level="9.4" id="entry-number-field"><span class="secno">9.4. </span><span class="content">entry-number</span><a class="self-link" href="#entry-number-field"></a></h3>
    <h3 class="heading settled" data-level="9.5" id="index-entry-number-field"><span class="secno">9.5. </span><span class="content">index-entry-number</span><a class="self-link" href="#index-entry-number-field"></a></h3>
-   <h3 class="heading settled" data-level="9.6" id="item-hash-field"><span class="secno">9.6. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
+   <h3 class="heading settled" data-level="9.6" id="entry-timestamp-field"><span class="secno">9.6. </span><span class="content">entry-timestamp</span><a class="self-link" href="#entry-timestamp-field"></a></h3>
+   <p>The timestamp in an <a href="#entry-resource">§3.2 Entry resource</a> is the time when the entry was minted,
+qualifying for being part of a given register. This means that the timestamp
+is no guarantee of entry order. The <a href="#entry-number-field">§9.4 entry-number</a> is.</p>
+   <h3 class="heading settled" data-level="9.7" id="item-hash-field"><span class="secno">9.7. </span><span class="content">item-hash</span><a class="self-link" href="#item-hash-field"></a></h3>
    <p>The item-hash field contains the <a href="#item-hash-datatype">§8.11 Item-hash datatype</a> of an item.</p>
-   <h3 class="heading settled" data-level="9.7" id="last-updated-field"><span class="secno">9.7. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
-   <h3 class="heading settled" data-level="9.8" id="field-field"><span class="secno">9.8. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
-   <h3 class="heading settled" data-level="9.9" id="key-field"><span class="secno">9.9. </span><span class="content">key</span><a class="self-link" href="#key-field"></a></h3>
+   <h3 class="heading settled" data-level="9.8" id="last-updated-field"><span class="secno">9.8. </span><span class="content">last-updated</span><a class="self-link" href="#last-updated-field"></a></h3>
+   <h3 class="heading settled" data-level="9.9" id="field-field"><span class="secno">9.9. </span><span class="content">field</span><a class="self-link" href="#field-field"></a></h3>
+   <h3 class="heading settled" data-level="9.10" id="key-field"><span class="secno">9.10. </span><span class="content">key</span><a class="self-link" href="#key-field"></a></h3>
    <h2 class="heading settled" data-level="10" id="registers"><span class="secno">10. </span><span class="content">Registers</span><a class="self-link" href="#registers"></a></h2>
    <h3 class="heading settled" data-level="10.1" id="register-register"><span class="secno">10.1. </span><span class="content">Register register</span><a class="self-link" href="#register-register"></a></h3>
    <h3 class="heading settled" data-level="10.2" id="field-register"><span class="secno">10.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
@@ -3481,7 +3485,7 @@ these assets.</p>
    <dt id="biblio-gml">[GML]
    <dd><a href="http://www.opengeospatial.org/standards/gml">Geography Markup Language (GML) Encoding Standard</a>. URL: <a href="http://www.opengeospatial.org/standards/gml">http://www.opengeospatial.org/standards/gml</a>
    <dt id="biblio-html5">[HTML5]
-   <dd>Ian Hickson; et al. <a href="https://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="https://www.w3.org/TR/html5/">https://www.w3.org/TR/html5/</a>
+   <dd>Ian Hickson; et al. <a href="https://www.w3.org/TR/html5/">HTML5</a>. 27 March 2018. REC. URL: <a href="https://www.w3.org/TR/html5/">https://www.w3.org/TR/html5/</a>
    <dt id="biblio-iana-tsv">[IANA-TSV]
    <dd>Paul Lindner. <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
    <dt id="biblio-iso8601">[ISO8601]
@@ -3526,7 +3530,6 @@ these assets.</p>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> possible confusion: "data item" and "item" mean different things <a href="https://github.com/openregister/specification/issues/40">&lt;https://github.com/openregister/specification/issues/40></a><a href="#issue-395b98a4"> ↵ </a></div>
-   <div class="issue"> Entry timestamp semantics are not defined. <a href="https://github.com/openregister/specification/issues/48">&lt;https://github.com/openregister/specification/issues/48></a><a href="#issue-1de3eab4"> ↵ </a></div>
    <div class="issue"> Hypermedia link from entry to item? <a href="https://github.com/openregister/specification/issues/50">&lt;https://github.com/openregister/specification/issues/50></a><a href="#issue-112c8311"> ↵ </a></div>
    <div class="issue"> define query string parameters .. <a href="https://github.com/openregister/specification/issues/7">&lt;https://github.com/openregister/specification/issues/7></a><a href="#issue-c647663d"> ↵ </a></div>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
