@@ -542,8 +542,6 @@ The archive contains the following files in the following structure:
    * a directory named "item" containing all of the [[#item-resource]] in one or more parts in the [[#json-representation]]
    * a directory named "entry" containing all of the [[#entry-resource]] in one or more files in the [[#json-representation]]
 
-A register archive MAY contain entry and item resources in the more space efficient [[#tsv-representation]].
-
 
 # HTTP Headers # {#http-headers}
 
@@ -866,83 +864,29 @@ The item-hash field contains the [[#item-hash-datatype]] of an item.
 
 # Representations # {#representations}
 
-Note: JSON and other representations can have a field which is missing. These have the same semantics as an empty field.
-
-## HTML representation ## {#html-representation}
-  * [[HTML5]]
+JSON is the canonical representation but CSV is encouraged to be implemented
+as well.
 
 ## JSON representation ## {#json-representation}
+
   * suffix: .json
   * media-type: application/json
   * specification: [[JSON]] 
 
   All field values MUST be encoded as JSON strings. When JSON needs to be in a
-  canonical format, use the procedure defined in [[#sha-256-item-hash]]
+  canonical format, use the procedure defined in [[#sha-256-item-hash]].
 
-## YAML representation ## {#yaml-representation}
-
-  * Suffix: .yaml
-  * Content-Type: text/yaml;charset=UTF-8
-  * Specification: [[YAML]] 
-
-<div class="example">
-The following example shows a [[#record-resource]] in the [[#yaml-representation]]:
-<pre highlight="yaml">
-entry:
-  entry-number: "30568"
-  timestamp: "2015-01-02T23:59:01Z"
-  item-hash: "sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9",
-  key: "402175"
-item:
-  address: "100101030506"
-  name: "Glanaman Home Tution Centre"
-  school: "402175"
-  start-date: "2007-11-07"
-</pre>
-</div>
-
-ISSUE(openregister/specification#51): Which data types should we use from YAML?
+  Note: JSON can have missing fields. These have the same semantics as a field
+  with a <code>null</code> value.
 
 ## CSV representation ## {#csv-representation}
+
   * Suffix: .csv
+  * media-type: text/csv
   * Specification: [[tabular-data-model]]
 
-## TSV representation ## {#tsv-representation}
-  * Suffix: .tsv
-  * Content-Type: text/tab-separated-values;charset=UTF-8
-  * Specification: [[IANA-TSV]]
-
-
-</pre>
-</div>
-
-## JSON-LD representation ## {#json-ld-representation}
-  * [[JSON-LD]]
-
-## Turtle representation ## {#ttl-representation}
-  * Suffix: .ttl
-  * Content-Type: text/turtle;charset=UTF-8
-  * Specification: [[TURTLE]]
-
-<div class="example">
-The following example shows an [[#item-resource]] in the [[#ttl-representation]]:
-<pre>
-@prefix field: &lt;https://field.register.gov.uk/field/&gt;.
-
-&lt;https://school.register.gov.uk/items/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799&gt;
- field:address &lt;https://address.register.gov.uk/address/100101030506&gt; ;
- field:name "Glanaman Home Tution Centre" ;
- field:school &lt;https://school.register.gov.uk/records/402175&gt; ;
- field:start-date "2007-11-07" ;
-</pre>
-</div>
-
-## Atom representation ## {#atom-representation}
-  * [[RFC4287]]
-
-
-
-
+  Note: CSV can have empty (blank) values. These have the same semantics as if
+  the fields were missing. See [[#json-representation]].
 
 
 # Digital Proofs # {#digital-proofs}
