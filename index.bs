@@ -628,6 +628,7 @@ Optional:
                   Sequence:
                     T: :
                     T: SS
+        T: Z
 </pre>
 
 
@@ -639,7 +640,7 @@ Optional:
 <div class="example">
   The following examples are all valid Datetime values: 
   <pre>
-    "2001", "2001-01", "2001-01-31", "2001-01-31T23:20:55"
+    "2001", "2001-01", "2001-01-31", "2001-01-31T23:20:55Z"
   </pre>
 </div>
 
