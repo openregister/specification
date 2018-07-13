@@ -1,0 +1,114 @@
+[bibliography.rfc2119]
+id = "rfc2119"
+url = "https://tools.ietf.org/html/rfc2119"
+title = "Key words for use in RFCs to Indicate Requirement Levels"
+publisher = "IETF"
+authors = ["S. Bradner"]
+published = "1997-03"
+
+[bibliography.rfc6962]
+id = "rfc6962"
+url = "https://tools.ietf.org/html/rfc6962"
+title = "Certificate Transparency"
+publisher = "IETF"
+authors = [ "B. Laurie", "A. Langley", "E. Kasper" ]
+
+[bibliography.rfc7234]
+id = "rfc7234"
+url = "https://tools.ietf.org/html/rfc7234"
+authors = ["R. Fielding, Ed.", "M. Nottingham, Ed.", "J. Reschke, Ed."]
+title = "Hypertext Transfer Protocol (HTTP/1.1): Caching"
+publisher = "IETF"
+published = "2014-06"
+
+[bibliography.rfc7946]
+id =  "rfc7946"
+url = "https://tools.ietf.org/html/rfc7946"
+title = "The GeoJSON Format"
+publisher = "IETF"
+authors = [ "H. Butler", "M. Daly", "A. Doyle", "S. Gillies", "T. Schaub", "S. Hagen" ]
+published = "2016-08"
+
+[bibliography.markdown]
+id = "markdown"
+url = "http://spec.commonmark.org/0.28/"
+title = "Common Markdown"
+publisher = "CommonMark Spec"
+authors = [ "John MacFarlane" ]
+published = "2017-08-01"
+
+[bibliography.jcs]
+id = "jcs"
+url = "https://cyberphone.github.io/doc/security/jcs.html"
+title = "JSON Cleartext Signature"
+publisher = "WebPKI"
+authors = [ "Anders Rundgren" ]
+
+[bibliography.kml]
+id = "kml"
+url = "http://www.opengeospatial.org/standards/kml/"
+title = "KML 2.3"
+publisher = "OGC"
+
+[bibliography.curie]
+id = "curie"
+url = "https://www.w3.org/TR/curie/"
+title = "CURIE Syntax 1.0"
+publisher = "W3C"
+authors = ["Mark Birbeck", "Shane McCarron"]
+published = "2010-12-16"
+
+[bibliography.iso8601]
+id = "iso8601"
+url = "http://www.iso.org/iso/catalogue_detail?csnumber=40874"
+title = "Representation of dates and times. ISO 8601:2004"
+publisher = "ISO"
+published = "2004"
+
+[bibliography.rfc3339]
+id = "rfc3339"
+url = "https://tools.ietf.org/html/rfc3339"
+authors = ["G. Klyne", "C. Newman"]
+title = "Date and Time on the Internet: Timestamps"
+publisher = "IETF"
+published = "2002-07"
+
+[bibliography.rfc8259]
+id = "rfc8259"
+url = "https://tools.ietf.org/html/rfc8259"
+title = "The JavaScript Object Notation (JSON) Data Interchange Format"
+authors = ["T. Bray, Ed."]
+publisher = "IETF"
+published = "2017-12"
+
+[bibliography.jsonld]
+id = "jsonld"
+url = "https://www.w3.org/TR/json-ld/"
+title = "JSON-LD 1.0"
+authors = ["Manu Sporny", "Gregg Kellogg", "Markus Lanthaler"]
+publisher = "W3C"
+published = "2014-01-16"
+
+[bibliography.rfc5829]
+id = "rfc5829"
+url = "https://tools.ietf.org/html/rfc5829"
+authors = ["A. Brown", "G. Clemm", "J. Reschke, Ed."]
+title = "Link Relation Types for Simple Version Navigation between Web Resources"
+publisher = "IETF"
+published = "2010-04"
+
+[bibliography.rfc6797]
+id = "rfc6797"
+url = "https://tools.ietf.org/html/rfc6797"
+authors = ["J. Hodges", "C. Jackson", "A. Barth"]
+title = "HTTP Strict Transport Security (HSTS)"
+publisher = "IETF"
+published = "2012-11"
+
+[bibliography.rfc8288]
+id = "rfc8288"
+url = "https://tools.ietf.org/html/rfc8288"
+authors = ["M. Nottingham"]
+title = "Web Linking"
+publisher = "IETF"
+published = "2017-10"
