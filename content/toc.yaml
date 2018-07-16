@@ -1,0 +1,40 @@
+- id: introduction
+- id: resources
+  items:
+    - id: item-resource
+    - id: entry-resource
+    - id: record-resource
+    - id: register-resource
+    - id: register-proof-resource
+    - id: entry-proof-resource
+    - id: consistency-proof-resource
+- id: collection-resources
+  items:
+    - id: item-collection-resource
+    - id: entry-collection-resource
+    - id: record-entry-collection-resource
+    - id: record-collection-resource
+    - id: faceted-record-collection-resource
+    - id: archive-resource
+- id: http-headers
+- id: datatypes
+  items:
+    - id: string-datatype
+    - id: fieldname-datatype
+    - id: integer-datatype
+    - id: datetime-datatype
+    - id: timestamp-datatype
+    - id: period-datatype
+    - id: point-datatype
+    - id: polygon-datatype
+    - id: text-datatype
+    - id: curie-datatype
+    - id: hash-datatype
+- id: url-datatype
+- id: fields
+- id: representations
+- id: digital-proofs
+- id: minting
+- id: redaction
+- id: versioning
+- id: security
