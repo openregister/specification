@@ -958,16 +958,11 @@ To verify the consistency of two versions of a register, given that total-entrie
 
 # Minting a new entry # {#minting}
 
-  To mint a new entry in the register:
-  * POST a new item in [[#json-representation]] to the ..mint url.. with the proposed new entry number.
-  * The item will first appear as a new item in the store
-  * <em> .. status codes and error cases </em>
-  * <em> .. 202 Accepted with a Location header of the [[#entry-resource]] for the new entry</em>
-  * The proposer can only trust it has been secured when the entry
-    is listed in the [[#entries-resource]] with the same [[#entry-number-field]],
-    and the [[#entry-resource]] is a covered by one or more [[#digital-proofs]] for the register.
+Minting refers to the notion of creating a new entry, stamping it with a
+timestamp and appending it to the log.
 
-The item MUST NOT contain empty fields.
+This specification doesn't define any way to do that as it is seen as an
+implementation concern.
 
 # Redaction # {#redaction}
 
