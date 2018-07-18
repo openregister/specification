@@ -1,50 +1,72 @@
-import React from "react"
-import { css } from "react-emotion"
-import { StaticQuery, Link, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from 'react-emotion';
+import { StaticQuery, Link, graphql } from 'gatsby';
+import { rhythm } from '../utils/typography';
 
-import { rhythm } from "../utils/typography"
-
-
-export default ({ children }) => (
+const Layout = ({children}) => (
   <StaticQuery
     query={graphql`
       query LayoutQuery {
-        site {
-          siteMetadata {
-            title
+        site: coreToml {
+          id
+          title
+          version
+          publish_date
+          issue_tracker
+          former_editors {
+            name
+            organisation
+          }
+          copyright {
+            text
+            url
+          }
+          license {
+            text
+            url
+          }
+          editors {
+            name
+            email
+            organisation
           }
         }
       }`}
     render={data => (
-      <div
-        className={css`
-          margin: 0 auto;
-          max-width: 700px;
-          padding: ${rhythm(2)};
-          padding-top: ${rhythm(1.5)};
-        `}
-      >
-        <Link to={`/`}>
-          <h3
-            className={css`
-              margin-bottom: ${rhythm(2)};
-              display: inline-block;
-              font-style: normal;
-            `}
-          >
-            {data.site.siteMetadata.title}
-          </h3>
-        </Link>
-        <Link
-          to={`/about/`}
-          className={css`
-            float: right;
-          `}
-        >
-          About
-        </Link>
+      <React.Fragment>
+        <header className={headerStyle}>
+          <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
+          <span className={versionStyle}> ({data.site.version} {data.site.publish_date})</span>
+        </header>
         {children}
-      </div>
+      </React.Fragment>
     )}
   />
-)
+);
+
+Layout.propTypes = {
+  children: PropTypes.object.isRequired
+};
+
+const headerStyle = css`
+  background-color: black;
+  padding: 12px;
+  color: white;
+  border-bottom: 6px solid tomato;
+`;
+
+const linkStyle = css`
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: tomato;
+  }
+`;
+
+const versionStyle = css`
+  margin-left: 4px;
+  font-size: 14px;
+`;
+
+export default Layout;

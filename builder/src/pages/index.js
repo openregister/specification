@@ -5,10 +5,29 @@ import {css} from 'react-emotion';
 import {rhythm} from '../utils/typography';
 import Layout from '../components/layout';
 
+const toTocElemChildrenMaybe = (items) => {
+  if (items != null) {
+    return (
+      <ul>
+        {items.map(toTocElem)}
+      </ul>
+    );
+  }
+};
+
+const toTocElem = (elem) => {
+  return (
+    <li key={elem.id}>
+      <span>{elem.id}</span>
+      {toTocElemChildrenMaybe(elem.items)}
+    </li>
+  );
+};
+
 const Main = ({data}) => {
   return (
     <Layout>
-      <div>
+      <section className={sectionStyle}>
         <h1
           className={css`
             display: inline-block;
@@ -16,8 +35,14 @@ const Main = ({data}) => {
         >
           Registers Specification (next)
         </h1>
-        <h4>{data.allMarkdownRemark.totalCount} Sections</h4>
-        {data.allMarkdownRemark.edges.map(({node}) => (
+        <nav id="toc">
+          <h2>Table of contents</h2>
+          <ul>
+            {data.toc.edges.map(({node}) => toTocElem(node))}
+          </ul>
+        </nav>
+        <h4>{data.sections.totalCount} Sections</h4>
+        {data.sections.edges.map(({node}) => (
           <div key={node.id}>
             <Link
               to={node.fields.slug}
@@ -44,7 +69,7 @@ const Main = ({data}) => {
             </Link>
           </div>
         ))}
-      </div>
+      </section>
     </Layout>
   );
 };
@@ -55,7 +80,18 @@ Main.propTypes = {
 
 export const query = graphql`
   query IndexQuery {
-    allMarkdownRemark {
+    toc: allNavYaml {
+      edges {
+        node {
+          id
+          items {
+            id
+          }
+        }
+      }
+    }
+
+    sections: allMarkdownRemark {
       totalCount
       edges {
         node {
@@ -71,6 +107,10 @@ export const query = graphql`
       }
     }
   }
+`;
+
+const sectionStyle = css`
+  padding: 20px;
 `;
 
 export default Main;
