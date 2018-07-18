@@ -1,3 +1,9 @@
+---
+id: item-resource
+title: Item resource
+url: /resources/item-resource/
+---
+
 ### Item resource
 
 

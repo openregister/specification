@@ -1,3 +1,9 @@
+---
+id: archive-resource
+title: Archive resource
+url: /resources/archive-resource/
+---
+
 ## Archive resource
 
 * Path: `/download-register`
