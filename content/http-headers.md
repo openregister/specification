@@ -1,3 +1,9 @@
+---
+id: http-headers
+title: HTTP headers
+url: /http-headers/
+---
+
 ## HTTP Headers
 
 Table of link and other HTTP headers used by resources ..
@@ -24,5 +30,3 @@ X-Content-Type-Options "nosniff"
 Vary: Accept-Encoding
 Content-Length: 522
 ```
-
-

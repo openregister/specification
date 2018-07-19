@@ -1,3 +1,9 @@
+---
+id: timestamp-datatype
+title: Timestamp datatype
+url: /datatypes/timestamp/
+---
+
 ### Timestamp datatype
 
 A value conforming to a UTC [RFC3339] timestamp. It can be seen as a strict

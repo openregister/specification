@@ -1,3 +1,9 @@
+---
+id: representations
+title: Representations
+url: /representations/
+---
+
 ## Representations
 
 Note: JSON and other representations can have a field which is missing. These

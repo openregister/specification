@@ -1,3 +1,9 @@
+---
+id: register-resource
+title: Register resource
+url: /resources/register-resource/
+---
+
 ### Register resource
 
 

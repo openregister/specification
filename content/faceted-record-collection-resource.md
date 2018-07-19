@@ -1,3 +1,9 @@
+---
+id: faceted-record-collection-resource
+title: List faceted records
+url: /resources/list-faceted-records/
+---
+
 ### Faceted records resource
 
 * Path: `/records/{field-name}/{field-value}`

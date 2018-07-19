@@ -5,6 +5,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
+    "clean": "rm -rf .cache",
     "serve": "gatsby serve"
   },
   "dependencies": {
@@ -15,11 +16,14 @@
     "gatsby": "next",
     "gatsby-plugin-emotion": "^1.1.17",
     "gatsby-plugin-typography": "^1.7.19",
+    "gatsby-remark-autolink-headers": "^1.4.19",
+    "gatsby-remark-prismjs": "^2.0.5",
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-json": "^1.0.20",
     "gatsby-transformer-remark": "^1.7.44",
     "gatsby-transformer-toml": "^1.1.9",
     "gatsby-transformer-yaml": "^1.5.18",
+    "prismjs": "^1.15.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-emotion": "^9.2.5",

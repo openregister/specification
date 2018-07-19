@@ -1,3 +1,9 @@
+---
+id: security
+title: Security
+url: /security/
+---
+
 ## Security considerations
 
 ### Transport layer security

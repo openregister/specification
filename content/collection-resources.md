@@ -1,3 +1,9 @@
+---
+id: collection-resources
+title: Collection resources
+url: /resources/collections/
+---
+
 ## Collection resources
 
 There is a limit to how many records or entries can be returned in a single

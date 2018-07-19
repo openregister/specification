@@ -1,3 +1,9 @@
+---
+id: record-entry-collection-resource
+title: List record entries
+url: /resources/list-record-entries/
+---
+
 ### Record entries resource
 
 * Path: `/records/{field-value}/entries`

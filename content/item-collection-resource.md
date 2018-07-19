@@ -1,3 +1,9 @@
+---
+id: item-collection-resource
+title: List items
+url: /resources/list-items/
+---
+
 ### Items resource
 
 

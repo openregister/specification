@@ -1,3 +1,9 @@
+---
+id: digital-proofs
+title: Digital proofs
+url: /digital-proofs/
+---
+
 ## Digital Proofs
 
 ### Certificate transparency

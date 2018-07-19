@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import { rhythm } from '../utils/typography';
+import 'prismjs/themes/prism.css';
+
 
 const Layout = ({children}) => (
   <StaticQuery

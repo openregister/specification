@@ -1,3 +1,9 @@
+---
+id: record-resource
+title: Record resource
+url: /resources/record-resource/
+---
+
 ### Record resource
 
 * Path: `/records/{record-id}`

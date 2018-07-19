@@ -1,30 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link, graphql} from 'gatsby';
+import {graphql} from 'gatsby';
 import {css} from 'react-emotion';
-import {rhythm} from '../utils/typography';
 import Layout from '../components/layout';
+import Section from '../components/section';
+import ToC from '../components/toc';
+import {findById} from '../utils/section';
 
-const toTocElemChildrenMaybe = (items) => {
-  if (items != null) {
-    return (
-      <ul>
-        {items.map(toTocElem)}
-      </ul>
-    );
-  }
-};
-
-const toTocElem = (elem) => {
+const Content = ({tree}) => {
   return (
-    <li key={elem.id}>
-      <span>{elem.id}</span>
-      {toTocElemChildrenMaybe(elem.items)}
-    </li>
+    tree.map(SectionHierarchy)
   );
 };
 
+const SectionHierarchy = ({id, items, content}) => {
+  return (
+    <Section key={id} id={id} content={content}>
+      {
+        items
+          ? items.map(SectionHierarchy)
+          : null
+      }
+    </Section>
+  );
+};
+
+SectionHierarchy.propTypes =  {
+  id: PropTypes.string.isRequired,
+  items: PropTypes.array,
+  // title: PropTypes.string.isRequired,
+  // url: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
+
+const extendToc = (toc, sections) => {
+  return toc.map(({id, items}) => {
+    const section = findById(id, sections);
+    const result = {
+      id,
+      items: items ? extendToc(items, sections) : null,
+      title: section.frontmatter.title,
+      url: section.frontmatter.url,
+      content: section.html,
+    };
+
+    return result;
+  });
+};
+
 const Main = ({data}) => {
+  const toc = data.toc.edges.map(({node}) => node);
+  const tree = extendToc(toc, data.sections.edges);
+
   return (
     <Layout>
       <section className={sectionStyle}>
@@ -35,40 +62,10 @@ const Main = ({data}) => {
         >
           Registers Specification (next)
         </h1>
-        <nav id="toc">
-          <h2>Table of contents</h2>
-          <ul>
-            {data.toc.edges.map(({node}) => toTocElem(node))}
-          </ul>
-        </nav>
-        <h4>{data.sections.totalCount} Sections</h4>
-        {data.sections.edges.map(({node}) => (
-          <div key={node.id}>
-            <Link
-              to={node.fields.slug}
-              className={css`
-                text-decoration: none;
-                color: inherit;
-              `}
-            >
-              <h3
-                className={css`
-                  margin-bottom: ${rhythm(1 / 4)};
-                `}
-              >
-                {node.frontmatter.title}{' '}
-                <span
-                  className={css`
-                    color: #bbb;
-                  `}
-                >
-                  — {node.frontmatter.date}
-                </span>
-              </h3>
-              <p>{node.excerpt}</p>
-            </Link>
-          </div>
-        ))}
+
+        <ToC tree={tree} />
+
+        <Content tree={tree} />
       </section>
     </Layout>
   );
@@ -97,12 +94,16 @@ export const query = graphql`
         node {
           id
           frontmatter {
+            id
             title
+            url
           }
           fields {
             slug
           }
           excerpt
+          html
+          htmlAst
         }
       }
     }

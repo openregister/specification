@@ -1,3 +1,9 @@
+---
+id: period-datatype
+title: Period datatype
+url: /datatypes/period/
+---
+
 ### Period datatype
 
 ```abnf

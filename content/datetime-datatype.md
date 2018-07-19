@@ -1,3 +1,9 @@
+---
+id: datetime-datatype
+title: Datetime datatype
+url: /datatypes/datetime/
+---
+
 ### Datetime datatype
 
 A datetime conforming to the subset of a UTC ISO8601 date, time or datetime as

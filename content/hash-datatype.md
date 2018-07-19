@@ -1,3 +1,9 @@
+---
+id: hash-datatype
+title: Hash datatype
+url: /datatypes/hash/
+---
+
 ### Hash datatype
 
 A hexadecimal string representing the result of a hashing algorithm such as
@@ -32,5 +38,3 @@ The canonicalisation algorithm is as follows:
     * Other control characters (such as NULL) MUST be represented as a <code>\u00XX</code> escape sequence.  Hexadecimal digits MUST be upper-case.
   * Backslash (<code>\</code>) and double quote (<code>"</code>) MUST be escaped as <code>\\</code> and <code>\"</code> respectively.
   * All other characters MUST be included literally (ie unescaped).  This includes forward-slash (<code>/</code>).
-
-

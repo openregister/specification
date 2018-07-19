@@ -1,3 +1,9 @@
+---
+id: versioning
+title: Versioning
+url: /versioning/
+---
+
 ## Versioning and extensibility
 
 ### Backwards compitability

@@ -1,3 +1,9 @@
+---
+id: record-collection-resource
+title: List records
+url: /resources/list-records/
+---
+
 ### Records resource
 
 * Path: `/records`

@@ -24,6 +24,10 @@ exports.createPages = ({graphql, actions}) => {
       allMarkdownRemark {
         edges {
           node {
+            frontmatter {
+              id
+              url
+            }
             fields {
               slug
             }
@@ -37,12 +41,12 @@ exports.createPages = ({graphql, actions}) => {
     specSections.then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         createPage({
-          path: node.fields.slug,
+          path: node.frontmatter.url,
           component: path.resolve('./src/templates/spec-section.js'),
           context: {
             // Data passed to context is available
             // in page queries as GraphQL variables.
-            slug: node.fields.slug,
+            id: node.frontmatter.id,
           },
         });
       });

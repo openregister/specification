@@ -1,3 +1,9 @@
+---
+id: fields
+title: fields
+url: /fields/
+---
+
 ## Fields
 
 Fields defined by this specification

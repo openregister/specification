@@ -1,7 +1,7 @@
 ---
 id: archive-resource
-title: Archive resource
-url: /resources/archive-resource/
+title: Archive
+url: /resources/archive/
 ---
 
 ## Archive resource

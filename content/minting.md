@@ -1,3 +1,9 @@
+---
+id: minting
+title: Minting
+url: /minting/
+---
+
 ## Minting a new entry
 
 To mint a new entry in the register:

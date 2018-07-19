@@ -30,11 +30,12 @@
     - id: text-datatype
     - id: curie-datatype
     - id: hash-datatype
-- id: url-datatype
+    - id: url-datatype
 - id: fields
 - id: representations
 - id: digital-proofs
 - id: minting
 - id: redaction
 - id: versioning
+- id: registers
 - id: security

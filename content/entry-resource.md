@@ -1,3 +1,9 @@
+---
+id: entry-resource
+title: Entry resource
+url: /resources/entry-resource/
+---
+
 ### Entry resource
 
 * Path: `/entries/{entry-number}`

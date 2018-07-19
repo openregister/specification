@@ -27,7 +27,16 @@ module.exports = {
     'gatsby-transformer-json',
     'gatsby-transformer-toml',
     'gatsby-transformer-yaml',
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          'gatsby-remark-prismjs',
+          'gatsby-remark-autolink-headers',
+
+        ]
+      }
+    },
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-plugin-typography',

@@ -1,3 +1,9 @@
+---
+id: entry-proof-resource
+title: Entry Proof resource
+url: /resources/entry-proof-resource/
+---
+
 ### Entry proof resource
 
 * Path: `/proof/entries/{entry-number}/{total-entries}/{proof-identifier}`

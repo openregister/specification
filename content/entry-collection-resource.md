@@ -1,3 +1,9 @@
+---
+id: entry-collection-resource
+title: List entries
+url: /resources/list-entries/
+---
+
 ### Entries resource
 
 * Path: `/entries`

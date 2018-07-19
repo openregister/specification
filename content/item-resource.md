@@ -28,11 +28,16 @@ item-hash</a> calculated from its contents. Changing the item data changes the
 
 The following example shows an item in the JSON representation:
 
-```
-https://food-premises.register.gov.uk/items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
+```http
+GET /items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858 HTTP/1.1
+Host: food-premises.register.gov.uk
+Accept: application/json
 ```
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "business": "company:07228130",
   "food-premises": "788112",
@@ -43,4 +48,3 @@ https://food-premises.register.gov.uk/items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141
   "start-date": "2015-03-01"
 }
 ```
-

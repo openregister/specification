@@ -1,3 +1,9 @@
+---
+id: consistency-proof-resource
+title: Consistency Proof resource
+url: /resources/consistency-proof-resource/
+---
+
 ## Consistency proof resource
 
 

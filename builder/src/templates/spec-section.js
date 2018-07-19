@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
+import {css} from 'react-emotion';
 import Layout from '../components/layout';
+
+const pageStyle = css`
+  padding: 20px;
+`;
 
 const SpecSection = ({data}) => {
   const section = data.markdownRemark;
 
   return (
     <Layout>
-      <div>
+      <div className={pageStyle}>
         <h1>{section.frontmatter.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div dangerouslySetInnerHTML={{ __html: section.html }} />
       </div>
     </Layout>
   );
@@ -22,11 +27,13 @@ SpecSection.propTypes = {
 
 
 export const query = graphql`
-  query SpecSectionQuery($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query SpecSectionQuery($id: String!) {
+    markdownRemark(frontmatter: { id: { eq: $id } }) {
       html
       frontmatter {
+        id
         title
+        url
       }
     }
   }

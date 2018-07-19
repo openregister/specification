@@ -1,3 +1,9 @@
+---
+id: register-proof-resource
+title: Register Proof resource
+url: /resources/register-proof-resource/
+---
+
 ### Register proof resource
 
 * Path: `/proof/register/{proof-identifier}`

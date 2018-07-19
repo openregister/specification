@@ -1,3 +1,9 @@
+---
+id: integer-datatype
+title: Integer datatype
+url: /datatypes/integer/
+---
+
 ### Integer datatype
 
 A decimal number with no fractional component.
