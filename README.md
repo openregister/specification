@@ -1,40 +1,47 @@
-# Registers Specifications
+# Registers specification
 
 <https://openregister.github.io/specification/>
 
-# Process
+The specification builder uses [Gatsby](https://www.gatsbyjs.org/) to generate
+a static site out of different data sources.
 
-Changes to the specification should be raised as an issue before being added to the document.
-The specification may include changes ahead of being implemented in the registers platform,
-or other compliant implementations.
-
-# Default branch
+## Default branch
 
 Note this repository doesn't have a master branch, the default is the gh-pages branch.
 
-# Bikeshed
+## Data sources
 
-The specification is made using [Bikeshed](https://github.com/tabatkins/bikeshed).
+* `data/` directory: Metadata and complementary data.
+* `content/` directory: The markdown source.
 
-# Building
 
-Use make to build a local copy of the register data
-— we recommend using a [Python virtual environment](http://virtualenvwrapper.readthedocs.org/en/latest/):
+## Development
 
-    $ mkvirtualenv -p python registers-specification
-    $ workon registers-specification
-    $ make init
-    $ make
+TODO: Dockerise to abstract dependencies.
 
-Note, bikeshed works with Python 2.7, and not with Python 3.0.
+### Dependencies
 
-## Dockerised build
+* nodejs 10
+* yarn
 
-    $ make docker-image
-    $ make docker-build
+### Running in development
 
-# Licence
+```
+yarn develop
+```
 
-The software in this project is open source, covered by LICENSE file.
+## Build static files
 
-All content is [© Crown copyright](http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/) and made available under the [Open Government Licence v3.0 (OGL)](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+```
+yarn build
+```
+
+## Licence
+
+Unless stated otherwise, the codebase is released under [the MIT licence](./LICENSE).
+
+The data is [© Crown
+copyright](http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/)
+and available under the terms of the [Open Government
+3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+licence.
