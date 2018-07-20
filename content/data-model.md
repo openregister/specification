@@ -69,4 +69,9 @@ A snapshot can be seen as a **version** of the dataset.
 A Register uses a sidecar data structure derived from the **log** that allows
 anyone to efficiently audit the integrity of the data held in it. This data
 structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
-described by the Certificate Transparency [RFC6962](bib://rfc6962).
+described by the Certificate Transparency [RFC6962](bib://rfc6962). Check the
+[Digital proofs](/digital-proofs/) section for details.
+
+***
+TODO: Perhaps the digital-proofs section should be under data-model?
+***
