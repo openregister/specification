@@ -1,3 +1,9 @@
+const fs = require('fs');
+const toml = require('toml');
+
+const rawBib = fs.readFileSync(`${__dirname}/data/bibliography.toml`, 'utf-8');
+const db = toml.parse(rawBib);
+
 module.exports = {
   siteMetadata: {
     title: 'Registers Specification (next)',
@@ -33,7 +39,12 @@ module.exports = {
         plugins: [
           'gatsby-remark-prismjs',
           'gatsby-remark-autolink-headers',
-
+          {
+            resolve: 'gatsby-remark-bib',
+            options: {
+              db: db
+            }
+          },
         ]
       }
     },

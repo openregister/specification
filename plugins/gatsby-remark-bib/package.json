@@ -1,0 +1,19 @@
+{
+  "name": "gatsby-remark-bib",
+  "description": "Gatsby plugin to manage simple bibliography",
+  "version": "0.0.0",
+  "author": "Arnau Siches <arnau.siches@digital.cabinet-office.gov.uk>",
+  "dependencies": {
+    "unist-util-visit": "^1.0.3"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "remark"
+  ],
+  "peerDependencies": {
+    "gatsby": "next"
+  },
+  "license": "MIT",
+  "main": "index.js"
+}
