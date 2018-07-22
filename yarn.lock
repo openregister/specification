@@ -9026,12 +9026,18 @@ typography-normalize@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/typography-normalize/-/typography-normalize-0.14.0.tgz#1d77c1fe2aaf4a51b3673c4c85c85a65a2d4b573"
 
-typography-theme-kirkham@^0.16.3:
-  version "0.16.3"
-  resolved "https://registry.yarnpkg.com/typography-theme-kirkham/-/typography-theme-kirkham-0.16.3.tgz#77d02a70ccf563457ffe84d3cc4f22955abe8f63"
+typography-theme-fairy-gates@^0.15.11:
+  version "0.15.11"
+  resolved "https://registry.yarnpkg.com/typography-theme-fairy-gates/-/typography-theme-fairy-gates-0.15.11.tgz#305ec02548e4065ab6ba9c7b47ff5099b6f9be5c"
   dependencies:
     gray-percentage "^2.0.0"
     typography-breakpoint-constants "^0.15.10"
+
+typography-theme-github@^0.15.10:
+  version "0.15.10"
+  resolved "https://registry.yarnpkg.com/typography-theme-github/-/typography-theme-github-0.15.10.tgz#64ada39722e2e23c820db8a08fcca84f4e704309"
+  dependencies:
+    gray-percentage "^2.0.0"
 
 typography@^0.16.17:
   version "0.16.17"

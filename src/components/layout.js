@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 import { StaticQuery, Link, graphql } from 'gatsby';
-import { rhythm } from '../utils/typography';
 import 'prismjs/themes/prism.css';
 
 
@@ -37,11 +36,13 @@ const Layout = ({children}) => (
       }`}
     render={data => (
       <React.Fragment>
-        <header className={headerStyle}>
-          <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
-          <span className={versionStyle}> ({data.site.version} {data.site.publish_date})</span>
-        </header>
-        {children}
+        <div className={wrapperStyle}>
+          <header className={headerStyle}>
+            <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
+            <span className={versionStyle}> ({data.site.version.toLowerCase()} {data.site.publish_date})</span>
+          </header>
+          {children}
+        </div>
       </React.Fragment>
     )}
   />
@@ -51,11 +52,20 @@ Layout.propTypes = {
   children: PropTypes.object.isRequired
 };
 
+const wrapperStyle = css`
+  display: grid;
+  grid-template-rows: 55px auto;
+  grid-template-columns: 400px auto;
+  grid-gap: 0 20px;
+`;
+
+
 const headerStyle = css`
   background-color: black;
   padding: 12px;
   color: white;
   border-bottom: 6px solid tomato;
+  grid-column: 1 / 3;
 `;
 
 const linkStyle = css`

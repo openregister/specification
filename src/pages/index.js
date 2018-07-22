@@ -54,19 +54,13 @@ const Main = ({data}) => {
 
   return (
     <Layout>
-      <section className={sectionStyle}>
-        <h1
-          className={css`
-            display: inline-block;
-          `}
-        >
-          Registers Specification (next)
-        </h1>
-
-        <ToC tree={tree} />
-
-        <Content tree={tree} />
-      </section>
+      <ToC tree={tree} />
+      <article className={articleStyle}>
+        <div className={scroller}>
+          <h1>Registers Specification (next)</h1>
+          <Content tree={tree} />
+        </div>
+      </article>
     </Layout>
   );
 };
@@ -110,8 +104,21 @@ export const query = graphql`
   }
 `;
 
-const sectionStyle = css`
-  padding: 20px;
+const wrapperStyle = css`
+  margin-top: 55px;
+  // padding: 20px;
+  display: grid;
+  grid-template-columns: 400px auto;
+  grid-gap: 20px;
+`;
+
+const articleStyle = css`
+  grid-column: 2;
+  grid-row: 2;
+`;
+const scroller = css`
+  overflow-y: auto;
+  height: calc(100vh - 55px);
 `;
 
 export default Main;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {css} from 'react-emotion';
 import { Link } from 'gatsby';
 
 
@@ -37,10 +38,17 @@ Item.propTypes = {
 };
 
 
+const navStyle = css`
+  grid-column: 1;
+  grid-row: 2;
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 55px);
+`;
+
 const ToC = ({tree}) => {
   return (
-    <nav id="toc">
-      <h2>Table of contents</h2>
+    <nav id="toc" className={navStyle}>
       <List items={tree} />
     </nav>
   );

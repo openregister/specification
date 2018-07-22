@@ -30,6 +30,6 @@
     "react-emotion": "^9.2.5",
     "react-typography": "^0.16.13",
     "typography": "^0.16.17",
-    "typography-theme-kirkham": "^0.16.3"
+    "typography-theme-github": "^0.15.10"
   }
 }
