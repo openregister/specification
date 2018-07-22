@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import Section from '../components/section';
 import ToC from '../components/toc';
 import {findById} from '../utils/section';
+import {Helmet} from 'react-helmet';
 
 const Content = ({tree}) => {
   return (
@@ -54,6 +55,11 @@ const Main = ({data}) => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Registers Sepecification</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <ToC tree={tree} />
       <article className={articleStyle}>
         <div className={scroller}>

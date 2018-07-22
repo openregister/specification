@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import {css} from 'react-emotion';
@@ -40,6 +41,12 @@ const SpecSection = ({data}) => {
 
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{section.title}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <ToC tree={tree} target={section.frontmatter.id} />
       <article className={articleStyle}>
         <div className={scroller}>

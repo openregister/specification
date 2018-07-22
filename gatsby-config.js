@@ -30,6 +30,14 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        color: 'tomato',
+        //showSpinner: false,
+      },
+    },
+    'gatsby-plugin-react-helmet',
     'gatsby-transformer-json',
     'gatsby-transformer-toml',
     'gatsby-transformer-yaml',
@@ -45,6 +53,7 @@ module.exports = {
               db: db
             }
           },
+          'gatsby-remark-copy-linked-files',
         ]
       }
     },
