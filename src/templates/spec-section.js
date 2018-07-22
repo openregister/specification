@@ -11,6 +11,58 @@ import Status from '../components/status';
 const articleStyle = css`
   grid-column: 2;
   grid-row: 2;
+
+  .hiblock {
+    border-left: 8px solid black;
+    padding: 36px 8px 8px 20px;
+    position: relative;
+    margin: 26px 0;
+
+    &::before {
+      color: black;
+      font-weight: bold;
+      font-size: 12px;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+    }
+  }
+
+  .note {
+    background-color: aliceblue;
+    border-left-color: deepskyblue;
+
+    &::before {
+      content: 'NOTE';
+    }
+  }
+
+  .warning {
+    background-color: ivory;
+    border-left: 8px solid #ffcc77;
+
+    &::before {
+      content: 'WARNING';
+    }
+  }
+
+  .todo {
+    background-color: mistyrose;
+    border-left-color: tomato;
+
+    &::before {
+      content: 'TODO';
+    }
+  }
+
+  .example {
+    background-color: ivory;
+    border-left-color: tomato;
+
+    &::before {
+      content: 'EXAMPLE';
+    }
+  }
 `;
 const scroller = css`
   overflow-y: auto;

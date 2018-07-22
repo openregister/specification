@@ -5,8 +5,9 @@ url: /data-model/
 status: wip
 ---
 
-Note: This document will use **bold** to highlight important concepts as they
-are introduced.
+***
+NOTE: This document uses **bold** to introduce important concepts.
+***
 
 Informally, a Register is a dataset (for a single type of thing) with the
 ability to provide previous versions of the data held in it.
@@ -26,7 +27,7 @@ for that element, the **item**.
 An **item** is a set of values for the attributes defined in the **schema**.
 
 ***
-TODO: Schema is not well defined yet and it shouldn't be needed to define the
+**TODO:** Schema is not well defined yet and it shouldn't be needed to define the
 item at this level of abstraction.
 ***
 
