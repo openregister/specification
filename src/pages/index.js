@@ -104,13 +104,6 @@ export const query = graphql`
   }
 `;
 
-const wrapperStyle = css`
-  margin-top: 55px;
-  // padding: 20px;
-  display: grid;
-  grid-template-columns: 400px auto;
-  grid-gap: 20px;
-`;
 
 const articleStyle = css`
   grid-column: 2;

@@ -2,9 +2,8 @@
 id: data-model
 title: Data model
 url: /data-model/
+wip: true
 ---
-
-**Work in progress**
 
 Note: This document will use **bold** to highlight important concepts as they
 are introduced.
