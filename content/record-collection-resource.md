@@ -2,6 +2,7 @@
 id: record-collection-resource
 title: List records
 url: /resources/list-records/
+status: wip
 ---
 
 ### Records resource
@@ -10,11 +11,11 @@ url: /resources/list-records/
 
 All <a href="#record-resource">§3.3 Record resource</a>s in a register.
 
----
-**Example**
+***
+**EXAMPLE:**
 
 ```http
-GET /records
+GET /records HTTP/1.1
 Host: https://local-authority-eng.register.gov.uk
 Accept: application/json
 ```
@@ -50,5 +51,4 @@ Content-Type: application/json
   }
 }
 ```
-
----
+***

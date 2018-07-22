@@ -2,6 +2,7 @@
 id: integer-datatype
 title: Integer datatype
 url: /datatypes/integer/
+status: wip
 ---
 
 ### Integer datatype

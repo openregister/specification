@@ -2,6 +2,7 @@
 id: register-resource
 title: Register resource
 url: /resources/register-resource/
+status: wip
 ---
 
 ### Register resource
@@ -18,9 +19,8 @@ The register resource is <a href="#infoset">§2 Infoset</a> with the following f
 * `total-entries`: An <a href="#integer-datatype">§8.3 Integer datatype</a> value representing the number of <a href="#entry-resource">§3.2 Entry resource</a> entities currently stored in the register.
 * `total-records`: An <a href="#integer-datatype">§8.3 Integer datatype</a> value representing the number of <a href="#record-resource">§3.3 Record resource</a> entities currently stored in the register.
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 ```json
 {
@@ -42,7 +42,4 @@ The register resource is <a href="#infoset">§2 Infoset</a> with the following f
   "total-records": "30522"
 }
 ```
-
----
-
-
+***

@@ -6,8 +6,8 @@ url: /datatypes/timestamp/
 
 ### Timestamp datatype
 
-A value conforming to a UTC [RFC3339] timestamp. It can be seen as a strict
-subset of the datetime datatype.
+A value conforming to a UTC [RFC3339](@rfc3339) timestamp. It can be seen as a
+strict subset of the datetime datatype.
 
 ```abnf
 ;           timestamp
@@ -33,13 +33,10 @@ digit = "0" / non-zero
 non-zero =  "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
 ```
 
----
-**Example**
+***
+**EXAMPLE:**
 
 ```
 2018-07-15T14:38:05Z
 ```
-
----
-
-
+***

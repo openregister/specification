@@ -1,7 +1,8 @@
 ---
 id: fields
-title: fields
+title: Fields
 url: /fields/
+status: wip
 ---
 
 ## Fields

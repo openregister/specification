@@ -2,6 +2,7 @@
 id: period-datatype
 title: Period datatype
 url: /datatypes/period/
+status: wip
 ---
 
 ### Period datatype

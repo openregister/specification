@@ -2,6 +2,7 @@
 id: faceted-record-collection-resource
 title: List faceted records
 url: /resources/list-faceted-records/
+status: wip
 ---
 
 ### Faceted records resource
@@ -11,13 +12,12 @@ url: /resources/list-faceted-records/
 All <a href="#record-resource">§3.3 Record resource</a>s in a register which
 have the same value in the given field.
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 ```http
-GET /records/religious-character/Quaker.json
-Host: https://school.register.gov.uk
+GET /records/religious-character/Quaker.json HTTP/1.1
+Host: school.register.gov.uk
 Accept: application/json
 ```
 
@@ -62,7 +62,4 @@ Content-Type: application/json
   }
 }
 ```
-
----
-
-
+***

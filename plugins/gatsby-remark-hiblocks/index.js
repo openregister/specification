@@ -29,6 +29,14 @@ function openBlockMaybe(text, node) {
     node.value = '<div class="hiblock todo">';
   }
 
+  if (text.startsWith('EXAMPLE:')) {
+    text = text.substr(8);
+    status = true;
+    node.type = 'html';
+    node.value = '<div class="hiblock example">';
+  }
+
+
   return {newNode: node, status, text};
 }
 

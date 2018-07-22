@@ -2,6 +2,7 @@
 id: hash-datatype
 title: Hash datatype
 url: /datatypes/hash/
+status: wip
 ---
 
 ### Hash datatype

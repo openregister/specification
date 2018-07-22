@@ -2,6 +2,7 @@
 id: point-datatype
 title: Point datatype
 url: /datatypes/point/
+status: wip
 ---
 
 ### Point datatype

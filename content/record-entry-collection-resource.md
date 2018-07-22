@@ -2,6 +2,7 @@
 id: record-entry-collection-resource
 title: List record entries
 url: /resources/list-record-entries/
+status: wip
 ---
 
 ### Record entries resource
@@ -12,9 +13,8 @@ All of the entries which have the given <a href="#primary-key-field">§9.1
 Primary key field</a> value, in order of <a href="#entry-number-field">§9.4
 entry-number</a>.
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 ```json
 [
@@ -38,7 +38,4 @@ entry-number</a>.
   }
 ]
 ```
-
----
-
-
+***

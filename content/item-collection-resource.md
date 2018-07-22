@@ -2,6 +2,7 @@
 id: item-collection-resource
 title: List items
 url: /resources/list-items/
+status: wip
 ---
 
 ### Items resource
@@ -9,9 +10,8 @@ url: /resources/list-items/
 
 * Path: `/items`
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 ```json
 {
@@ -25,7 +25,4 @@ url: /resources/list-items/
   }
 }
 ```
-
----
-
-
+***

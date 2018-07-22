@@ -2,6 +2,7 @@
 id: entry-collection-resource
 title: List entries
 url: /resources/list-entries/
+status: wip
 ---
 
 ### Entries resource
@@ -13,9 +14,8 @@ The entries resource returns the ordered list of all <a
 href="#entry-resource">§3.2 Entry resource</a>s ordered by entry number in
 ascending order.</p>
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 ```json
 [
@@ -48,7 +48,4 @@ ascending order.</p>
   }
 ]
 ```
-
----
-
-
+***

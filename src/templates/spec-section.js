@@ -57,7 +57,7 @@ const articleStyle = css`
 
   .example {
     background-color: ivory;
-    border-left-color: tomato;
+    border-left-color: darkkhaki;
 
     &::before {
       content: 'EXAMPLE';

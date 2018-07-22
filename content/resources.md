@@ -2,6 +2,7 @@
 id: resources
 title: Resources
 url: /resources/
+status: wip
 ---
 
 ## HTTP API

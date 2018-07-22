@@ -2,6 +2,7 @@
 id: entry-proof-resource
 title: Entry Proof resource
 url: /resources/entry-proof-resource/
+status: wip
 ---
 
 ### Entry proof resource
@@ -19,9 +20,8 @@ a single entry.
 
 There may be different kinds of entry proof available.
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 
 The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§11.2 JSON representation</a>:
@@ -42,7 +42,4 @@ Content-Type: application/json
   "merkle-audit-path": [ "sha-256:zWJuGh1KFSTHoI1zo0gBm9mRMeCrb8nTQdnAgT3llO8=", "sha-256:e2vgurA5X7wd9dtGXNvVRl9y2ICDIRpx3bf4ucb2wbY=" ]
 }
 ```
-
----
-
-
+***

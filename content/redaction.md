@@ -2,6 +2,7 @@
 id: redaction
 title: Redaction
 url: /redaction/
+status: wip
 ---
 
 ## Redaction

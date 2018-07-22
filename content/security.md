@@ -2,9 +2,13 @@
 id: security
 title: Security
 url: /security/
+status: wip
 ---
 
-## Security considerations
+***
+TODO: This section should be removed from the spec or change it to be
+informative.
+***
 
 ### Transport layer security
 

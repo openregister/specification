@@ -2,6 +2,7 @@
 id: collection-resources
 title: Collection resources
 url: /resources/collections/
+status: wip
 ---
 
 ## Collection resources

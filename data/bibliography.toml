@@ -133,3 +133,9 @@ published = "2003-11"
 id = "unicode"
 url = "https://www.unicode.org/versions/latest/"
 title = "The Unicode Standard"
+
+[[bibliography]]
+id = "url"
+url = "https://url.spec.whatwg.org/"
+title = "URL"
+publisher = "WhatWG"

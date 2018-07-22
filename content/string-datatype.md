@@ -2,6 +2,7 @@
 id: string-datatype
 title: String datatype
 url: /datatypes/string/
+status: wip
 ---
 
 ### String datatype

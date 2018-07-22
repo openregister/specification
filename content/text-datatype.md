@@ -2,6 +2,7 @@
 id: text-datatype
 title: Text datatype
 url: /datatypes/text/
+status: wip
 ---
 
 ### Text datatype

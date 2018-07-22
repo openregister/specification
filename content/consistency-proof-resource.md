@@ -2,6 +2,7 @@
 id: consistency-proof-resource
 title: Consistency Proof resource
 url: /resources/consistency-proof-resource/
+status: wip
 ---
 
 ## Consistency proof resource
@@ -25,9 +26,8 @@ to verify consistency between the two.
 There may be different kinds of consistency proof available.
 
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§11.2 JSON representation</a>:
 
@@ -46,7 +46,4 @@ Content-Type: application/json
   "merkle-consistency-nodes": [ "sha-256:MAzvw8AsFqZ8Scuc5IPfj0dzl44jJauaNXuZLQxR3bM=", "sha-256:TX/kGqrSEgHGvxLwSMyX5al14G48HyPmKbUYK0+wSCE=" ]
 }
 ```
-
----
-
-
+***

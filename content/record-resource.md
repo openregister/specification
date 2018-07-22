@@ -2,6 +2,7 @@
 id: record-resource
 title: Record resource
 url: /resources/record-resource/
+status: wip
 ---
 
 ### Record resource

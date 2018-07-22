@@ -20,8 +20,10 @@ module.exports = (
 
       const { title, authors, publisher } = ref;
 
+      const auths = authors ? authors.join('; ') : [];
+
       node.url = ref.url;
-      node.title = [title, authors.join('; '), publisher].join('. ');
+      node.title = [title, auths, publisher].join('. ');
       // node.children = node.children.concat([
       //   {type: 'html', value: '<sup>'},
       //   {type: 'text', value: id},

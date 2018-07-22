@@ -2,6 +2,7 @@
 id: register-proof-resource
 title: Register Proof resource
 url: /resources/register-proof-resource/
+status: wip
 ---
 
 ### Register proof resource
@@ -17,9 +18,8 @@ There may be different kinds of register proof available.  The exact structure
 of the proof will depend on the proof algorithm in use.  The algorithm is
 identified by a proof-identifier.
 
----
-
-**Example**
+***
+**EXAMPLE:**
 
 The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§11.2 JSON representation</a>:
 
@@ -42,5 +42,4 @@ Content-Type: application/json
   "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
 }
 ```
-
-
+***

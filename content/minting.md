@@ -2,6 +2,7 @@
 id: minting
 title: Minting
 url: /minting/
+status: wip
 ---
 
 ## Minting a new entry

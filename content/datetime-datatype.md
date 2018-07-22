@@ -4,8 +4,6 @@ title: Datetime datatype
 url: /datatypes/datetime/
 ---
 
-### Datetime datatype
-
 A datetime conforming to the subset of a UTC ISO8601 date, time or datetime as
 follows:
 
@@ -33,14 +31,14 @@ digit = "0" / non-zero
 non-zero =  "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
 ```
 
-* Datetime values MUST be valid [ISO8601].
+* Datetime values MUST be valid [ISO8601](@iso8601).
 * Datetime values MUST be recorded as Universal Coordinated Time (UTC), and not local time such as British Summer Time (BST) or other offset from UTC.
 * The MAY be taken as an indication of the precision, in which case it is the responsibility of the consumer to decide how the date should be interpreted.
 
 ---
-**Example**
+**EXAMPLE:**
 
-The following examples are all valid Datetime values:
+For example, the following Datatime values are valid:
 
 ```
 2001
@@ -53,5 +51,3 @@ The following examples are all valid Datetime values:
 ```
 
 ---
-
-
