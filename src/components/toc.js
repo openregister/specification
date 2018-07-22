@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {css} from 'react-emotion';
-import { Link } from 'gatsby';
-
+import {Link} from 'gatsby';
+import StatusTag from './status-tag';
 
 const List = ({items, target}) => {
   return (
@@ -17,10 +17,15 @@ List.propTypes = {
   target: PropTypes.string
 };
 
+const selectedItemStyle = css`
+  border-left: 4px solid deepskyblue;
+  padding-left: 4px;
+`;
+
 const LinkMaybe = ({to, isTarget, children}) => {
   return (
     isTarget
-      ? <span>{children}</span>
+      ? <span className={selectedItemStyle}>{children}</span>
       : <Link to={to}>{children}</Link>
   );
 };
@@ -31,20 +36,11 @@ LinkMaybe.propTypes = {
   isTarget: PropTypes.bool.isRequired,
 };
 
-const wipStyle = css`
-  background-color: tomato;
-  color: ivory;
-  font-variant: small-caps;
-  line-height: 1.1;
-  padding: 0 2px;
-`;
 
-const Item = ({id, url, title, items, wip, target}) => {
-  const wipMaybe = wip == true ? <small className={wipStyle}>wip</small> : null;
-
+const Item = ({id, url, title, items, status, target}) => {
   return (
     <li key={id}>
-      <LinkMaybe to={url} isTarget={id == target}>{title}</LinkMaybe> {wipMaybe}
+      <LinkMaybe to={url} isTarget={id == target}>{title}</LinkMaybe> <StatusTag label={status} />
       {
         items
           ? <List items={items} target={target} />
@@ -60,7 +56,7 @@ Item.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.array,
   target: PropTypes.string,
-  wip: PropTypes.bool,
+  status: PropTypes.string,
 };
 
 

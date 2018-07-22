@@ -5,6 +5,7 @@ import {css} from 'react-emotion';
 import Layout from '../components/layout';
 import ToC from '../components/toc';
 import {findById} from '../utils/section';
+import Status from '../components/status';
 
 const articleStyle = css`
   grid-column: 2;
@@ -25,32 +26,12 @@ const extendToc = (toc, sections) => {
       items: items ? extendToc(items, sections) : null,
       title: section.frontmatter.title,
       url: section.frontmatter.url,
-      wip: section.frontmatter.wip,
+      status: section.frontmatter.status,
     };
 
     return result;
   });
 };
-
-const wipStyle = css`
-  background-color: tomato;
-  color: ivory;
-  //font-variant: small-caps;
-  text-transform: uppercase;
-  line-height: 1.1;
-  font-size: 16px;
-  vertical-align: middle;
-  padding: 0 2px;
-`;
-
-const WipMaybe = ({isWip}) => {
-  return (
-    isWip
-      ? <small className={wipStyle}>wip</small> : null
-  );
-};
-
-
 
 const SpecSection = ({data}) => {
   const section = data.content;
@@ -62,7 +43,7 @@ const SpecSection = ({data}) => {
       <ToC tree={tree} target={section.frontmatter.id} />
       <article className={articleStyle}>
         <div className={scroller}>
-          <h1>{section.frontmatter.title} <WipMaybe isWip={!!section.frontmatter.wip} /></h1>
+          <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
           <div dangerouslySetInnerHTML={{ __html: section.html }} />
         </div>
       </article>
@@ -96,7 +77,7 @@ export const query = graphql`
             id
             title
             url
-            wip
+            status
           }
         }
       }
@@ -108,7 +89,7 @@ export const query = graphql`
         id
         title
         url
-        wip
+        status
       }
     }
   }
