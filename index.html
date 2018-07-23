@@ -3092,17 +3092,17 @@ time atom.</p>
      </ul>
    </ul>
    <p>This canonicalisation algorithm is very similar to that used in <a data-link-type="biblio" href="#biblio-jcs">[JCS]</a>, except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.</p>
-   <div class="example" id="example-3311bd01">
-    <a class="self-link" href="#example-3311bd01"></a> Given an item two fields <code>foo</code> with a value <code>abc</code> and <code>bar</code> with value <code>xyz</code>, it can be expressed as JSON: 
+   <div class="example" id="example-7df2df90">
+    <a class="self-link" href="#example-7df2df90"></a> As an example, take an item with two fields <code>foo</code> and <code>bar</code> with values <code>abc</code> and <code>xyz</code> respectively. This can be expressed as JSON: 
 <pre><code>{
   "foo": "abc",
   "bar": "xyz"
 }
 </code></pre>
-    <p>Then canonicalised:</p>
+    <p>This can then be canonicalised</p>
 <pre><code>{"bar":"xyz","foo":"abc"}
 </code></pre>
-    <p>Then hashed with SHA-256:</p>
+    <p>Then hashed with SHA-256</p>
 <pre><code>5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
 </code></pre>
     <p>And finally prepended with the hashing algorithm:</p>

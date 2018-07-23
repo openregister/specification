@@ -801,8 +801,9 @@ The canonicalisation algorithm is as follows:
 This canonicalisation algorithm is very similar to that used in [[JCS]], except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.
 
 <div class="example">
-Given an item two fields <code>foo</code> with a value <code>abc</code> and
-<code>bar</code> with value <code>xyz</code>, it can be expressed as JSON:
+As an example, take an item with two fields
+<code>foo</code> and <code>bar</code> with values <code>abc</code> and
+<code>xyz</code> respectively. This can be expressed as JSON:
 
 <pre><code>
 {
@@ -811,13 +812,13 @@ Given an item two fields <code>foo</code> with a value <code>abc</code> and
 }
 </code></pre>
 
-Then canonicalised:
+This can then be canonicalised
 
 <pre><code>
 {"bar":"xyz","foo":"abc"}
 </code></pre>
 
-Then hashed with SHA-256:
+Then hashed with SHA-256
 
 <pre><code>
 5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
