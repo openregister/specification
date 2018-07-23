@@ -3064,10 +3064,6 @@ time atom.</p>
    <p>A hash of the item’s contents may be used to identify the contents of an item, irrespective of where it is stored or presented.</p>
    <p>An item-hash is a hashing algorithm and a hash value, separated by a colon (:) character.  Currently there is only one valid hashing algorithm, <code>sha-256</code>.  In future, other alternative hashing algorithms may be added to this specification.  They will be distinguished by having a different string prefix.</p>
    <h4 class="heading settled" data-level="8.11.1" id="sha-256-item-hash"><span class="secno">8.11.1. </span><span class="content">SHA-256 item hash</span><a class="self-link" href="#sha-256-item-hash"></a></h4>
-   <div class="example" id="example-15bc165f">
-    <a class="self-link" href="#example-15bc165f"></a> The SHA-256 item hash of the item with a field <code>field1</code> with a value of <code>"a"</code> and a field <code>field2</code> with a value of <code>"b"</code> is: 
-    <p><code>sha-256:129332749e67eb9ab7390d7da2e88173367d001ac3e9e39f06e41690cd05e3ae</code></p>
-   </div>
    <p>The <code>sha-256</code> item hash is computed by serialising the item to a canonical form of JSON, and computing the SHA-256 hash, defined in <a data-link-type="biblio" href="#biblio-fips-180-4">[FIPS-180-4]</a>, of the resulting serial form.</p>
    <p>The canonicalisation algorithm is as follows:</p>
    <ul>
@@ -3096,6 +3092,23 @@ time atom.</p>
      </ul>
    </ul>
    <p>This canonicalisation algorithm is very similar to that used in <a data-link-type="biblio" href="#biblio-jcs">[JCS]</a>, except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.</p>
+   <div class="example" id="example-3311bd01">
+    <a class="self-link" href="#example-3311bd01"></a> Given an item two fields <code>foo</code> with a value <code>abc</code> and <code>bar</code> with value <code>xyz</code>, it can be expressed as JSON: 
+<pre><code>{
+  "foo": "abc",
+  "bar": "xyz"
+}
+</code></pre>
+    <p>Then canonicalised:</p>
+<pre><code>{"bar":"xyz","foo":"abc"}
+</code></pre>
+    <p>Then hashed with SHA-256:</p>
+<pre><code>5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
+</code></pre>
+    <p>And finally prepended with the hashing algorithm:</p>
+<pre><code>sha-256:5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
+</code></pre>
+   </div>
    <p class="issue" id="issue-0be82fb3"><a class="self-link" href="#issue-0be82fb3"></a> which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm? <a href="https://github.com/openregister/specification/issues/39">&lt;https://github.com/openregister/specification/issues/39></a></p>
    <h3 class="heading settled" data-level="8.12" id="entry-reference-datatype"><span class="secno">8.12. </span><span class="content">Entry-reference datatype</span><a class="self-link" href="#entry-reference-datatype"></a></h3>
     Legal documents may need to cite an individual entry, rather than the latest entry of the record. 
