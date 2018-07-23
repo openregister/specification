@@ -782,12 +782,6 @@ An item-hash is a hashing algorithm and a hash value, separated by a colon (:) c
 
 ### SHA-256 item hash ### {#sha-256-item-hash}
 
-<div class="example">
-The SHA-256 item hash of the item with a field <code>field1</code> with a value of <code>"a"</code> and a field <code>field2</code> with a value of <code>"b"</code> is:
-
-<code>sha-256:129332749e67eb9ab7390d7da2e88173367d001ac3e9e39f06e41690cd05e3ae</code>
-</div>
-
 The <code>sha-256</code> item hash is computed by serialising the item to a canonical form of JSON, and computing the SHA-256 hash, defined in [[FIPS-180-4]], of the resulting serial form.
 
 The canonicalisation algorithm is as follows:
@@ -806,7 +800,38 @@ The canonicalisation algorithm is as follows:
 
 This canonicalisation algorithm is very similar to that used in [[JCS]], except that we stipulate an ordering of keys, and we enforce upper-case rather than lower-case hex digits.
 
+<div class="example">
+Given an item two fields <code>foo</code> with a value <code>abc</code> and
+<code>bar</code> with value <code>xyz</code>, it can be expressed as JSON:
+
+<pre><code>
+{
+  "foo": "abc",
+  "bar": "xyz"
+}
+</code></pre>
+
+Then canonicalised:
+
+<pre><code>
+{"bar":"xyz","foo":"abc"}
+</code></pre>
+
+Then hashed with SHA-256:
+
+<pre><code>
+5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
+</code></pre>
+
+And finally prepended with the hashing algorithm:
+
+<pre><code>
+sha-256:5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
+</code></pre>
+</div>
+
 ISSUE(openregister/specification#39): which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm?
+
 
 ## Entry-reference datatype ## {#entry-reference-datatype}
 Legal documents may need to cite an individual entry, rather than the latest entry of the record.
