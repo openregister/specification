@@ -39,7 +39,9 @@ const Layout = ({children}) => (
         <div className={wrapperStyle}>
           <header className={headerStyle}>
             <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
-            <span className={versionStyle}> ({data.site.version.toLowerCase()} {data.site.publish_date})</span>
+            <div className={flexnavStyle}>
+              <span className={versionStyle}> ({data.site.version.toLowerCase()} {data.site.publish_date})</span> <a className={link2Style} href={data.site.issue_tracker}>Issue tracker (Github)</a>
+            </div>
           </header>
           {children}
         </div>
@@ -51,6 +53,10 @@ const Layout = ({children}) => (
 Layout.propTypes = {
   children: PropTypes.any.isRequired
 };
+
+const flexnavStyle = css`
+  float: right;
+`;
 
 const wrapperStyle = css`
   display: grid;
@@ -71,6 +77,16 @@ const headerStyle = css`
 const linkStyle = css`
   color: white;
   text-decoration: none;
+  &:hover {
+    color: tomato;
+  }
+`;
+
+const link2Style = css`
+  color: ivory;
+  text-decoration: underline;
+  margin-left: 10px;
+  font-size: 14px;
   &:hover {
     color: tomato;
   }
