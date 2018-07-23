@@ -13,18 +13,20 @@ accessing data held in a register.
 
 _This section is non-normative._
 
-***
-TODO: Describe where is Registers coming from.
-***
+Back in 2015 a team at
+[GDS](https://www.gov.uk/government/organisations/government-digital-service)
+started exploring how to improve digital registers. A few blog posts from then
+can help provide some background for where is this specification coming from.
+
+* [Building on the steel thread](https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread/).
+* [Registers: authoritative lists you can trust](https://gds.blog.gov.uk/2015/09/01/registers-authoritative-lists-you-can-trust/).
+* [The characteristics of a register](https://gds.blog.gov.uk/2015/10/13/the-characteristics-of-a-register/).
+* [Linking registers](https://gds.blog.gov.uk/2015/12/16/linking-registers/).
 
 
 ## Audience
 
 _This section is non-normative._
-
-***
-TODO: Describe who is this spec for.
-***
 
 This specification is intended for implementers of the Register API or tools
 that operate on the Register API.
