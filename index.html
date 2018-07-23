@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-07-16">16 July 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-07-23">23 July 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1540,14 +1540,8 @@ data held in a register.</p>
     <li>
      <a href="#representations"><span class="secno">11</span> <span class="content">Representations</span></a>
      <ol class="toc">
-      <li><a href="#html-representation"><span class="secno">11.1</span> <span class="content">HTML representation</span></a>
-      <li><a href="#json-representation"><span class="secno">11.2</span> <span class="content">JSON representation</span></a>
-      <li><a href="#yaml-representation"><span class="secno">11.3</span> <span class="content">YAML representation</span></a>
-      <li><a href="#csv-representation"><span class="secno">11.4</span> <span class="content">CSV representation</span></a>
-      <li><a href="#tsv-representation"><span class="secno">11.5</span> <span class="content">TSV representation</span></a>
-      <li><a href="#json-ld-representation"><span class="secno">11.6</span> <span class="content">JSON-LD representation</span></a>
-      <li><a href="#ttl-representation"><span class="secno">11.7</span> <span class="content">Turtle representation</span></a>
-      <li><a href="#atom-representation"><span class="secno">11.8</span> <span class="content">Atom representation</span></a>
+      <li><a href="#json-representation"><span class="secno">11.1</span> <span class="content">JSON representation</span></a>
+      <li><a href="#csv-representation"><span class="secno">11.2</span> <span class="content">CSV representation</span></a>
      </ol>
     <li>
      <a href="#digital-proofs"><span class="secno">12</span> <span class="content">Digital Proofs</span></a>
@@ -1633,7 +1627,7 @@ data held in a register.</p>
 The set of fields which MAY be included in an item are defined in the <code>fields</code> field in the <a href="#register-register">§10.1 Register register</a> entry for the register.</p>
    <p>An item is identified by the globally unique <a href="#item-hash-field">§9.7 item-hash</a> calculated from its contents. Changing the item data changes the <a href="#item-hash-field">§9.7 item-hash</a>.</p>
    <div class="example" id="example-a6b79b3f">
-    <a class="self-link" href="#example-a6b79b3f"></a> The following example shows an item in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-a6b79b3f"></a> The following example shows an item in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre>https://food-premises.register.gov.uk/items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1663,7 +1657,7 @@ the entry-number and index-entry-number are always identical. The item-hash iden
 the set of <a href="#item-resource">§3.1 Item resource</a> for the entry. The key represents the primary key value
 for the entry.</p>
    <p>The entry resource returns an array containing a single entry.</p>
-   <div class="example" id="example-ce10e4f7"><a class="self-link" href="#example-ce10e4f7"></a> The following example shows an entry in the <a href="#json-representation">§11.2 JSON representation</a>: <span id="assert-106b5c58"> <pre class="highlight"><span class="p">[</span>
+   <div class="example" id="example-ce10e4f7"><a class="self-link" href="#example-ce10e4f7"></a> The following example shows an entry in the <a href="#json-representation">§11.1 JSON representation</a>: <span id="assert-106b5c58"> <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
     <span class="nt">"entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1690,7 +1684,7 @@ the latest one with the given primary key value.</p>
    <p>This resource SHOULD provide a <code>Link:</code> header <a data-link-type="biblio" href="#biblio-rfc8288">[RFC8288]</a> with a
 relation of <code>"version-history"</code> <a data-link-type="biblio" href="#biblio-rfc5829">[RFC5829]</a> to the <a href="#record-entries-resource">§5.3 Record entries resource</a> for this record.</p>
    <div class="example" id="example-436f9463">
-    <a class="self-link" href="#example-436f9463"></a> The following example shows a record in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-436f9463"></a> The following example shows a record in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight">https://local-authority.register.gov.uk/records/E<span class="mi">09000019</span>
 <span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
@@ -1738,7 +1732,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
      <p>An <a href="#integer-datatype">§8.3 Integer datatype</a> value representing the number of <a href="#record-resource">§3.3 Record resource</a> entities currently stored in the register.</p>
    </dl>
    <div class="example" id="example-6a52e87b">
-    <a class="self-link" href="#example-6a52e87b"></a> The following example shows a register in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-6a52e87b"></a> The following example shows a register in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"domain"</span><span class="p">:</span> <span class="s2">".register.gov.uk"</span><span class="p">,</span>
   <span class="nt">"last-updated"</span><span class="p">:</span> <span class="s2">"2016-01-21T21:09:59Z"</span><span class="p">,</span>
@@ -1767,7 +1761,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>A register proof is a digitally-signed demonstration of the integrity of all of the entries in a register.  Given a register proof, it is possible to verify that all of the entries and items are correct, and that the entries are in the correct order.</p>
    <p>There may be different kinds of register proof available.  The exact structure of the proof will depend on the proof algorithm in use.  The algorithm is identified by a proof-identifier.</p>
    <div class="example" id="example-d9b9cd23">
-    <a class="self-link" href="#example-d9b9cd23"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-d9b9cd23"></a> The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/register/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1789,7 +1783,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>The important characteristic of an entry proof is that it means the client does not need to download the entire register just to verify the integrity of a single entry.</p>
    <p>There may be different kinds of entry proof available.</p>
    <div class="example" id="example-4b0bc626">
-    <a class="self-link" href="#example-4b0bc626"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-4b0bc626"></a> The following example shows a Merkle-tree-based entry proof in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/entries/123/130/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1809,7 +1803,7 @@ relation of <code>"version-history"</code> <a data-link-type="biblio" href="#bib
    <p>The important characteristic of a consistency proof between two versions of a register is that the client does not need to download the entirety of either to verify consistency between the two.</p>
    <p>There may be different kinds of consistency proof available.</p>
    <div class="example" id="example-89ae3559">
-    <a class="self-link" href="#example-89ae3559"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-89ae3559"></a> The following example shows a Merkle-tree-based consistency proof in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre>https://school.register.gov.uk/proof/consistency/1234/1240/merkle:sha-256
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -1836,7 +1830,7 @@ no <code>"next"</code> link.</p>
     <dd>/items
    </dl>
    <div class="example" id="example-343be005">
-    <a class="self-link" href="#example-343be005"></a> The following example shows a set of records in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-343be005"></a> The following example shows a set of records in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"local-authority"</span><span class="p">:</span> <span class="s2">"E09000019"</span><span class="p">,</span>
@@ -1858,7 +1852,7 @@ no <code>"next"</code> link.</p>
    <p>The entries resource returns the ordered list of all <a href="#entry-resource">§3.2 Entry resource</a>s
 ordered by entry number in ascending order.</p>
    <div class="example" id="example-e8bea9f6">
-    <a class="self-link" href="#example-e8bea9f6"></a> The following example shows a list of entries in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-e8bea9f6"></a> The following example shows a list of entries in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
@@ -1897,7 +1891,7 @@ ordered by entry number in ascending order.</p>
    </dl>
    <p>All of the entries which have the given <a href="#primary-key-field">§9.1 Primary key field</a> value, in order of <a href="#entry-number-field">§9.4 entry-number</a>.</p>
    <div class="example" id="example-3063a308">
-    <a class="self-link" href="#example-3063a308"></a> The following example shows a list of item entries in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-3063a308"></a> The following example shows a list of item entries in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight"><span class="p">[</span>
   <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"121"</span><span class="p">,</span>
@@ -1927,7 +1921,7 @@ ordered by entry number in ascending order.</p>
    </dl>
    <p>All <a href="#record-resource">§3.3 Record resource</a>s in a register.</p>
    <div class="example" id="example-b283dc78">
-    <a class="self-link" href="#example-b283dc78"></a> The following example shows a list of records in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-b283dc78"></a> The following example shows a list of records in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight"><span class="p">{</span>
   <span class="nt">"E09000019"</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">"index-entry-number"</span><span class="p">:</span> <span class="s2">"72"</span><span class="p">,</span>
@@ -1963,7 +1957,7 @@ ordered by entry number in ascending order.</p>
    </dl>
    <p>All <a href="#record-resource">§3.3 Record resource</a>s in a register which have the same value in the given field.</p>
    <div class="example" id="example-4b7fedf9">
-    <a class="self-link" href="#example-4b7fedf9"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§11.2 JSON representation</a>: 
+    <a class="self-link" href="#example-4b7fedf9"></a> The following example shows a list of record entries matching a field in the <a href="#json-representation">§11.1 JSON representation</a>: 
 <pre class="highlight">https://school.register.gov.uk/records/religious-character/Quaker.json
 </pre>
 <pre class="highlight"><span class="p">{</span>
@@ -2019,16 +2013,15 @@ The archive file SHOULD be made available in a single file, but MAY be split int
      <p>a directory with the name of the register containing</p>
      <ul>
       <li data-md="">
-       <p>a file named "register.json" containing the <a href="#register-resource">§3.4 Register resource</a> in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a file named "register.json" containing the <a href="#register-resource">§3.4 Register resource</a> in the <a href="#json-representation">§11.1 JSON representation</a></p>
       <li data-md="">
-       <p>a file named "proof.json" containing one or more digital proofs for the register in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a file named "proof.json" containing one or more digital proofs for the register in the <a href="#json-representation">§11.1 JSON representation</a></p>
       <li data-md="">
-       <p>a directory named "item" containing all of the <a href="#item-resource">§3.1 Item resource</a> in one or more parts in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a directory named "item" containing all of the <a href="#item-resource">§3.1 Item resource</a> in one or more parts in the <a href="#json-representation">§11.1 JSON representation</a></p>
       <li data-md="">
-       <p>a directory named "entry" containing all of the <a href="#entry-resource">§3.2 Entry resource</a> in one or more files in the <a href="#json-representation">§11.2 JSON representation</a></p>
+       <p>a directory named "entry" containing all of the <a href="#entry-resource">§3.2 Entry resource</a> in one or more files in the <a href="#json-representation">§11.1 JSON representation</a></p>
      </ul>
    </ul>
-   <p>A register archive MAY contain entry and item resources in the more space efficient <a href="#tsv-representation">§11.5 TSV representation</a>.</p>
    <h2 class="heading settled" data-level="7" id="http-headers"><span class="secno">7. </span><span class="content">HTTP Headers</span><a class="self-link" href="#http-headers"></a></h2>
    <p>Table of link and other HTTP headers used by resources ..</p>
    <ul>
@@ -2042,7 +2035,7 @@ The archive file SHOULD be made available in a single file, but MAY be split int
      <p>the <a href="#item-hash-field">§9.7 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
    </ul>
    <div class="example" id="example-03bbffe0">
-    <a class="self-link" href="#example-03bbffe0"></a> The following example shows the HTTP headers for the <a href="#json-representation">§11.2 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
+    <a class="self-link" href="#example-03bbffe0"></a> The following example shows the HTTP headers for the <a href="#json-representation">§11.1 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
 <pre>HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Expires: Sun, 22 Jan 2017 08:00:08 GMT
@@ -3137,13 +3130,9 @@ is no guarantee of entry order. The <a href="#entry-number-field">§9.4 entry-nu
    <h3 class="heading settled" data-level="10.2" id="field-register"><span class="secno">10.2. </span><span class="content">Field register</span><a class="self-link" href="#field-register"></a></h3>
    <h3 class="heading settled" data-level="10.3" id="datatype-register"><span class="secno">10.3. </span><span class="content">Datatype register</span><a class="self-link" href="#datatype-register"></a></h3>
    <h2 class="heading settled" data-level="11" id="representations"><span class="secno">11. </span><span class="content">Representations</span><a class="self-link" href="#representations"></a></h2>
-   <p class="note" role="note"><span>Note:</span> JSON and other representations can have a field which is missing. These have the same semantics as an empty field.</p>
-   <h3 class="heading settled" data-level="11.1" id="html-representation"><span class="secno">11.1. </span><span class="content">HTML representation</span><a class="self-link" href="#html-representation"></a></h3>
-   <ul>
-    <li data-md="">
-     <p><a data-link-type="biblio" href="#biblio-html5">[HTML5]</a></p>
-   </ul>
-   <h3 class="heading settled" data-level="11.2" id="json-representation"><span class="secno">11.2. </span><span class="content">JSON representation</span><a class="self-link" href="#json-representation"></a></h3>
+   <p>JSON is the canonical representation but CSV is encouraged to be implemented
+as well.</p>
+   <h3 class="heading settled" data-level="11.1" id="json-representation"><span class="secno">11.1. </span><span class="content">JSON representation</span><a class="self-link" href="#json-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>suffix: .json</p>
@@ -3153,77 +3142,20 @@ is no guarantee of entry order. The <a href="#entry-number-field">§9.4 entry-nu
      <p>specification: <a data-link-type="biblio" href="#biblio-json">[JSON]</a></p>
    </ul>
    <p>All field values MUST be encoded as JSON strings. When JSON needs to be in a
-  canonical format, use the procedure defined in <a href="#sha-256-item-hash">§8.11.1 SHA-256 item hash</a></p>
-   <h3 class="heading settled" data-level="11.3" id="yaml-representation"><span class="secno">11.3. </span><span class="content">YAML representation</span><a class="self-link" href="#yaml-representation"></a></h3>
-   <ul>
-    <li data-md="">
-     <p>Suffix: .yaml</p>
-    <li data-md="">
-     <p>Content-Type: text/yaml;charset=UTF-8</p>
-    <li data-md="">
-     <p>Specification: <a data-link-type="biblio" href="#biblio-yaml">[YAML]</a></p>
-   </ul>
-   <div class="example" id="example-684704ec">
-    <a class="self-link" href="#example-684704ec"></a> The following example shows a <a href="#record-resource">§3.3 Record resource</a> in the <a href="#yaml-representation">§11.3 YAML representation</a>: 
-<pre class="highlight">entry:
-  entry-number: <span class="s">"30568"</span>
-  timestamp: <span class="s">"2015-01-02T23:59:01Z"</span>
-  item-hash: <span class="s">"sha-256:87963123bd04263c878b36ad7ce421b8b68a07f9"</span>,
-  key: <span class="s">"402175"</span>
-item:
-  address: <span class="s">"100101030506"</span>
-  name: <span class="s">"Glanaman</span><span class="nv"> </span><span class="s">Home</span><span class="nv"> </span><span class="s">Tution</span><span class="nv"> </span><span class="s">Centre"</span>
-  school: <span class="s">"402175"</span>
-  start-date: <span class="s">"2007-11-07"</span>
-</pre>
-   </div>
-   <p class="issue" id="issue-e14b6cf0"><a class="self-link" href="#issue-e14b6cf0"></a> Which data types should we use from YAML? <a href="https://github.com/openregister/specification/issues/51">&lt;https://github.com/openregister/specification/issues/51></a></p>
-   <h3 class="heading settled" data-level="11.4" id="csv-representation"><span class="secno">11.4. </span><span class="content">CSV representation</span><a class="self-link" href="#csv-representation"></a></h3>
+  canonical format, use the procedure defined in <a href="#sha-256-item-hash">§8.11.1 SHA-256 item hash</a>.</p>
+   <p class="note" role="note"><span>Note:</span> JSON can have missing fields. These have the same semantics as a field
+  with a <code>null</code> value.</p>
+   <h3 class="heading settled" data-level="11.2" id="csv-representation"><span class="secno">11.2. </span><span class="content">CSV representation</span><a class="self-link" href="#csv-representation"></a></h3>
    <ul>
     <li data-md="">
      <p>Suffix: .csv</p>
     <li data-md="">
+     <p>media-type: text/csv</p>
+    <li data-md="">
      <p>Specification: <a data-link-type="biblio" href="#biblio-tabular-data-model">[tabular-data-model]</a></p>
    </ul>
-   <h3 class="heading settled" data-level="11.5" id="tsv-representation"><span class="secno">11.5. </span><span class="content">TSV representation</span><a class="self-link" href="#tsv-representation"></a></h3>
-   <ul>
-    <li data-md="">
-     <p>Suffix: .tsv</p>
-    <li data-md="">
-     <p>Content-Type: text/tab-separated-values;charset=UTF-8</p>
-    <li data-md="">
-     <p>Specification: <a data-link-type="biblio" href="#biblio-iana-tsv">[IANA-TSV]</a></p>
-   </ul>
-   <h3 class="heading settled" data-level="11.6" id="json-ld-representation"><span class="secno">11.6. </span><span class="content">JSON-LD representation</span><a class="self-link" href="#json-ld-representation"></a></h3>
-   <ul>
-    <li data-md="">
-     <p><a data-link-type="biblio" href="#biblio-json-ld">[JSON-LD]</a></p>
-   </ul>
-   <h3 class="heading settled" data-level="11.7" id="ttl-representation"><span class="secno">11.7. </span><span class="content">Turtle representation</span><a class="self-link" href="#ttl-representation"></a></h3>
-   <ul>
-    <li data-md="">
-     <p>Suffix: .ttl</p>
-    <li data-md="">
-     <p>Content-Type: text/turtle;charset=UTF-8</p>
-    <li data-md="">
-     <p>Specification: <a data-link-type="biblio" href="#biblio-turtle">[TURTLE]</a></p>
-   </ul>
-   <div class="example" id="example-f78b0b5b">
-    <a class="self-link" href="#example-f78b0b5b"></a> The following example shows an <a href="#item-resource">§3.1 Item resource</a> in the <a href="#ttl-representation">§11.7 Turtle representation</a>: 
-<pre>@prefix field: &lt;https://field.register.gov.uk/field/>.
-
-&lt;https://school.register.gov.uk/items/sha-256:af3056bd04263c878b36ad7ce421b8b68a0799>
- field:address &lt;https://address.register.gov.uk/address/100101030506> ;
- field:name "Glanaman Home Tution Centre" ;
- field:school &lt;https://school.register.gov.uk/records/402175> ;
- field:start-date "2007-11-07" ;
-</pre>
-   </div>
-   <h3 class="heading settled" data-level="11.8" id="atom-representation"><span class="secno">11.8. </span><span class="content">Atom representation</span><a class="self-link" href="#atom-representation"></a></h3>
-   <ul>
-    <li data-md="">
-     <p><a data-link-type="biblio" href="#biblio-rfc4287">[RFC4287]</a></p>
-   </ul>
+   <p class="note" role="note"><span>Note:</span> CSV can have empty (blank) values. These have the same semantics as if
+  the fields were missing. See <a href="#json-representation">§11.1 JSON representation</a>.</p>
    <h2 class="heading settled" data-level="12" id="digital-proofs"><span class="secno">12. </span><span class="content">Digital Proofs</span><a class="self-link" href="#digital-proofs"></a></h2>
    <h3 class="heading settled" data-level="12.1" id="using-certificate-transparency"><span class="secno">12.1. </span><span class="content">Certificate transparency</span><a class="self-link" href="#using-certificate-transparency"></a></h3>
     Certificate Transparency <a data-link-type="biblio" href="#biblio-rfc6962">[RFC6962]</a> is one of a number of possible methods of proving the integrity of a register. 
@@ -3248,7 +3180,7 @@ item:
    <p>To mint a new entry in the register:</p>
    <ul>
     <li data-md="">
-     <p>POST a new item in <a href="#json-representation">§11.2 JSON representation</a> to the ..mint url.. with the proposed new entry number.</p>
+     <p>POST a new item in <a href="#json-representation">§11.1 JSON representation</a> to the ..mint url.. with the proposed new entry number.</p>
     <li data-md="">
      <p>The item will first appear as a new item in the store</p>
     <li data-md="">
@@ -3494,26 +3426,18 @@ these assets.</p>
    <dd>H. Butler; et al. <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">The GeoJSON Format</a>. URL: <a href="https://tools.ietf.org/html/draft-ietf-geojson-00">https://tools.ietf.org/html/draft-ietf-geojson-00</a>
    <dt id="biblio-gml">[GML]
    <dd><a href="http://www.opengeospatial.org/standards/gml">Geography Markup Language (GML) Encoding Standard</a>. URL: <a href="http://www.opengeospatial.org/standards/gml">http://www.opengeospatial.org/standards/gml</a>
-   <dt id="biblio-html5">[HTML5]
-   <dd>Ian Hickson; et al. <a href="https://www.w3.org/TR/html5/">HTML5</a>. 28 October 2014. REC. URL: <a href="https://www.w3.org/TR/html5/">https://www.w3.org/TR/html5/</a>
-   <dt id="biblio-iana-tsv">[IANA-TSV]
-   <dd>Paul Lindner. <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">Definition of tab-separated-values (tsv)</a>. June 1993. IANA Media Type Registration. URL: <a href="https://www.iana.org/assignments/media-types/text/tab-separated-values">https://www.iana.org/assignments/media-types/text/tab-separated-values</a>
    <dt id="biblio-iso8601">[ISO8601]
    <dd><a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">Representation of dates and times. ISO 8601:2004.</a>. 2004. ISO 8601:2004. URL: <a href="http://www.iso.org/iso/catalogue_detail?csnumber=40874">http://www.iso.org/iso/catalogue_detail?csnumber=40874</a>
    <dt id="biblio-jcs">[JCS]
    <dd>Anders Rundgren. <a href="https://cyberphone.github.io/doc/security/jcs.html">JSON Cleartext Signature</a>. URL: <a href="https://cyberphone.github.io/doc/security/jcs.html">https://cyberphone.github.io/doc/security/jcs.html</a>
    <dt id="biblio-json">[JSON]
    <dd>T. Bray, Ed.. <a href="https://tools.ietf.org/html/rfc8259">The JavaScript Object Notation (JSON) Data Interchange Format</a>. December 2017. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc8259">https://tools.ietf.org/html/rfc8259</a>
-   <dt id="biblio-json-ld">[JSON-LD]
-   <dd>Manu Sporny; Gregg Kellogg; Markus Lanthaler. <a href="https://www.w3.org/TR/json-ld/">JSON-LD 1.0</a>. 16 January 2014. REC. URL: <a href="https://www.w3.org/TR/json-ld/">https://www.w3.org/TR/json-ld/</a>
    <dt id="biblio-kml">[KML]
    <dd><a href="http://www.opengeospatial.org/standards/kml/">KML 2.3</a>. URL: <a href="http://www.opengeospatial.org/standards/kml/">http://www.opengeospatial.org/standards/kml/</a>
    <dt id="biblio-markdown">[MARKDOWN]
    <dd>John MacFarlane; et al. <a href="http://spec.commonmark.org/0.24/">Common Markdown</a>. URL: <a href="http://spec.commonmark.org/0.24/">http://spec.commonmark.org/0.24/</a>
    <dt id="biblio-rfc3339">[RFC3339]
    <dd>G. Klyne; C. Newman. <a href="https://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>. July 2002. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc3339">https://tools.ietf.org/html/rfc3339</a>
-   <dt id="biblio-rfc4287">[RFC4287]
-   <dd>M. Nottingham, Ed.; R. Sayre, Ed.. <a href="https://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>. December 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4287">https://tools.ietf.org/html/rfc4287</a>
    <dt id="biblio-rfc5829">[RFC5829]
    <dd>A. Brown; G. Clemm; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc5829">Link Relation Types for Simple Version Navigation between Web Resources</a>. April 2010. Informational. URL: <a href="https://tools.ietf.org/html/rfc5829">https://tools.ietf.org/html/rfc5829</a>
    <dt id="biblio-rfc6797">[RFC6797]
@@ -3526,16 +3450,12 @@ these assets.</p>
    <dd>M. Nottingham. <a href="https://tools.ietf.org/html/rfc8288">Web Linking</a>. October 2017. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc8288">https://tools.ietf.org/html/rfc8288</a>
    <dt id="biblio-tabular-data-model">[TABULAR-DATA-MODEL]
    <dd>Jeni Tennison; Gregg Kellogg. <a href="https://www.w3.org/TR/tabular-data-model/">Model for Tabular Data and Metadata on the Web</a>. 17 December 2015. REC. URL: <a href="https://www.w3.org/TR/tabular-data-model/">https://www.w3.org/TR/tabular-data-model/</a>
-   <dt id="biblio-turtle">[TURTLE]
-   <dd>Eric Prud'hommeaux; Gavin Carothers. <a href="https://www.w3.org/TR/turtle/">RDF 1.1 Turtle</a>. 25 February 2014. REC. URL: <a href="https://www.w3.org/TR/turtle/">https://www.w3.org/TR/turtle/</a>
    <dt id="biblio-unicode">[UNICODE]
    <dd><a href="https://www.unicode.org/versions/latest/">The Unicode Standard</a>. URL: <a href="https://www.unicode.org/versions/latest/">https://www.unicode.org/versions/latest/</a>
    <dt id="biblio-uri">[URI]
    <dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="https://tools.ietf.org/html/rfc3986">Uniform Resource Identifier (URI): Generic Syntax</a>. January 2005. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a>
    <dt id="biblio-utf-8">[UTF-8]
    <dd>F. Yergeau. <a href="https://tools.ietf.org/html/rfc3629">UTF-8, a transformation format of ISO 10646</a>. November 2003. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3629">https://tools.ietf.org/html/rfc3629</a>
-   <dt id="biblio-yaml">[YAML]
-   <dd>Oren Ben-Kiki; Clark Evans; Ingy döt Net. <a href="http://yaml.org/spec/1.2/spec.html">YAML Ain’t Markup Language (YAML™) Version 1.2</a>. 1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
@@ -3545,7 +3465,6 @@ these assets.</p>
    <div class="issue"> if /records and /items are sets, what does that mean for pagination? <a href="https://github.com/openregister/specification/issues/8">&lt;https://github.com/openregister/specification/issues/8></a><a href="#issue-ab2143f9"> ↵ </a></div>
    <div class="issue"> what does the items resource look like in a register with multiple hashing algorithms available? <a href="https://github.com/openregister/specification/issues/38">&lt;https://github.com/openregister/specification/issues/38></a><a href="#issue-64bcb597"> ↵ </a></div>
    <div class="issue"> which hashing algorithms are allowed? where do we list them? how do we allow extensibility of hashing algorithm? <a href="https://github.com/openregister/specification/issues/39">&lt;https://github.com/openregister/specification/issues/39></a><a href="#issue-0be82fb3"> ↵ </a></div>
-   <div class="issue"> Which data types should we use from YAML? <a href="https://github.com/openregister/specification/issues/51">&lt;https://github.com/openregister/specification/issues/51></a><a href="#issue-e14b6cf0"> ↵ </a></div>
    <div class="issue"> need a mechanism to mark a proof as deprecated. <a href="https://github.com/openregister/specification/issues/33">&lt;https://github.com/openregister/specification/issues/33></a><a href="#issue-65e174d1"> ↵ </a></div>
    <div class="issue"> need a mechanism to terminate a proof and start a new proof. <a href="https://github.com/openregister/specification/issues/34">&lt;https://github.com/openregister/specification/issues/34></a><a href="#issue-20a577f7"> ↵ </a></div>
   </div>
