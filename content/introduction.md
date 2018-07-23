@@ -35,10 +35,6 @@ This specification is probably not suited to readers who need to consume data
 from an existing register. More approachable tutorials and guides can provide
 a gentler introduction to the topic.
 
-***
-TODO: The above could link to a tutorial or API docs.
-***
-
 
 ## Scope
 
