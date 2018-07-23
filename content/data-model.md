@@ -52,20 +52,20 @@ TODO: Diagram with the relationship between log and entry (and item?)
 
 ## The snapshot
 
-A **snapshot** is the dataset resulting from walking through the **log** start to
-end and taking the latest data for each element.
-When the snapshot is for the latest state of the Register the elements are
-called **records**. In other words, there is a function `f` such as:
+A **snapshot** is the dataset resulting from walking through the **log** start
+to end and taking the latest data for each element.  When the snapshot is for
+the latest change the elements are called **records**. In other words, it can
+be seen as a pair of functions `take` and `view` where `take` slices a log for
+the given index size:
 
 ```elm
-f : Log -> Size -> Snapshot
+take : Log -> Int -> Log
 ```
 
-OR 
+And a `view` function that derives the snapshot for the given log:
 
 ```elm
-slice : Log -> Int -> Log
-compile : Log -> Snapshot
+view : Log -> Snapshot
 ```
 
 ***
@@ -81,7 +81,3 @@ anyone to efficiently audit the integrity of the data held in it. This data
 structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
 described by the Certificate Transparency [RFC6962](@rfc6962). Check the
 [Digital proofs](/digital-proofs/) section for details.
-
-***
-TODO: Perhaps the digital-proofs section should be under data-model?
-***
