@@ -5,62 +5,101 @@ url: /introduction/
 status: wip
 ---
 
-## Abstract
-
-This document defines the resources and representations which together provide
-an Application Programming Interface (API) for accessing data held in a
-register.
-
-## Conformance
-
-Conformance requirements are expressed with a combination of descriptive
-assertions and RFC 2119 terminology.  The key words “MUST”, “MUST NOT”,
-“REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”,
-“MAY”, and “OPTIONAL” in the normative parts of this document are to be
-interpreted as described in RFC 2119.  However, for readability, these words
-do not appear in all uppercase letters in this specification.
-
-All of the text of this specification is normative except sections explicitly
-marked as non-normative, examples, and notes. <a data-link-type="biblio"
-href="#biblio-rfc2119">[RFC2119]</a>
-
-Examples in this specification are introduced with the words “for example” or
-are set apart from the normative text with <code>class="example"</code>, like
-this:
-
-<div class="example" id="example-example"><a class="self-link" href="#example-example"></a> This is an example of an informative example. </div>
-
-Informative notes begin with the word “Note” and are set apart from the
-normative text with <code>class="note"</code>, like this:
-
-<p class="note" role="note"> Note, this is an informative note. </p>
-
-## Infoset
-
-An infoset is an unordered collection of data items.
-
----
-
-**NOTE:** Data items in this specification are defined in terms of an
-information set which can be mapped to one of a number of different
-representations. There is no canonical representation.
-
----
+This document defines the data model, representations and HTTP interface for
+accessing data held in a register.
 
 
-* A data item is identified within the scope of the infoset by a <a href="#field-field">field</a> value.
-* The contents of a data item is constrained by one of a number of different <a href="#datatypes">§8 Datatypes</a>.
+## Background
 
----
+_This section is non-normative._
 
-**ISSUE**: [40](https://github.com/openregister/specification/issues/40) possible confusion: "data item" and "item" mean different things.
+***
+TODO: Describe where is Registers coming from.
+***
 
----
 
-## Immutable resources
+## Audience
 
-An immutable resource, is one whose contents will never change.
+_This section is non-normative._
 
-An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a
-href="#entry-resource">§3.2 Entry resource</a> are both deemed to be
-immutable.
+***
+TODO: Describe who is this spec for.
+***
+
+This specification is intended for implementers of the Register API or tools
+that operate on the Register API.
+
+This specification is probably not suited to readers who need to consume data
+from an existing register. More approachable tutorials and guides can provide
+a gentler introduction to the topic.
+
+***
+TODO: The above could link to a tutorial or API docs.
+***
+
+
+## Scope
+
+_This section is non-normative._
+
+The scope of this specification is to define the interfaces to interact with a
+Register and not how to implement them. When seen adequate a non-normative
+description may be provided to explain how the reference implementation has
+addressed a topic.
+
+
+## Conformance requirements
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in the
+normative parts of this document are to be interpreted as described in
+[RFC2119](@rfc2119). For readability, these words do not appear in all uppercase
+letters in this specification.
+
+All diagrams, examples, and notes in this specification are non-normative, as
+are all sections explicitly marked non-normative. Everything else in this
+specification is normative.
+
+Examples in this specification are introduced with the words “for example“ or
+are set apart from the normative text with a block leaded by a label
+“EXAMPLE”, like this:
+
+***
+**EXAMPLE:**
+
+This is an example of an informative example with a code block as guidance:
+
+```elm
+f : a -> b
+```
+***
+
+Informative notes begin with the label “NOTE” and are set apart from the
+normative text like this:
+
+***
+NOTE: This is an informative note.
+***
+
+Informative warnings begin with the label “WARNING” and are set apart from the
+normative text like this:
+
+***
+**WARNING:** This is an informative warning.
+***
+
+Informative issue blocks begin with the label “ISSUE” and are set apart from
+the normative text like this:
+
+***
+**ISSUE:** [40](https://github.com/openregister/specification/issues/40) This
+is an issue.
+***
+
+
+## Suggested reading
+
+***
+TODO: Select a few biblio relevant to put in here. E.g. Certificate
+Transparency website or RFC
+***

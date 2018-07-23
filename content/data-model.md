@@ -9,8 +9,24 @@ status: wip
 NOTE: This document uses **bold** to introduce important concepts.
 ***
 
-Informally, a Register is a dataset (for a single type of thing) with the
-ability to provide previous versions of the data held in it.
+Informally, a Register is an unordered dataset of elements of a single type of
+thing with the ability to provide previous versions for the elements held in
+it. The dataset can be mapped to any of the
+[representations](/representations/) defined in this specification.
+
+***
+TODO: Previous versions of this spec used the word “infoset”. Now we use
+“dataset”. Are we loosing any particular nuance by doing this change?
+***
+
+## Immutable resources
+
+An immutable resource, is one whose contents will never change.
+
+An instance of an <a href="#item-resource">§3.1 Item resource</a> and an <a
+href="#entry-resource">§3.2 Entry resource</a> are both deemed to be
+immutable.
+
 
 ## The log
 
@@ -27,7 +43,7 @@ for that element, the **item**.
 An **item** is a set of values for the attributes defined in the **schema**.
 
 ***
-**TODO:** Schema is not well defined yet and it shouldn't be needed to define the
+TODO: Schema is not well defined yet and it shouldn't be needed to define the
 item at this level of abstraction.
 ***
 
