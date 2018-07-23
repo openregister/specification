@@ -5,54 +5,41 @@ url: /representations/
 status: wip
 ---
 
-## Representations
+JSON is the canonical representation but CSV is encouraged to be implemented
+as well.
 
-Note: JSON and other representations can have a field which is missing. These
-have the same semantics as an empty field.
-
-### HTML representation
-
-<a data-link-type="biblio" href="#biblio-html5">[HTML5]</a>
-
-### JSON representation
+## JSON representation
 
 * suffix: .json
 * media-type: application/json
-* <a data-link-type="biblio" href="#biblio-json">[JSON]</a>
+* specification: [JSON](@rfc8259)
 
 All field values MUST be encoded as JSON strings. When JSON needs to be in a
-canonical format, use the procedure defined in <a href="#sha-256-item-hash">§8.11.1 SHA-256 item hash</a>.
+canonical format, use the procedure defined in the [hash
+datatype](/datatypes/hash-datatype/).
 
-### YAML representation
+***
+NOTE: JSON can have missing fields. These have the same semantics as a field
+with a `null` value.
+***
+
+***
+TODO: What's the meaning of an empty string? And an empty array when
+cardinality n?
+***
 
 
-* Suffix: .yaml
-* Content-Type: text/yaml;charset=UTF-8
-* Specification: <a data-link-type="biblio" href="#biblio-yaml">[YAML]</a>
-
-### CSV representation
+## CSV representation
 
 * Suffix: .csv
-* Specification: <a data-link-type="biblio" href="#biblio-tabular-data-model">[tabular-data-model]</a>
+* media-type: text/csv
+* Specification: [Tabular data model](@tabular-data-model)
 
-### TSV representation
+***
+NOTE: CSV can have empty (blank) values. These have the same semantics as if
+the fields were missing. See [#json-representation].
+***
 
-* Suffix: .tsv
-* Content-Type: text/tab-separated-values;charset=UTF-8
-* Specification: <a data-link-type="biblio" href="#biblio-iana-tsv">[IANA-TSV]</a>
-
-### JSON-LD representation
-
-* <a data-link-type="biblio" href="#biblio-json-ld">[JSON-LD]</a>
-
-### Turtle representation
-
-* Suffix: .ttl
-* Content-Type: text/turtle;charset=UTF-8
-* Specification: <a data-link-type="biblio" href="#biblio-turtle">[TURTLE]</a>
-
-### Atom representation
-
-* <a data-link-type="biblio" href="#biblio-rfc4287">[RFC4287]</a>
-
-
+***
+TODO: How does the tabular data model interop with the R data types?
+***

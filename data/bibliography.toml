@@ -114,7 +114,7 @@ publisher = "IETF"
 published = "2017-10"
 
 [[bibliography]]
-id = "tdm"
+id = "tabular-data-model"
 url = "https://www.w3.org/TR/tabular-data-model/"
 title = "Model for Tabular Data and Metadata on the Web"
 authors = ["Jeni Tennison", "Gregg Kellogg"]
