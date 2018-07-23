@@ -139,3 +139,9 @@ id = "url"
 url = "https://url.spec.whatwg.org/"
 title = "URL"
 publisher = "WhatWG"
+
+[[bibliography]]
+id = "fips-180-4"
+url = "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf"
+title = "FIPS PUB 180-4 Secure Hash Standard"
+publisher = "FIPS"
