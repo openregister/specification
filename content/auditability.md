@@ -38,8 +38,10 @@ of provenance.
 There are a few types of digital proofs, each one of them supports proving a
 different trait on a Register. The “Register proof” to [verify the
 register](#register-verification), the “Entry proof” to [verify an entry in
-the log](#entry-verification) and the “Consistency proof” to [verify that two
-registers of different sizes are consistent](#consistency-verification).
+the log](#entry-verification), the “Consistency proof” to [verify that two
+registers of different sizes are consistent](#consistency-verification) and
+the “Record proof” to [verfiy an entry is the latest for its
+key](#record-verification).
 
 
 ## Register verification
@@ -118,40 +120,57 @@ Merkle tree root hash.
 
 ## Consistency verification
 
-***
-TODO: Review
-***
+The Consistency verification process allows proving that a Register copy is a
+subset of a larger Register.
 
-The merkle-consistency-nodes from the <a
-href="#consistency-proof-resource">§3.7 Consistency proof resource</a> for two
-versions of a register provides the list of nodes in the Merkle tree required
-to verify that the first n entries (where n is the number of entries in the
-smaller register) are equal in both registers.
+A client MUST be able to do the following:
 
-To verify the consistency of two versions of a register, given that
-total-entries-1 and total-entries-2 of the <a
-href="#consistency-proof-resource">§3.7 Consistency proof resource</a> equal
-the total-entries of each <a href="#register-proof-resource">§3.5 Register
-proof resource</a>, the client must prove that the root-hash of the <a
-href="#register-proof-resource">§3.5 Register proof resource</a> for the
-larger register can be computed using the set of consistency-proof-nodes and
-that the root-hash of the <a href="#register-proof-resource">§3.5 Register
-proof resource</a> for the smaller register can be computed using a subset of
-the same consistency-proof-nodes, as per <a data-link-type="biblio"
-href="#biblio-rfc6962">[RFC6962]</a> section 2.1.2. The client must also
-verify the corresponding <a href="#signed-tree-head">§12.1.2 Signed tree
-head</a> against each root-hash using a public key.
-
-## Record collection verification
+1. Given a Register copy.
+2. Get the Consistency proof from the original Register.
+3. Compute the larger root hash from the Register copy and the audit path.
+4. Compute the smaller root hash from the Register copy and the consistency
+   nodes.
+5. Verify the larger root hash is the same as the root hash found in the
+   Consistency proof.
+6. Verify the smaller root hash is the same as the root hash found in the
+   Consistency proof.
+6. Verify the signed larger root hash is the same as the [signed root
+   hash](#signed-tree-head) found in the Consistency proof.
 
 ***
-TODO:
+TODO: merkle-consistency-nodes vs merkle-audit-path? Define both.
 ***
+
+***
+TODO: Review the steps to clarify the mechanism for (5) and (6)
+***
+
 
 ## Record verification
 
+_This process is experimental_.
+
+The Record verification process allows proving that an Entry is the latest one
+for a Register key. This verification uses a Record Proof on a Verifiable Map.
+
 ***
-TODO:
+TODO: Key has no meaning in this context, link? definition?
+***
+
+***
+TODO: Verify it's only the latest Entry that it is required for this.
+***
+
+1. Given an Entry, a Verifiable Map root hash and a Log size.
+2. Get the Record proof for the Entry key and the Log size.
+3. Compute the Entry hash.
+4. Compute the root hash from the Entry hash and the Record proof's audit
+   path.
+5. Verify the resulting root hash is the same as the one you have locally.
+
+***
+TODO: Does this process require a fully fleshed Verifiable Map locally or it
+is ok to just have its root hash?
 ***
 
 
