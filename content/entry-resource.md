@@ -2,11 +2,25 @@
 id: entry-resource
 title: Entry resource
 url: /resources/entry-resource/
+status: wip
 ---
 
-### Entry resource
+* Endpoint: `GET /entries/{entry-number}`
+* Parameters:
+  * `entry-number`: The index of the [Entry](/glossary/#entry).
 
-* Path: `/entries/{entry-number}`
+Response attributes:
+
+* `entry-number`: (Integer) The [entry number](/glossary#entry-number).
+* `entry-timestamp`: (Timestamp) The [entry timestamp](/glossary#entry-timestamp).
+* `key`: (Any) The [entry key](/glossary#entry-key).
+* `item-hash`: ([Hash]) The list of [item hashes](/glossary#entry-item).
+* `index-entry-number`: (Integer) The entry number [_experimental_].
+
+
+***
+TODO: Move the entry definition to the glossary
+***
 
 An entry is an update to a register. The register as a whole is made up of an
 ordered list of entries.  New entries in a register are only ever appended to
@@ -26,24 +40,35 @@ entry.
 
 The entry resource returns an array containing a single entry.
 
----
+***
+TODO: Verify we can't revert back to a single entry (no array)
+***
 
-**Example**
+***
+**EXAMPLE:**
 
-The following example shows an entry in the <a href="#json-representation">§11.2 JSON representation</a>:
+The following example shows the request for an entry in JSON:
 
-```json
+```http
+GET /entries/72 HTTP/1.1
+Host: country.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 [
   {
     "index-entry-number": "72",
     "entry-number": "72",
-    "entry-timestamp": "2015-08-20T08:15:30Z",
-    "key": "402019",
-    "item-hash": ["sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f"]
+    "entry-timestamp": "2016-04-05T13:23:05Z",
+    "key": "GH",
+    "item-hash": [
+      "sha-256:dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
+    ]
   }
 ]
 ```
-
----
-
-
+***
