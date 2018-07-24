@@ -10,6 +10,12 @@ proofs defined by the [Certificate Transparency](@rfc6962) data structures
 (section 1.2) and cryptographic components (section 2).
 
 ***
+NOTE: Proving the integrity of a Register allows a user to verify the data they have
+was genuinely created by the Register custodian of the Register. In other
+words, it helps auditing if the Register has been tampered with.
+***
+
+***
 NOTE: You may read the [Verifiable Data Structures](https://github.com/google/trillian/blob/master/docs/VerifiableDataStructures.pdf) paper,
  the [Revocation Transparency](https://github.com/google/trillian/blob/master/docs/RevocationTransparency.pdf) paper and
 the [Certificate Transparency site](https://www.certificate-transparency.org/)
@@ -21,6 +27,11 @@ TODO: Add an overview with perhaps a few diagrams of what does it mean to
 audit a Register. Or enhance each verification section.
 ***
 
+Verifiable data structures are all applications of a Merkle tree, which enable
+to efficiently prove to the user that certain properties of registers are
+obeyed. The root hash of each Merkle tree is also signed to provide guarantees
+of provenance.
+
 
 ## Digital proofs
 
@@ -28,7 +39,7 @@ There are a few types of digital proofs, each one of them supports proving a
 different trait on a Register. The “Register proof” to [verify the
 register](#register-verification), the “Entry proof” to [verify an entry in
 the log](#entry-verification) and the “Consistency proof” to [verify that two
-registers are consistent with each other](#consistency-verification).
+registers of different sizes are consistent](#consistency-verification).
 
 
 ## Register verification
@@ -51,7 +62,8 @@ A client MUST be able to do the following:
    proof.
 6. Verify the signed root hash is the same as the [signed root
    hash](#signed-tree-head) part of the Register proof.
-7. Verify that for each Item reference in each Entry there is an Item.
+7. Verify that for each Item hash in each Entry there is an Item.
+8. Verify that each Item computes the same hash that identifies it.
 
 ***
 TODO: Can (2) be obtained atomically with (1)?
@@ -80,7 +92,7 @@ A client MUST be able to do the following:
 
 1. Given a copy of an entry,
 2. and the log size (total number of entries).
-3. Get the Entry proof.
+3. Get the Entry proof for the log size.
 4. Compute the root hash from the Entry and the audit path.
 5. Verify the root hash is the same as the root hash found in the Entry proof.
 6. Verify the signed root hash is the same as the [signed root
