@@ -3,7 +3,7 @@
   items:
     - id: minting
     - id: redaction
-    - id: digital-proofs
+    - id: auditability
 - id: resources
   items:
     - id: item-resource

@@ -6,9 +6,8 @@ status: wip
 ---
 
 In order to redact a piece of data, the whole data blob (item) has to be
-removed from the Register. Any entry linking to the piece of data in question
-MUST NOT be removed from the log ever as it breaks the integrity of the
-Register.
+removed from the Register. Any entry referencing the redacted data MUST NOT be
+removed from the log to keep the integrity of the Register.
 
 The redaction process MUST provide a way to distinguish between a data blob
 that doesn't exist and a data blob that has been redacted.
