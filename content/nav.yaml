@@ -4,6 +4,7 @@
     - id: minting
     - id: redaction
     - id: auditability
+    - id: glossary
 - id: resources
   items:
     - id: item-resource

@@ -4,47 +4,45 @@ title: Item resource
 url: /resources/item-resource/
 ---
 
-### Item resource
-
-
-* Path: `/items/{item-hash}`
+* Endpoint: `GET /items/{item-hash}`
 * Parameters:
-  * `item-hash`: Item addressable identifier.
+  * `item-hash`: Item identifier.
 
-An item is an unordered collection of <a href="#fields">§9 Fields</a> and
-values.
+An **Item resource** represents an [Item](/glossary#item) in the requested
+format. The collection of fields and values when represented in a tabular
+format like CSV the column order is implementation dependent. For
+representations like JSON, the object has to be treated as unordered.
 
-The set of fields which MAY be included in an item are defined in the
-`fields` field in the <a href="#register-register">§10.1 Register
-register</a> entry for the register.
+To determine the set of fields and their value types the user SHOULD use the
+[Schema resource](/resources/schema-resource/).
 
-An item is identified by the globally unique <a href="#item-hash-field">§9.7
-item-hash</a> calculated from its contents. Changing the item data changes the
-<a href="#item-hash-field">§9.7 item-hash</a>.
+***
+NOTE: The set of fields MAY be found in the catalogue as well. For example,
+the GOV.UK catalogue is the [Register register](https://register.register.gov.uk/).
+***
 
----
+***
+**EXAMPLE:**
 
-**Example**
-
-The following example shows an item in the JSON representation:
+For example, the following request shows an item in the JSON representation:
 
 ```http
-GET /items/sha-256:bdc7f29f7d2ef36f9db1ec7b4141286288a1bd79254d59b46f3a8baa3484f858 HTTP/1.1
-Host: food-premises.register.gov.uk
+
+GET /items/sha-256:6b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
+Host: country.register.gov.uk
 Accept: application/json
 ```
 
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
+Content-Length: 156
 
 {
-  "business": "company:07228130",
-  "food-premises": "788112",
-  "food-premises-types": ["restaurant", "cafe"],
-  "local-authority": "E09000015",
-  "name": "Roy’s Rolls",
-  "premises": "13456079000",
-  "start-date": "2015-03-01"
+  "country":"GB",
+  "official-name":"The United Kingdom of Great Britain and Northern Ireland",
+  "name":"United Kingdom",
+  "citizen-names":"Briton;British citizen"
 }
 ```
+
