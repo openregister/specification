@@ -33,7 +33,17 @@ calculated from its contents.
 
 ## Record
 
-TODO
+***
+TODO:
+***
+
+A record is the most up-to-date <a href="#infoset">§2 Infoset</a> for a
+resource identified by a <a href="#primary-key-field">§9.1 Primary key
+field</a>.  That is, it is the infoset corresponding to the <a
+href="#entry-resource">§3.2 Entry resource</a> with the highest <a
+href="#entry-number-field">§9.4 entry-number</a> for a given primary key
+value.
+
 
 ## Digital proof
 
