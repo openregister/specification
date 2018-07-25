@@ -42,7 +42,7 @@ proof.
 
 ```http
 GET /proof/register/merkle:sha-256 HTTP/1.1
-Host: https://school.register.gov.uk
+Host: country.register.gov.uk
 Accept: application/json
 ```
 
