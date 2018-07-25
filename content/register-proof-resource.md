@@ -5,9 +5,25 @@ url: /resources/register-proof-resource/
 status: wip
 ---
 
-### Register proof resource
+* Endpoint: `GET /proof/register/{proof-identifier}`
+* Parameters:
+  * `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
 
-* Path: `/proof/register/{proof-identifier}`
+Response attributes:
+
+* `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
+* `total-entries`: (Integer) The size of the log when the proof was issued.
+* `root-hash`: (Hash) The root hash for the log when the proof was issued.
+
+***
+TODO: Move to the glossary
+***
+
+***
+TODO: The original example had a `tree-head-signature` but it hasn't been
+implemented nor explored yet.
+***
+
 
 A register proof is a digitally-signed demonstration of the integrity of all
 of the entries in a register.  Given a register proof, it is possible to
@@ -21,7 +37,8 @@ identified by a proof-identifier.
 ***
 **EXAMPLE:**
 
-The following example shows a Merkle-tree-based register proof in the <a href="#json-representation">§11.2 JSON representation</a>:
+The following example shows the request for the representation of the register
+proof.
 
 ```http
 GET /proof/register/merkle:sha-256 HTTP/1.1
@@ -35,11 +52,8 @@ Content-Type: application/json
 
 {
   "proof-identifier": "merkle:sha-256",
-  "total-entries": "9803348",
-  "timestamp": "2015-08-20T08:15:30Z",
-  "root-hash": "sha-256:JATHxRF5gczvNPP1S1WuhD8jSx2bl-WoTt8bIE3YKvU",
-  "tree-head-signature":
-  "BAMARzBFAiEAkKM3aRUBKhShdCyrGLdd8lYBV52FLrwqjHa5/YuzK7ECIFTlRmNuKLqbVQv0QS8nq0pAUwgbilKOR5piBAIC8LpS"
+  "root-hash": "sha-256:8d92e1e0af1d43c41e498e6baed0d0b3ea2770d1bf9d2afc04e9c4dad7795729",
+  "total-entries": 208
 }
 ```
 ***
