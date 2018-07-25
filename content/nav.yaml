@@ -7,10 +7,10 @@
     - id: glossary
 - id: resources
   items:
-    - id: item-resource
-    - id: entry-resource
     - id: record-resource
     - id: register-resource
+    - id: entry-resource
+    - id: item-resource
     - id: register-proof-resource
     - id: entry-proof-resource
     - id: consistency-proof-resource
