@@ -46,3 +46,14 @@ Content-Length: 156
 }
 ```
 
+## HTTP headers
+
+_This section is non-normative._
+
+A Item resource response SHOULD have an `ETag` header value with the item
+[hash](/datatypes/hash-datatype/) to evidence items are immutable resources.
+
+***
+TODO: Consider how this suggestion plays with multiple serialisation based on
+headers
+***
