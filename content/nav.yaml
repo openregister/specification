@@ -4,25 +4,23 @@
     - id: minting
     - id: redaction
     - id: auditability
-    - id: glossary
-- id: resources
+- id: glossary
+- id: rest-api
   items:
     - id: record-resource
+    - id: record-collection-resource
+    - id: record-entry-collection-resource
+    - id: faceted-record-collection-resource
     - id: register-resource
     - id: entry-resource
+    - id: entry-collection-resource
     - id: item-resource
+    - id: item-collection-resource
     - id: register-proof-resource
     - id: entry-proof-resource
     - id: consistency-proof-resource
-- id: collection-resources
-  items:
-    - id: item-collection-resource
-    - id: entry-collection-resource
-    - id: record-entry-collection-resource
-    - id: record-collection-resource
-    - id: faceted-record-collection-resource
     - id: archive-resource
-- id: http-headers
+- id: representations
 - id: datatypes
   items:
     - id: string-datatype
@@ -38,7 +36,6 @@
     - id: hash-datatype
     - id: url-datatype
 - id: fields
-- id: representations
 - id: versioning
 - id: registers
 - id: security
