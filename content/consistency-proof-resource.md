@@ -16,7 +16,7 @@ The resource for a [consistency proof](/glossary#consistency-proof).
 Response attributes:
 
 * `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
-* `merkle-consistency-nodes`: ([Hash]) List of node hashes.
+* `merkle-consistency-nodes`: ([Hash]) The list of node hashes.
 
 
 ***
