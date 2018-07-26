@@ -56,6 +56,15 @@ const articleStyle = css`
     }
   }
 
+  .issue {
+    background-color: mistyrose;
+    border-left-color: tomato;
+
+    &::before {
+      content: 'ISSUE';
+    }
+  }
+
   .example {
     background-color: ivory;
     border-left-color: darkkhaki;

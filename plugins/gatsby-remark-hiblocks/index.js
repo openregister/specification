@@ -29,6 +29,13 @@ function openBlockMaybe(text, node) {
     node.value = '<div class="hiblock todo">';
   }
 
+  if (text.startsWith('ISSUE:')) {
+    text = text.substr(6);
+    status = true;
+    node.type = 'html';
+    node.value = '<div class="hiblock issue">';
+  }
+
   if (text.startsWith('EXAMPLE:')) {
     text = text.substr(8);
     status = true;
