@@ -5,6 +5,8 @@
     - id: redaction
     - id: auditability
 - id: glossary
+  items:
+    - id: record-def
 - id: rest-api
   items:
     - id: record-resource

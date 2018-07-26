@@ -7,19 +7,11 @@ status: wip
 
 * Endpoint: `GET /records/{key}`
 * Parameters:
-  * `key`: The record identifier.
+  * `key`: (String) The record identifier.
 
-
-***
-TODO: Review
-
-This resource is provided as a convenience: in principle, it can be computed
-by a client by replaying the log of all entries and finding the latest one
-with the given primary key value.
-***
 
 This resource SHOULD provide a [`Link:` header](@rfc8288) with a
-`rel="version-history"` [[RFC5829](@rfc5829)]</a> to the corresponding [Record
+`rel="version-history"` [[RFC5829](@rfc5829)] to the corresponding [Record
 entries resource](/resources/record-entries-resource/) for this record.
 
 ***
@@ -34,6 +26,7 @@ Accept: application/json
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
+Link: </records/E09000019/entries>; rel="version-history"
 
 {
   "E09000019": {
