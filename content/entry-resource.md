@@ -1,42 +1,29 @@
 ---
 id: entry-resource
-title: Entry resource
-url: /resources/entry-resource/
+title: Entries
+url: /resources/entries/
 status: wip
 ---
 
+***
+NOTE: See the [Entry](/glossary/entry/) definition to understand how this
+resource fits into the [data model](/data-model/).
+***
+
+## Get an entry
+
 * Endpoint: `GET /entries/{entry-number}`
 * Parameters:
-  * `entry-number`: The index of the [Entry](/glossary/#entry).
+  * `entry-number`: The number of the [Entry](/glossary/entry/).
 
 Response attributes:
 
-* `entry-number`: (Integer) The [entry number](/glossary#entry-number).
-* `entry-timestamp`: (Timestamp) The [entry timestamp](/glossary#entry-timestamp).
-* `key`: (Any) The [entry key](/glossary#entry-key).
-* `item-hash`: ([Hash]) The list of [item hashes](/glossary#entry-item).
+* `entry-number`: (Integer) The [entry number](/glossary/entry#number).
+* `entry-timestamp`: (Timestamp) The [entry timestamp](/glossary/entry#timestamp).
+* `key`: (Any) The [entry key](/glossary/entry#key).
+* `item-hash`: (List Hash) The list of [item hashes](/glossary/entry#item-references).
 * `index-entry-number`: (Integer) The entry number [_experimental_].
 
-
-***
-TODO: Move the entry definition to the glossary
-***
-
-An entry is an update to a register. The register as a whole is made up of an
-ordered list of entries.  New entries in a register are only ever appended to
-the end of the list; once an entry is created, it never gets changed.
-
-An entry is an <a href="#entry-number-field">§9.4 entry-number</a>, an <a
-href="#index-entry-number-field">§9.5 index-entry-number</a>, an <a
-href="#entry-timestamp-field">§9.6 entry-timestamp</a>, an <a
-href="#item-hash-field">§9.7 item-hash</a> and a <a href="#key-field">§9.10
-key</a>.  The entry-number is unique and defines the entry’s position within
-the ordered list of a register. The index-entry-number is unique and defines
-the entry’s position within the ordered list of an index. For an entry in a
-register the entry-number and index-entry-number are always identical. The
-item-hash identifies the set of <a href="#item-resource">§3.1 Item
-resource</a> for the entry. The key represents the primary key value for the
-entry.
 
 The entry resource returns an array containing a single entry.
 
@@ -69,6 +56,116 @@ Content-Type: application/json
       "sha-256:dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
     ]
   }
+]
+```
+***
+
+## List entries
+
+* Endpoint: `GET /entries`
+* Parameters:
+  * `start`: (Integer) Filters the collection starting at the given entry
+    number (optional).
+
+Gets the list of entries. [This resource MAY be paginated](/resources#collection-pagination).
+
+The order MUST be by ascending entry number.
+
+***
+TODO: This makes `start` normative. Should this be a non-normative parameter?
+***
+
+***
+**EXAMPLE:**
+
+For example, the following request gets the first page of the entries
+collection and links to the next page.
+
+```http
+GET /entries HTTP/1.1
+Host: country.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Link: <?start=101>; rel="next"
+
+[
+  {
+    "index-entry-number": "1",
+    "entry-number": "1",
+    "entry-timestamp": "2015-08-15T08:15:30Z",
+    "key": "402019",
+    "item-hash": [ 
+        "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
+    ]
+  },
+  {
+    "index-entry-number": "2",
+    "entry-number": "2",
+    "entry-timestamp": "2015-08-20T08:15:30Z",
+    "key": "402020",
+    "item-hash": [
+        "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
+    ]
+  },
+  {
+    "index-entry-number": "3",
+    "entry-number": "3",
+    "entry-timestamp": "2015-08-21T00:00:00Z",
+    "key": "402020",
+    "item-hash": [
+        "sha-256:13f6de75b9f6d970691985e72a7dfa211ba00000"
+    ]
+  },
+
+  ...
+
+]
+```
+***
+
+***
+**EXAMPLE:**
+
+Following the previous example, thi request gets the second page of the
+entries collection and links to the next page.
+
+```http
+GET /entries?start=101 HTTP/1.1
+Host: country.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
+
+
+[
+  {
+    "index-entry-number": "101",
+    "entry-number": "101",
+    "entry-timestamp": "2016-04-05T13:23:05Z",
+    "key": "KG",
+    "item-hash": [
+      "sha-256:8b748c574bf975990e47e69df040b47126d2a0a3895b31dce73988fba2ba27d8"
+    ]
+  },
+  {
+    "index-entry-number": "102",
+    "entry-number": "102",
+    "entry-timestamp": "2016-04-05T13:23:05Z",
+    "key": "LA",
+    "item-hash": [
+      "sha-256:490636974f8087e4518d222eba08851dd3e2b85095f2b1427ff6ecd3fa482435"
+    ]
+  },
+
+  ...
 ]
 ```
 ***

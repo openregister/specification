@@ -94,6 +94,13 @@ the normative text like this:
 is an issue.
 ***
 
+Experimental features are tagged as **EXPERIMENTAL** like this:
+
+***
+**EXPERIMENTAL:**
+
+This is an experimental paragraph
+***
 
 ## Suggested reading
 

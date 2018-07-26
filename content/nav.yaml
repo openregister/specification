@@ -6,13 +6,13 @@
     - id: auditability
 - id: glossary
   items:
+    - id: entry-def
     - id: record-def
 - id: rest-api
   items:
     - id: register-resource
     - id: record-resource
     - id: entry-resource
-    - id: entry-collection-resource
     - id: item-resource
     - id: item-collection-resource
     - id: register-proof-resource
