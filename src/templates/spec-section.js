@@ -89,7 +89,7 @@ const extendToc = (toc, sections) => {
 
 const sectionTocStyle = css`
   margin-top: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 `;
 
 const SectionToC = ({tree}) => {

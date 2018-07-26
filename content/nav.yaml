@@ -10,9 +10,6 @@
 - id: rest-api
   items:
     - id: record-resource
-    - id: record-collection-resource
-    - id: record-entry-collection-resource
-    - id: faceted-record-collection-resource
     - id: register-resource
     - id: entry-resource
     - id: entry-collection-resource
