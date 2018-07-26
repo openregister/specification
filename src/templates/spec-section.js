@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import {css} from 'react-emotion';
+import GithubSlugger from 'github-slugger';
 import Layout from '../components/layout';
 import ToC from '../components/toc';
 import {findById} from '../utils/section';
@@ -86,6 +87,30 @@ const extendToc = (toc, sections) => {
   });
 };
 
+const sectionTocStyle = css`
+  margin-top: 40px;
+  margin-bottom: 50px;
+`;
+
+const SectionToC = ({tree}) => {
+  const slugger = new GithubSlugger();
+
+  return (
+    <ol className={sectionTocStyle}>
+      {
+        tree.filter(el => el.depth <= 2).map(el => {
+          const slug = slugger.slug(el.value);
+          return <li key={slug}><a href={`#${slug}`}>{el.value}</a></li>;
+        })
+      }
+    </ol>
+  );
+};
+
+SectionToC.propTypes = {
+  tree: PropTypes.array.isRequired
+};
+
 const SpecSection = ({data}) => {
   const section = data.content;
   const toc = data.toc.edges.map(({node}) => node);
@@ -100,9 +125,15 @@ const SpecSection = ({data}) => {
       </Helmet>
 
       <ToC tree={tree} target={section.frontmatter.id} />
+
       <article className={articleStyle}>
         <div className={scroller}>
           <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
+          {
+            section.headings.length > 1
+              ? <SectionToC tree={section.headings} />
+              : null
+          }
           <div dangerouslySetInnerHTML={{ __html: section.html }} />
         </div>
       </article>
@@ -144,6 +175,10 @@ export const query = graphql`
 
     content: markdownRemark(frontmatter: { id: { eq: $id } }) {
       html
+      headings {
+        value
+        depth
+      }
       frontmatter {
         id
         title

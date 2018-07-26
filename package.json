@@ -26,6 +26,7 @@
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-toml": "next",
     "gatsby-transformer-yaml": "next",
+    "github-slugger": "^1.2.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "react": "^16.3.2",
