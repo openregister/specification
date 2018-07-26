@@ -7,7 +7,7 @@ status: wip
 
 ***
 NOTE: See the [Record](/glossary/record/) definition to understand how this
-resource fits in the [data model](/data-model/).
+resource fits into the [data model](/data-model/).
 ***
 
 ## Get a record
@@ -58,8 +58,7 @@ Link: </records/E09000019/entries>; rel="version-history"
 
 * Endpoint: `GET /records`
 
-Gets the list of records. This resource MAY be [paginated with the standard
-method](/resources#collection-pagination).
+Gets the list of records. [This resource MAY be paginated](/resources#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
@@ -111,8 +110,8 @@ Content-Type: application/json
 
 * Endpoint: `GET /records/{key}/entries`
 
-Get the list of [entries](/glossary/entry) with the record `key`. This
-resource MAY be [paginated with the standard method](/resources#collection-pagination).
+Get the list of [entries](/glossary/entry) with the record `key`. [This
+resource MAY be paginated](/resources#collection-pagination).
 
 The order MUST be by ascending entry number.
 
@@ -167,7 +166,7 @@ After all, this is a filter on the original record list.
 * Endpoint: `GET /records/{field-name}/{field-value}`
 
 Gets the list of records filtered by the exact value of the given field name.
-This resource MAY be [paginated with the standard method](/resources#collection-pagination).
+[This resource MAY be paginated](/resources#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
