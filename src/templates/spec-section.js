@@ -149,7 +149,7 @@ const SpecSection = ({data}) => {
       <ToC tree={tree} target={section.frontmatter.id} />
 
       <article className={articleStyle}>
-        <div className={scroller}>
+        <div id="scroller" className={scroller}>
           <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
           {
             headings.length > 1
