@@ -43,9 +43,8 @@ register the entry-number and index-entry-number are always identical.
 
 * Type: [Key](/datatypes/key/).
 
-A given entry has a key. The key identifies an element in the dataset.
-The [key](/glossary/key/) identifies the element of the dataset the entry
-refers to.
+The [key](/glossary/key/) identifies the element of the dataset which the
+entry refers to.
 
 ### Timestamp
 

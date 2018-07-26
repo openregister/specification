@@ -90,7 +90,7 @@ Informative issue blocks begin with the label “ISSUE” and are set apart from
 the normative text like this:
 
 ***
-**ISSUE:** [40](https://github.com/openregister/specification/issues/40) This
+**ISSUE:** [#40](https://github.com/openregister/specification/issues/40) This
 is an issue.
 ***
 
@@ -102,7 +102,22 @@ Experimental features are tagged as **EXPERIMENTAL** like this:
 This is an experimental paragraph
 ***
 
+
+## Reference implementation
+
+_This section is non-normative._
+
+This specification is tested and validated by implementing every feature
+defined in it in the [reference
+implementation](https://github.com/openregister/openregister-java).
+
+Also, you can use the [conformance test suite](https://github.com/openregister/conformance-test)
+to test your implementation.
+
+
 ## Suggested reading
+
+_This section is non-normative._
 
 ***
 TODO: Select a few biblio relevant to put in here. E.g. Certificate

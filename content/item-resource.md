@@ -1,20 +1,30 @@
 ---
 id: item-resource
-title: Item resource
-url: /resources/item-resource/
+title: Items
+url: /resources/items/
+status: wip
 ---
+
+***
+NOTE: See the [Item](/glossary/item/) definition to understand how this
+resource fits into the [data model](/data-model/).
+
+The collection of fields and values when represented in a tabular format like
+CSV the column order is implementation dependent. For representations like
+JSON, the object has to be treated as unordered.
+***
+
+
+## Get an item
 
 * Endpoint: `GET /items/{item-hash}`
 * Parameters:
-  * `item-hash`: Item identifier.
+  * `item-hash`: The identifier for the [Item](/glossary/item/).
 
-An **Item resource** represents an [Item](/glossary#item) in the requested
-format. The collection of fields and values when represented in a tabular
-format like CSV the column order is implementation dependent. For
-representations like JSON, the object has to be treated as unordered.
-
-To determine the set of fields and their value types the user SHOULD use the
-[Schema resource](/resources/schema-resource/).
+***
+TODO: To determine the set of fields and their value types the user SHOULD use
+the [Schema resource](/resources/schema/).
+***
 
 ***
 NOTE: The set of fields MAY be found in the catalogue as well. For example,
@@ -45,15 +55,57 @@ Content-Length: 156
   "citizen-names":"Briton;British citizen"
 }
 ```
+***
 
-## HTTP headers
-
-_This section is non-normative._
+### HTTP headers
 
 A Item resource response SHOULD have an `ETag` header value with the item
-[hash](/datatypes/hash-datatype/) to evidence items are immutable resources.
+[hash](/datatypes/hash/) to evidence items are immutable resources.
 
 ***
 TODO: Consider how this suggestion plays with multiple serialisation based on
 headers
+***
+
+
+## List items
+
+* Endpoint: `GET /items`
+
+Gets the list of items. [This resource MAY be paginated](/resources#collection-pagination).
+
+The order SHOULD be by consistent regardless of new elements being added to
+the dataset.
+
+***
+NOTE: The [reference implementation](/introduction#reference-implementation)
+gives an numeric index to each index as they get inserted to the database so
+pages are consistent regardless of items being added to the register.
+***
+
+***
+**EXAMPLE:**
+
+```http
+GET /items HTTP/1.1
+Host: local-authority-eng.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Link: </items?cursor=2112>; rel="next"
+
+{
+  "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984": {
+    "local-authority": "E09000019",
+    "name": "Islington"
+  },
+  "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f": {
+    "local-authority": "E09000016",
+    "name": "Havering"
+  }
+}
+```
 ***

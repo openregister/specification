@@ -8,7 +8,12 @@ status: wip
 ***
 NOTE: See the [Record](/glossary/record/) definition to understand how this
 resource fits into the [data model](/data-model/).
+
+The collection of fields and values when represented in a tabular format like
+CSV the column order is implementation dependent. For representations like
+JSON, the object has to be treated as unordered.
 ***
+
 
 ## Get a record
 
@@ -17,10 +22,6 @@ resource fits into the [data model](/data-model/).
   * `key`: (String) The record identifier.
 
 Gets a record by key.
-
-This resource SHOULD provide a [`Link:` header](@rfc8288) with a
-`rel="version-history"` [[RFC5829](@rfc5829)] to the corresponding [Record
-history](#list-the-history-for-a-record) for this record.
 
 ***
 **EXAMPLE:**
@@ -52,6 +53,12 @@ Link: </records/E09000019/entries>; rel="version-history"
 }
 ```
 ***
+
+### HTTP headers
+
+This resource SHOULD provide a [`Link:` header](@rfc8288) with a
+`rel="version-history"` [[RFC5829](@rfc5829)] to the corresponding [Record
+history](#list-the-history-for-a-record) for this record.
 
 
 ## List records

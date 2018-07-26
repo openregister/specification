@@ -14,7 +14,6 @@
     - id: record-resource
     - id: entry-resource
     - id: item-resource
-    - id: item-collection-resource
     - id: register-proof-resource
     - id: entry-proof-resource
     - id: consistency-proof-resource
