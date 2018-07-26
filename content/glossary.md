@@ -19,18 +19,6 @@ TODO
 
 TODO
 
-## Entry
-
-TODO
-
-## Item
-
-TODO
-
-An item is identified by the unique [hash](/datatypes/hash-datatype/)
-calculated from its contents.
-
-
 ## Digital proof
 
 TODO
@@ -52,5 +40,9 @@ TODO
 TODO
 
 ## Schema
+
+TODO
+
+### cardinality
 
 TODO

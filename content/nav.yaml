@@ -7,10 +7,13 @@
 - id: glossary
   items:
     - id: entry-def
+    - id: item-def
+    - id: key-def
     - id: record-def
 - id: rest-api
   items:
     - id: register-resource
+    - id: schema-resource
     - id: record-resource
     - id: entry-resource
     - id: item-resource
@@ -21,19 +24,19 @@
 - id: representations
 - id: datatypes
   items:
-    - id: string-datatype
-    - id: fieldname-datatype
-    - id: integer-datatype
+    - id: curie-datatype
     - id: datetime-datatype
-    - id: timestamp-datatype
+    - id: fieldname-datatype
+    - id: hash-datatype
+    - id: integer-datatype
+    - id: key-datatype
     - id: period-datatype
     - id: point-datatype
     - id: polygon-datatype
+    - id: string-datatype
     - id: text-datatype
-    - id: curie-datatype
-    - id: hash-datatype
+    - id: timestamp-datatype
     - id: url-datatype
-- id: fields
 - id: versioning
 - id: registers
 - id: security

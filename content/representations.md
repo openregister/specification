@@ -16,7 +16,7 @@ as well.
 
 All field values MUST be encoded as JSON strings. When JSON needs to be in a
 canonical format, use the procedure defined in the [hash
-datatype](/datatypes/hash-datatype/).
+datatype](/datatypes/hash/).
 
 ***
 NOTE: JSON can have missing fields. These have the same semantics as a field
