@@ -64,6 +64,18 @@ const articleStyle = css`
       content: 'EXAMPLE';
     }
   }
+
+  .experimental {
+    background-color: cornsilk;
+    border-left: 0;
+
+    &::before {
+      content: 'EXPERIMENTAL';
+      background-color: deepskyblue;
+      color: white;
+      padding: 2px 4px;
+    }
+  }
 `;
 const scroller = css`
   overflow-y: auto;
@@ -98,7 +110,7 @@ const SectionToC = ({tree}) => {
   return (
     <ol className={sectionTocStyle}>
       {
-        tree.filter(el => el.depth <= 2).map(el => {
+        tree.map(el => {
           const slug = slugger.slug(el.value);
           return <li key={slug}><a href={`#${slug}`}>{el.value}</a></li>;
         })
@@ -115,6 +127,7 @@ const SpecSection = ({data}) => {
   const section = data.content;
   const toc = data.toc.edges.map(({node}) => node);
   const tree = extendToc(toc, data.sections.edges);
+  const headings = section.headings.filter(el => el.depth <= 2);
 
   return (
     <Layout>
@@ -130,8 +143,8 @@ const SpecSection = ({data}) => {
         <div className={scroller}>
           <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
           {
-            section.headings.length > 1
-              ? <SectionToC tree={section.headings} />
+            headings.length > 1
+              ? <SectionToC tree={headings} />
               : null
           }
           <div dangerouslySetInnerHTML={{ __html: section.html }} />

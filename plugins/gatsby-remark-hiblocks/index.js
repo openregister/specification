@@ -36,6 +36,12 @@ function openBlockMaybe(text, node) {
     node.value = '<div class="hiblock example">';
   }
 
+  if (text.startsWith('EXPERIMENTAL:')) {
+    text = text.substr(13);
+    status = true;
+    node.type = 'html';
+    node.value = '<div class="hiblock experimental">';
+  }
 
   return {newNode: node, status, text};
 }
@@ -77,7 +83,6 @@ module.exports = ({markdownAST}) => {
       node.value = '</div>';
     }
   });
-
 
   return markdownAST;
 };
