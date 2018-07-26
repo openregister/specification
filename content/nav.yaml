@@ -9,8 +9,8 @@
     - id: record-def
 - id: rest-api
   items:
-    - id: record-resource
     - id: register-resource
+    - id: record-resource
     - id: entry-resource
     - id: entry-collection-resource
     - id: item-resource

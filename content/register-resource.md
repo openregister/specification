@@ -1,7 +1,7 @@
 ---
 id: register-resource
-title: Register resource
-url: /resources/register-resource/
+title: Register
+url: /resources/register/
 status: wip
 ---
 
