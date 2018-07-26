@@ -2,7 +2,6 @@
 id: item-def
 title: Item
 url: /glossary/item/
-status: wip
 ---
 
 An **item** is an unordered set of attribute-value pairs (associative array)
