@@ -163,7 +163,7 @@ TODO: Verify it's only the latest Entry that it is required for this.
 
 1. Given an Entry, a Verifiable Map root hash and a Log size.
 2. Get the Record proof for the Entry key and the Log size.
-3. Compute the Entry hash.
+3. Compute the [Entry hash](/glossary/entry#hash).
 4. Compute the root hash from the Entry hash and the Record proof's audit
    path.
 5. Verify the resulting root hash is the same as the one you have locally.
@@ -173,20 +173,6 @@ TODO: Does this process require a fully fleshed Verifiable Map locally or it
 is ok to just have its root hash?
 ***
 
-
-## Entry hash
-
-***
-TODO: Move elsewhere
-***
-
-The entry hash is the application of a supported hashing algorithm on the data
-contained in the [Entry resource](/rest-api/entry/). The [hash
-datatype](/datatypes/hash/) of the entry, rather than the item itself ([Item
-resource](/rest-api/item/)), is part of the raw data hashed to create the
-entry hash.
-
-The entry hash is required for many operations in Certificate Transparency.
 
 ## Signed tree head
 

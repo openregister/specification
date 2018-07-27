@@ -66,3 +66,14 @@ The set of [item hashes](/glossary/item#hash) the entry links to.
 
 It is a set of hashes instead of a single hash due the **index** feature.
 ***
+
+
+## Hash
+
+The entry hash is a function that takes an entry and a hashing algorithm and
+returns a [Hash datatype](/datatypes/hash/). It is used for
+[auditability](/auditability/) as the  Merkle tree leaf hashes.
+
+***
+ISSUE: Define RFC with algorithm and attributes involved.
+***
