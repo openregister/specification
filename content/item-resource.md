@@ -81,8 +81,9 @@ the dataset.
 
 ***
 NOTE: The [reference implementation](/introduction#reference-implementation)
-gives an numeric index to each index as they get inserted to the database so
-pages are consistent regardless of items being added to the register.
+gives a numeric index to each item when they are inserted to the database so
+complete pages always return the same set of items and incomplete pages grow
+in an ordered manner.
 ***
 
 ***
