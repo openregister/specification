@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-07-23">23 July 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-07-27">27 July 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3190,22 +3190,10 @@ as well.</p>
    <h4 class="heading settled" data-level="12.1.6" id="ct-verify-records"><span class="secno">12.1.6. </span><span class="content">Verifying the records</span><a class="self-link" href="#ct-verify-records"></a></h4>
    <h4 class="heading settled" data-level="12.1.7" id="ct-verify-record"><span class="secno">12.1.7. </span><span class="content">Verifying a record</span><a class="self-link" href="#ct-verify-record"></a></h4>
    <h2 class="heading settled" data-level="13" id="minting"><span class="secno">13. </span><span class="content">Minting a new entry</span><a class="self-link" href="#minting"></a></h2>
-   <p>To mint a new entry in the register:</p>
-   <ul>
-    <li data-md="">
-     <p>POST a new item in <a href="#json-representation">§11.1 JSON representation</a> to the ..mint url.. with the proposed new entry number.</p>
-    <li data-md="">
-     <p>The item will first appear as a new item in the store</p>
-    <li data-md="">
-     <p><em> .. status codes and error cases </em></p>
-    <li data-md="">
-     <p><em> .. 202 Accepted with a Location header of the <a href="#entry-resource">§3.2 Entry resource</a> for the new entry</em></p>
-    <li data-md="">
-     <p>The proposer can only trust it has been secured when the entry
-is listed in the <a href="#entries-resource">§5.2 Entries resource</a> with the same <a href="#entry-number-field">§9.4 entry-number</a>,
-and the <a href="#entry-resource">§3.2 Entry resource</a> is a covered by one or more <a href="#digital-proofs">§12 Digital Proofs</a> for the register.</p>
-   </ul>
-   <p>The item MUST NOT contain empty fields.</p>
+   <p>Minting refers to the notion of creating a new entry, stamping it with a
+timestamp and appending it to the log.</p>
+   <p>This specification doesn’t define any way to do that as it is seen as an
+implementation concern.</p>
    <h2 class="heading settled" data-level="14" id="redaction"><span class="secno">14. </span><span class="content">Redaction</span><a class="self-link" href="#redaction"></a></h2>
    <ul>
     <li data-md="">
