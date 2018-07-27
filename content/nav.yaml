@@ -13,6 +13,7 @@
     - id: register-proof-def
     - id: consistency-proof-def
     - id: entry-proof-def
+    - id: snapshot-def
 - id: rest-api
   items:
     - id: register-resource
