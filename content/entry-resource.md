@@ -32,6 +32,12 @@ TODO: Verify we can't revert back to a single entry (no array)
 ***
 
 ***
+ISSUE: The ref impl returns numbers as String. Reasoning: the schema defines
+the values for items, the types for structures part of registers are known in
+advance and we can take advantage of capable serialisations like JSON.
+***
+
+***
 **EXAMPLE:**
 
 The following example shows the request for an entry in JSON:
@@ -48,8 +54,8 @@ Content-Type: application/json
 
 [
   {
-    "index-entry-number": "72",
-    "entry-number": "72",
+    "index-entry-number": 72,
+    "entry-number": 72,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "GH",
     "item-hash": [
@@ -90,21 +96,21 @@ Accept: application/json
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Link: <?start=101>; rel="next"
+Link: </entries?start=101>; rel="next"
 
 [
   {
-    "index-entry-number": "1",
-    "entry-number": "1",
+    "index-entry-number": 1,
+    "entry-number": 1,
     "entry-timestamp": "2015-08-15T08:15:30Z",
     "key": "402019",
-    "item-hash": [ 
+    "item-hash": [
         "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
     ]
   },
   {
-    "index-entry-number": "2",
-    "entry-number": "2",
+    "index-entry-number": 2,
+    "entry-number": 2,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "402020",
     "item-hash": [
@@ -112,8 +118,8 @@ Link: <?start=101>; rel="next"
     ]
   },
   {
-    "index-entry-number": "3",
-    "entry-number": "3",
+    "index-entry-number": 3,
+    "entry-number": 3,
     "entry-timestamp": "2015-08-21T00:00:00Z",
     "key": "402020",
     "item-hash": [
@@ -147,8 +153,8 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
 
 [
   {
-    "index-entry-number": "101",
-    "entry-number": "101",
+    "index-entry-number": 101,
+    "entry-number": 101,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "KG",
     "item-hash": [
@@ -156,8 +162,8 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
     ]
   },
   {
-    "index-entry-number": "102",
-    "entry-number": "102",
+    "index-entry-number": 102,
+    "entry-number": 102,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "LA",
     "item-hash": [

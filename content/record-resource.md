@@ -40,8 +40,8 @@ Link: </records/E09000019/entries>; rel="version-history"
 
 {
   "E09000019": {
-    "index-entry-number": "72",
-    "entry-number": "72",
+    "index-entry-number": 72,
+    "entry-number": 72,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "E09000019",
     "item": [
@@ -86,8 +86,8 @@ Content-Type: application/json
 
 {
   "E09000019": {
-    "index-entry-number": "72",
-    "entry-number": "72",
+    "index-entry-number": 72,
+    "entry-number": 72,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "E09000019",
     "item": [
@@ -98,8 +98,8 @@ Content-Type: application/json
     ]
   },
   "E09000016": {
-    "index-entry-number": "76",
-    "entry-number": "76",
+    "index-entry-number": 76,
+    "entry-number": 76,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "E09000016",
     "item": [
@@ -138,8 +138,8 @@ Content-Type: application/json
 
 [
   {
-    "index-entry-number": "90",
-    "entry-number": "90",
+    "index-entry-number": 90,
+    "entry-number": 90,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "CI",
     "item-hash": [
@@ -147,8 +147,8 @@ Content-Type: application/json
     ]
   },
   {
-    "index-entry-number": "207",
-    "entry-number": "207",
+    "index-entry-number": 207,
+    "entry-number": 207,
     "entry-timestamp": "2017-10-25T09:52:52Z",
     "key": "CI",
     "item-hash": [
@@ -194,8 +194,8 @@ Content-Type: application/json
 
 {
   "LND": {
-    "index-entry-number": "355",
-    "entry-number": "355",
+    "index-entry-number": 355,
+    "entry-number": 355,
     "entry-timestamp": "2016-10-31T12:59:03Z",
     "key": "LND",
     "item": [
