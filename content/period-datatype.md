@@ -2,7 +2,6 @@
 id: period-datatype
 title: Period
 url: /datatypes/period/
-status: wip
 ---
 
 A period of time conforming to the subset of [ISO8601](@iso8601) time
@@ -39,18 +38,18 @@ point in time.
 
 ```abnf
 duration = "P" date / "P" "T" time / "P" date "T" time
-date   = years [months] [days] / [years] months [days] / [years] [months] days
-time   = (hours [minutes] [seconds] / hours minutes [seconds] / [hours] [minutes] seconds)
+date     = years [months] [days] / [years] months [days] / [years] [months] days
+time     = hours [minutes] [seconds] / hours minutes [seconds] / [hours] [minutes] seconds
 
-years  = non-zero "Y"
-months  = non-zero "M"
-days  = non-zero "D"
-hours  = non-zero "H"
+years    = non-zero "Y"
+months   = non-zero "M"
+days     = non-zero "D"
+hours    = non-zero "H"
 minutes  = non-zero "M"
 seconds  = digit "S"
 
-digit = "0" / non-zero
-non-zero =  "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
+digit    = "0" / non-zero
+non-zero = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
 ```
 
 ***
