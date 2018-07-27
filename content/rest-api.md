@@ -10,7 +10,7 @@ TODO: Describe the goal of this REST API and generic stuff. Perhaps consider
 OpenAPI
 ***
 
-## Collection pagination
+## Pagination
 
 Collections MUST offer pagination through the [`Link` header](@rfc8288).
 Use a `rel="next"` to link to the next page. You MAY offer a previous page
@@ -77,3 +77,18 @@ TODO: Example with RSF
 ***
 
 
+## Security
+
+_This section is non-normative._
+
+A register should only be available over HTTPS and it should redirect from
+HTTP to HTTPS.
+
+Registers aim to be auditable and tustworthy data sources. Any mechanism that
+helps minimise attacks able to compromise the integritiy of the data in
+transit or at rest should be considered favourably.
+
+***
+NOTE: You should consider enabling [HTTP Strict Transport Security](@rfc6797)
+and use [Content Security Policy Level 2](@csp2) when appropriate.
+***

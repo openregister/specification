@@ -152,3 +152,11 @@ id = "fips-180-4"
 url = "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf"
 title = "FIPS PUB 180-4 Secure Hash Standard"
 publisher = "FIPS"
+
+[[bibliography]]
+id = "csp2"
+url = "https://www.w3.org/TR/CSP2/"
+title = "Content Security Policy Level 2"
+authors = ["Mike West", "Adam Barth", "Daniel Veditz"]
+publisher = "W3C"
+published = "2016-12-15"
