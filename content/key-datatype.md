@@ -1,6 +1,6 @@
 ---
 id: key-datatype
-title: Key datatype
+title: Key
 url: /datatypes/key/
 status: wip
 ---

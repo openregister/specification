@@ -1,12 +1,12 @@
 ---
 id: text-datatype
-title: Text datatype
+title: Text
 url: /datatypes/text/
 status: wip
 ---
 
-### Text datatype
-
-A [markdown] UTF-8 string.
+***
+TODO: A [markdown](@markdown) UTF-8 string.
+***
 
 

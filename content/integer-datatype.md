@@ -1,11 +1,8 @@
 ---
 id: integer-datatype
-title: Integer datatype
+title: Integer
 url: /datatypes/integer/
-status: wip
 ---
-
-### Integer datatype
 
 A decimal number with no fractional component.
 
@@ -15,13 +12,12 @@ digit =  "0" / positive-digit
 non-zero =  "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
 ```
 
-Leading zeros are not allowed, except for the integer `0`, which is
-represented as the string `“0”`. Negative values are marked with a leading “-”
-character (<a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a>
-`0x2D` HYPHEN-MINUS).
+Leading zeros are not allowed, except for the integer 0, which is
+represented as the string `0`. Negative values are marked with a leading “-”
+character ([UNICODE](@unicode) `0x2D` HYPHEN-MINUS).
 
----
-**Example**
+***
+**EXAMPLE:**
 
 The following examples are all valid integer values:
 
@@ -30,6 +26,4 @@ The following examples are all valid integer values:
 0
 -200
 ```
-
----
-
+***

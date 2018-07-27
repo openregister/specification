@@ -1,12 +1,12 @@
 ---
 id: fieldname-datatype
-title: Field-name datatype
+title: Fieldname
 url: /datatypes/fieldname/
 status: wip
 ---
 
-### Field-name datatype
-
-TODO
+***
+TODO: Define character set and how it relates to CURIEs and Keys.
+***
 
 

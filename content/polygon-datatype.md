@@ -1,12 +1,14 @@
 ---
 id: polygon-datatype
-title: Polygon datatype
+title: Polygon
 url: /datatypes/polygon/
 status: wip
 ---
 
-### Polygon datatype
+***
+ISSUE: Write a RFC: A subset of polygon defined by [WKT]: `POLYGON`, `POLYGONZ`
+***
 
-A subset of polygon defined by [WKT]: `POLYGON`, `POLYGONZ`
+
 
 

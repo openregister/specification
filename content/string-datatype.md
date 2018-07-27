@@ -1,12 +1,13 @@
 ---
 id: string-datatype
-title: String datatype
+title: String
 url: /datatypes/string/
 status: wip
 ---
 
-### String datatype
-
-<p><a data-link-type="biblio" href="#biblio-unicode">[UNICODE]</a> <a data-link-type="biblio" href="#biblio-utf-8">[UTF-8]</a></p>
+***
+TODO:
+[UNICODE](@unicode) [UTF-8](@rfc3629)
+***
 
 

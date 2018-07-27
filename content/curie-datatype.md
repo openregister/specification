@@ -1,12 +1,14 @@
 ---
 id: curie-datatype
-title: CURIE datatypes
+title: CURIE
 url: /datatypes/curie/
 status: wip
 ---
 
-### CURIE datatype
+***
+TODO: Define CURIE and add examples and linking nuances
+***
 
-A CURIE as defined in [curie].
+A CURIE as defined in [curie](@curie).
 
 
