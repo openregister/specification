@@ -190,3 +190,14 @@ in the register. The corresponding root-hash is also a property of the
 [Register proof](/glossary/register-proof/).
 
 
+## Compromised proof
+
+***
+ISSUE: Is this out of scope? What does it entail?
+***
+
+## Compromised private key
+
+***
+ISSUE: Is this out of scope? What does it entail?
+***
