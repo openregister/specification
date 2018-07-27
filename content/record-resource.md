@@ -8,10 +8,6 @@ status: wip
 ***
 NOTE: See the [Record](/glossary/record/) definition to understand how this
 resource fits into the [data model](/data-model/).
-
-The collection of fields and values when represented in a tabular format like
-CSV the column order is implementation dependent. For representations like
-JSON, the object has to be treated as unordered.
 ***
 
 
@@ -22,6 +18,10 @@ JSON, the object has to be treated as unordered.
   * `key`: (String) The record identifier.
 
 Gets a record by key.
+
+The set of fields and values when represented in a tabular format like CSV the
+column order is implementation dependent. For representations like JSON, the
+object has to be treated as unordered.
 
 ***
 **EXAMPLE:**
