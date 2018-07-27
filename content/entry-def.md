@@ -74,6 +74,10 @@ The entry hash is a function that takes an entry and a hashing algorithm and
 returns a [Hash datatype](/datatypes/hash/). It is used for
 [auditability](/auditability/) as the  Merkle tree leaf hashes.
 
+```elm
+entryHash : Entry -> Alg -> Hash
+```
+
 ***
 ISSUE: Define RFC with algorithm and attributes involved.
 ***

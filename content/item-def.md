@@ -103,3 +103,18 @@ Entry
   }
 ```
 ***
+
+
+## Hash
+
+The item hash is a function that takes an item and a hashing algorithm and
+returns a [Hash datatype](/datatypes/hash/). It is used to identify an address
+items and as part of the [entry hash](/glossary/entry#hash).
+
+```elm
+itemHash : Entry -> Alg -> Hash
+```
+
+***
+ISSUE: Define RFC with algorithm and canonicalisation.
+***
