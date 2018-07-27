@@ -12,7 +12,7 @@ removed from the log to keep the integrity of the Register.
 The redaction process MUST provide a way to distinguish between a data blob
 that doesn't exist and a data blob that has been redacted.
 
-See the [Item resource](/resources/item-resource/) for details of how to let
+See the [Item](/rest-api/items/) for details of how to let
 users know whether an item never existed or whether it existed but now it's
 gone due to redaction.
 

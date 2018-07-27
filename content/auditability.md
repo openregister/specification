@@ -181,10 +181,10 @@ TODO: Move elsewhere
 ***
 
 The entry hash is the application of a supported hashing algorithm on the data
-contained in the [Entry resource](/resources/entry-resource/). The [hash
+contained in the [Entry resource](/rest-api/entry/). The [hash
 datatype](/datatypes/hash/) of the entry, rather than the item itself ([Item
-resource](/resources/item-resource/)), is part of the raw data hashed to
-create the entry hash.
+resource](/rest-api/item/)), is part of the raw data hashed to create the
+entry hash.
 
 The entry hash is required for many operations in Certificate Transparency.
 
@@ -194,14 +194,13 @@ The entry hash is required for many operations in Certificate Transparency.
 TODO: Move elsewhere
 ***
 
-
 The signed tree head for a register is the tree-head-signature property of the
-[Register proof resource](/resources/register-proof-resource/), where the
-proof-identifier is specified as merkle:sha-256.
+[Register proof](/glossary/register-proof/), where the `proof-identifier` is
+specified as `merkle:sha-256`.
 
 The signed tree head for a register is the signed Merkle tree root hash
 ([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries
 in the register. The corresponding root-hash is also a property of the
-[Register proof resource](/resources/register-proof-resource/).
+[Register proof](/glossary/register-proof/).
 
 

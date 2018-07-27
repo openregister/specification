@@ -51,6 +51,13 @@ title = "KML 2.3"
 publisher = "OGC"
 
 [[bibliography]]
+id = "gml"
+url = "http://www.opengeospatial.org/standards/gml"
+title = "GML 3.3"
+publisher = "OGC"
+
+
+[[bibliography]]
 id = "curie"
 url = "https://www.w3.org/TR/curie/"
 title = "CURIE Syntax 1.0"

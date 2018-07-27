@@ -11,8 +11,8 @@ NOTE: This document uses **bold** to introduce important concepts.
 
 Informally, a Register is an unordered dataset of elements of a single type of
 thing with the ability to provide previous versions for the elements held in
-it. The dataset can be mapped to any of the
-[representations](/representations/) defined in this specification.
+it. The dataset can be mapped to any of the [serialisation
+formats](/rest-api#serialisation/) defined in this specification.
 
 ***
 TODO: Previous versions of this spec used the word “infoset”. Now we use

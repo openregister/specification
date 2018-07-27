@@ -1,7 +1,7 @@
 ---
 id: record-resource
 title: Records
-url: /resources/records/
+url: /rest-api/records/
 status: wip
 ---
 
@@ -19,9 +19,10 @@ resource fits into the [data model](/data-model/).
 
 Gets a record by key.
 
-The set of fields and values when represented in a tabular format like CSV the
-column order is implementation dependent. For representations like JSON, the
-object has to be treated as unordered.
+The set of fields and values when represented in a tabular format like
+[CSV](/rest-api#csv) the column order is implementation dependent. For
+tree-like formats like [JSON](/rest-api#json), the object has to be treated as
+unordered.
 
 ***
 **EXAMPLE:**
@@ -65,7 +66,7 @@ history](#list-the-history-for-a-record) for this record.
 
 * Endpoint: `GET /records`
 
-Gets the list of records. [This resource MAY be paginated](/resources#collection-pagination).
+Gets the list of records. [This resource MAY be paginated](/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
@@ -118,7 +119,7 @@ Content-Type: application/json
 * Endpoint: `GET /records/{key}/entries`
 
 Get the list of [entries](/glossary/entry) with the record `key`. [This
-resource MAY be paginated](/resources#collection-pagination).
+resource MAY be paginated](/rest-api#collection-pagination).
 
 The order MUST be by ascending entry number.
 
@@ -173,7 +174,7 @@ After all, this is a filter on the original record list.
 * Endpoint: `GET /records/{field-name}/{field-value}`
 
 Gets the list of records filtered by the exact value of the given field name.
-[This resource MAY be paginated](/resources#collection-pagination).
+[This resource MAY be paginated](/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.

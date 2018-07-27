@@ -1,7 +1,7 @@
 ---
 id: entry-resource
 title: Entries
-url: /resources/entries/
+url: /rest-api/entries/
 status: wip
 ---
 
@@ -67,7 +67,7 @@ Content-Type: application/json
   * `start`: (Integer) Filters the collection starting at the given entry
     number (optional).
 
-Gets the list of entries. [This resource MAY be paginated](/resources#collection-pagination).
+Gets the list of entries. [This resource MAY be paginated](/rest-api#collection-pagination).
 
 The order MUST be by ascending entry number.
 

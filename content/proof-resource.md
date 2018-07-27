@@ -1,7 +1,7 @@
 ---
 id: proof-resource
 title: Proofs
-url: /resources/proofs/
+url: /rest-api/proofs/
 status: wip
 ---
 

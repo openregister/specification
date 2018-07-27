@@ -1,7 +1,7 @@
 ---
 id: item-resource
 title: Items
-url: /resources/items/
+url: /rest-api/items/
 status: wip
 ---
 
@@ -19,13 +19,18 @@ resource fits into the [data model](/data-model/).
 
 Gets an item by hash.
 
-The set of fields and values when represented in a tabular format like CSV the
-column order is implementation dependent. For representations like JSON, the
-object has to be treated as unordered.
+The set of fields and values when represented in a tabular format like
+[CSV](/rest-api#csv) the column order is implementation dependent. For
+tree-like formats like [JSON](/rest-api#json), the object has to be treated as
+unordered.
+
+***
+TODO: Describe redactability ie 404 vs 410
+***
 
 ***
 TODO: To determine the set of fields and their value types the user SHOULD use
-the [Schema resource](/resources/schema/).
+the [Schema resource](/rest-api/schema/).
 ***
 
 ***
@@ -74,7 +79,7 @@ headers
 
 * Endpoint: `GET /items`
 
-Gets the list of items. [This resource MAY be paginated](/resources#collection-pagination).
+Gets the list of items. [This resource MAY be paginated](/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.

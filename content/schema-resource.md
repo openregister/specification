@@ -1,7 +1,7 @@
 ---
 id: schema-resource
 title: Schema
-url: /resources/schema/
+url: /rest-api/schema/
 status: wip
 ---
 

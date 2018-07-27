@@ -58,8 +58,8 @@ c0ffee, 0, 1
 ***
 
 ***
-NOTE: In the example above, the JSON representation uses the string
+NOTE: In the example above, the JSON serialisation uses the string
 representation of each value and the schema is needed to cast them back to the
-right datatype. Check the [Representations section](/representations/) and the
-[Schema](/glossary/schema/) for more details on this topic.
+right datatype. Check the [Serialisation section](/rest-api#serialisation) and
+the [Schema](/glossary/schema/) for more details on this topic.
 ***

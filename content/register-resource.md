@@ -1,7 +1,7 @@
 ---
 id: register-resource
 title: Register
-url: /resources/register/
+url: /rest-api/register/
 status: wip
 ---
 

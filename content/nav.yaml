@@ -22,7 +22,6 @@
     - id: item-resource
     - id: proof-resource
     - id: archive-resource
-- id: representations
 - id: datatypes
   items:
     - id: curie-datatype

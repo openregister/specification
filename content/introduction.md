@@ -5,8 +5,8 @@ url: /introduction/
 status: wip
 ---
 
-This document defines the data model, representations and HTTP interface for
-accessing data held in a register.
+This specification defines the data model, serialisations and HTTP interface
+for accessing data held in a register.
 
 
 ## Background

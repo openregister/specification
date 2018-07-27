@@ -34,7 +34,7 @@ exist in the Register.
 
 ***
 NOTE: The reference implementation inlines the [Item](/glossary/item/) in the
-[Record resource](/resources/record-resource/) for convenience.
+[Record resource](/rest-api/records/) for convenience.
 ***
 
 ***
