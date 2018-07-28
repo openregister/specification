@@ -6,13 +6,14 @@
     - id: auditability
 - id: glossary
   items:
+    - id: consistency-proof-def
     - id: entry-def
+    - id: entry-proof-def
+    - id: hashing-algorithm-def
     - id: item-def
     - id: key-def
     - id: record-def
     - id: register-proof-def
-    - id: consistency-proof-def
-    - id: entry-proof-def
     - id: snapshot-def
 - id: rest-api
   items:

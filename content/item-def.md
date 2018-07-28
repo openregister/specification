@@ -107,7 +107,7 @@ Entry
 ## Canonicalisation
 
 ***
-TODO: Reword without depending on JSON
+ISSUE: RFC with an algorithm that doesn't depend on JSON
 ***
 
 The canonicalisation algorithm is as follows:
@@ -165,14 +165,17 @@ sha-256:5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
 
 ## Hash
 
-The item hash is a function that takes an item and a hashing algorithm and
-returns a [Hash datatype](/datatypes/hash/). It is used to identify an address
-items and as part of the [entry hash](/glossary/entry#hash).
+The identity of an item computed from its content. It takes part on the [entry
+hash](/glossary/entry#hash).
+
+The function takes an item and a [hashing
+algorithm](/glossary/hashing-algorithm/) and returns a [Hash
+datatype](/datatypes/hash/).
 
 ```elm
 itemHash : Entry -> Alg -> Hash
 ```
 
 ***
-ISSUE: Define RFC with algorithm and canonicalisation.
+ISSUE: Define RFC with hashing algorithm and canonicalisation.
 ***
