@@ -4,6 +4,26 @@ import { css } from 'react-emotion';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import 'prismjs/themes/prism.css';
 
+const logoStyle = css`
+  top: 14px;
+  left: 14px;
+  position: absolute;
+  width: 52px;
+  height: 34px;
+`;
+
+const Logo = () => {
+  return (
+    <svg className={logoStyle}>
+      <circle cx="12px" cy="12px" r="12px" fill="white" />
+      <circle cx="24px" cy="12px" r="12px" fill="white" />
+
+      <circle cx="12px" cy="12px" r="11px" fill="white" />
+      <circle cx="24px" cy="12px" r="11px" fill="black" />
+    </svg>
+  );
+};
+
 
 const Layout = ({children}) => (
   <StaticQuery
@@ -38,6 +58,7 @@ const Layout = ({children}) => (
       <React.Fragment>
         <div className={wrapperStyle}>
           <header className={headerStyle}>
+            <Logo />
             <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
             <div className={flexnavStyle}>
               <span className={versionStyle}> ({data.site.version.toLowerCase()} {data.site.publish_date})</span> <a className={link2Style} href={data.site.issue_tracker}>Issue tracker (Github)</a>
@@ -68,7 +89,8 @@ const wrapperStyle = css`
 
 const headerStyle = css`
   background-color: black;
-  padding: 12px;
+  padding: 12px ;
+  padding-left: 60px ;
   color: white;
   border-bottom: 6px solid tomato;
   grid-column: 1 / 3;
