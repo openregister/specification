@@ -13,6 +13,11 @@ const articleStyle = css`
   grid-column: 2;
   grid-row: 2;
 
+  pre[class*="language-"] {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
   .hiblock {
     border-left: 8px solid black;
     padding: 36px 8px 8px 20px;
