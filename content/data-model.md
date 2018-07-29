@@ -40,8 +40,6 @@ item at this level of abstraction.
 ***
 
 
-![](data-model-overview.png)
-
 ## Auditability
 
 A Register uses a sidecar data structure derived from the **log** that allows

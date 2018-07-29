@@ -41,3 +41,74 @@ NOTE: The reference implementation inlines the [Item](/glossary/item/) in the
 TODO: Is the above note normative or, what are the true expectations we want
 to set for consuming records?
 ***
+
+Similarly, you can filter the [log](/glossary/log/) to get the trail of
+changes for an element, given its key:
+
+```elm
+trail : Key -> Log -> List Entry
+```
+
+![](data-model-overview.png)
+
+***
+**EXAMPLE:**
+
+For example, given a log:
+
+```elm
+log =
+  [ Entry
+     { number : 1
+     , key: Key "A"
+     ...
+     }
+  , Entry
+     { number : 2
+     , key: Key "B"
+     ...
+     }
+  , Entry
+     { number : 3
+     , key: Key "Z"
+     ...
+     }
+  , Entry
+     { number : 4
+     , key: Key "A"
+     ...
+     }
+  , Entry
+     { number : 5
+     , key: Key "Z"
+     ...
+     }
+  ]
+```
+
+The trail for element “A” is:
+
+```elm
+trail (Key "A") log == [ Entry
+                          { number : 1
+                          , key: Key "A"
+                          ...
+                          }
+                       , Entry
+                          { number : 4
+                          , key: Key "A"
+                          ...
+                          }
+                       ]
+```
+
+And the record:
+
+```elm
+record (Key "A") log == Entry
+                          { number : 4
+                          , key: Key "A"
+                          ...
+                          }
+```
+***
