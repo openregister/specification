@@ -15,7 +15,7 @@ const articleStyle = css`
 
   pre[class*="language-"] {
     overflow-x: auto;
-    max-width: 100%;
+    width: calc(100vw - 380px); // total_width - (nav + gap + scroller_padding)
   }
 
   .hiblock {
@@ -31,6 +31,11 @@ const articleStyle = css`
       position: absolute;
       top: 10px;
       left: 20px;
+    }
+
+    pre[class*="language-"] {
+      overflow-x: auto;
+      width: calc(100vw - 418px); // total_width - (nav + gap + hiblock_padding + scroller_padding)
     }
   }
 

@@ -82,7 +82,7 @@ const flexnavStyle = css`
 const wrapperStyle = css`
   display: grid;
   grid-template-rows: 55px auto;
-  grid-template-columns: 400px auto;
+  grid-template-columns: 320px auto;
   grid-gap: 0 20px;
 `;
 
