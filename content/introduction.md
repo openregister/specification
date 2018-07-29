@@ -2,11 +2,11 @@
 id: introduction
 title: Introduction
 url: /introduction/
-status: wip
 ---
 
-This specification defines the data model, serialisations and HTTP interface
-for accessing data held in a register.
+This specification defines the [data model](/data-model/) and [HTTP
+interface](/rest-api/) for accessing the data held in a [System of
+Record](https://en.wikipedia.org/wiki/System_of_record), the “Register”.
 
 
 ## Background
@@ -119,7 +119,10 @@ to test your implementation.
 
 _This section is non-normative._
 
-***
-TODO: Select a few biblio relevant to put in here. E.g. Certificate
-Transparency website or RFC
-***
+The following documents might be of interest to readers of this specification.
+
+### [Certificate Transparency](https://www.certificate-transparency.org/)
+
+Google's Certificate Transparency project fixes several structural flaws in
+the SSL certificate system, which is the main cryptographic system that
+underlies all HTTPS connections.
