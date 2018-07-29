@@ -5,15 +5,17 @@ url: /data-model/
 status: wip
 ---
 
-Informally, a Register is an unordered dataset of elements of a single type of
-thing with the ability to provide previous versions for the elements held in
-it. The dataset can be mapped to any of the [serialisation
+A Register is an unordered dataset of elements of a single type of _thing_
+with the ability to provide previous versions for the elements held in it. The
+dataset can be mapped to any of the [serialisation
 formats](/rest-api#serialisation) defined in this specification and it can be
 published over HTTP as a [REST API](/rest-api/).
 
-More formally, a Register is a **log** of changes on a dataset.
+The backbone data structure is the **log** of changes.
 
-The Register [log](/glossary/log/) is a sequence of entries identified by
+![A picture of a log with A, B a Z entries](data-model-log.png)
+
+The [log](/glossary/log/) of changes is a sequence of entries identified by
 their numerical order, the [entry number](/glossary/entry#number).
 
 Each [entry](/glossary/entry/) defines a change for an element in the dataset
@@ -22,22 +24,23 @@ in the log, the key to identify the element the change is for and the
 reference to the data for that element, the [item](/glossary/item/), a set of
 attribute-value pairs as defined in the [schema](/glossary/schema/).
 
-In summary, the **log** and all its parts are an immutable data structure that
-allow expressing a sequence of changes on a dataset.
+The result of applying a change to the dataset is a new
+[snapshot](/glossary/snapshot/) and, when the snapshot is the latest one, the
+elements are called [records](/glossary/record/).
+
+![A picture of transforming a log into a snapshot](data-model-snapshot.png)
+
+In summary, the **log** and all its parts form an immutable data structure that
+allow expressing a sequence of changes on the dataset of elements, the
+Register.
 
 ***
 ISSUE: Schema is not well defined yet and it shouldn't be needed to define the
 item at this level of abstraction.
 ***
 
-***
-TODO: Diagram with the relationship between log and entry (and item?)
-***
 
-The result of applying a change to the dataset is a new
-[snapshot](/glossary/snapshot/) and, when the snapshot is the latest one, the
-elements are called [records](/glossary/record/).
-
+![](data-model-overview.png)
 
 ## Auditability
 

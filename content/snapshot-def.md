@@ -25,8 +25,6 @@ And a `collect` function that derives the snapshot for the given log:
 collect : Log -> Snapshot
 ```
 
-***
-TODO: Perhaps use a diagram
-***
+![A picture of transforming a log into a snapshot](data-model-snapshot.png)
 
 A snapshot can be seen as a **version** of the dataset.

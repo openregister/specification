@@ -41,6 +41,7 @@ module.exports = {
     'gatsby-transformer-json',
     'gatsby-transformer-toml',
     'gatsby-transformer-yaml',
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -55,8 +56,15 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-hiblocks',
-        ]
-      }
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              linkImagesToOriginal: false,
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
     },
     'gatsby-plugin-emotion',
     {
