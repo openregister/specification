@@ -13,6 +13,43 @@ const articleStyle = css`
   grid-column: 2;
   grid-row: 2;
 
+  .http-interface {
+    margin: 26px 0;
+    padding: 8px 20px;
+    border-left: 8px solid #8BC34A;
+    background-color: #e6f1d9;
+
+    h3 {
+      font-size: 12px;
+      margin: 32px 0 0;
+    }
+
+    h3:first-child {
+      margin-top: 8px;
+    }
+
+    pre[class*="language-"] {
+      overflow-x: auto;
+      width: calc(100vw - 428px); // total_width - (nav + gap + http_intf_padding + scroller_padding)
+      background-color: white;
+
+      > code {
+        font-size: 18px;
+      }
+    }
+
+    th {
+      padding: 16px;
+      padding-bottom: 4px;
+    }
+
+    td {
+      padding: 16px;
+      background-color: white;
+    }
+  }
+
+
   pre[class*="language-"] {
     overflow-x: auto;
     width: calc(100vw - 380px); // total_width - (nav + gap + scroller_padding)
