@@ -13,9 +13,20 @@ resource fits into the [data model](/data-model/).
 
 ## Get an item
 
-* Endpoint: `GET /items/{item-hash}`
-* Parameters:
-  * `item-hash`: The identifier for the [Item](/glossary/item/).
+***
+### Endpoint
+
+```
+GET /items/{item-hash}
+```
+
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`item-hash`|[Hash](/datatypes/hash/)| The [Item](/glossary/item/) identifier.|
+***
+
 
 Gets an item by hash.
 
@@ -77,7 +88,13 @@ headers
 
 ## List items
 
-* Endpoint: `GET /items`
+***
+### Endpoint
+
+```
+GET /items
+```
+***
 
 Gets the list of items. [This resource MAY be paginated](/rest-api#collection-pagination).
 

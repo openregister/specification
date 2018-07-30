@@ -5,7 +5,13 @@ url: /rest-api/archive/
 status: wip
 ---
 
-* Endpoint: `GET /download-register`
+***
+### Endpoint
+
+```
+GET /download-register
+```
+***
 
 ***
 ISSUE: Create a RFC to change this endpoint to `GET /archive`

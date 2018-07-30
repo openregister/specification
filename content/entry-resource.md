@@ -12,18 +12,29 @@ resource fits into the [data model](/data-model/).
 
 ## Get an entry
 
-* Endpoint: `GET /entries/{entry-number}`
-* Parameters:
-  * `entry-number`: The number of the [Entry](/glossary/entry/).
+***
+### Endpoint
 
-Response attributes:
+```
+GET /entries/{entry-number}
+```
 
-* `entry-number`: (Integer) The [entry number](/glossary/entry#number).
-* `entry-timestamp`: (Timestamp) The [entry timestamp](/glossary/entry#timestamp).
-* `key`: (Any) The [entry key](/glossary/entry#key).
-* `item-hash`: (List Hash) The list of [item hashes](/glossary/entry#item-references).
-* `index-entry-number`: (Integer) The entry number [_experimental_].
+### Parameters
 
+|Name|Type|Description|
+|-|-|-|
+|`entry-number`| [Integer](/datatypes/integer/)|The number of the [Entry](/glossary/entry/).|
+
+### Response attributes
+
+|Name|Type|Description|
+|-|-|-|
+|`entry-number`| [Integer](/datatypes/integer/)|The [entry number](/glossary/entry#number).|
+|`entry-timestamp`| [Timestamp](/datatypes/timestamp/)|The [entry timestamp](/glossary/entry#timestamp).
+|`key`| [Key](/datatypes/key/)|The [entry key](/glossary/entry#key).|
+|`item-hash`| List of [Hash](/datatypes/hash/)|The list of [item hashes](/glossary/entry#item-references).|
+|`index-entry-number`| [Integer](/datatypes/integer/)|The entry number [_experimental_].|
+***
 
 The entry resource returns an array containing a single entry.
 
@@ -68,10 +79,19 @@ Content-Type: application/json
 
 ## List entries
 
-* Endpoint: `GET /entries`
-* Parameters:
-  * `start`: (Integer) Filters the collection starting at the given entry
-    number (optional).
+***
+### Endpoint
+
+```
+GET /entries
+```
+
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`start`| Optional [Integer](/datatypes/integer/)|Filters the collection starting at the given entry number.|
+***
 
 Gets the list of entries. [This resource MAY be paginated](/rest-api#collection-pagination).
 

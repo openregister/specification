@@ -13,9 +13,19 @@ resource fits into the [data model](/data-model/).
 
 ## Get a record
 
-* Endpoint: `GET /records/{key}`
-* Parameters:
-  * `key`: (String) The record identifier.
+***
+### Endpoint
+
+```
+GET /records/{key}
+```
+
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`key`| [String](/datatypes/string/)|The record identifier.|
+***
 
 Gets a record by key.
 
@@ -64,7 +74,13 @@ history](#list-the-history-for-a-record) for this record.
 
 ## List records
 
-* Endpoint: `GET /records`
+***
+### Endpoint
+
+```
+GET /records
+```
+***
 
 Gets the list of records. [This resource MAY be paginated](/rest-api#collection-pagination).
 
@@ -116,7 +132,19 @@ Content-Type: application/json
 
 ## List the history for a record
 
-* Endpoint: `GET /records/{key}/entries`
+***
+### Endpoint
+
+```
+GET /records/{key}/entries
+```
+
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`key`| [Key](/datatypes/key/)|The record identifier.|
+***
 
 Get the list of [entries](/glossary/entry) with the record `key`. [This
 resource MAY be paginated](/rest-api#collection-pagination).
@@ -171,7 +199,13 @@ Or, `/records?fieldname={field-name}&value={field-value}` to be more honest abou
 After all, this is a filter on the original record list.
 ***
 
-* Endpoint: `GET /records/{field-name}/{field-value}`
+***
+### Endpoint
+
+```
+GET /records/{field-name}/{field-value}
+```
+***
 
 Gets the list of records filtered by the exact value of the given field name.
 [This resource MAY be paginated](/rest-api#collection-pagination).

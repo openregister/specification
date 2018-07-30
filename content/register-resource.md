@@ -5,16 +5,24 @@ url: /rest-api/register/
 status: wip
 ---
 
-* Endpoint: `GET /register`
+***
+### Endpoint
 
-Response attributes:
+```
+GET /register
+```
 
-* `domain`: (String) The Internet domain the register is available from.
-* `total-entries`: (Integer) The number of entries in the log.
-* `total-records`: (Integer) The number of records in the register.
-* `register-record`: A copy of the Register register Record resource entity describing this register.
-* `custodian`: (Optional String) The custodian of the register.
-* `last-updated`: (Timestamp) The date the register was last updated.
+### Response attributes
+
+|Name|Type|Description|
+|-|-|-|
+|`domain`| [String](/datatypes/string/)|The Internet domain the register is available from.|
+|`total-entries`| [Integer](/datatypes/integer/)|The number of entries in the log.|
+|`total-records`| [Integer](/datatypes/Integer/)|The number of records in the register.|
+|`register-record`| |A copy of the Register register Record resource entity describing this register.|
+|`custodian`| Optional [String](/datatypes/string/)|The custodian of the register.|
+|`last-updated`| [Timestamp](/datatypes/timestamp/)|The date the register was last updated.|
+***
 
 The register resource summarises the register statistics.
 

@@ -17,15 +17,27 @@ NOTE: See the [Register proof](/glossary/register-proof/) definition to understa
 this resource fits into the [data model](/data-model/).
 ***
 
-* Endpoint: `GET /proof/register/{proof-identifier}`
-* Parameters:
-  * `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
+***
+### Endpoint
 
-Response attributes:
+```
+GET /proof/register/{proof-identifier}
+```
 
-* `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
-* `total-entries`: (Integer) The size of the log when the proof was issued.
-* `root-hash`: (Hash) The root hash for the log when the proof was issued.
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+
+### Response attributes
+
+|Name|Type|Description|
+|-|-|-|
+|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+|`total-entries`| [Integer](/datatypes/integer/)|The size of the log when the proof was issued.|
+|`root-hash`| [Hash](/datatypes/hash/)|The root hash for the log when the proof was issued.|
+***
 
 Gets the register proof for the given type of proof.
 
@@ -70,16 +82,28 @@ NOTE: See the [consistency proof](/glossary/consistency-proof/) definition to
 understand how this resource fits into the [data model](/data-model/).
 ***
 
-* Endpoint: `GET /proof/consistency/{small-log-size}/{large-log-size}/{proof-identifier}`
-* Parameters:
-  * `small-log-size`: (Integer) The size of the smaller log.
-  * `large-log-size`: (Integer) The size of the larger log.
-  * `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
+***
+### Endpoint
 
-Response attributes:
+```
+GET /proof/consistency/{small-log-size}/{large-log-size}/{proof-identifier}
+```
 
-* `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
-* `merkle-consistency-nodes`: ([Hash]) The list of node hashes.
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`small-log-size`| [Integer](/datatypes/integer/)|The size of the smaller log.|
+|`large-log-size`| [Integer](/datatypes/integer/)|The size of the larger log.|
+|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+
+### Response attributes
+
+|Name|Type|Description|
+|-|-|-|
+|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+|`merkle-consistency-nodes`| List of [Hash](/datatypes/hash/)|The list of node hashes.|
+***
 
 Gets the consistency proof for the given log sizes and proof type.
 
@@ -122,18 +146,29 @@ NOTE: See the [entry proof](/glossary/entry-proof/) definition to understand
 how this resource fits into the [data model](/data-model/).
 ***
 
-* Endpoint: `/proof/entries/{entry-number}/{log-size}/{proof-identifier}`
-* Parameters:
-  * `entry-number`: (Integer) The entry number to proof.
-  * `log-size`: (Integer) The size of the log.
-  * `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
+***
+### Endpoint
 
-Response attributes:
+```
+GET /proof/entries/{entry-number}/{log-size}/{proof-identifier}
+```
 
-* `proof-identifier`: (String) The type of proof. Possible values: `merkle:sha-256`.
-* `entry-number`: (Integer) The entry number for the proof.
-* `merkle-audit-path`: ([Hash]) The list of node hashes.
+### Parameters
 
+|Name|Type|Description|
+|-|-|-|
+|`entry-number`| [Integer](/datatypes/integer/)|The entry number to proof.|
+|`log-size`| [Integer](/datatypes/integer/)|The size of the log.|
+|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+
+### Response attributes
+
+|Name|Type|Description|
+|-|-|-|
+|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+|`entry-number`| [Integer](/datatypes/integer/)|The entry number for the proof.|
+|`merkle-audit-path`| List of [Hash](/datatypes/hash/)|The list of node hashes.|
+***
 
 Gets the entry proof for the given entry, log size and proof type.
 
