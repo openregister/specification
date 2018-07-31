@@ -22,9 +22,9 @@ The algorithm:
 
 1. Let _key_ be the identifier for the record to find.
 1. Let _log_ be the full log to parse.
-1. Let _result_ be empty.
+1. Let _result_ be null.
 1. Foreach _entry_ in the _log_:
-    1. If the _entry_ key equals the _key_, store it in _result_.
+    1. If the _entry_ key equals the _key_, set __entry__ to  _result_.
 
        Otherwise, do nothing.
 
