@@ -2,13 +2,15 @@
 id: url-datatype
 title: URL
 url: /datatypes/url/
-status: wip
 ---
 
-***
-TODO: Explain implications and restrictions (i.e. RFC URI/IRI vs WHATWG URL)
-***
+An absolute **URL** according to [the URL specification](@url). When
+serialised as a string it MUST be a valid [absolute-URL
+string](https://url.spec.whatwg.org/#absolute-url-string).
 
-[URL](@url).
+***
+NOTE:
 
-Used to link to an external website, or other resource not held in a register.
+Tipically, this type is used to store a link to an external HTTP resource such
+as a website.
+***
