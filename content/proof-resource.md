@@ -13,7 +13,7 @@ resources are for.
 ## Get the register proof
 
 ***
-NOTE: See the [Register proof](/glossary/register-proof/) definition to understand how
+NOTE: See the [Register proof](/glossary/digital-proof#register-proof) definition to understand how
 this resource fits into the [data model](/data-model/).
 ***
 
@@ -78,7 +78,7 @@ Content-Type: application/json
 ## Get a consistency proof
 
 ***
-NOTE: See the [consistency proof](/glossary/consistency-proof/) definition to
+NOTE: See the [consistency proof](/glossary/digital-proof#consistency-proof) definition to
 understand how this resource fits into the [data model](/data-model/).
 ***
 
@@ -142,7 +142,7 @@ Content-Type: application/json
 ## Get an entry proof
 
 ***
-NOTE: See the [entry proof](/glossary/entry-proof/) definition to understand
+NOTE: See the [entry proof](/glossary/digital-proof#entry-proof) definition to understand
 how this resource fits into the [data model](/data-model/).
 ***
 
