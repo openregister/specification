@@ -146,3 +146,9 @@ The following documents might be of interest to readers of this specification.
 Google's Certificate Transparency project fixes several structural flaws in
 the SSL certificate system, which is the main cryptographic system that
 underlies all HTTPS connections.
+
+### [DAT project](https://docs.datproject.org/)
+
+People often are stuck choosing between security, speed, or ease of use. Dat
+provides all three by using a state of the art technical foundation and user
+friendly tools for fast and encrypted file sharing that you control.
