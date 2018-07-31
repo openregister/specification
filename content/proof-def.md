@@ -10,6 +10,9 @@ NOTE: See the [Auditability section](/auditability/) to learn more about
 digital proofs.
 ***
 
+***
+TODO: Define generic digital proof
+***
 
 ## Register proof
 
