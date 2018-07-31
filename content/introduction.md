@@ -102,6 +102,26 @@ Experimental features are tagged as **EXPERIMENTAL** like this:
 This is an experimental paragraph
 ***
 
+Informative type and function definitions may be expressed in a syntax
+inspired by the family of ML languages like Haskell or Elm.
+
+A type:
+
+```elm
+type Log =
+  List Entry
+```
+
+A function signature that reads “A function `f` has two parameters `a` and `b`
+and returns `c`”:
+
+```elm
+f : a -> b -> c
+```
+
+These types and signatures are mainly to support the narrative of this
+specification and interlink the different concepts in play.
+
 
 ## Reference implementation
 

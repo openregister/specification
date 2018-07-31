@@ -1,30 +1,29 @@
 ---
 id: snapshot-def
 title: Snapshot
-url: /snapshot/
+url: /glossary/snapshot/
 status: wip
 ---
-
-## The snapshot
 
 A **snapshot** is the dataset resulting from walking through the
 [log](/glossary/log/) start to end and taking the latest data for each
 element. When the snapshot is for the latest change the elements are called
 [records](/glossary/record/).
 
-A snapshot can be seen as a pair of functions `take` and `collect` where `take`
-slices a log at the given size:
-
 ```elm
-take : Log -> Int -> Log
+type Snapshot =
+  Dict Key Entry
 ```
 
-And a `collect` function that derives the snapshot for the given log:
+A snapshot can be seen as a function `collect` that derives the snapshot from
+a given log:
 
 ```elm
 collect : Log -> Snapshot
 ```
 
+To get a previous snapshot, take an slice of the log from the start.
+
 ![A picture of transforming a log into a snapshot](data-model-snapshot.png)
 
-A snapshot can be seen as a **version** of the dataset.
+A snapshot is sometimes referred as **version** of the dataset.

@@ -12,6 +12,7 @@
     - id: hashing-algorithm-def
     - id: item-def
     - id: key-def
+    - id: log-def
     - id: record-def
     - id: register-proof-def
     - id: snapshot-def

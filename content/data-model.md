@@ -46,4 +46,4 @@ A Register uses a sidecar data structure derived from the **log** that allows
 anyone to efficiently audit the integrity of the data held in it. This data
 structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
 described by the Certificate Transparency [RFC6962](@rfc6962). Check the
-[Digital proofs](/digital-proofs/) section for details.
+[Auditability section](/auditability/) for details.
