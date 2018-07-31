@@ -205,6 +205,13 @@ After all, this is a filter on the original record list.
 ```
 GET /records/{field-name}/{field-value}
 ```
+
+### Parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`field-name`| [Fieldname](/datatypes/fieldname/)|A fieldname part of the data.|
+|`field-value`| [String](/datatypes/string/)|The string representation of a valid value for the `field-name`.|
 ***
 
 Gets the list of records filtered by the exact value of the given field name.
