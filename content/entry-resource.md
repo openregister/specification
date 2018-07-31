@@ -156,7 +156,7 @@ Link: </entries?start=101>; rel="next"
 ***
 **EXAMPLE:**
 
-Following the previous example, thi request gets the second page of the
+Following the previous example, this request gets the second page of the
 entries collection and links to the next page.
 
 ```http
