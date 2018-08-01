@@ -143,12 +143,27 @@ The following documents might be of interest to readers of this specification.
 
 ### [Certificate Transparency](https://www.certificate-transparency.org/)
 
-Google's Certificate Transparency project fixes several structural flaws in
-the SSL certificate system, which is the main cryptographic system that
-underlies all HTTPS connections.
+> Google's Certificate Transparency project fixes several structural flaws in
+> the SSL certificate system, which is the main cryptographic system that
+> underlies all HTTPS connections.
+
+### [Verifiable Data Structures](https://github.com/google/trillian/blob/master/docs/VerifiableDataStructures.pdf)
+
+> This paper describes a number of data structures and their applications that
+> allow adding transparency to the trust model, allowing an ecosystem to evolve
+> from pure trust, to trust but verify. By adding transparency to services,
+> trust can be verified by the ecosystems that depend upon them.
+
+### [Revocation Transparency](https://github.com/google/trillian/blob/master/docs/RevocationTransparency.pdf)
+
+> Like Certificate Transparency, only for revocation. Unlike CT, RT needs a
+> recent status for the certificate, so the general idea is that client will
+> somehow obtain and check a recent proof from the log - for example the server
+> could retrieve it from the log regularly and serve that along with the
+> certificate, or clients could be sent the entire revocation list.
 
 ### [DAT project](https://docs.datproject.org/)
 
-People often are stuck choosing between security, speed, or ease of use. Dat
-provides all three by using a state of the art technical foundation and user
-friendly tools for fast and encrypted file sharing that you control.
+> People often are stuck choosing between security, speed, or ease of use. Dat
+> provides all three by using a state of the art technical foundation and user
+> friendly tools for fast and encrypted file sharing that you control.

@@ -9,16 +9,12 @@ The mechanism for proving the integrity of a Register is based on the digital
 proofs defined by the [Certificate Transparency](@rfc6962) data structures
 (section 1.2) and cryptographic components (section 2).
 
-***
-NOTE: Proving the integrity of a Register allows a user to verify the data they have
+Proving the integrity of a Register allows a user to verify the data they have
 was genuinely created by the Register custodian of the Register. In other
 words, it helps auditing if the Register has been tampered with.
-***
 
 ***
-NOTE: You may read the [Verifiable Data Structures](https://github.com/google/trillian/blob/master/docs/VerifiableDataStructures.pdf) paper,
- the [Revocation Transparency](https://github.com/google/trillian/blob/master/docs/RevocationTransparency.pdf) paper and
-the [Certificate Transparency site](https://www.certificate-transparency.org/)
+NOTE: You may read the [suggested readings](/introduction#suggested-readings)
 to acquaint yourself with the topic.
 ***
 
@@ -35,13 +31,13 @@ of provenance.
 
 ## Digital proofs
 
-There are a few types of digital proofs, each one of them supports proving a
-different trait on a Register. The “Register proof” to [verify the
-register](#register-verification), the “Entry proof” to [verify an entry in
-the log](#entry-verification), the “Consistency proof” to [verify that two
-registers of different sizes are consistent](#consistency-verification) and
-the “Record proof” to [verfiy an entry is the latest for its
-key](#record-verification).
+There are a few types of [digital proofs](/glossary/digital-proof/), each one
+of them supports proving a different trait on a Register. The “Register proof”
+to [verify the register](#register-verification), the “Entry proof” to [verify
+an entry in the log](#entry-verification), the “Consistency proof” to [verify
+that two registers of different sizes are
+consistent](#consistency-verification) and the “Record proof” to [verfiy an
+entry is the latest for its key](#record-verification).
 
 
 ## Register verification
