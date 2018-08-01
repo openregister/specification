@@ -50,6 +50,10 @@ const articleStyle = css`
   }
 
 
+  .gatsby-highlight {
+    margin: 16px 0;
+  }
+
   pre[class*="language-"] {
     overflow-x: auto;
     width: calc(100vw - 380px); // total_width - (nav + gap + scroller_padding)
