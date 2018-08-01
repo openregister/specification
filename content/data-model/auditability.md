@@ -18,15 +18,50 @@ NOTE: You may read the [suggested readings](/introduction#suggested-readings)
 to acquaint yourself with the topic.
 ***
 
-***
-TODO: Add an overview with perhaps a few diagrams of what does it mean to
-audit a Register. Or enhance each verification section.
-***
-
 Verifiable data structures are all applications of a Merkle tree, which enable
 to efficiently prove to the user that certain properties of registers are
 obeyed. The root hash of each Merkle tree is also signed to provide guarantees
 of provenance.
+
+***
+**EXAMPLE:**
+
+For example, these are the steps to generate an Audit path.
+Given a log `[(1, "A"), (2, "B"), (3, "Z"), (4, "A"), (5, "W"), (6, "Z")]`:
+
+![](entry-proof-1.png)
+
+From the list of entries we have to build a Merkle tree, so the first step is
+to hash each entry with a hashing function. E.g. `a = h (1, "A")`, `c = h (3, "Z")`.
+
+![](entry-proof-2.png)
+
+Then we pair the resulting hashes, concatenate them and hash the result. E.g.
+`g = h (concat a b)`.
+
+![](entry-proof-3.png)
+
+And we repeat the procedure for the resulting list of hashes.
+
+![](entry-proof-4.png)
+
+The Audit path to proof entry `(6, "Z")` is `[j, e]` given that these are the
+minimum set of hashes required to compute `k`, the Merkle root hash.
+
+![](entry-proof-5.png)
+
+Similarly, the audit paths for the rest of entries are as follow:
+
+```elm
+audit_path (1, "A") log == [b, h, i]
+audit_path (2, "B") log == [a, h, i]
+audit_path (3, "Z") log == [g, d, i]
+audit_path (4, "A") log == [g, c, i]
+audit_path (5, "W") log == [j, f]
+audit_path (6, "Z") log == [j, e]
+```
+
+***
 
 
 ## Digital proofs
