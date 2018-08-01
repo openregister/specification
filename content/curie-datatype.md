@@ -4,6 +4,11 @@ title: CURIE
 url: /datatypes/curie/
 ---
 
+***
+NOTE: The intention of the CURIE datatype is to provide Registers with a
+mechanism to [link between them](/linkability/).
+***
+
 A **CURIE** (Compact URL) is inspired by the [CURIE Syntax 1.0](@curie) and
 essentially compatible with it. There are two key differences: only a subset of
 CURIEs are allowed and the reference follows [the URL specification](@url).
