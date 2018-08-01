@@ -6,7 +6,7 @@ import {css} from 'react-emotion';
 import GithubSlugger from 'github-slugger';
 import Layout from '../components/layout';
 import ToC from '../components/toc';
-import {findById} from '../utils/section';
+import {extendToc} from '../utils/toc';
 import Status from '../components/status';
 
 const articleStyle = css`
@@ -144,21 +144,6 @@ const scroller = css`
 `;
 
 
-const extendToc = (toc, sections) => {
-  return toc.map(({id, items}) => {
-    const section = findById(id, sections);
-    const result = {
-      id,
-      items: items ? extendToc(items, sections) : null,
-      title: section.frontmatter.title,
-      url: section.frontmatter.url,
-      status: section.frontmatter.status,
-    };
-
-    return result;
-  });
-};
-
 const sectionTocStyle = css`
   margin-top: 40px;
   margin-bottom: 40px;
@@ -193,7 +178,7 @@ const SpecSection = ({data}) => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{section.title}</title>
+        <title>{`${section.frontmatter.title} - ${data.site.title}`}</title>
         <link rel="canonical" href={section.frontmatter.url} />
       </Helmet>
 
@@ -221,6 +206,10 @@ SpecSection.propTypes = {
 
 export const query = graphql`
   query SpecSectionQuery($id: String!) {
+    site: coreToml {
+      title
+    }
+
     toc: allNavYaml {
       edges {
         node {
@@ -233,7 +222,6 @@ export const query = graphql`
     }
 
     sections: allMarkdownRemark {
-      totalCount
       edges {
         node {
           frontmatter {

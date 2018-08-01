@@ -3,50 +3,19 @@ import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import {css} from 'react-emotion';
 import Layout from '../components/layout';
-import Section from '../components/section';
 import ToC from '../components/toc';
-import {findById} from '../utils/section';
+import {extendToc} from '../utils/toc';
 import {Helmet} from 'react-helmet';
 
-const Content = ({tree}) => {
+const Editor = ({name, organisation}) => {
   return (
-    tree.map(SectionHierarchy)
+    <span>{name} ({organisation})</span>
   );
 };
 
-const SectionHierarchy = ({id, items, content}) => {
-  return (
-    <Section key={id} id={id} content={content}>
-      {
-        items
-          ? items.map(SectionHierarchy)
-          : null
-      }
-    </Section>
-  );
-};
-
-SectionHierarchy.propTypes =  {
-  id: PropTypes.string.isRequired,
-  items: PropTypes.array,
-  // title: PropTypes.string.isRequired,
-  // url: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-};
-
-const extendToc = (toc, sections) => {
-  return toc.map(({id, items}) => {
-    const section = findById(id, sections);
-    const result = {
-      id,
-      items: items ? extendToc(items, sections) : null,
-      title: section.frontmatter.title,
-      url: section.frontmatter.url,
-      content: section.html,
-    };
-
-    return result;
-  });
+Editor.propTypes = {
+  name: PropTypes.string.isRequired,
+  organisation: PropTypes.string.isRequired,
 };
 
 const Main = ({data}) => {
@@ -64,7 +33,32 @@ const Main = ({data}) => {
       <article className={articleStyle}>
         <div className={scroller}>
           <h1>Registers Specification (next)</h1>
-          <Content tree={tree} />
+          <dl>
+            <dt>Version:</dt>
+            <dd>{data.site.version}</dd>
+            <dt>Latest update:</dt>
+            <dd>{data.site.publish_date}</dd>
+            <dt>Issue tracker:</dt>
+            <dd><a href={data.site.issue_tracker}>{data.site.issue_tracker}</a></dd>
+            <dt>Editors:</dt>
+            <dd>
+              <ul>
+                {data.site.editors.map(({name, organisation}) =>
+                  <li key={name}><Editor name={name} organisation={organisation} /></li>)}
+              </ul>
+            </dd>
+            <dt>Former Editors:</dt>
+            <dd>
+              <ul>
+                {data.site.former_editors.map(({name, organisation}) =>
+                  <li key={name}><Editor name={name} organisation={organisation} /></li>)}
+              </ul>
+            </dd>
+            <dt>Copyright:</dt>
+            <dd><a href={data.site.copyright.url}>{data.site.copyright.text}</a></dd>
+            <dt>License:</dt>
+            <dd><a href={data.site.license.url}>{data.site.license.text}</a></dd>
+          </dl>
         </div>
       </article>
     </Layout>
@@ -88,22 +82,39 @@ export const query = graphql`
       }
     }
 
+    site: coreToml {
+      id
+      title
+      version
+      publish_date
+      issue_tracker
+      former_editors {
+        name
+        organisation
+      }
+      copyright {
+        text
+        url
+      }
+      license {
+        text
+        url
+      }
+      editors {
+        name
+        organisation
+      }
+    }
+
     sections: allMarkdownRemark {
-      totalCount
       edges {
         node {
-          id
           frontmatter {
             id
             title
             url
+            status
           }
-          fields {
-            slug
-          }
-          excerpt
-          html
-          htmlAst
         }
       }
     }
