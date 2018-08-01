@@ -194,7 +194,7 @@ const SpecSection = ({data}) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>{section.title}</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <link rel="canonical" href={section.frontmatter.url} />
       </Helmet>
 
       <ToC tree={tree} target={section.frontmatter.id} />

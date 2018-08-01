@@ -58,7 +58,7 @@ const Main = ({data}) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Registers Sepecification</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <link rel="canonical" href="/" />
       </Helmet>
       <ToC tree={tree} />
       <article className={articleStyle}>
