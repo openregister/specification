@@ -49,7 +49,7 @@ changes for an element, given its key:
 trail : Key -> Log -> List Entry
 ```
 
-![](data-model-overview.png)
+![](./data-model/data-model-overview.png)
 
 ***
 **EXAMPLE:**

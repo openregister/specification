@@ -16,7 +16,7 @@ type Log =
   List Entry
 ```
 
-![A picture of a log with A, B a Z entries](data-model-log.png)
+![A picture of a log with A, B a Z entries](./data-model/data-model-log.png)
 
 
 ## Operations
