@@ -30,28 +30,9 @@ const Layout = ({children}) => (
     query={graphql`
       query LayoutQuery {
         site: coreToml {
-          id
           title
           version
-          publish_date
           issue_tracker
-          former_editors {
-            name
-            organisation
-          }
-          copyright {
-            text
-            url
-          }
-          license {
-            text
-            url
-          }
-          editors {
-            name
-            email
-            organisation
-          }
         }
       }`}
     render={data => (
@@ -61,7 +42,9 @@ const Layout = ({children}) => (
             <Logo />
             <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
             <div className={flexnavStyle}>
-              <span className={versionStyle}> ({data.site.version.toLowerCase()} {data.site.publish_date})</span> <a className={link2Style} href={data.site.issue_tracker}>Issue tracker (Github)</a>
+              <span className={versionStyle}>
+                (<a href={`https://github.com/openregister/specification/commit/${data.site.version}`}>v. {data.site.version}</a>)
+              </span> <a className={link2Style} href={data.site.issue_tracker}>Issue tracker (Github)</a>
             </div>
           </header>
           {children}
@@ -117,6 +100,14 @@ const link2Style = css`
 const versionStyle = css`
   margin-left: 4px;
   font-size: 14px;
+
+  a {
+    color: ivory;
+    text-decoration: underline;
+    &:hover {
+      color: tomato;
+    }
+  }
 `;
 
 export default Layout;
