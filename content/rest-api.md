@@ -16,6 +16,22 @@ Collections MUST offer pagination through the [`Link` header](@rfc8288).
 Use a `rel="next"` to link to the next page. You MAY offer a previous page
 link with `rel="previous"` if you expect iterating backwards.
 
+## Codes
+
+Each resource defines the codes with specific meaning in their context. The
+list below describes the most important ones with generic meaning. You SHOULD
+use other codes when necessary as long as they don't collide with the ones
+defined in this specification.
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The resource exists and has been delivered.|
+|301|Moved Permanently|The resource exists but it has a new permanent location.|
+|404|Not Found|The resource doesn't exist.|
+|405|Method Not Allowed|The request method is not allowed.|
+|406|Not Acceptable|The format requested is not available.|
+|500|Internal Server Error|Generic server error.|
+
 ## Serialisation
 
 There are two mechanisms to declare the preferred serialisation format: the
