@@ -25,6 +25,18 @@ GET /items/{item-hash}
 |Name|Type|Description|
 |-|-|-|
 |`item-hash`|[Hash](/datatypes/hash/)| The [Item](/glossary/item/) identifier.|
+
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|[200](#success-200)|Success|The requested item exists and has been delivered.|
+|[404](#not-found-404)|Not Found|The requested item doesn't exist.|
+|[410](#gone-410)|Gone|The requested item is no longer available. It was redacted.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 
@@ -35,8 +47,51 @@ The set of fields and values when represented in a tabular format like
 tree-like formats like [JSON](/rest-api#json), the object has to be treated as
 unordered.
 
+### Success (200)
+
+The payload MUST be in the requested [serialisation format](/rest-api#serialisation)
+with the attributes defined by the [Schema](/glossary/schema/).
+
+### Not Found (404)
+
+A 404 MAY have a payload in the requested [serialisation
+format](/rest-api#serialisation) with a helpful message.
+
 ***
-TODO: Describe redactability ie 404 vs 410
+**EXAMPLE:**
+
+For example,
+
+```http
+GET /items/foo HTTP/1.1
+Host: country.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+  "message": "The requested item doesn't exist. The list of items may be of help.",
+  "items-url": "/items"
+}
+```
+***
+
+### Gone (410)
+
+This code MUST be used when the [data blob has been redacted](/redactable/).
+
+***
+ISSUE: Define the payload for this response. E.g.
+
+```json
+{
+  "id": "sha-256:e94c4a9ab00d951dadde848ee2c9fe51628b22ff2e0a88bff4cca6e4e6086d7a",
+  "status": "Redacted"
+}
+```
 ***
 
 ***

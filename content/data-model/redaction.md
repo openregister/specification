@@ -5,9 +5,11 @@ url: /redaction/
 status: wip
 ---
 
-In order to redact a piece of data, the whole data blob (item) has to be
-removed from the Register. Any entry referencing the redacted data MUST NOT be
-removed from the log to keep the integrity of the Register.
+In order to redact a piece of data, the whole data blob
+([item](/glossary/item/)) has to be removed from the Register. Any
+[entry](/glossary/entry/) referencing the redacted data MUST NOT be removed
+from the [log](/glossary/log/) to keep the [integrity](/auditability/) of the
+Register.
 
 The redaction process MUST provide a way to distinguish between a data blob
 that doesn't exist and a data blob that has been redacted.
