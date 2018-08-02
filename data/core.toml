@@ -1,6 +1,6 @@
 title = "Registers Specification"
-version = "Commit Snapshot"
-publish_date = "2018-05-03"
+version = "18ddd7e"
+publish_date = "2018-08-02"
 issue_tracker = "https://github.com/openregister/specification/issues/"
 
 [[editors]]

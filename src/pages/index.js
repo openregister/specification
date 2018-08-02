@@ -26,13 +26,13 @@ const Main = ({data}) => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Registers Sepecification</title>
+        <title>{data.site.title}</title>
         <link rel="canonical" href="/" />
       </Helmet>
       <ToC tree={tree} />
       <article className={articleStyle}>
         <div className={scroller}>
-          <h1>Registers Specification (next)</h1>
+          <h1>{data.site.title}</h1>
           <dl>
             <dt>Version:</dt>
             <dd>{data.site.version}</dd>
