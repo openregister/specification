@@ -54,11 +54,10 @@ const Main = ({data}) => {
                   <li key={name}><Editor name={name} organisation={organisation} /></li>)}
               </ul>
             </dd>
-            <dt>Copyright:</dt>
-            <dd><a href={data.site.copyright.url}>{data.site.copyright.text}</a></dd>
-            <dt>License:</dt>
-            <dd><a href={data.site.license.url}>{data.site.license.text}</a></dd>
           </dl>
+          <p className={copyrightStyle}>
+            <a href={data.site.copyright.url}>{data.site.copyright.text}</a> released under the <a href={data.site.license.url}>{data.site.license.text}</a>.
+          </p>
         </div>
       </article>
     </Layout>
@@ -121,6 +120,12 @@ export const query = graphql`
   }
 `;
 
+const copyrightStyle = css`
+  margin-top: 18px;
+  padding-top: 8px;
+  margin-right: 16px;
+  border-top: 1px solid lightgrey;
+`;
 
 const articleStyle = css`
   grid-column: 2;
