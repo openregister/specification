@@ -12,7 +12,7 @@ element. When the snapshot is for the latest change the elements are called
 
 ```elm
 type Snapshot =
-  Dict Key Entry
+  Dict ID Entry
 ```
 
 A snapshot can be seen as a function `collect` that derives the snapshot from

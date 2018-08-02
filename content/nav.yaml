@@ -31,7 +31,7 @@
     - id: fieldname-datatype
     - id: hash-datatype
     - id: integer-datatype
-    - id: key-datatype
+    - id: id-datatype
     - id: period-datatype
     - id: point-datatype
     - id: polygon-datatype

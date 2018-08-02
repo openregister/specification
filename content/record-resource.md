@@ -143,7 +143,7 @@ GET /records/{key}/entries
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [Key](/datatypes/key/)|The record identifier.|
+|`key`| [ID](/datatypes/id/)|The record identifier.|
 ***
 
 Get the list of [entries](/glossary/entry) with the record `key`. [This

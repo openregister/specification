@@ -15,7 +15,7 @@ computed from the [log](/glossary#log) by a similar method of computing a
 snapshot.
 
 ```elm
-record : Key -> Log -> Maybe Entry
+record : ID -> Log -> Maybe Entry
 ```
 
 The algorithm:
@@ -46,7 +46,7 @@ Similarly, you can filter the [log](/glossary/log/) to get the trail of
 changes for an element, given its key:
 
 ```elm
-trail : Key -> Log -> List Entry
+trail : ID -> Log -> List Entry
 ```
 
 ![](./data-model/data-model-overview.png)
@@ -60,27 +60,27 @@ For example, given a log:
 log =
   [ Entry
      { number : 1
-     , key: Key "A"
+     , key: ID "A"
      ...
      }
   , Entry
      { number : 2
-     , key: Key "B"
+     , key: ID "B"
      ...
      }
   , Entry
      { number : 3
-     , key: Key "Z"
+     , key: ID "Z"
      ...
      }
   , Entry
      { number : 4
-     , key: Key "A"
+     , key: ID "A"
      ...
      }
   , Entry
      { number : 5
-     , key: Key "Z"
+     , key: ID "Z"
      ...
      }
   ]
@@ -89,14 +89,14 @@ log =
 The trail for element “A” is:
 
 ```elm
-trail (Key "A") log == [ Entry
+trail (ID "A") log == [ Entry
                           { number : 1
-                          , key: Key "A"
+                          , key: ID "A"
                           ...
                           }
                        , Entry
                           { number : 4
-                          , key: Key "A"
+                          , key: ID "A"
                           ...
                           }
                        ]
@@ -105,9 +105,9 @@ trail (Key "A") log == [ Entry
 And the record:
 
 ```elm
-record (Key "A") log == Entry
+record (ID "A") log == Entry
                           { number : 4
-                          , key: Key "A"
+                          , key: ID "A"
                           ...
                           }
 ```

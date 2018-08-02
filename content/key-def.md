@@ -9,10 +9,10 @@ unique within a register. Each [entry](/glossary/entry#key) defines what is
 the element affected through their key. Also, a [record](/glossary/record/) is
 identified by the key within the [snapshot](/glossary/snapshot/).
 
-A key MUST be of type [Key](/datatypes/key/).
+A key MUST be of type [ID](/datatypes/id/).
 
 ```elm
-key : Key
+key : ID
 ```
 
 
@@ -24,7 +24,7 @@ For example, given the latest entry with key `DD`, the record:
 ```elm
 Entry
   { number : 3
-  , key: Key "DD"
+  , key: ID "DD"
   , timestamp : Timestamp (2016, 4, 5, 13, 23, 5, Utc)
   , item : [Hash::Sha256 "e1357671d0da24668952373d0cdf9f7659a1b155e45c8fb3c2f24331e46edc26"]
   }
@@ -46,7 +46,7 @@ The `Country` element for `DD` is:
 
 ```elm
 Country
-  { id : Key "DD"
+  { id : ID "DD"
   , startDate : Datetime (1949)
   , endDate : Datetime (1990, 10, 2)
   , officialName : "Germany Democratic Republic"

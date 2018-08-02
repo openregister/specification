@@ -45,5 +45,5 @@ And finally, obtaining discrete entries from the log is as important and
 supported by the [REST API](/rest-api/).
 
 ```elm
-get : Key -> Log -> Maybe Entry
+get : ID -> Log -> Maybe Entry
 ```

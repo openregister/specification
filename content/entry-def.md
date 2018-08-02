@@ -17,7 +17,7 @@ for that element, the [item](/glossary/item/).
 type Entry =
   { number: Integer
   , timestamp: Timestamp
-  , key: Key
+  , key: ID
   , item: List Hash
   }
 ```
@@ -41,7 +41,7 @@ register the entry-number and index-entry-number are always identical.
 
 ### Key
 
-* Type: [Key](/datatypes/key/).
+* Type: [ID](/datatypes/id/).
 
 The [key](/glossary/key/) identifies the element of the dataset which the
 entry refers to.
