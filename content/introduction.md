@@ -21,6 +21,7 @@ can help provide some background for where is this specification coming from.
 * [Building on the steel thread](https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread/).
 * [Registers: authoritative lists you can trust](https://gds.blog.gov.uk/2015/09/01/registers-authoritative-lists-you-can-trust/).
 * [The characteristics of a register](https://gds.blog.gov.uk/2015/10/13/the-characteristics-of-a-register/).
+* [Guaranteeing the integrity of a register](https://gdstechnology.blog.gov.uk/2015/10/13/guaranteeing-the-integrity-of-a-register/).
 * [Linking registers](https://gds.blog.gov.uk/2015/12/16/linking-registers/).
 
 
