@@ -13,7 +13,7 @@ published over HTTP as a [REST API](/rest-api/).
 
 The backbone data structure is the **log** of changes.
 
-![A picture of a log with A, B a Z entries](data-model-log.png)
+![A picture of a log with A, B a Z entries](data-model-log.svg)
 
 The [log](/glossary/log/) of changes is a sequence of entries identified by
 their numerical order, the [entry number](/glossary/entry#number).
@@ -28,7 +28,7 @@ The result of applying a change to the dataset is a new
 [snapshot](/glossary/snapshot/) and, when the snapshot is the latest one, the
 elements are called [records](/glossary/record/).
 
-![A picture of transforming a log into a snapshot](data-model-snapshot.png)
+![A picture of transforming a log into a snapshot](data-model-snapshot.svg)
 
 In summary, the **log** and all its parts form an immutable data structure that
 allow expressing a sequence of changes on the dataset of elements, the

@@ -24,6 +24,6 @@ collect : Log -> Snapshot
 
 To get a previous snapshot, take an slice of the log from the start.
 
-![A picture of transforming a log into a snapshot](./data-model/data-model-snapshot.png)
+![A picture of transforming a log into a snapshot](./data-model/data-model-snapshot.svg)
 
 A snapshot is sometimes referred as **version** of the dataset.

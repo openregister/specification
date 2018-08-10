@@ -49,7 +49,7 @@ changes for an element, given its key:
 trail : ID -> Log -> List Entry
 ```
 
-![](./data-model/data-model-overview.png)
+![The anatomy of an element](./data-model/data-model-overview.svg)
 
 ***
 **EXAMPLE:**
