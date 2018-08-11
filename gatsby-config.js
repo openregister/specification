@@ -57,6 +57,7 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-hiblocks',
+          'gatsby-remark-svg',
           {
             resolve: 'gatsby-remark-images',
             options: {

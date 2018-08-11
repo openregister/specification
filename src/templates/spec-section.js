@@ -49,6 +49,15 @@ const articleStyle = css`
     }
   }
 
+  .figure-svg {
+    margin: 46px 0;
+
+    img {
+      display: block;
+      margin: auto;
+    }
+  }
+
 
   .gatsby-highlight {
     margin: 16px 0;

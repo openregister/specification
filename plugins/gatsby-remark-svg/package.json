@@ -1,0 +1,14 @@
+{
+  "name": "gatsby-remark-svg",
+  "description": "Wraps svg in markdown.",
+  "version": "0.0.0",
+  "author": "Arnau Siches <arnau.siches@digital.cabinet-office.gov.uk>",
+  "license": "MIT",
+  "dependencies": {
+    "unist-util-visit": "^1.4.0"
+  },
+  "main": "index.js",
+  "peerDependencies": {
+    "gatsby": "next"
+  }
+}
