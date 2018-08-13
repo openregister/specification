@@ -107,27 +107,24 @@ Entry
 ## Canonicalisation
 
 ***
-ISSUE: RFC with an algorithm that doesn't depend on JSON
+
+ISSUE: [#24](https://github.com/openregister/registers-rfcs/pull/24) RFC
+with an algorithm that doesn't depend on JSON.
+
 ***
 
 The canonicalisation algorithm is as follows:
 
-* JSON object values MUST be sorted into lexicographical order. The keys of a
-  JSON object must be a valid field name, which is restricted to the alphabet
-  of lower case letters and hyphens, which makes this ordering relatively
-  simple to implement.
-* All whitespace MUST be removed.
-* Characters in strings must be represented as follows:
-  * For ASCII control characters (codepoints `0x00 - 0x1f`):
-    * If it has a short representation (`\b`, `\f`, `\n`, `\r`, or `\t`), that
-      short representation MUST be used.
-    * Other control characters (such as `NULL`) MUST be represented as a
-      `\u00XX` escape sequence. Hexadecimal digits MUST be upper-case.
-  * Backslash (`\`) and double quote (`"`) MUST be escaped as `\\` and `\"`
-    respectively.
-  * All other characters MUST be included literally (ie unescaped). This
-    includes forward-slash (`/`).
-
+* The data blob MUST be a valid JSON object according to [RFC8259](@rfc8259).
+* All insignificant whitespace according to [RFC8259](@rfc8259) MUST be removed.
+* The JSON object keys must be valid field names. On top of being valid JSON
+  keys they MUST be restricted to to the alphabet of lower case letters and
+  hyphens (`[a-z][a-z-0-9]*`).
+* The JSON object values MUST be sorted into lexicographical order.
+* Unicode sequences `\uXXXX` MUST be in upper-case.
+* The forward slash or solidus (`/`) MUST be unescaped.
+* Non-control characters (i.e. out of the range `\u0000`..`\u001F`) MUST be
+  unescaped.
 
 ***
 **EXAMPLE:**
