@@ -4,14 +4,14 @@ title: Datetime
 url: /datatypes/datetime/
 ---
 
-A datetime conforming to the subset of a UTC [ISO8601](@iso8601) date, time or
+A datetime conforming to the subset of a UTC [ISO8601](@iso8601) date or
 datetime as follows:
 
 ```abnf
 ;          datetime
-datetime   = date / time / date "T" time
-date       = century year DSEP month DSEP day
-time       = hour TSEP minute TSEP second timezone
+datetime   = date / date "T" time
+date       = century year [DSEP month [DSEP day]]
+time       = hour [TSEP minute [TSEP second]] timezone
 
 ;          date
 century    = 2digit                               ; i.e. 00-99
@@ -31,11 +31,7 @@ digit = "0" / non-zero
 non-zero =  "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
 ```
 
-* Datetime values MUST be valid [ISO8601](@iso8601).
-* Datetime values MUST be recorded as Universal Coordinated Time (UTC), and not local time such as British Summer Time (BST) or other offset from UTC.
-* The MAY be taken as an indication of the precision, in which case it is the responsibility of the consumer to decide how the date should be interpreted.
-
----
+***
 **EXAMPLE:**
 
 For example, the following Datatime values are valid:
@@ -45,9 +41,15 @@ For example, the following Datatime values are valid:
 2001-01
 2001-01-31
 2018-10-11T12Z
+2018-10-11T12:14Z
 2001-01-31T23:20:55Z
-23:20:55Z
-23Z
 ```
 
----
+***
+
+***
+**NOTE:**
+
+The consumer is responsible for deciding the right interpretation for reduced
+accuracy.
+***
