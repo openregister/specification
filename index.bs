@@ -1059,13 +1059,13 @@ spec:html5; type:element; text:script
       "authors": [ "B. Laurie", "A. Langley", "E. Kasper" ]
   },
   "GEOJSON": {
-      "href": "https://tools.ietf.org/html/draft-ietf-geojson-00",
+      "href": "https://tools.ietf.org/html/rfc7946",
       "title": "The GeoJSON Format",
       "publisher": "IETF",
       "authors": [ "H. Butler", "M. Daly", "A. Doyle", "S. Gillies", "T. Schaub", "S. Hagen" ]
   },
   "MARKDOWN": {
-      "href": "http://spec.commonmark.org/0.24/",
+      "href": "http://spec.commonmark.org/0.28/",
       "title": "Common Markdown",
       "publisher": "CommonMark",
       "authors": [ "John MacFarlane", "David Greenspan", "Vicent Marti", "Neil Williams", "Benjamin Dumke-von der Ehe", "Jeff Atwood" ]
