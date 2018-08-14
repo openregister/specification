@@ -1,6 +1,7 @@
 - id: introduction
 - id: data-model
   items:
+    - id: versioning
     - id: linkability
     - id: minting
     - id: redaction
@@ -39,5 +40,4 @@
     - id: text-datatype
     - id: timestamp-datatype
     - id: url-datatype
-- id: versioning
 - id: registers

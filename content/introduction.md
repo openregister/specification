@@ -126,6 +126,11 @@ f : a -> b -> c
 These types and signatures are mainly to support the narrative of this
 specification and interlink the different concepts in play.
 
+## Versioning
+
+This specification aims to evolve with changes that are backwards compatible.
+Once that is not possible, a new version will be introduced.
+
 
 ## Reference implementation
 
