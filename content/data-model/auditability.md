@@ -69,10 +69,8 @@ audit_path (6, "Z") log == [j, e]
 There are a few types of [digital proofs](/glossary/digital-proof/), each one
 of them supports proving a different trait on a Register. The “Register proof”
 to [verify the register](#register-verification), the “Entry proof” to [verify
-an entry in the log](#entry-verification), the “Consistency proof” to [verify
-that two registers of different sizes are
-consistent](#consistency-verification) and the “Record proof” to [verfiy an
-entry is the latest for its key](#record-verification).
+an entry in the log](#entry-verification)and the “Consistency proof” to [verify
+that two registers of different sizes are consistent](#consistency-verification).
 
 
 ## Register verification
@@ -176,33 +174,6 @@ TODO: merkle-consistency-nodes vs merkle-audit-path? Define both.
 TODO: Review the steps to clarify the mechanism for (5) and (6)
 ***
 
-
-## Record verification
-
-_This process is experimental_.
-
-The Record verification process allows proving that an Entry is the latest one
-for a Register key. This verification uses a Record Proof on a Verifiable Map.
-
-***
-TODO: Key has no meaning in this context, link? definition?
-***
-
-***
-TODO: Verify it's only the latest Entry that it is required for this.
-***
-
-1. Given an Entry, a Verifiable Map root hash and a Log size.
-2. Get the Record proof for the Entry key and the Log size.
-3. Compute the [Entry hash](/glossary/entry#hash).
-4. Compute the root hash from the Entry hash and the Record proof's audit
-   path.
-5. Verify the resulting root hash is the same as the one you have locally.
-
-***
-TODO: Does this process require a fully fleshed Verifiable Map locally or it
-is ok to just have its root hash?
-***
 
 
 ## Signed tree head
