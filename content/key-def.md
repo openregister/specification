@@ -2,6 +2,7 @@
 id: key-def
 title: Key
 url: /glossary/key/
+status: wip
 ---
 
 A **key** is the identifier for an element in the dataset and thus, it MUST be
@@ -9,7 +10,12 @@ unique within a register. Each [entry](/glossary/entry#key) defines what is
 the element affected through their key. Also, a [record](/glossary/record/) is
 identified by the key within the [snapshot](/glossary/snapshot/).
 
-A key MUST be of type [ID](/datatypes/id/).
+A key MUST be of type ID:
+
+***
+ISSUE: Pending
+[RFC](https://github.com/openregister/registers-rfcs/pull/22) to define this datatype.
+***
 
 ```elm
 key : ID
