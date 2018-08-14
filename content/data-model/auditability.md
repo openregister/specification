@@ -29,26 +29,26 @@ of provenance.
 For example, these are the steps to generate an Audit path.
 Given a log `[(1, "A"), (2, "B"), (3, "Z"), (4, "A"), (5, "W"), (6, "Z")]`:
 
-![](entry-proof-1.png)
+![](entry-proof-1.svg)
 
 From the list of entries we have to build a Merkle tree, so the first step is
 to hash each entry with a hashing function. E.g. `a = h (1, "A")`, `c = h (3, "Z")`.
 
-![](entry-proof-2.png)
+![](entry-proof-2.svg)
 
 Then we pair the resulting hashes, concatenate them and hash the result. E.g.
 `g = h (concat a b)`.
 
-![](entry-proof-3.png)
+![](entry-proof-3.svg)
 
 And we repeat the procedure for the resulting list of hashes.
 
-![](entry-proof-4.png)
+![](entry-proof-4.svg)
 
 The Audit path to proof entry `(6, "Z")` is `[j, e]` given that these are the
 minimum set of hashes required to compute `k`, the Merkle root hash.
 
-![](entry-proof-5.png)
+![](entry-proof-5.svg)
 
 Similarly, the audit paths for the rest of entries are as follow:
 
