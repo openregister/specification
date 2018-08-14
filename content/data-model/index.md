@@ -57,8 +57,8 @@ ISSUE: Define how schema evolution works.
 [Schema](/glossary/schema/) evolution depends on two pillars: backwards
 compatibility and forwards compatibility.
 
-**Backwards compitability** requires that once a data attribute is introduced its
-semantics don't change.
+**Backwards compitability** requires that once a [data
+attribute](/glossary/attribute/) is introduced its semantics don't change.
 
 **Forwards compatibility** requires that tools consuming a register MUST apply the
 “must-ignore” rule for unknown attributes and assume that a missing known

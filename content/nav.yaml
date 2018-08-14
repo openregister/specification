@@ -8,6 +8,7 @@
     - id: auditing
 - id: glossary
   items:
+    - id: attribute-def
     - id: catalogue-def
     - id: digital-proof-def
     - id: entry-def
@@ -16,6 +17,7 @@
     - id: key-def
     - id: log-def
     - id: record-def
+    - id: schema-def
     - id: snapshot-def
 - id: rest-api
   items:
