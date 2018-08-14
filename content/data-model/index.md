@@ -40,13 +40,13 @@ item at this level of abstraction.
 ***
 
 
-## Auditability
+## Auditing
 
 A Register uses a sidecar data structure derived from the **log** that allows
 anyone to efficiently audit the integrity of the data held in it. This data
 structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
 described by the Certificate Transparency [RFC6962](@rfc6962). Check the
-[Auditability section](/auditability/) for details.
+[Auditing section](/auditing/) for details.
 
 ## Schema evolution
 

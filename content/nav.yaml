@@ -2,10 +2,10 @@
 - id: data-model
   items:
     - id: versioning
-    - id: linkability
+    - id: linking
     - id: minting
     - id: redaction
-    - id: auditability
+    - id: auditing
 - id: glossary
   items:
     - id: catalogue-def

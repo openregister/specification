@@ -71,7 +71,7 @@ It is a set of hashes instead of a single hash due the **index** feature.
 ## Hash
 
 The identity of an entry computed from its content. It is used for
-[auditability](/auditability/) as the  Merkle tree leaf hashes.
+[auditing](/auditing/) as the  Merkle tree leaf hashes.
 
 The function takes an entry and a [hashing
 algorithm](/glossary/hashing-algorithm/) and returns a [Hash

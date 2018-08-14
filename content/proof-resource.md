@@ -6,7 +6,7 @@ status: wip
 ---
 
 ***
-NOTE: See the [Auditability section](/auditability/) to learn what these
+NOTE: See the [Auditing section](/auditing/) to learn what these
 resources are for.
 ***
 

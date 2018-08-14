@@ -1,7 +1,7 @@
 ---
-id: auditability
-title: Auditability
-url: /auditability/
+id: auditing
+title: Auditing
+url: /auditing/
 status: exp
 ---
 

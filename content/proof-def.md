@@ -6,7 +6,7 @@ status: wip
 ---
 
 ***
-NOTE: See the [Auditability section](/auditability/) to learn more about
+NOTE: See the [Auditing section](/auditing/) to learn more about
 digital proofs.
 ***
 
