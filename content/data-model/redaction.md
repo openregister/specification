@@ -6,10 +6,9 @@ status: wip
 ---
 
 In order to redact a piece of data, the whole data blob
-([item](/glossary/item/)) has to be removed from the Register. Any
-[entry](/glossary/entry/) referencing the redacted data MUST NOT be removed
-from the [log](/glossary/log/) to keep the [integrity](/auditability/) of the
-Register.
+([item](/glossary/item/)) has to be unavailable to the user. Any
+[entry](/glossary/entry/) referencing the redacted data MUST be available at
+all times to guarantee the [integrity](/auditability/) of the Register.
 
 The redaction process MUST provide a way to distinguish between a data blob
 that doesn't exist and a data blob that has been redacted.
@@ -19,6 +18,6 @@ users know whether an item never existed or whether it existed but now it's
 gone due to redaction.
 
 ***
-TODO: Define a fine-grained redaction by changing hashing process (e.g.
-objecthash).
+ISSUE: [#24](https://github.com/openregister/registers-rfcs/pull/24) Define a
+way to offer redactability for data points rather than the whole blob.
 ***
