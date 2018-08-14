@@ -2,7 +2,6 @@
 id: log-def
 title: Log
 url: /glossary/log/
-status: wip
 ---
 
 A **log** of changes is a sequence of entries identified by
