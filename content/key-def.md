@@ -40,7 +40,6 @@ And, given that the [item](/glossary/item/) referenced from the record is:
 
 ```elm
 Item
-  [ ("id", "DD"),
   , ("start-date", "1949")
   , ("end-date", "1990-10-02")
   , ("official-name", "Germany Democratic Republic")
@@ -53,13 +52,10 @@ The `Country` element for `DD` is:
 ```elm
 Country
   { id : ID "DD"
-  , startDate : Datetime (1949)
-  , endDate : Datetime (1990, 10, 2)
+  , startDate : Datetime 1949
+  , endDate : Datetime 1990 10 2
   , officialName : "Germany Democratic Republic"
   , name : "East Germany"
   }
 ```
-
-In all data structures, the constant is the key that links everything
-together.
 ***
