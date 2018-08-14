@@ -1,10 +1,10 @@
 - id: introduction
 - id: data-model
   items:
+    - id: linkability
     - id: minting
     - id: redaction
     - id: auditability
-    - id: linkability
 - id: glossary
   items:
     - id: entry-def

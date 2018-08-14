@@ -2,7 +2,6 @@
 id: linkability
 title: Linkability
 url: /linkability/
-status: wip
 ---
 
 The mechanism for linking two elements is the [CURIE datatype](/datatypes/curie/).
