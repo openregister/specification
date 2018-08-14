@@ -103,6 +103,9 @@ Experimental features are tagged as **EXPERIMENTAL** like this:
 This is an experimental paragraph
 ***
 
+A feature tagged as **EXPERIMENTAL** means the feature is being studied and it
+is likely to evolve possibly with breaking changes.
+
 Informative type and function definitions may be expressed in a syntax
 inspired by the family of ML languages like Haskell or Elm.
 
