@@ -82,5 +82,6 @@ entryHash : Entry -> Alg -> Hash
 ```
 
 ***
-ISSUE: Define RFC with algorithm and attributes involved.
+ISSUE: [#23](https://github.com/openregister/registers-rfcs/pull/23) Define
+RFC with algorithm and attributes involved.
 ***
