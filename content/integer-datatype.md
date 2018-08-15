@@ -4,7 +4,7 @@ title: Integer
 url: /datatypes/integer/
 ---
 
-A decimal number with no fractional component.
+A base 10 number with no fractional component.
 
 ```abnf
 integer = "0" / (["-"] non-zero *digit)
@@ -16,6 +16,8 @@ Leading zeros are not allowed, except for the integer 0, which is
 represented as the string `0`. Negative values are marked with a leading “-”
 character ([UNICODE](@unicode) `0x2D` HYPHEN-MINUS).
 
+Numeric values such as Infinity and NaN are not permitted.
+
 ***
 **EXAMPLE:**
 
@@ -26,4 +28,8 @@ The following examples are all valid integer values:
 0
 -200
 ```
+***
+
+***
+**NOTE:** The integer maximum size is dependent on the implementation.
 ***
