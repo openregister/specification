@@ -31,21 +31,25 @@ GET /entries/{entry-number}
 |-|-|-|
 |`entry-number`| [Integer](/datatypes/integer/)|The [entry number](/glossary/entry#number).|
 |`entry-timestamp`| [Timestamp](/datatypes/timestamp/)|The [entry timestamp](/glossary/entry#timestamp).
-|`key`| [ID](/datatypes/id/)|The [entry key](/glossary/entry#key).|
+|`key`| [ID](/glossary/key#constraints)|The [entry key](/glossary/entry#key).|
 |`item-hash`| List of [Hash](/datatypes/hash/)|The list of [item hashes](/glossary/entry#item-references).|
 |`index-entry-number`| [Integer](/datatypes/integer/)|The entry number [_experimental_].|
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested entry exists and has been delivered.|
+|404|Not Found|The requested entry doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 The entry resource returns an array containing a single entry.
 
 ***
 TODO: Verify we can't revert back to a single entry (no array)
-***
-
-***
-ISSUE: The ref impl returns numbers as String. Reasoning: the schema defines
-the values for items, the types for structures part of registers are known in
-advance and we can take advantage of capable serialisations like JSON.
 ***
 
 ***
@@ -91,6 +95,16 @@ GET /entries
 |Name|Type|Description|
 |-|-|-|
 |`start`| Optional [Integer](/datatypes/integer/)|Filters the collection starting at the given entry number.|
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested page exists and has been delivered.|
+|404|Not Found|The requested page doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 Gets the list of entries. [This resource MAY be paginated](/rest-api#collection-pagination).
