@@ -55,15 +55,9 @@ All field values MUST be encoded as JSON strings. When JSON needs to be in a
 canonical form, use the procedure defined in the [hash
 datatype](/datatypes/hash/).
 
-***
-NOTE: JSON can have missing fields. These have the same semantics as a field
-with a `null` value.
-***
-
-***
-TODO: What's the meaning of an empty string? And an empty array when
-cardinality n?
-***
+JSON can have missing fields. These have the same semantics as a field
+with a `null` value or an empty string or empty array.
+See the [forward compatibility section](/evolve#forwards-compatibility).
 
 ### CSV
 
@@ -71,10 +65,9 @@ cardinality n?
 * Content type: `text/csv`
 * Reference: [Tabular data model](@tabular-data-model)
 
-***
-NOTE: CSV can have empty (blank) values. These have the same semantics as if
-the fields were missing. See [JSON](#json).
-***
+CSV can have empty (blank) values. These have the same semantics as if
+the fields were missing.
+See the [forward compatibility section](/evolve#forwards-compatibility).
 
 ***
 ISSUE: How does the tabular data model interop with the Register data types?

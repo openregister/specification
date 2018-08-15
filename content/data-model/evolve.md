@@ -21,6 +21,10 @@ Forwards compatibility requires that tools consuming a register MUST apply the
 “must-ignore” rule for unknown attributes and assume that a missing known
 attribute is a missing value.
 
+A missing value for a known attribute MUST be treated as the canonical form
+for an empty value (i.e. empty string for cardinality 1 or empty set for
+cardinality n).
+
 ***
 **EXAMPLE:**
 
