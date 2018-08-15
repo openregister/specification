@@ -7,17 +7,12 @@ url: /glossary/item/
 An **item** is an unordered set of attribute-value pairs (associative array)
 constrained by the [schema](/glossary/schema/).
 
-An item is identified by the [hash](/datatypes/hash/) calculated from its
-contents.
+An item is identified by the [hash calculated from its contents](#hash).
 
-***
-NOTE: The hashing algorithm is explained in the [hash datatype
-section](/datatypes/hash/).
-***
 
 ```elm
 type Item =
-  Dict Fieldname Value
+  Dict Fieldname String
 
 type Items =
   Dict Hash Item
@@ -26,23 +21,36 @@ type Items =
 ***
 **EXAMPLE:**
 
-For example, given a schema defining attributes `id`, `x` and `y` with
+For example, given a schema defining attributes `name`, `x` and `y` with
 datatypes `String`, `Integer` and `Integer` respectively, we can define an
 item as follows:
 
 ```elm
-let item =
-  [ ("id", "c0ffee")
-  , ("x", 0)
-  , ("y", 1)
+Item
+  [ ("name", "Foo")
+  , ("x", "0")
+  , ("y", "1")
   ]
 ```
 
-Which can be serialised in JSON as:
+And can be represented as a `Bar` entity as:
+
+```elm
+Bar
+  { name = Just "Foo"
+  , x = Just 0
+  , y = Just 1
+  ]
+```
+
+Note that all attributes expect an optional value as explained in the
+[evolution section](/evolve#forwards-compatibility).
+
+The item can be serialised in JSON as:
 
 ```json
 {
-  "id": "c0ffee",
+  "name": "Foo",
   "x": "0",
   "y": "1"
 }
@@ -51,8 +59,8 @@ Which can be serialised in JSON as:
 Or in CSV as:
 
 ```csv
-id, x, y
-c0ffee, 0, 1
+name, x, y
+Foo, 0, 1
 ```
 
 ***
@@ -172,7 +180,3 @@ datatype](/datatypes/hash/).
 ```elm
 itemHash : Entry -> Alg -> Hash
 ```
-
-***
-ISSUE: Define RFC with hashing algorithm and canonicalisation.
-***
