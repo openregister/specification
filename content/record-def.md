@@ -32,6 +32,16 @@ After all entries in the log have been inspected, the latest one stored in
 _result_ is the record. If no entries were found for _key_, the record doesn't
 exist in the Register.
 
+![](./data-model/data-model-record-1.svg)
+
+Similarly, a record MAY also be obtained from the [snaphot](/glossary/snapshot/):
+
+```elm
+record : ID -> Snapshot -> Maybe Entry
+```
+
+![](./data-model/data-model-record-2.svg)
+
 ***
 NOTE: The reference implementation inlines the [Item](/glossary/item/) in the
 [Record resource](/rest-api/records/) for convenience.
@@ -46,8 +56,16 @@ Similarly, you can filter the [log](/glossary/log/) to get the trail of
 changes for an element, given its key:
 
 ```elm
-trail : ID -> Log -> List Entry
+type Trail =
+  List Entry
+
+filterBy : ID -> Log -> Maybe Trail
+
+record : Trail -> Entry
 ```
+
+![](./data-model/data-model-trail.svg)
+
 
 ![The anatomy of an element](./data-model/data-model-overview.svg)
 
@@ -89,23 +107,24 @@ log =
 The trail for element “A” is:
 
 ```elm
-trail (ID "A") log == [ Entry
-                          { number : 1
-                          , key: ID "A"
-                          ...
-                          }
-                       , Entry
-                          { number : 4
-                          , key: ID "A"
-                          ...
-                          }
-                       ]
+filterBy (ID "A") log == Just Trail
+                          [ Entry
+                            { number : 1
+                            , key: ID "A"
+                            ...
+                            }
+                         , Entry
+                            { number : 4
+                            , key: ID "A"
+                            ...
+                            }
+                         ]
 ```
 
 And the record:
 
 ```elm
-record (ID "A") log == Entry
+record (ID "A") log == Just Entry
                           { number : 4
                           , key: ID "A"
                           ...
