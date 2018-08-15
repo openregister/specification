@@ -1,14 +1,14 @@
 ---
-id: redaction
-title: Redaction
-url: /redaction/
+id: redact
+title: Redact
+url: /redact/
 status: wip
 ---
 
 In order to redact a piece of data, the whole data blob
 ([item](/glossary/item/)) has to be unavailable to the user. Any
 [entry](/glossary/entry/) referencing the redacted data MUST be available at
-all times to guarantee the [integrity](/auditing/) of the Register.
+all times to guarantee the [integrity](/audit/) of the Register.
 
 The redaction process MUST provide a way to distinguish between a data blob
 that doesn't exist and a data blob that has been redacted.

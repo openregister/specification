@@ -46,7 +46,7 @@ A Register uses a sidecar data structure derived from the **log** that allows
 anyone to efficiently audit the integrity of the data held in it. This data
 structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
 described by the Certificate Transparency [RFC6962](@rfc6962). Check the
-[Auditing section](/auditing/) for details.
+[Audit section](/audit/) for details.
 
 ## Schema evolution
 
@@ -64,6 +64,6 @@ attribute](/glossary/attribute/) is introduced its semantics don't change.
 “must-ignore” rule for unknown attributes and assume that a missing known
 attribute is a missing value.
 
-Check the [Evolving section](/evolving/) for details.
+Check the [Evolve section](/evolve/) for details.
 
 

@@ -1,7 +1,7 @@
 ---
-id: evolving
-title: Evolving
-url: /evolving/
+id: evolve
+title: Evolve
+url: /evolve/
 status: wip
 ---
 

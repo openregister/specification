@@ -1,7 +1,7 @@
 ---
-id: linking
-title: Linking
-url: /linking/
+id: link
+title: Link
+url: /link/
 ---
 
 The mechanism for linking two elements is the [CURIE datatype](/datatypes/curie/).

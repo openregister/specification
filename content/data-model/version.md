@@ -1,7 +1,7 @@
 ---
-id: versioning
-title: Versioning
-url: /versioning/
+id: version
+title: Version
+url: /version/
 status: wip
 ---
 

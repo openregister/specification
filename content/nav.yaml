@@ -1,12 +1,12 @@
 - id: introduction
 - id: data-model
   items:
-    - id: versioning
-    - id: linking
-    - id: evolving
-    - id: minting
-    - id: redaction
-    - id: auditing
+    - id: version
+    - id: link
+    - id: evolve
+    - id: mint
+    - id: redact
+    - id: audit
 - id: glossary
   items:
     - id: attribute-def
