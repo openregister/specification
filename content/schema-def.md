@@ -9,10 +9,10 @@ status: wip
 ISSUE: Pending RFC for metadata
 ***
 
-The **schema** is the list of [attributes](/glossary/attribute/) used to
+The **schema** is the set of [attributes](/glossary/attribute/) used to
 handle [data blobs](/glossary/item/).
 
 ```elm
 type Schema =
-  List Attribute
+  Set Attribute
 ```
