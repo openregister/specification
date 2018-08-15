@@ -22,6 +22,11 @@ GET /register
 |`register-record`| |A copy of the Register register Record resource entity describing this register.|
 |`custodian`| Optional [String](/datatypes/string/)|The custodian of the register.|
 |`last-updated`| [Timestamp](/datatypes/timestamp/)|The date the register was last updated.|
+
+### Response summary
+
+See the [generic codes](/rest-api#codes).
+
 ***
 
 The register resource summarises the register statistics.

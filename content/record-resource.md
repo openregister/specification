@@ -24,7 +24,17 @@ GET /records/{key}
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [String](/datatypes/string/)|The record identifier.|
+|`key`| [ID](/glossary/key#constraints)|The record identifier.|
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested record exists and has been delivered.|
+|404|Not Found|The requested record doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 Gets a record by key.
@@ -69,7 +79,7 @@ Link: </records/E09000019/entries>; rel="version-history"
 
 This resource SHOULD provide a [`Link:` header](@rfc8288) with a
 `rel="version-history"` [[RFC5829](@rfc5829)] to the corresponding [Record
-history](#list-the-history-for-a-record) for this record.
+trail](#list-the-trail-of-change-for-a-record) for this record.
 
 
 ## List records
@@ -80,6 +90,16 @@ history](#list-the-history-for-a-record) for this record.
 ```
 GET /records
 ```
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested page exists and has been delivered.|
+|404|Not Found|The requested page doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 Gets the list of records. [This resource MAY be paginated](/rest-api#collection-pagination).
@@ -130,7 +150,7 @@ Content-Type: application/json
 ***
 
 
-## List the history for a record
+## List the trail of change for a record
 
 ***
 ### Endpoint
@@ -143,7 +163,18 @@ GET /records/{key}/entries
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [ID](/datatypes/id/)|The record identifier.|
+|`key`| [ID](/glossary/key#constraints)|The record identifier.|
+
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested page exists and has been delivered.|
+|404|Not Found|The requested page doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 Get the list of [entries](/glossary/entry) with the record `key`. [This
@@ -197,6 +228,8 @@ records but it removes any possible clash between `key` and `field-name`.
 
 Or, `/records?fieldname={field-name}&value={field-value}` to be more honest about it.
 After all, this is a filter on the original record list.
+
+Or, `/indexes/{name}/{value}`.
 ***
 
 ***
@@ -212,6 +245,16 @@ GET /records/{field-name}/{field-value}
 |-|-|-|
 |`field-name`| [Fieldname](/datatypes/fieldname/)|A fieldname part of the data.|
 |`field-value`| [String](/datatypes/string/)|The string representation of a valid value for the `field-name`.|
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested page exists and has been delivered.|
+|404|Not Found|The requested page doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
+
 ***
 
 Gets the list of records filtered by the exact value of the given field name.

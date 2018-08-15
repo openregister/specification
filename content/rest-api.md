@@ -32,6 +32,11 @@ defined in this specification.
 |406|Not Acceptable|The format requested is not available.|
 |500|Internal Server Error|Generic server error.|
 
+The payload MUST be in the requested [serialisation format](#serialisation).
+
+A 404 MAY have a payload with a helpful message.
+
+
 ## Serialisation
 
 There are two mechanisms to declare the preferred serialisation format: the

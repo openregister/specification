@@ -39,7 +39,6 @@ See the [generic codes](/rest-api#codes) for more.
 
 ***
 
-
 Gets an item by hash.
 
 The set of fields and values when represented in a tabular format like
