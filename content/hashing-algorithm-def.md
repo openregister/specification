@@ -10,10 +10,23 @@ ISSUE: [#26](https://github.com/openregister/registers-rfcs/pull/26) Define
 how to identify hashing algorithms.
 ***
 
-***
-ISSUE: Define how it works. Single alg per register.
-
-E.g. CT says "note that this is fixed for this experiment, but it is
-anticipated that each log would be able to specify a hash algorithm"
+The **hashing algorithm** is the function used across the register to create a
+fixed size digest for identifying and addressing [items](/glossary/item/),
+[entry](/glossary/entry/) verification and for the [audit process](/audit/).
 
 ***
+TODO: The definition below depends on the outcome of ISSUE#26.
+***
+
+```elm
+type HAlgorithm =
+  { label = "sha2-256"
+  , functionType = 0x12
+  , digestLength = 0x20
+  }
+```
+
+If a register changes its hashing algorithm means effectively that a new
+register has to be created with the same data and the same changes but with a
+different integrity identity. A register implementation MAY provide ways to
+map from the old identities to the new one (e.g. via HTTP redirection).
