@@ -10,7 +10,9 @@ unique within a register. Each [entry](/glossary/entry#key) defines what is
 the element affected through their key. Also, a [record](/glossary/record/) is
 identified by the key within the [snapshot](/glossary/snapshot/).
 
-A key MUST be of type ID:
+## Constraints
+
+A key MUST be of type ID.
 
 ***
 ISSUE: Pending
