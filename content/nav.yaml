@@ -3,6 +3,7 @@
   items:
     - id: versioning
     - id: linking
+    - id: evolving
     - id: minting
     - id: redaction
     - id: auditing

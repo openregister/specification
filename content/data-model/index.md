@@ -64,48 +64,6 @@ attribute](/glossary/attribute/) is introduced its semantics don't change.
 “must-ignore” rule for unknown attributes and assume that a missing known
 attribute is a missing value.
 
-***
-**EXAMPLE:**
-
-For example, given a schema such as:
-
-```elm
-Schema
-  [ Attribute { id = "name", datatype = String, cardinality = Single }
-  , Attribute { id = "start-date", datatype = Datetime, cardinality = Single }
-  , Attribute { id = "end-date", datatype = Datetime, cardinality = Single }
-  ]
-```
-
-When given a data blob:
-
-```elm
-Blob
-  [ ("name", "Foo")
-  , ("start-date", "2018-08-14")
-  ]
-```
-
-A consumer must assume the value for `end-date` is _unknown_ and as such the
-follwing data blob is isomorphic:
+Check the [Evolving section](/evolving/) for details.
 
 
-```elm
-Blob
-  [ ("name", "Foo")
-  , ("start-date", "2018-08-14")
-  , ("end-date", "")
-  ]
-```
-
-And when applying the schema, it is isomorphic to this item:
-
-```elm
-Item
-  [ ("name", "Foo")
-  , ("start-date", Datetime 2018 8 14)
-  , ("end-date", Nothing)
-  ]
-```
-
-***
