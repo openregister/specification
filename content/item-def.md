@@ -180,3 +180,7 @@ datatype](/datatypes/hash/).
 ```elm
 itemHash : Entry -> Alg -> Hash
 ```
+
+The `sha-256` hash is computed by serialising the item to a canonical form of
+JSON, and computing the SHA-256 hash, defined in the [Secure Hash
+Standard](@fips-180-4), of the resulting serial form.

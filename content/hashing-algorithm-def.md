@@ -30,3 +30,11 @@ If a register changes its hashing algorithm means effectively that a new
 register has to be created with the same data and the same changes but with a
 different integrity identity. A register implementation MAY provide ways to
 map from the old identities to the new one (e.g. via HTTP redirection).
+
+***
+TODO:
+
+Currently there is only one valid hashing algorithm, `sha-256`. In the future,
+other alternative hashing algorithms MAY be added to this specification. They
+will be distinguished by having a different string prefix.
+***
