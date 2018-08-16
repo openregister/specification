@@ -40,6 +40,8 @@ const Main = ({data}) => {
             <dd>{data.site.publish_date}</dd>
             <dt>Issue tracker:</dt>
             <dd><a href={data.site.issue_tracker}>{data.site.issue_tracker}</a></dd>
+            <dt>RFC tracker:</dt>
+            <dd><a href={data.site.rfc_tracker}>{data.site.rfc_tracker}</a></dd>
             <dt>Editors:</dt>
             <dd>
               <ul>
@@ -87,6 +89,7 @@ export const query = graphql`
       version
       publish_date
       issue_tracker
+      rfc_tracker
       former_editors {
         name
         organisation
