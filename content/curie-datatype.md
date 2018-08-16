@@ -10,8 +10,9 @@ mechanism to [link between them](/link/).
 ***
 
 A **CURIE** (Compact URL) is inspired by the [CURIE Syntax 1.0](@curie) and
-essentially compatible with it. There are two key differences: only a subset of
-CURIEs are allowed and the reference follows [the URL specification](@url).
+essentially compatible with it. There are two key differences: only a subset
+of CURIEs are allowed and that the reference part complies with [the URL
+specification](@url) instead of the URL/URI/IRI IETF specifications.
 
 ```elm
 type Curie =
