@@ -62,7 +62,7 @@ Allergen
 When instead, the data blob is:
 
 ```elm
-blob
+Item
   [ ("name", "foo")
   , ("start-date", "2018-08-14")
   ]
@@ -74,14 +74,14 @@ isomorphic:
 
 
 ```elm
-Blob
+Item
   [ ("name", "Foo")
   , ("start-date", "2018-08-14")
   , ("end-date", "")
   ]
 ```
 
-And when applying the schema, it is isomorphic to this item:
+And when applying the schema, it can be seen as:
 
 ```elm
 Allergen
