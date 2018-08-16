@@ -22,7 +22,7 @@ type Datatype
   | Many Primitive
 
 type Attribute =
-  { id: AttributeName -- TODO: Fieldname
+  { id: AttributeName
   , datatype: Datatype
   , title: Maybe String
   , description: Maybe Text

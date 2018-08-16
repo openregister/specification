@@ -94,12 +94,12 @@ ISSUE: Define the payload for this response. E.g.
 ***
 
 ***
-TODO: To determine the set of fields and their value types the user SHOULD use
+TODO: To determine the set of attributes and their value types the user SHOULD use
 the [Schema resource](/rest-api/schema/).
 ***
 
 ***
-NOTE: The set of fields MAY be found in the catalogue as well. For example,
+NOTE: The set of attributes MAY be found in the catalogue as well. For example,
 the GOV.UK catalogue is the [Register register](https://register.register.gov.uk/).
 ***
 

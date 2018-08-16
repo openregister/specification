@@ -12,7 +12,7 @@ An item is identified by the [hash calculated from its contents](#hash).
 
 ```elm
 type Item =
-  Dict Fieldname String
+  Dict AttributeName String
 
 type Items =
   Dict Hash Item
@@ -125,7 +125,7 @@ The canonicalisation algorithm is as follows:
 
 * The data blob MUST be a valid JSON object according to [RFC8259](@rfc8259).
 * All insignificant whitespace according to [RFC8259](@rfc8259) MUST be removed.
-* The JSON object keys must be valid field names. On top of being valid JSON
+* The JSON object keys must be valid attribute names. On top of being valid JSON
   keys they MUST be restricted to to the alphabet of lower case letters and
   hyphens (`[a-z][a-z-0-9]*`).
 * The JSON object values MUST be sorted into lexicographical order.
@@ -137,7 +137,7 @@ The canonicalisation algorithm is as follows:
 ***
 **EXAMPLE:**
 
-For example, take an item with two fields `foo` and `bar` with values `abc`
+For example, take an item with two attributes `foo` and `bar` with values `abc`
 and `xyz` respectively. This can be expressed as JSON:
 
 ```json

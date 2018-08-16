@@ -218,14 +218,14 @@ Content-Type: application/json
 ***
 
 
-## List records by field value
+## List records by attribute value
 
 ***
 TODO: This endpoint path clashes with the regular get records. What about
-`/facets/{field-name}/{field-value}`? It doesn't reflect that it is about
-records but it removes any possible clash between `key` and `field-name`.
+`/facets/{attr-name}/{attr-value}`? It doesn't reflect that it is about
+records but it removes any possible clash between `key` and `attribute-name`.
 
-Or, `/records?fieldname={field-name}&value={field-value}` to be more honest about it.
+Or, `/records?attrname={attr-name}&value={attr-value}` to be more honest about it.
 After all, this is a filter on the original record list.
 
 Or, `/indexes/{name}/{value}`.
@@ -235,15 +235,15 @@ Or, `/indexes/{name}/{value}`.
 ### Endpoint
 
 ```
-GET /records/{field-name}/{field-value}
+GET /records/{attribute-name}/{attribute-value}
 ```
 
 ### Parameters
 
 |Name|Type|Description|
 |-|-|-|
-|`field-name`| [Fieldname](/datatypes/fieldname/)|A fieldname part of the data.|
-|`field-value`| [String](/datatypes/string/)|The string representation of a valid value for the `field-name`.|
+|`attribute-name`| [Attribute Name](/datatypes/attrname/)|An attribute name part of the data.|
+|`attribute-value`| [String](/datatypes/string/)|The string representation of a valid value for the `attribute-name`.|
 
 ### Response summary
 
@@ -256,7 +256,7 @@ See the [generic codes](/rest-api#codes) for more.
 
 ***
 
-Gets the list of records filtered by the exact value of the given field name.
+Gets the list of records filtered by the exact value of the given attribute name.
 [This resource MAY be paginated](/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to

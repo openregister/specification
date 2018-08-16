@@ -32,7 +32,7 @@ See the [generic codes](/rest-api#codes).
 The register resource summarises the register statistics.
 
 ***
-TODO: The `register-record` field doesn't show a full record, just the item
+TODO: The `register-record` attribute doesn't show a full record, just the item
 part of it.
 ***
 

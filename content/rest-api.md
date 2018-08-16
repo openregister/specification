@@ -56,13 +56,13 @@ types. The resource definition explain its particularities.
 * Content type: `application/json`
 * Reference: [JSON](@rfc8259)
 
-All field values MUST be encoded as JSON strings. When JSON needs to be in a
-canonical form, use the procedure defined in the [hash
+All attribute values MUST be encoded as JSON strings. When JSON needs to be in
+a canonical form, use the procedure defined in the [hash
 datatype](/datatypes/hash/).
 
-JSON can have missing fields. These have the same semantics as a field
-with a `null` value or an empty string or empty array.
-See the [forward compatibility section](/evolve#forwards-compatibility).
+JSON can have missing attributes. These have the same semantics as an
+attribute with a `null` value or an empty string or empty array.  See the
+[forward compatibility section](/evolve#forwards-compatibility).
 
 ### CSV
 
@@ -71,7 +71,7 @@ See the [forward compatibility section](/evolve#forwards-compatibility).
 * Reference: [Tabular data model](@tabular-data-model)
 
 CSV can have empty (blank) values. These have the same semantics as if
-the fields were missing.
+the attributes were missing.
 See the [forward compatibility section](/evolve#forwards-compatibility).
 
 ***
@@ -82,7 +82,7 @@ ISSUE: How does the tabular data model interop with the Register data types?
 
 A register MAY provide additional, possibly domain specific representations.
 
-A register containing fields with [Point datatype](/datatypes/point/) or
+A register containing attributes with [Point datatype](/datatypes/point/) or
 [Polygon datatype](/datatypes/polygon/) values may also serve a list of items
 as [GML](@gml), [KML](@kml) or other geographical serialisation format.
 
