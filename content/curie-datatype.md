@@ -45,7 +45,7 @@ example:foo/bar
 example:/qux
 ```
 
-And the following is invalid:
+And the following are invalid:
 
 ```
 :GB
