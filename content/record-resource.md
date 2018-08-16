@@ -39,10 +39,9 @@ See the [generic codes](/rest-api#codes) for more.
 
 Gets a record by key.
 
-The set of fields and values when represented in a tabular format like
-[CSV](/rest-api#csv) the column order is implementation dependent. For
-tree-like formats like [JSON](/rest-api#json), the object has to be treated as
-unordered.
+The column order is implementation dependent when the data is represented in a
+tabular format like [CSV](/rest-api#csv). For tree-like formats like
+[JSON](/rest-api#json), the object has to be treated as unordered.
 
 ***
 **EXAMPLE:**
