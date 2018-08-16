@@ -2,6 +2,7 @@ title = "Registers Specification"
 version = "2ffe670"
 publish_date = "2018-08-16"
 issue_tracker = "https://github.com/openregister/specification/issues/"
+rfc_tracker = "https://github.com/openregister/registers-rfcs/"
 
 [[editors]]
 name = "Arnau Siches"
