@@ -1425,7 +1425,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
     <div style="border-left: 3px solid; border-color: #005abb; padding: 40px 0 0 10px; background-image: url(https://assets.digital.cabinet-office.gov.uk/government/assets/crests/org_crest_27px.png); background-position: 9px top; background-size: auto 40px; background-repeat: no-repeat; margin-bottom: 2em; font-family: &apos;Helvetica&apos;, sans-serif;"> <a href="https://www.gov.uk/government/organisations/government-digital-service" title="Government Digital Service (GDS)">Government Digital Service</a> </div>
    </p>
    <h1>Registers</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-08-13">13 August 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Commit Snapshot, <time class="dt-updated" datetime="2018-08-17">17 August 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2034,12 +2034,11 @@ The archive file SHOULD be made available in a single file, but MAY be split int
     <li data-md="">
      <p>the <a href="#item-hash-field">§9.7 item-hash</a> SHOULD be served as the etag header value for an <a href="#item-resource">§3.1 Item resource</a>.</p>
    </ul>
-   <div class="example" id="example-03bbffe0">
-    <a class="self-link" href="#example-03bbffe0"></a> The following example shows the HTTP headers for the <a href="#json-representation">§11.1 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
+   <div class="example" id="example-e18536d7">
+    <a class="self-link" href="#example-e18536d7"></a> The following example shows the HTTP headers for the <a href="#json-representation">§11.1 JSON representation</a> of an immutable <a href="#item-resource">§3.1 Item resource</a>: 
 <pre>HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Expires: Sun, 22 Jan 2017 08:00:08 GMT
-Link: &lt;/school/12345/entries>; rel="version-history"
 Content-Type: application/json
 Content-Security-Policy: default-src 'self'
 Cache-Control: no-transform, max-age=31536000
