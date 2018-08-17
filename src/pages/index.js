@@ -19,6 +19,8 @@ Editor.propTypes = {
 };
 
 const Main = ({data}) => {
+  const {version, publish_date} = data.site.siteMetadata;
+  const {title, issue_tracker, rfc_tracker, editors, former_editors, copyright, license} = data.core;
   const toc = data.toc.edges.map(({node}) => node);
   const tree = extendToc(toc, data.sections.edges);
 
@@ -26,39 +28,39 @@ const Main = ({data}) => {
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{data.site.title}</title>
+        <title>{title}</title>
         <link rel="canonical" href="/" />
       </Helmet>
       <ToC tree={tree} />
       <article className={articleStyle}>
         <div className={scroller}>
-          <h1>{data.site.title}</h1>
+          <h1>{title}</h1>
           <dl>
             <dt>Version:</dt>
-            <dd>{data.site.version}</dd>
+            <dd>{version}</dd>
             <dt>Latest update:</dt>
-            <dd>{data.site.publish_date}</dd>
+            <dd>{publish_date.substr(0, 10)}</dd>
             <dt>Issue tracker:</dt>
-            <dd><a href={data.site.issue_tracker}>{data.site.issue_tracker}</a></dd>
+            <dd><a href={issue_tracker}>{issue_tracker}</a></dd>
             <dt>RFC tracker:</dt>
-            <dd><a href={data.site.rfc_tracker}>{data.site.rfc_tracker}</a></dd>
+            <dd><a href={rfc_tracker}>{rfc_tracker}</a></dd>
             <dt>Editors:</dt>
             <dd>
               <ul>
-                {data.site.editors.map(({name, organisation}) =>
+                {editors.map(({name, organisation}) =>
                   <li key={name}><Editor name={name} organisation={organisation} /></li>)}
               </ul>
             </dd>
             <dt>Former Editors:</dt>
             <dd>
               <ul>
-                {data.site.former_editors.map(({name, organisation}) =>
+                {former_editors.map(({name, organisation}) =>
                   <li key={name}><Editor name={name} organisation={organisation} /></li>)}
               </ul>
             </dd>
           </dl>
           <p className={copyrightStyle}>
-            <a href={data.site.copyright.url}>{data.site.copyright.text}</a> released under the <a href={data.site.license.url}>{data.site.license.text}</a>.
+            <a href={copyright.url}>{copyright.text}</a> released under the <a href={license.url}>{license.text}</a>.
           </p>
         </div>
       </article>
@@ -82,12 +84,15 @@ export const query = graphql`
         }
       }
     }
-
-    site: coreToml {
+    site {
+      siteMetadata {
+        version
+        publish_date
+      }
+    }
+    core: coreToml {
       id
       title
-      version
-      publish_date
       issue_tracker
       rfc_tracker
       former_editors {

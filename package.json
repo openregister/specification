@@ -3,8 +3,8 @@
   "description": "Registers Specification builder",
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
+    "develop": "VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby develop",
+    "build": "VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby build",
     "clean": "rm -rf .cache",
     "serve": "gatsby serve"
   },

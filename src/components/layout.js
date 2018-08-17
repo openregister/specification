@@ -29,28 +29,36 @@ const Layout = ({children}) => (
   <StaticQuery
     query={graphql`
       query LayoutQuery {
-        site: coreToml {
+        site {
+          siteMetadata {
+            version
+          }
+        }
+        core: coreToml {
           title
-          version
           issue_tracker
         }
       }`}
-    render={data => (
-      <React.Fragment>
-        <div className={wrapperStyle}>
-          <header className={headerStyle}>
-            <Logo />
-            <Link className={linkStyle} to={'/'}>{data.site.title}</Link>
-            <div className={flexnavStyle}>
-              <span className={versionStyle}>
-                (<a href={`https://github.com/openregister/specification/commit/${data.site.version}`}>v. {data.site.version}</a>)
-              </span> <a className={link2Style} href={data.site.issue_tracker}>Issue tracker (Github)</a>
-            </div>
-          </header>
-          {children}
-        </div>
-      </React.Fragment>
-    )}
+    render={data => {
+      const {version} = data.site.siteMetadata;
+      const {title, issue_tracker} = data.core;
+
+      return (
+        <React.Fragment>
+          <div className={wrapperStyle}>
+            <header className={headerStyle}>
+              <Logo />
+              <Link className={linkStyle} to={'/'}>{title}</Link>
+              <div className={flexnavStyle}>
+                <span className={versionStyle}>
+                (<a href={`https://github.com/openregister/specification/commit/${version}`}>v. {version}</a>)
+                </span> <a className={link2Style} href={issue_tracker}>Issue tracker</a>
+              </div>
+            </header>
+            {children}
+          </div>
+        </React.Fragment>
+      );}}
   />
 );
 

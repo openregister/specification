@@ -6,7 +6,8 @@ const db = toml.parse(rawBib);
 
 module.exports = {
   siteMetadata: {
-    title: 'Registers Specification (next)',
+    version: process.env.VERSION || 'next',
+    publish_date: process.env.PUBDATE || 'live',
   },
   plugins: [
     {
