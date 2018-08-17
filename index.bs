@@ -559,7 +559,6 @@ The following example shows the HTTP headers for the [[#json-representation]] of
 HTTP/1.1 200 OK
 Date: Fri, 22 Jan 2016 08:00:08 GMT
 Expires: Sun, 22 Jan 2017 08:00:08 GMT
-Link: &lt;/school/12345/entries>; rel="version-history"
 Content-Type: application/json
 Content-Security-Policy: default-src 'self'
 Cache-Control: no-transform, max-age=31536000
