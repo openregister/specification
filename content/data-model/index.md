@@ -21,8 +21,7 @@ their numerical order, the [entry number](/glossary/entry#number).
 Each [entry](/glossary/entry/) defines a change for an element in the dataset
 by recording the time the change was appended to the log, the numerical order
 in the log, the key to identify the element the change is for and the
-reference to the data for that element, the [item](/glossary/item/), a set of
-attribute-value pairs as defined in the [schema](/glossary/schema/).
+reference to the [data for that element](/glossary/item/).
 
 The result of applying a change to the dataset is a new
 [snapshot](/glossary/snapshot/) and, when the snapshot is the latest one, the
@@ -34,19 +33,6 @@ In summary, the **log** and all its parts form an immutable data structure that
 allow expressing a sequence of changes on the dataset of elements, the
 Register.
 
-***
-ISSUE: Schema is not well defined yet and it shouldn't be needed to define the
-item at this level of abstraction.
-***
-
-
-## Auditing
-
-A Register uses a sidecar data structure derived from the **log** that allows
-anyone to efficiently audit the integrity of the data held in it. This data
-structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
-described by the Certificate Transparency [RFC6962](@rfc6962). Check the
-[Audit section](/audit/) for details.
 
 ## Schema evolution
 
@@ -67,3 +53,10 @@ attribute is a missing value.
 Check the [Evolve section](/evolve/) for details.
 
 
+## Auditing
+
+A Register uses a sidecar data structure derived from the **log** that allows
+anyone to efficiently audit the integrity of the data held in it. This data
+structure is a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) as
+described by the Certificate Transparency [RFC6962](@rfc6962). Check the
+[Audit section](/audit/) for details.
