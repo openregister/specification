@@ -16,7 +16,7 @@ _This section is non-normative._
 Back in 2015 a team at
 [GDS](https://www.gov.uk/government/organisations/government-digital-service)
 started exploring how to improve digital registers. A few blog posts from then
-can help provide some background for where is this specification coming from.
+can help provide some background for where is this specification comes from.
 
 * [Building on the steel thread](https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread/).
 * [Registers: authoritative lists you can trust](https://gds.blog.gov.uk/2015/09/01/registers-authoritative-lists-you-can-trust/).
