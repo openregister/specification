@@ -5,7 +5,7 @@
   "scripts": {
     "develop": "VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby develop",
     "build": "VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby build",
-    "clean": "rm -rf .cache",
+    "clean": "rm -rf .cache public",
     "serve": "gatsby serve"
   },
   "dependencies": {
