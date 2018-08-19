@@ -7,7 +7,7 @@ url: /glossary/log/
 A **log** of changes is a sequence of entries identified by
 their numerical order, the [entry number](/glossary/entry#number).
 It is the backbone data structure that enables [snapshots](/glossary/snapshot/),
-[records](/glossary/record/) and [audit](/audit/).
+[records](/glossary/record/) and [audit](/data-model/audit/).
 
 
 ```elm

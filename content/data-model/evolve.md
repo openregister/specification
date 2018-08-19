@@ -1,7 +1,7 @@
 ---
 id: evolve
 title: Evolve
-url: /evolve/
+url: /data-model/evolve/
 status: wip
 ---
 

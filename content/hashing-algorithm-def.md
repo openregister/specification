@@ -12,7 +12,7 @@ how to identify hashing algorithms.
 
 The **hashing algorithm** is the function used across the register to create a
 fixed size digest for identifying and addressing [items](/glossary/item/),
-[entry](/glossary/entry/) verification and for the [audit process](/audit/).
+[entry](/glossary/entry/) verification and for the [audit process](/data-model/audit/).
 
 ***
 TODO: The definition below depends on the outcome of ISSUE#26.

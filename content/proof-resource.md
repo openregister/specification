@@ -6,7 +6,7 @@ status: exp
 ---
 
 ***
-NOTE: See the [Audit section](/audit/) to learn what these
+NOTE: See the [Audit section](/data-model/audit/) to learn what these
 resources are for.
 ***
 

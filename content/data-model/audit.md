@@ -1,7 +1,7 @@
 ---
 id: audit
 title: Audit
-url: /audit/
+url: /data-model/audit/
 status: exp
 ---
 

@@ -6,7 +6,7 @@ status: exp
 ---
 
 ***
-NOTE: See the [Audit section](/audit/) to learn more about
+NOTE: See the [Audit section](/data-model/audit/) to learn more about
 digital proofs.
 ***
 

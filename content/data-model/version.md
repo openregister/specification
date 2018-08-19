@@ -1,7 +1,7 @@
 ---
 id: version
 title: Version
-url: /version/
+url: /data-model/version/
 status: wip
 ---
 

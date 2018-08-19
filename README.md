@@ -14,6 +14,11 @@ Note this repository doesn't have a master branch, the default is the gh-pages b
 * `data/` directory: Metadata and complementary data.
 * `content/` directory: The markdown source.
 
+## Roadmap
+
+* Finish specification writing
+* Highlight multihash bytes if RFC is accepted
+
 
 ## Development
 

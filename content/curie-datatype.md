@@ -6,7 +6,7 @@ url: /datatypes/curie/
 
 ***
 NOTE: The intention of the CURIE datatype is to provide Registers with a
-mechanism to [link between them](/link/).
+mechanism to [link between them](/data-model/link/).
 ***
 
 A **CURIE** (Compact URL) is inspired by the [CURIE Syntax 1.0](@curie) and
