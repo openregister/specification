@@ -1,7 +1,7 @@
 ---
 id: integer-datatype
 title: Integer
-url: /datatypes/integer/
+url: /datatypes/integer
 ---
 
 A base 10 number with no fractional component.

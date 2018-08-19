@@ -1,7 +1,7 @@
 ---
 id: period-datatype
 title: Period
-url: /datatypes/period/
+url: /datatypes/period
 ---
 
 A period of time conforming to the subset of [ISO8601](@iso8601) time

@@ -1,18 +1,18 @@
 ---
 id: evolve
 title: Evolve
-url: /data-model/evolve/
+url: /data-model/evolve
 status: wip
 ---
 
-[Schema](/glossary/schema/) evolution depends on two pillars: backwards
+[Schema](/glossary/schema) evolution depends on two pillars: backwards
 compatibility and forwards compatibility.
 
 
 ## Backwards compitability
 
 Backwards compitability requires that once a [data
-attribute](/glossary/attribute/) is introduced its semantics don't change.
+attribute](/glossary/attribute) is introduced its semantics don't change.
 
 
 ## Forwards compatibility

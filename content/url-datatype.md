@@ -1,7 +1,7 @@
 ---
 id: url-datatype
 title: URL
-url: /datatypes/url/
+url: /datatypes/url
 ---
 
 An absolute **URL** according to [the URL specification](@url). When

@@ -1,10 +1,10 @@
 ---
 id: attrname-datatype
 title: Attribute Name
-url: /datatypes/attrname/
+url: /datatypes/attrname
 ---
 
-An **attribute name** is a [String](/datatypes/string/) restricted to lower
+An **attribute name** is a [String](/datatypes/string) restricted to lower
 case ASCII letters, digits and hyphens with the following pattern:
 
 ```abnf

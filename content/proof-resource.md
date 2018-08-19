@@ -1,12 +1,12 @@
 ---
 id: proof-resource
 title: Proofs
-url: /rest-api/proofs/
+url: /rest-api/proofs
 status: exp
 ---
 
 ***
-NOTE: See the [Audit section](/data-model/audit/) to learn what these
+NOTE: See the [Audit section](/data-model/audit) to learn what these
 resources are for.
 ***
 
@@ -14,7 +14,7 @@ resources are for.
 
 ***
 NOTE: See the [Register proof](/glossary/digital-proof#register-proof) definition to understand how
-this resource fits into the [data model](/data-model/).
+this resource fits into the [data model](/data-model).
 ***
 
 ***
@@ -28,15 +28,15 @@ GET /proof/register/{proof-identifier}
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha-256`.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
-|`total-entries`| [Integer](/datatypes/integer/)|The size of the log when the proof was issued.|
-|`root-hash`| [Hash](/datatypes/hash/)|The root hash for the log when the proof was issued.|
+|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha-256`.|
+|`total-entries`| [Integer](/datatypes/integer)|The size of the log when the proof was issued.|
+|`root-hash`| [Hash](/datatypes/hash)|The root hash for the log when the proof was issued.|
 ***
 
 Gets the register proof for the given type of proof.
@@ -79,7 +79,7 @@ Content-Type: application/json
 
 ***
 NOTE: See the [consistency proof](/glossary/digital-proof#consistency-proof) definition to
-understand how this resource fits into the [data model](/data-model/).
+understand how this resource fits into the [data model](/data-model).
 ***
 
 ***
@@ -93,16 +93,16 @@ GET /proof/consistency/{small-log-size}/{large-log-size}/{proof-identifier}
 
 |Name|Type|Description|
 |-|-|-|
-|`small-log-size`| [Integer](/datatypes/integer/)|The size of the smaller log.|
-|`large-log-size`| [Integer](/datatypes/integer/)|The size of the larger log.|
-|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+|`small-log-size`| [Integer](/datatypes/integer)|The size of the smaller log.|
+|`large-log-size`| [Integer](/datatypes/integer)|The size of the larger log.|
+|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha-256`.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
-|`merkle-consistency-nodes`| List of [Hash](/datatypes/hash/)|The list of node hashes.|
+|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha-256`.|
+|`merkle-consistency-nodes`| List of [Hash](/datatypes/hash)|The list of node hashes.|
 ***
 
 Gets the consistency proof for the given log sizes and proof type.
@@ -143,7 +143,7 @@ Content-Type: application/json
 
 ***
 NOTE: See the [entry proof](/glossary/digital-proof#entry-proof) definition to understand
-how this resource fits into the [data model](/data-model/).
+how this resource fits into the [data model](/data-model).
 ***
 
 ***
@@ -157,17 +157,17 @@ GET /proof/entries/{entry-number}/{log-size}/{proof-identifier}
 
 |Name|Type|Description|
 |-|-|-|
-|`entry-number`| [Integer](/datatypes/integer/)|The entry number to proof.|
-|`log-size`| [Integer](/datatypes/integer/)|The size of the log.|
-|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
+|`entry-number`| [Integer](/datatypes/integer)|The entry number to proof.|
+|`log-size`| [Integer](/datatypes/integer)|The size of the log.|
+|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha-256`.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string/)|The type of proof. Possible values: `merkle:sha-256`.|
-|`entry-number`| [Integer](/datatypes/integer/)|The entry number for the proof.|
-|`merkle-audit-path`| List of [Hash](/datatypes/hash/)|The list of node hashes.|
+|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha-256`.|
+|`entry-number`| [Integer](/datatypes/integer)|The entry number for the proof.|
+|`merkle-audit-path`| List of [Hash](/datatypes/hash)|The list of node hashes.|
 ***
 
 Gets the entry proof for the given entry, log size and proof type.

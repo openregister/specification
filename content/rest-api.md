@@ -1,7 +1,7 @@
 ---
 id: rest-api
 title: REST API
-url: /rest-api/
+url: /rest-api
 status: wip
 ---
 
@@ -47,7 +47,7 @@ format.
 JSON is the canonical serialisation format but CSV is encouraged to be
 implemented as well.
 
-Some resources like the [Archive](/rest-api/archive/) use different content
+Some resources like the [Archive](/rest-api/archive) use different content
 types. The resource definition explain its particularities.
 
 ### JSON
@@ -58,7 +58,7 @@ types. The resource definition explain its particularities.
 
 All attribute values MUST be encoded as JSON strings. When JSON needs to be in
 a canonical form, use the procedure defined in the [hash
-datatype](/datatypes/hash/).
+datatype](/datatypes/hash).
 
 JSON can have missing attributes. These have the same semantics as an
 attribute with a `null` value or an empty string or empty array.  See the
@@ -82,8 +82,8 @@ ISSUE: How does the tabular data model interop with the Register data types?
 
 A register MAY provide additional, possibly domain specific representations.
 
-A register containing attributes with [Point datatype](/datatypes/point/) or
-[Polygon datatype](/datatypes/polygon/) values may also serve a list of items
+A register containing attributes with [Point datatype](/datatypes/point) or
+[Polygon datatype](/datatypes/polygon) values may also serve a list of items
 as [GML](@gml), [KML](@kml) or other geographical serialisation format.
 
 ***

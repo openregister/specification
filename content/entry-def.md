@@ -1,17 +1,17 @@
 ---
 id: entry-def
 title: Entry
-url: /glossary/entry/
+url: /glossary/entry
 status: exp
 ---
 
 An **entry** defines a change in the dataset. The ordered list of entries form
-the [log](/glossary/log/). Entries are immutable resources.
+the [log](/glossary/log). Entries are immutable resources.
 
 Each entry defines a change for an element in the dataset by recording the
 time the change was added to the log, the numerical order in the log, the
 key to identify the element the change is for and the reference to the data
-for that element, the [item](/glossary/item/).
+for that element, the [item](/glossary/item).
 
 ```elm
 type Entry =
@@ -26,10 +26,10 @@ type Entry =
 
 ### Number
 
-* Type: [Integer](/datatypes/integer/).
+* Type: [Integer](/datatypes/integer).
 
 The entry number is unique and defines the position of the entry within the
-[log](/glossary/log/).
+[log](/glossary/log).
 
 ***
 **EXPERIMENTAL:**
@@ -43,21 +43,21 @@ register the entry-number and index-entry-number are always identical.
 
 * Type: [ID](/key-def#constraints).
 
-The [key](/glossary/key/) identifies the element of the dataset which the
+The [key](/glossary/key) identifies the element of the dataset which the
 entry refers to.
 
 ### Timestamp
 
-* Type: [Timestamp](/datatypes/timestamp/)
+* Type: [Timestamp](/datatypes/timestamp)
 
-The time when the entry was added to the [log](/glossary/log/). This means
+The time when the entry was added to the [log](/glossary/log). This means
 that the timestamp is no guarantee of entry order, the [entry
 number](#entry-number) is.
 
 
 ### Item references
 
-* Type: Set of [Hash](/datatypes/hash/).
+* Type: Set of [Hash](/datatypes/hash).
 
 The set of [item hashes](/glossary/item#hash) the entry links to.
 
@@ -71,11 +71,11 @@ It is a set of hashes instead of a single hash due the **index** feature.
 ## Hash
 
 The identity of an entry computed from its content. It is used for
-[audit](/data-model/audit/) as the  Merkle tree leaf hashes.
+[audit](/data-model/audit) as the Merkle tree leaf hashes.
 
 The function takes an entry and a [hashing
-algorithm](/glossary/hashing-algorithm/) and returns a [Hash
-datatype](/datatypes/hash/).
+algorithm](/glossary/hashing-algorithm) and returns a [Hash
+datatype](/datatypes/hash).
 
 ```elm
 entryHash : Entry -> Alg -> Hash

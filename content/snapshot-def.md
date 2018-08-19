@@ -1,14 +1,14 @@
 ---
 id: snapshot-def
 title: Snapshot
-url: /glossary/snapshot/
+url: /glossary/snapshot
 status: wip
 ---
 
 A **snapshot** is the dataset resulting from walking through the
-[log](/glossary/log/) start to end and taking the latest data for each
+[log](/glossary/log) start to end and taking the latest data for each
 element. When the snapshot is for the latest change the elements are called
-[records](/glossary/record/).
+[records](/glossary/record).
 
 ```elm
 type Snapshot =

@@ -1,13 +1,13 @@
 ---
 id: entry-resource
 title: Entries
-url: /rest-api/entries/
+url: /rest-api/entries
 status: wip
 ---
 
 ***
-NOTE: See the [Entry](/glossary/entry/) definition to understand how this
-resource fits into the [data model](/data-model/).
+NOTE: See the [Entry](/glossary/entry) definition to understand how this
+resource fits into the [data model](/data-model).
 ***
 
 ## Get an entry
@@ -23,17 +23,17 @@ GET /entries/{entry-number}
 
 |Name|Type|Description|
 |-|-|-|
-|`entry-number`| [Integer](/datatypes/integer/)|The number of the [Entry](/glossary/entry/).|
+|`entry-number`| [Integer](/datatypes/integer)|The number of the [Entry](/glossary/entry).|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`entry-number`| [Integer](/datatypes/integer/)|The [entry number](/glossary/entry#number).|
-|`entry-timestamp`| [Timestamp](/datatypes/timestamp/)|The [entry timestamp](/glossary/entry#timestamp).
+|`entry-number`| [Integer](/datatypes/integer)|The [entry number](/glossary/entry#number).|
+|`entry-timestamp`| [Timestamp](/datatypes/timestamp)|The [entry timestamp](/glossary/entry#timestamp).
 |`key`| [ID](/glossary/key#constraints)|The [entry key](/glossary/entry#key).|
-|`item-hash`| List of [Hash](/datatypes/hash/)|The list of [item hashes](/glossary/entry#item-references).|
-|`index-entry-number`| [Integer](/datatypes/integer/)|The entry number [_experimental_].|
+|`item-hash`| List of [Hash](/datatypes/hash)|The list of [item hashes](/glossary/entry#item-references).|
+|`index-entry-number`| [Integer](/datatypes/integer)|The entry number [_experimental_].|
 
 ### Response summary
 
@@ -94,7 +94,7 @@ GET /entries
 
 |Name|Type|Description|
 |-|-|-|
-|`start`| Optional [Integer](/datatypes/integer/)|Filters the collection starting at the given entry number.|
+|`start`| Optional [Integer](/datatypes/integer)|Filters the collection starting at the given entry number.|
 
 ### Response summary
 

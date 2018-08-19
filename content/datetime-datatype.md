@@ -1,7 +1,7 @@
 ---
 id: datetime-datatype
 title: Datetime
-url: /datatypes/datetime/
+url: /datatypes/datetime
 ---
 
 A datetime conforming to the subset of a UTC [ISO8601](@iso8601) date or

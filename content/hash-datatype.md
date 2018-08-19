@@ -1,10 +1,10 @@
 ---
 id: hash-datatype
 title: Hash
-url: /datatypes/hash/
+url: /datatypes/hash
 ---
 
-The digest result of a [hashing algorithm](/glossary/hashing-algorithm/). When
+The digest result of a [hashing algorithm](/glossary/hashing-algorithm). When
 serialised as a string it MUST be in hexadecimal.
 
 ***

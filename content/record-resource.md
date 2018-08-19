@@ -1,13 +1,13 @@
 ---
 id: record-resource
 title: Records
-url: /rest-api/records/
+url: /rest-api/records
 status: wip
 ---
 
 ***
-NOTE: See the [Record](/glossary/record/) definition to understand how this
-resource fits into the [data model](/data-model/).
+NOTE: See the [Record](/glossary/record) definition to understand how this
+resource fits into the [data model](/data-model).
 ***
 
 
@@ -242,8 +242,8 @@ GET /records/{attribute-name}/{attribute-value}
 
 |Name|Type|Description|
 |-|-|-|
-|`attribute-name`| [Attribute Name](/datatypes/attrname/)|An attribute name part of the data.|
-|`attribute-value`| [String](/datatypes/string/)|The string representation of a valid value for the `attribute-name`.|
+|`attribute-name`| [Attribute Name](/datatypes/attrname)|An attribute name part of the data.|
+|`attribute-value`| [String](/datatypes/string)|The string representation of a valid value for the `attribute-name`.|
 
 ### Response summary
 

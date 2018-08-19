@@ -1,13 +1,13 @@
 ---
 id: item-resource
 title: Items
-url: /rest-api/items/
+url: /rest-api/items
 status: wip
 ---
 
 ***
-NOTE: See the [Item](/glossary/item/) definition to understand how this
-resource fits into the [data model](/data-model/).
+NOTE: See the [Item](/glossary/item) definition to understand how this
+resource fits into the [data model](/data-model).
 ***
 
 
@@ -24,7 +24,7 @@ GET /items/{item-hash}
 
 |Name|Type|Description|
 |-|-|-|
-|`item-hash`|[Hash](/datatypes/hash/)| The [Item](/glossary/item/) identifier.|
+|`item-hash`|[Hash](/datatypes/hash)| The [Item](/glossary/item) identifier.|
 
 
 ### Response summary
@@ -49,7 +49,7 @@ tabular format like [CSV](/rest-api#csv). For tree-like formats like
 ### Success (200)
 
 The payload MUST be in the requested [serialisation format](/rest-api#serialisation)
-with the attributes defined by the [Schema](/glossary/schema/).
+with the attributes defined by the [Schema](/glossary/schema).
 
 ### Not Found (404)
 
@@ -80,7 +80,7 @@ Content-Type: application/json
 
 ### Gone (410)
 
-This code MUST be used when the [data blob has been redacted](/redactable/).
+This code MUST be used when the [data blob has been redacted](/redactable).
 
 ***
 ISSUE: Define the payload for this response. E.g.
@@ -95,12 +95,12 @@ ISSUE: Define the payload for this response. E.g.
 
 ***
 TODO: To determine the set of attributes and their value types the user SHOULD use
-the [Schema resource](/rest-api/schema/).
+the [Schema resource](/rest-api/schema).
 ***
 
 ***
 NOTE: The set of attributes MAY be found in the catalogue as well. For example,
-the GOV.UK catalogue is the [Register register](https://register.register.gov.uk/).
+the GOV.UK catalogue is the [Register register](https://register.register.gov.uk).
 ***
 
 ***
@@ -132,7 +132,7 @@ Content-Length: 156
 ### HTTP headers
 
 A Item resource response SHOULD have an `ETag` header value with the item
-[hash](/datatypes/hash/) to evidence items are immutable resources.
+[hash](/datatypes/hash) to evidence items are immutable resources.
 
 ***
 TODO: Consider how this suggestion plays with multiple serialisation based on

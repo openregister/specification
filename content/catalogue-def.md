@@ -1,7 +1,7 @@
 ---
 id: catalogue-def
 title: Catalogue
-url: /glossary/catalogue/
+url: /glossary/catalogue
 ---
 
 A catalogue is a curated list of known registers that work well together. The
@@ -16,6 +16,6 @@ and base URL mappings.
 **NOTE:**
 
 The UK Government catalogue of registers is the [Register
-register](https://register.register.gov.uk/). It is an old version of the
+register](https://register.register.gov.uk). It is an old version of the
 concept of “catalogue” and lacks the mechanism for proper CURIE expansion.
 ***

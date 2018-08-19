@@ -1,7 +1,7 @@
 ---
 id: glossary
 title: Glossary
-url: /glossary/
+url: /glossary
 status: wip
 ---
 

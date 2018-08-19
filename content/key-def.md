@@ -1,14 +1,14 @@
 ---
 id: key-def
 title: Key
-url: /glossary/key/
+url: /glossary/key
 status: wip
 ---
 
 A **key** is the identifier for an element in the dataset and thus, it MUST be
 unique within a register. Each [entry](/glossary/entry#key) defines what is
-the element affected through their key. Also, a [record](/glossary/record/) is
-identified by the key within the [snapshot](/glossary/snapshot/).
+the element affected through their key. Also, a [record](/glossary/record) is
+identified by the key within the [snapshot](/glossary/snapshot).
 
 ## Constraints
 
@@ -38,7 +38,7 @@ Entry
   }
 ```
 
-And, given that the [item](/glossary/item/) referenced from the record is:
+And, given that the [item](/glossary/item) referenced from the record is:
 
 ```elm
 Item

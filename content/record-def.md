@@ -1,7 +1,7 @@
 ---
 id: record-def
 title: Record
-url: /glossary/record/
+url: /glossary/record
 status: wip
 ---
 
@@ -34,7 +34,7 @@ exist in the Register.
 
 ![](./data-model/data-model-record-1.svg)
 
-Similarly, a record MAY also be obtained from the [snaphot](/glossary/snapshot/):
+Similarly, a record MAY also be obtained from the [snaphot](/glossary/snapshot):
 
 ```elm
 record : ID -> Snapshot -> Maybe Entry
@@ -43,8 +43,8 @@ record : ID -> Snapshot -> Maybe Entry
 ![](./data-model/data-model-record-2.svg)
 
 ***
-NOTE: The reference implementation inlines the [Item](/glossary/item/) in the
-[Record resource](/rest-api/records/) for convenience.
+NOTE: The reference implementation inlines the [Item](/glossary/item) in the
+[Record resource](/rest-api/records) for convenience.
 ***
 
 ***
@@ -52,7 +52,7 @@ TODO: Is the above note normative or, what are the true expectations we want
 to set for consuming records?
 ***
 
-Similarly, you can filter the [log](/glossary/log/) to get the trail of
+Similarly, you can filter the [log](/glossary/log) to get the trail of
 changes for an element, given its key:
 
 ```elm

@@ -1,11 +1,11 @@
 ---
 id: item-def
 title: Item
-url: /glossary/item/
+url: /glossary/item
 ---
 
 An **item** is an unordered set of attribute-value pairs (associative array)
-constrained by the [schema](/glossary/schema/).
+constrained by the [schema](/glossary/schema).
 
 An item is identified by the [hash calculated from its contents](#hash).
 
@@ -69,7 +69,7 @@ Foo, 0, 1
 NOTE: In the example above, the JSON serialisation uses the string
 representation of each value and the schema is needed to cast them back to the
 right datatype. Check the [Serialisation section](/rest-api#serialisation) and
-the [Schema](/glossary/schema/) for more details on this topic.
+the [Schema](/glossary/schema) for more details on this topic.
 ***
 
 ## Conventional attributes
@@ -174,8 +174,8 @@ The identity of an item computed from its content. It takes part on the [entry
 hash](/glossary/entry#hash).
 
 The function takes an item and a [hashing
-algorithm](/glossary/hashing-algorithm/) and returns a [Hash
-datatype](/datatypes/hash/).
+algorithm](/glossary/hashing-algorithm) and returns a [Hash
+datatype](/datatypes/hash).
 
 ```elm
 itemHash : Entry -> Alg -> Hash

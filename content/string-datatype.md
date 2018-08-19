@@ -1,7 +1,7 @@
 ---
 id: string-datatype
 title: String
-url: /datatypes/string/
+url: /datatypes/string
 ---
 
 A **string** is a sequence of one or more [Unicode](@unicode) characters. It

@@ -1,11 +1,11 @@
 ---
 id: timestamp-datatype
 title: Timestamp
-url: /datatypes/timestamp/
+url: /datatypes/timestamp
 ---
 
 A value conforming to a UTC [RFC3339](@rfc3339) timestamp. It can be seen as a
-strict subset of the [datetime datatype](/datatypes/datetime/).
+strict subset of the [datetime datatype](/datatypes/datetime).
 
 ```abnf
 ;           timestamp

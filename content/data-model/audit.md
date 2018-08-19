@@ -1,7 +1,7 @@
 ---
 id: audit
 title: Audit
-url: /data-model/audit/
+url: /data-model/audit
 status: exp
 ---
 
@@ -66,7 +66,7 @@ audit_path (6, "Z") log == [j, e]
 
 ## Digital proofs
 
-There are a few types of [digital proofs](/glossary/digital-proof/), each one
+There are a few types of [digital proofs](/glossary/digital-proof), each one
 of them supports proving a different trait on a Register. The “Register proof”
 to [verify the register](#register-verification), the “Entry proof” to [verify
 an entry in the log](#entry-verification) and the “Consistency proof” to [verify

@@ -1,7 +1,7 @@
 ---
 id: mint
 title: Mint
-url: /mint/
+url: /data-model/mint
 status: wip
 ---
 

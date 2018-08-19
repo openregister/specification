@@ -1,7 +1,7 @@
 ---
 id: register-resource
 title: Register
-url: /rest-api/register/
+url: /rest-api/register
 status: wip
 ---
 
@@ -16,12 +16,12 @@ GET /register
 
 |Name|Type|Description|
 |-|-|-|
-|`domain`| [String](/datatypes/string/)|The Internet domain the register is available from.|
-|`total-entries`| [Integer](/datatypes/integer/)|The number of entries in the log.|
-|`total-records`| [Integer](/datatypes/Integer/)|The number of records in the register.|
+|`domain`| [String](/datatypes/string)|The Internet domain the register is available from.|
+|`total-entries`| [Integer](/datatypes/integer)|The number of entries in the log.|
+|`total-records`| [Integer](/datatypes/Integer)|The number of records in the register.|
 |`register-record`| |A copy of the Register register Record resource entity describing this register.|
-|`custodian`| Optional [String](/datatypes/string/)|The custodian of the register.|
-|`last-updated`| [Timestamp](/datatypes/timestamp/)|The date the register was last updated.|
+|`custodian`| Optional [String](/datatypes/string)|The custodian of the register.|
+|`last-updated`| [Timestamp](/datatypes/timestamp)|The date the register was last updated.|
 
 ### Response summary
 

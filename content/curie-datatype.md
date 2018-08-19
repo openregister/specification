@@ -1,12 +1,12 @@
 ---
 id: curie-datatype
 title: CURIE
-url: /datatypes/curie/
+url: /datatypes/curie
 ---
 
 ***
 NOTE: The intention of the CURIE datatype is to provide Registers with a
-mechanism to [link between them](/data-model/link/).
+mechanism to [link between them](/data-model/link).
 ***
 
 A **CURIE** (Compact URL) is inspired by the [CURIE Syntax 1.0](@curie) and
@@ -57,7 +57,7 @@ country
 ## Expansion to URL
 
 To expand a CURIE into a URL, you need a prefix mapping tipically found in the
-[catalogue](/glossary/catalogue/).
+[catalogue](/glossary/catalogue).
 
 The mapping base URL MUST BE be a valid [Record endpoint](/rest-api/records#get-a-record).
 

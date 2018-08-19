@@ -1,11 +1,11 @@
 ---
 id: introduction
 title: Introduction
-url: /introduction/
+url: /introduction
 ---
 
-This specification defines the [data model](/data-model/) and [HTTP
-interface](/rest-api/) for accessing the data held in a [System of
+This specification defines the [data model](/data-model) and [HTTP
+interface](/rest-api) for accessing the data held in a [System of
 Record](https://en.wikipedia.org/wiki/System_of_record), the “Register”.
 
 
@@ -18,11 +18,11 @@ Back in 2015 a team at
 started exploring how to improve digital registers. A few blog posts from then
 can help provide some background for where is this specification comes from.
 
-* [Building on the steel thread](https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread/).
-* [Registers: authoritative lists you can trust](https://gds.blog.gov.uk/2015/09/01/registers-authoritative-lists-you-can-trust/).
-* [The characteristics of a register](https://gds.blog.gov.uk/2015/10/13/the-characteristics-of-a-register/).
-* [Guaranteeing the integrity of a register](https://gdstechnology.blog.gov.uk/2015/10/13/guaranteeing-the-integrity-of-a-register/).
-* [Linking registers](https://gds.blog.gov.uk/2015/12/16/linking-registers/).
+* [Building on the steel thread](https://gds.blog.gov.uk/2015/07/24/building-on-the-steel-thread).
+* [Registers: authoritative lists you can trust](https://gds.blog.gov.uk/2015/09/01/registers-authoritative-lists-you-can-trust).
+* [The characteristics of a register](https://gds.blog.gov.uk/2015/10/13/the-characteristics-of-a-register).
+* [Guaranteeing the integrity of a register](https://gdstechnology.blog.gov.uk/2015/10/13/guaranteeing-the-integrity-of-a-register).
+* [Linking registers](https://gds.blog.gov.uk/2015/12/16/linking-registers).
 
 
 ## Audience
@@ -150,7 +150,7 @@ _This section is non-normative._
 
 The following documents might be of interest to readers of this specification.
 
-### [Certificate Transparency](https://www.certificate-transparency.org/)
+### [Certificate Transparency](https://www.certificate-transparency.org)
 
 > Google's Certificate Transparency project fixes several structural flaws in
 > the SSL certificate system, which is the main cryptographic system that
@@ -171,7 +171,7 @@ The following documents might be of interest to readers of this specification.
 > could retrieve it from the log regularly and serve that along with the
 > certificate, or clients could be sent the entire revocation list.
 
-### [DAT project](https://docs.datproject.org/)
+### [DAT project](https://docs.datproject.org)
 
 > People often are stuck choosing between security, speed, or ease of use. Dat
 > provides all three by using a state of the art technical foundation and user

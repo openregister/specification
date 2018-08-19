@@ -1,7 +1,7 @@
 ---
 id: archive-resource
 title: Archive
-url: /rest-api/archive/
+url: /rest-api/archive
 status: wip
 ---
 
@@ -35,10 +35,10 @@ TODO: Review this structure is the best we can do
 ***
 
 * A directory with the name of the register containing:
-  * A file named "register.json" containing the [Register summary](/glossary/summary/) serialised as [JSON](/rest-api#json).
+  * A file named "register.json" containing the [Register summary](/glossary/summary) serialised as [JSON](/rest-api#json).
   * A file named "proof.json" containing one or more digital proofs for the register serialised as [JSON](/rest-api#json).
-  * A directory named "item" containing all of the [items](/glosssary/item/) serialised in one or more [JSON](/rest-api#json) files.
-  * A directory named "entry" containing all of the [Entry](/glossary/entry/) serialised as one or more [JSON](/rest-api#json) files.
+  * A directory named "item" containing all of the [items](/glosssary/item) serialised in one or more [JSON](/rest-api#json) files.
+  * A directory named "entry" containing all of the [Entry](/glossary/entry) serialised as one or more [JSON](/rest-api#json) files.
 
 ***
 **EXAMPLE:**

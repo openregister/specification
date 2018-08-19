@@ -1,7 +1,7 @@
 ---
 id: polygon-datatype
 title: Polygon
-url: /datatypes/polygon/
+url: /datatypes/polygon
 status: wip
 ---
 

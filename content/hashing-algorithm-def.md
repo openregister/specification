@@ -1,7 +1,7 @@
 ---
 id: hashing-algorithm-def
 title: Hashing algorithm
-url: /glossary/hashing-algorithm/
+url: /glossary/hashing-algorithm
 status: wip
 ---
 
@@ -11,8 +11,8 @@ how to identify hashing algorithms.
 ***
 
 The **hashing algorithm** is the function used across the register to create a
-fixed size digest for identifying and addressing [items](/glossary/item/),
-[entry](/glossary/entry/) verification and for the [audit process](/data-model/audit/).
+fixed size digest for identifying and addressing [items](/glossary/item),
+[entry](/glossary/entry) verification and for the [audit process](/data-model/audit).
 
 ***
 TODO: The definition below depends on the outcome of ISSUE#26.

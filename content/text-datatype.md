@@ -1,10 +1,10 @@
 ---
 id: text-datatype
 title: Text
-url: /datatypes/text/
+url: /datatypes/text
 ---
 
-A **text** is a [String](/datatypes/string/) formatted according to
+A **text** is a [String](/datatypes/string) formatted according to
 [Markdown](@markdown).
 
 ***

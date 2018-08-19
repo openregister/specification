@@ -1,12 +1,12 @@
 ---
 id: digital-proof-def
 title: Digital proof
-url: /glossary/digital-proof/
+url: /glossary/digital-proof
 status: exp
 ---
 
 ***
-NOTE: See the [Audit section](/data-model/audit/) to learn more about
+NOTE: See the [Audit section](/data-model/audit) to learn more about
 digital proofs.
 ***
 
