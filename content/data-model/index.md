@@ -1,7 +1,7 @@
 ---
 id: data-model
 title: Data model
-url: /data-model/data-model/
+url: /data-model/
 status: wip
 ---
 
