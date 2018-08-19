@@ -20,6 +20,7 @@
     - id: record-def
     - id: schema-def
     - id: snapshot-def
+    - id: trail-def
 - id: rest-api
   items:
     - id: register-resource
