@@ -70,7 +70,7 @@ const navStyle = css`
 
 const ToC = ({tree, target}) => {
   return (
-    <nav id="toc" className={navStyle}>
+    <nav id="toc" className={navStyle} tabIndex="0">
       <List items={tree} target={target} />
     </nav>
   );
