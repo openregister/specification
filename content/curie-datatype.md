@@ -56,7 +56,7 @@ country
 
 ## Expansion to URL
 
-To expand a CURIE into a URL, you need a prefix mapping tipically found in the
+To expand a CURIE into a URL, you need a prefix mapping typically found in the
 [catalogue](/glossary/catalogue).
 
 The mapping base URL MUST BE be a valid [Record endpoint](/rest-api/records#get-a-record).
