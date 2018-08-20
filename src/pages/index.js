@@ -33,7 +33,7 @@ const Main = ({data}) => {
       </Helmet>
       <ToC tree={tree} />
       <article className={articleStyle}>
-        <div className={scroller}>
+        <div className={scroller} tabIndex="0">
           <h1>{title}</h1>
           <dl>
             <dt>Version:</dt>
@@ -140,8 +140,10 @@ const articleStyle = css`
   grid-row: 2;
 `;
 const scroller = css`
+  outline: 0;
   overflow-y: auto;
   height: calc(100vh - 55px);
+  padding: 20px;
 `;
 
 export default Main;

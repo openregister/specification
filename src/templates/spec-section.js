@@ -147,6 +147,7 @@ const articleStyle = css`
   }
 `;
 const scroller = css`
+  outline: 0;
   overflow-y: auto;
   height: calc(100vh - 55px);
   padding: 20px;

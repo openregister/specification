@@ -66,6 +66,7 @@ const navStyle = css`
   padding: 20px;
   overflow-y: auto;
   height: calc(100vh - 55px);
+  outline: 0;
 `;
 
 const ToC = ({tree, target}) => {
