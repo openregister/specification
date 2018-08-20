@@ -44,7 +44,7 @@ Bar
 ```
 
 Note that all attributes expect an optional value as explained in the
-[evolution section](/evolve#forwards-compatibility).
+[evolution section](/data-model/evolve#forwards-compatibility).
 
 The item can be serialised in JSON as:
 

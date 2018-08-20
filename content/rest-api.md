@@ -75,7 +75,7 @@ datatype](/datatypes/hash).
 
 JSON can have missing attributes. These have the same semantics as an
 attribute with a `null` value or an empty string or empty array.  See the
-[forward compatibility section](/evolve#forwards-compatibility).
+[forward compatibility section](/data-model/evolve#forwards-compatibility).
 
 ### CSV
 
@@ -85,7 +85,7 @@ attribute with a `null` value or an empty string or empty array.  See the
 
 CSV can have empty (blank) values. These have the same semantics as if
 the attributes were missing.
-See the [forward compatibility section](/evolve#forwards-compatibility).
+See the [forward compatibility section](/data-model/evolve#forwards-compatibility).
 
 ***
 ISSUE: How does the tabular data model interop with the Register data types?

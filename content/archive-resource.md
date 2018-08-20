@@ -24,7 +24,7 @@ TODO: This endpoint should return RSF as a non-normative serialisation format.
 The contents of a register MUST be made available as an archive. The archive
 file MUST be capable of being used as backup of the register, with the
 exception of secrets used to generate [Digital
-Proofs](/audit#digital-proofs). The archive file SHOULD be made
+Proofs](/data-model/audit#digital-proofs). The archive file SHOULD be made
 available in a single file, but MAY be split into multiple parts if it deemed
 too large.
 
