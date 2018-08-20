@@ -160,3 +160,11 @@ title = "Content Security Policy Level 2"
 authors = ["Mike West", "Adam Barth", "Daniel Veditz"]
 publisher = "W3C"
 published = "2016-12-15"
+
+[[bibliography]]
+id = "rfc6596"
+url = "https://tools.ietf.org/html/rfc6596"
+title = "The Canonical Link Relation"
+authors = ["M. Ohye", "J. Kupke"]
+publisher = "IETF"
+published = "2012-04"

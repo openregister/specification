@@ -36,8 +36,20 @@ The payload MUST be in the requested [serialisation format](#serialisation).
 
 A 404 MAY have a payload with a helpful message.
 
+## Canonical URL
+
+_This section is non-normative._
+
+An implementation MAY implement [the canonical link](@rfc6596) to consolidate
+URLs for the same resource with and without a trailing slash.
+
 
 ## Serialisation
+
+***
+**TODO:** Consider making the suffix optional and only normative the content
+type one.
+***
 
 There are two mechanisms to declare the preferred serialisation format: the
 `Accept` header or the suffix. When both are provided the suffix MUST take
@@ -49,6 +61,7 @@ implemented as well.
 
 Some resources like the [Archive](/rest-api/archive) use different content
 types. The resource definition explain its particularities.
+
 
 ### JSON
 
