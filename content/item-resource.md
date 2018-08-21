@@ -134,11 +134,6 @@ Content-Length: 156
 A Item resource response SHOULD have an `ETag` header value with the item
 [hash](/datatypes/hash) to evidence items are immutable resources.
 
-***
-TODO: Consider how this suggestion plays with multiple serialisation based on
-headers
-***
-
 
 ## List items
 
