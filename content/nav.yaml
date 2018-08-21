@@ -23,9 +23,9 @@
     - id: trail-def
 - id: rest-api
   items:
-    - id: register-resource
-    - id: schema-resource
     - id: record-resource
+    - id: schema-resource
+    - id: register-resource
     - id: entry-resource
     - id: item-resource
     - id: proof-resource
