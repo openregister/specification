@@ -17,16 +17,16 @@ perform [the expansion to a URL](/datatypes/curie#expansion-to-url).
 For example, a link to the country of birth could be expressed as:
 
 ```elm
-[ ("name": "Alan Turing")
-, ("born-in": "country:GB")
+[ ("name", "Alan Turing")
+, ("born-in", "country:GB")
 ]
 ```
 
 Or a link of an allergen to its group which is part of the same dataset:
 
 ```elm
-[ ("name": "Walnut")
-, ("group": "allergen:24")
+[ ("name", "Walnut")
+, ("group", "allergen:24")
 ]
 ```
 ***
