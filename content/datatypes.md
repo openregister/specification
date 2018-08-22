@@ -13,7 +13,7 @@ in a [blob of data](/glossary/item).
 type Primitive
   = Curie
   | Datetime
-  | Attrname
+  | Name
   ...
 ```
 
@@ -24,7 +24,7 @@ These identifiers are used by the [schema resource](/rest-api/schema).
 |-|-|-|
 | `curie` | [CURIE](/datatypes/curie) | A Link between registers |
 | `datetime` | [Datetime](/datatypes/datetime) | A date with flexible accuracy |
-| `attrname` | [Attribute Name](/datatypes/attrname) | A restricted string suitable for identifiers |
+| `name` | [Name](/datatypes/name) | A restricted string suitable for identifiers or attribute names |
 | `hash` | [Hash](/datatypes/hash) | A hashing algorithm digest |
 | `integer` | [Integer](/datatypes/integer) | A base 10 number |
 | `period` | [Period](/datatypes/period) | A period of time |

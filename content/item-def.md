@@ -12,7 +12,7 @@ An item is identified by the [hash calculated from its contents](#hash).
 
 ```elm
 type Item =
-  Dict AttributeName String
+  Dict Name String
 
 type Items =
   Dict Hash Item

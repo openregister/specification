@@ -10,7 +10,7 @@ An **attribute** defines the characteristics of a value part of a
 
 ```elm
 type Attribute =
-  { id : Attrname
+  { id : Name
   , datatype : Datatype
   , title : Maybe String
   , description : Maybe Text
@@ -21,7 +21,7 @@ type Attribute =
 
 ### Id
 
-* Type: [Attrname](/datatypes/attrname).
+* Type: [Name](/datatypes/name).
 
 The id, uniquely identifies the attribute. Once an attribute exists in a
 [schema](/glossary/schema), it can't change its identifier.

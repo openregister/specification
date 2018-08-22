@@ -225,7 +225,7 @@ TODO: This endpoint path clashes with the regular get records. What about
 `/facets/{attr-name}/{attr-value}`? It doesn't reflect that it is about
 records but it removes any possible clash between `key` and `attribute-name`.
 
-Or, `/records?attrname={attr-name}&value={attr-value}` to be more honest about it.
+Or, `/records?name={attr-name}&value={attr-value}` to be more honest about it.
 After all, this is a filter on the original record list.
 
 Or, `/indexes/{name}/{value}`.
@@ -242,7 +242,7 @@ GET /records/{attribute-name}/{attribute-value}
 
 |Name|Type|Description|
 |-|-|-|
-|`attribute-name`| [Attribute Name](/datatypes/attrname)|An attribute name part of the data.|
+|`attribute-name`| [Attribute Name](/datatypes/name)|An attribute name part of the data.|
 |`attribute-value`| [String](/datatypes/string)|The string representation of a valid value for the `attribute-name`.|
 
 ### Response summary

@@ -35,7 +35,7 @@
   items:
     - id: curie-datatype
     - id: datetime-datatype
-    - id: attrname-datatype
+    - id: name-datatype
     - id: hash-datatype
     - id: integer-datatype
     - id: period-datatype
