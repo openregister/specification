@@ -11,6 +11,7 @@
   items:
     - id: attribute-def
     - id: catalogue-def
+    - id: context-def
     - id: digital-proof-def
     - id: entry-def
     - id: hashing-algorithm-def
