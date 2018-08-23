@@ -26,7 +26,6 @@
   items:
     - id: record-resource
     - id: context-resource
-    - id: register-resource
     - id: entry-resource
     - id: item-resource
     - id: proof-resource
