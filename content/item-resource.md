@@ -117,7 +117,7 @@ Content-Type: application/json
 ```
 ***
 
-### Gone (410) [EXPERIMENTAL]
+### Gone (410)
 
 This code MUST be used when the [data blob has been redacted](/data-model/redact).
 
