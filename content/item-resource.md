@@ -45,63 +45,14 @@ The column order is implementation dependent when the data is represented in a
 tabular format like [CSV](/rest-api#csv). For tree-like formats like
 [JSON](/rest-api#json), the object has to be treated as unordered.
 
-
-### Success (200)
-
-The payload MUST be in the requested [serialisation format](/rest-api#serialisation)
-with the attributes defined by the [Schema](/glossary/schema).
-
-### Not Found (404)
-
-A 404 MAY have a payload in the requested [serialisation
-format](/rest-api#serialisation) with a helpful message.
-
-***
-**EXAMPLE:**
-
-For example,
-
-```http
-GET /items/foo HTTP/1.1
-Host: country.register.gov.uk
-Accept: application/json
-```
-
-```http
-HTTP/1.1 404 Not Found
-Content-Type: application/json
-
-{
-  "message": "The requested item doesn't exist. The list of items may be of help.",
-  "items-url": "/items"
-}
-```
-***
-
-### Gone (410)
-
-This code MUST be used when the [data blob has been redacted](/redactable).
-
-***
-ISSUE: Define the payload for this response. E.g.
-
-```json
-{
-  "id": "sha-256:e94c4a9ab00d951dadde848ee2c9fe51628b22ff2e0a88bff4cca6e4e6086d7a",
-  "status": "Redacted"
-}
-```
-***
-
-***
-TODO: To determine the set of attributes and their value types the user SHOULD use
+To determine the set of attributes and their value types the user SHOULD use
 the [Schema resource](/rest-api/schema).
-***
 
 ***
 NOTE: The set of attributes MAY be found in the catalogue as well. For example,
 the GOV.UK catalogue is the [Register register](https://register.register.gov.uk).
 ***
+
 
 ***
 **EXAMPLE:**
@@ -129,10 +80,86 @@ Content-Length: 156
 ```
 ***
 
-### HTTP headers
 
-A Item resource response SHOULD have an `ETag` header value with the item
-[hash](/datatypes/hash) to evidence items are immutable resources.
+### Success (200)
+
+The payload MUST be in the requested [serialisation
+format](/rest-api#serialisation) , when available, with the attributes defined
+by the [Schema](/glossary/schema).
+
+### Not Found (404)
+
+A 404 MAY have a payload in the requested [serialisation
+format](/rest-api#serialisation) with a helpful message.
+
+The payload MUST be in the requested [serialisation format](/rest-api#serialisation)
+when available.
+
+***
+**EXAMPLE:**
+
+For example,
+
+```http
+GET /items/foo HTTP/1.1
+Host: country.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+  "message": "The requested item doesn't exist. The list of items may be of help.",
+  "items-url": "/items"
+}
+```
+***
+
+### Gone (410) [EXPERIMENTAL]
+
+This code MUST be used when the [data blob has been redacted](/data-model/redact).
+
+***
+ISSUE: Pending approval of [RFC0017](https://github.com/openregister/registers-rfcs/pull/30)
+***
+
+
+***
+**EXAMPLE:**
+
+For example,
+
+```http
+GET /items/sha-256:6b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
+Host: country.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 410 Gone
+Content-Type: application/json
+
+**REDACTED**sha-256:6b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb
+```
+
+For tabular data such as CSV, the payload MUST be the same as the expected
+list of attributes doesn't apply:
+
+```http
+GET /items/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
+Host: country.register.gov.uk
+Accept: text/csv;charset=UTF-8
+```
+
+```http
+HTTP/1.1 410 Gone
+Content-Type: text/csv;charset=UTF-8
+
+**REDACTED**12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb
+```
+***
 
 
 ## List items
