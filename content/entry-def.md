@@ -31,6 +31,9 @@ type Entry =
 The entry number is unique and defines the position of the entry within the
 [log](/glossary/log).
 
+The range MUST be the **positive numbers**, that is the natural numbers
+excluding 0.
+
 ***
 **EXPERIMENTAL:**
 

@@ -9,13 +9,16 @@ their numerical order, the [entry number](/glossary/entry#number).
 It is the backbone data structure that enables [snapshots](/glossary/snapshot),
 [records](/glossary/record) and [audit](/data-model/audit).
 
-
 ```elm
 type Log =
   List Entry
 ```
 
 ![A picture of a log with A, B a Z entries](./data-model/data-model-log.svg)
+
+The first entry number MUST always be `1`. The range corresponds to the
+**positive numbers** and they MUST be assigned in strict incremental
+succession (e.g. `{1, 2, 3, ...}`).
 
 
 ## Operations
