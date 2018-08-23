@@ -2,7 +2,6 @@
 id: register-resource
 title: Register
 url: /rest-api/register
-status: wip
 ---
 
 ***
@@ -30,11 +29,6 @@ See the [generic codes](/rest-api#codes).
 ***
 
 The register resource summarises the register statistics.
-
-***
-TODO: The `register-record` attribute doesn't show a full record, just the item
-part of it.
-***
 
 ***
 **EXAMPLE:**
