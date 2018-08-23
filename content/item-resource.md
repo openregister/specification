@@ -170,6 +170,15 @@ Content-Type: text/csv;charset=UTF-8
 ```
 GET /items
 ```
+
+### Response summary
+
+|Code|Status|Description|
+|-|-|-|
+|200|Success|The requested page exists and has been delivered.|
+|404|Not Found|The requested page doesn't exist.|
+
+See the [generic codes](/rest-api#codes) for more.
 ***
 
 Gets the list of items. [This resource MAY be paginated](/rest-api#collection-pagination).
