@@ -34,7 +34,7 @@ non-zero =  "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
 ***
 **EXAMPLE:**
 
-For example, the following Datatime values are valid:
+For example, the following Datetime values are valid:
 
 ```
 2001
