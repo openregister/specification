@@ -25,7 +25,7 @@
 - id: rest-api
   items:
     - id: record-resource
-    - id: schema-resource
+    - id: context-resource
     - id: register-resource
     - id: entry-resource
     - id: item-resource

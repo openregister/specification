@@ -46,7 +46,7 @@ tabular format like [CSV](/rest-api#csv). For tree-like formats like
 [JSON](/rest-api#json), the object has to be treated as unordered.
 
 To determine the set of attributes and their value types the user SHOULD use
-the [Schema resource](/rest-api/schema).
+the schema from the [Context resource](/rest-api/context).
 
 ***
 NOTE: The set of attributes MAY be found in the catalogue as well. For example,

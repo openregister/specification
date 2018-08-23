@@ -18,7 +18,8 @@ type Primitive
 ```
 
 The table below lists the identifiers for each available primitive datatype.
-These identifiers are used by the [schema resource](/rest-api/schema).
+These identifiers are used by the schema part of the [Context
+resource](/rest-api/context).
 
 | Identifier | Name | Description |
 |-|-|-|
