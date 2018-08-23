@@ -21,6 +21,14 @@ type Stats =
   , totalBlobs : Integer
   }
 
+type Status
+  = Active { startDate : Timestamp }
+  | Retired { startDate : Timestamp
+            , endDate : Timestamp
+            , replacement : Maybe Url
+            , reason : Text
+            }
+
 type Context =
   { id : Name
   , title : Maybe String
@@ -32,5 +40,6 @@ type Context =
   , rootHash : Hash
   , schema : Schema
   , stats : Stats
+  , status : Status
   }
 ```
