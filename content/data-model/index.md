@@ -33,6 +33,10 @@ In summary, the **log** and all its parts form an immutable data structure that
 allow expressing a sequence of changes on the dataset of elements, the
 Register.
 
+## Anatomy of an element
+
+![The anatomy of an element](./data-model/data-model-overview.svg)
+
 
 ## Schema evolution
 

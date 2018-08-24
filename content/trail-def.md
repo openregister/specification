@@ -27,3 +27,66 @@ record : Trail -> Entry
 ```
 
 ![](./data-model/data-model-trail.svg)
+
+***
+**EXAMPLE:**
+
+For example, given a log:
+
+```elm
+log =
+  [ Entry
+     { number : 1
+     , key: ID "A"
+     ...
+     }
+  , Entry
+     { number : 2
+     , key: ID "B"
+     ...
+     }
+  , Entry
+     { number : 3
+     , key: ID "Z"
+     ...
+     }
+  , Entry
+     { number : 4
+     , key: ID "A"
+     ...
+     }
+  , Entry
+     { number : 5
+     , key: ID "Z"
+     ...
+     }
+  ]
+```
+
+The trail for element “A” is:
+
+```elm
+filterBy (ID "A") log == Just Trail
+                          [ Entry
+                            { number : 1
+                            , key: ID "A"
+                            ...
+                            }
+                         , Entry
+                            { number : 4
+                            , key: ID "A"
+                            ...
+                            }
+                         ]
+```
+
+And the record:
+
+```elm
+record (ID "A") log == Just Entry
+                          { number : 4
+                          , key: ID "A"
+                          ...
+                          }
+```
+***

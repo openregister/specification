@@ -32,16 +32,6 @@ After all entries in the log have been inspected, the latest one stored in
 _result_ is the record. If no entries were found for _key_, the record doesn't
 exist in the Register.
 
-![](./data-model/data-model-record-1.svg)
-
-Similarly, a record MAY also be obtained from the [snaphot](/glossary/snapshot):
-
-```elm
-record : ID -> Snapshot -> Maybe Entry
-```
-
-![](./data-model/data-model-record-2.svg)
-
 ***
 NOTE: The reference implementation inlines the [Item](/glossary/item) in the
 [Record resource](/rest-api/records) for convenience.
@@ -52,82 +42,22 @@ TODO: Is the above note normative or, what are the true expectations we want
 to set for consuming records?
 ***
 
-Similarly, you can filter the [log](/glossary/log) to get the trail of
-changes for an element, given its key:
+![](./data-model/data-model-record-1.svg)
+
+Similarly, a record MAY also be obtained from the [snaphot](/glossary/snapshot):
 
 ```elm
-type Trail =
-  List Entry
+record : ID -> Snapshot -> Maybe Entry
+```
 
-filterBy : ID -> Log -> Maybe Trail
+![](./data-model/data-model-record-2.svg)
 
+Similarly, you can filter the [log](/glossary/log) to get the
+[trail](/glossary/trail) of changes for an element and from the trail, get the
+record:
+
+```elm
 record : Trail -> Entry
 ```
 
 ![](./data-model/data-model-trail.svg)
-
-
-![The anatomy of an element](./data-model/data-model-overview.svg)
-
-***
-**EXAMPLE:**
-
-For example, given a log:
-
-```elm
-log =
-  [ Entry
-     { number : 1
-     , key: ID "A"
-     ...
-     }
-  , Entry
-     { number : 2
-     , key: ID "B"
-     ...
-     }
-  , Entry
-     { number : 3
-     , key: ID "Z"
-     ...
-     }
-  , Entry
-     { number : 4
-     , key: ID "A"
-     ...
-     }
-  , Entry
-     { number : 5
-     , key: ID "Z"
-     ...
-     }
-  ]
-```
-
-The trail for element “A” is:
-
-```elm
-filterBy (ID "A") log == Just Trail
-                          [ Entry
-                            { number : 1
-                            , key: ID "A"
-                            ...
-                            }
-                         , Entry
-                            { number : 4
-                            , key: ID "A"
-                            ...
-                            }
-                         ]
-```
-
-And the record:
-
-```elm
-record (ID "A") log == Just Entry
-                          { number : 4
-                          , key: ID "A"
-                          ...
-                          }
-```
-***
