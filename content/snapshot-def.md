@@ -2,7 +2,6 @@
 id: snapshot-def
 title: Snapshot
 url: /glossary/snapshot
-status: wip
 ---
 
 A **snapshot** is the dataset resulting from walking through the
@@ -21,6 +20,16 @@ a given log:
 ```elm
 collect : Log -> Snapshot
 ```
+
+The algorithm:
+
+1. Let _log_ be the full log to parse.
+1. Let _result_ be an empty associative array.
+1. Foreach _entry_ in the _log_:
+    1. If the _entry_ has bigger number than the one in _result_ or it doesn't
+       exist, add (key, _entry_) to _result_.
+
+       Otherwise, do nothing.
 
 To get a previous snapshot, take an slice of the log from the start.
 
