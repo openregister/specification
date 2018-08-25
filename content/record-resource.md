@@ -10,6 +10,21 @@ NOTE: See the [Record](/glossary/record) definition to understand how this
 resource fits into the [data model](/data-model).
 ***
 
+***
+NOTE: The reference implementation inlines the [Item](/glossary/item) in the
+[Record resource](/rest-api/records) for convenience.
+***
+
+***
+TODO: Is the above note normative or, what are the true expectations we want
+to set for consuming records?
+***
+
+***
+TODO: If a record is an entry, I want a resource for the latest data for a
+given key, with no metadata in it.
+***
+
 
 ## Get a record
 

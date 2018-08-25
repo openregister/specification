@@ -12,11 +12,11 @@ type Trail =
   List Entry
 ```
 
-A trail can be seen as a function `filterBy` that derives from a given
+A trail can be seen as a function `sieve` that filters the given
 [log](/glossary/log):
 
 ```elm
-filterBy : ID -> Log -> Maybe Trail
+sieve : ID -> Log -> Maybe Trail
 ```
 
 The algorithm:
@@ -93,7 +93,7 @@ log =
 The trail for element “A” is:
 
 ```elm
-filterBy (ID "A") log == Just Trail
+sieve (ID "A") log == Just Trail
                           [ Entry
                             { number : 1
                             , key: ID "A"
