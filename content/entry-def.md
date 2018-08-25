@@ -44,7 +44,7 @@ register the entry-number and index-entry-number are always identical.
 
 ### Key
 
-* Type: [ID](/key-def#constraints).
+* Type: [ID](/key-def#id-type).
 
 The [key](/glossary/key) identifies the element of the dataset which the
 entry refers to.

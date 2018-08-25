@@ -31,7 +31,7 @@ GET /entries/{entry-number}
 |-|-|-|
 |`entry-number`| [Integer](/datatypes/integer)|The [entry number](/glossary/entry#number).|
 |`entry-timestamp`| [Timestamp](/datatypes/timestamp)|The [entry timestamp](/glossary/entry#timestamp).
-|`key`| [ID](/glossary/key#constraints)|The [entry key](/glossary/entry#key).|
+|`key`| [ID](/glossary/key#id-type)|The [entry key](/glossary/entry#key).|
 |`item-hash`| List of [Hash](/datatypes/hash)|The list of [item hashes](/glossary/entry#item-references).|
 |`index-entry-number`| [Integer](/datatypes/integer)|The entry number [_experimental_].|
 

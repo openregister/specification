@@ -39,7 +39,7 @@ GET /records/{key}
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [ID](/glossary/key#constraints)|The record identifier.|
+|`key`| [ID](/glossary/key#id-type)|The record identifier.|
 
 ### Response summary
 
@@ -177,7 +177,7 @@ GET /records/{key}/entries
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [ID](/glossary/key#constraints)|The record identifier.|
+|`key`| [ID](/glossary/key#id-type)|The record identifier.|
 
 
 ### Response summary
