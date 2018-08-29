@@ -32,6 +32,7 @@
     - id: archive-resource
 - id: datatypes
   items:
+    - id: boolean-datatype
     - id: curie-datatype
     - id: datetime-datatype
     - id: name-datatype
