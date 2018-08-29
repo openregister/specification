@@ -51,6 +51,12 @@ module.exports = {
           'gatsby-remark-prismjs',
           'gatsby-remark-autolink-headers',
           {
+            resolve: 'gatsby-remark-curlie',
+            options: {
+              db: db.bibliography
+            }
+          },
+          {
             resolve: 'gatsby-remark-bib',
             options: {
               db: db
