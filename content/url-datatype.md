@@ -11,6 +11,6 @@ string](https://url.spec.whatwg.org/#absolute-url-string).
 ***
 NOTE:
 
-Tipically, this type is used to store a link to an external HTTP resource such
+Typically, this type is used to store a link to an external HTTP resource such
 as a website.
 ***
