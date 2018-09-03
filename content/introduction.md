@@ -52,8 +52,7 @@ addressed a topic.
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in the
 normative parts of this document are to be interpreted as described in
-[RFC2119](@rfc2119). For readability, these words do not appear in all uppercase
-letters in this specification.
+[RFC2119](@rfc2119).
 
 All diagrams, examples, and notes in this specification are non-normative, as
 are all sections explicitly marked non-normative. Everything else in this
