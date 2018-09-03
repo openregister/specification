@@ -5,6 +5,10 @@ url: /data-model/evolve
 status: wip
 ---
 
+***
+ISSUE: Define how schema evolution works.
+***
+
 [Schema](/glossary/schema) evolution depends on two pillars: backwards
 compatibility and forwards compatibility.
 

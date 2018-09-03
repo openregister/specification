@@ -38,25 +38,6 @@ Register.
 ![The anatomy of an element](data-model-overview.svg)
 
 
-## Schema evolution
-
-***
-ISSUE: Define how schema evolution works.
-***
-
-[Schema](/glossary/schema) evolution depends on two pillars: backwards
-compatibility and forwards compatibility.
-
-**Backwards compitability** requires that once a [data
-attribute](/glossary/attribute) is introduced its semantics don't change.
-
-**Forwards compatibility** requires that tools consuming a register MUST apply the
-“must-ignore” rule for unknown attributes and assume that a missing known
-attribute is a missing value.
-
-Check the [Evolve section](/data-model/evolve) for details.
-
-
 ## Auditing
 
 A Register uses a sidecar data structure derived from the **log** that allows
