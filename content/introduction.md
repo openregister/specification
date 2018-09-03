@@ -130,6 +130,10 @@ specification and interlink the different concepts in play.
 This specification aims to evolve with changes that are backwards compatible.
 Once that is not possible, a new version will be introduced.
 
+***
+ISSUE: Define versioning strategy
+***
+
 
 ## Reference implementation
 
