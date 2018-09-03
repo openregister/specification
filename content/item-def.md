@@ -170,8 +170,9 @@ sha-256:5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
 
 ## Hash
 
-The identity of an item computed from its content. It takes part on the [entry
-hash](/glossary/entry#hash).
+The identity of an item computed from its content.  As the item hash is part
+of an [entry](/glossary/entry), it is included in the input to the [entry
+hash](/glossary/entry#hash) function.
 
 The function takes an item and a [hashing
 algorithm](/glossary/hashing-algorithm) and returns a [Hash
