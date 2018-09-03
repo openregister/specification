@@ -6,13 +6,17 @@ url: /glossary/snapshot
 
 A **snapshot** is the dataset resulting from walking through the
 [log](/glossary/log) start to end and taking the latest data for each
-element. When the snapshot is for the latest change the elements are called
-[records](/glossary/record).
+element.
 
 ```elm
 type Snapshot =
   Dict ID Entry
 ```
+
+***
+NOTE: When the snapshot is for the latest change the elements are called
+[records](/glossary/record).
+***
 
 A snapshot can be seen as a function `collect` that derives the snapshot from
 a given log:
