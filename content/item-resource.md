@@ -75,7 +75,7 @@ Content-Length: 156
   "country":"GB",
   "official-name":"The United Kingdom of Great Britain and Northern Ireland",
   "name":"United Kingdom",
-  "citizen-names":"Briton;British citizen"
+  "citizen-names":["Briton","British citizen"]
 }
 ```
 ***
