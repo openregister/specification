@@ -2,6 +2,7 @@
 id: catalogue-def
 title: Catalogue
 url: /glossary/catalogue
+status: exp
 ---
 
 A catalogue is a curated list of known registers that work well together. The
