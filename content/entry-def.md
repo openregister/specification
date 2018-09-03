@@ -6,7 +6,7 @@ status: exp
 ---
 
 An **entry** defines a change in the dataset. The ordered list of entries form
-the [log](/glossary/log). Entries are immutable resources.
+the [log](/glossary/log). Entries are immutable.
 
 Each entry defines a change for an element in the dataset by recording the
 time the change was added to the log, the numerical order in the log, the
