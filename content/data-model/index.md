@@ -35,7 +35,7 @@ Register.
 
 ## Anatomy of an element
 
-![The anatomy of an element](./data-model/data-model-overview.svg)
+![The anatomy of an element](data-model-overview.svg)
 
 
 ## Schema evolution
