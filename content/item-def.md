@@ -92,8 +92,7 @@ For example, a register could identify an element with `DD` (ISO 3166-2 for
 
 ```elm
 Item
-  [ ("id", "DD"),
-  , ("start-date", "1949")
+  [ ("start-date", "1949")
   , ("end-date", "1990-10-02")
   , ("official-name", "Germany Democratic Republic")
   , ("name", "East Germany")
