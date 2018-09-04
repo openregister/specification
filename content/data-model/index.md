@@ -5,9 +5,10 @@ url: /data-model
 status: wip
 ---
 
-A Register is an unordered dataset of elements of a single type of _thing_
-with the ability to provide previous versions for the elements held in it. The
-dataset can be mapped to any of the [serialisation
+A **Register** is a dataset for a singular kind of _thing_. It has the
+ability to provide previous versions for the data held in it.
+
+The dataset can be mapped to any of the [serialisation
 formats](/rest-api#serialisation) defined in this specification and it can be
 published over HTTP as a [REST API](/rest-api).
 
