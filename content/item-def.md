@@ -5,31 +5,33 @@ url: /glossary/item
 ---
 
 An **item** is an unordered set of attribute-value pairs (associative array)
-constrained by the [schema](/glossary/schema).
+constrained by the [schema](/glossary/schema) and identified by the [hash
+calculated from its contents](#hash).
 
-An item is identified by the [hash calculated from its contents](#hash).
-
+Values are either strings or sets of strings according to the
+[Attribute](/glossary/attribute) cardinality.
 
 ```elm
-type Item =
-  Dict Name String
+type Value
+  = StringValue String
+  | SetValue (Set String)
 
-type Items =
-  Dict Hash Item
+type Item =
+  Dict Name Value
 ```
 
 ***
 **EXAMPLE:**
 
 For example, given a schema defining attributes `name`, `x` and `y` with
-datatypes `String`, `Integer` and `Integer` respectively, we can define an
-item as follows:
+datatypes `String`, `Integer` and `Integer` respectively. Also, `y` has
+cardinality `n`.  We can define an item as follows:
 
 ```elm
 Item
   [ ("name", "Foo")
   , ("x", "0")
-  , ("y", "1")
+  , ("y", ["1", "2"])
   ]
 ```
 
@@ -39,7 +41,7 @@ And can be represented as a `Bar` entity as:
 Bar
   { name = Just "Foo"
   , x = Just 0
-  , y = Just 1
+  , y = Just [1, 2]
   ]
 ```
 
@@ -52,7 +54,7 @@ The item can be serialised in JSON as:
 {
   "name": "Foo",
   "x": "0",
-  "y": "1"
+  "y": ["1", "2"]
 }
 ```
 
@@ -60,17 +62,135 @@ Or in CSV as:
 
 ```csv
 name, x, y
-Foo, 0, 1
+Foo, 0, 1;2
+```
+***
+
+***
+NOTE:
+
+In the example above, the JSON serialisation uses the string representation of
+each primitive value and the schema is needed to cast them back to the right
+datatype. Check the [Serialisation section](/rest-api#serialisation) and the
+[Schema](/glossary/schema) for more details on this topic.
+***
+
+## Hash
+
+The **hash** is the identity of an item computed from its content. As the item
+hash is part of an [entry](/glossary/entry), it is included in the input to
+the [entry hash](/glossary/entry#hash) function.
+
+The function takes an item and a [hashing
+algorithm](/glossary/hashing-algorithm) and returns a [Hash
+datatype](/datatypes/hash).
+
+```elm
+hash : Item -> HashingAlgorithm -> Hash
 ```
 
+### Algorithm 
+
+***
+NOTE: When this algorithm operates on hashes (e.g. tag, concatenate) it is
+done on bytes, not the hexadecimal string representation.
+***
+
+1. Let _item_ be the normalised blob of data to hash.
+2. Let _hashList_ be an empty list.
+3. Let _valueHash_ be null.
+3. Foreach _(attr, value)_ pair in _item_:
+   1. If _value_ is null, continue.
+   2. If _value_ is a Set:
+      1. Let _elList_ be an empty list.
+      2. Foreach _el_ in _value_:
+         1. If _el_ starts with `**REDACTED**`, append _el_ without `**REDACTED**`
+            to _elList_.
+         2. Otherwise, normalise _el_ according to string normalisation
+            tag it with `0x75` (String), hash it and append it to _elList_.
+         3. Concatenate _elList_ elements, sort them, tag it with `0x73`
+            (Set), hash it and set it to _valueHash_.
+   3. If _value_ starts with `**REDACTED**`, set _valueHash_ with _value_
+      without `**REDACTED**`.
+   4. Otherwise, normalise _value_ according to string normalisation
+      tag it with `0x75` (String), hash it and set _valueHash_.
+   5. Tag _attr_ with `0x75` (String), hash it and set _attrHash_.
+   6. Concat _attrHash_ and _valueHash_ in this order, and append to _hashList_.
+4. Sort _hashList_.
+5. Concat _hashList_ elements, tag with `0x64`, hash it and return.
+
+### Sorting
+
+The **sorting algorithm** for a set of hashes is done by comparing the list of
+bytes one by one. For example, given a set `["foo", "bar"]` you'll get the
+folllowing byte lists after hashing them as unicode:
+
+ ```elm
+[ [166,166,229,231,131,195,99,205,149,105,62,193,137,194,104,35,21,217,86,134,147,151,115,134,121,181,99,5,242,9,80,56]
+, [227,3,206,11,208,244,193,253,254,76,193,232,55,215,57,18,65,226,224,71,223,16,250,97,1,115,61,193,32,103,93,254]
+]
+```
+
+The set sorted given that `166` is smaller than `227`.
+
+### Tagging
+
+The **tagging** operation prepends a byte identifying the type to a list of
+bytes.
+
+Tags:
+
+* Dict: `0x64`
+* Hash: `0x72`
+* Set: `0x73`
+* String: `0x75`
+
+The **string normalisation algorithm** is the [NFC
+form](https://en.wikipedia.org/wiki/Unicode_equivalence) as defined by the
+[Unicode standard](@unicode).
+
+
+## Redaction
+
+To redact a value, you need to take its hash (the partial hash resulting of
+the algorithm above) and, on its string hexadecimal representation prepend the
+string `**REDACTED**`.
+
+***
+**EXAMPLE:**
+
+For example, these two items are equivalent:
+
+```elm
+Item
+  [ ("foo", "abc")
+  , ("bar", "xyz")
+  ]
+
+Item
+  [ ("foo", "**REDACTED**2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511")
+  , ("bar", "xyz")
+  ]
+```
+
+The reason they are equivalent is because the hash for `"abc"` is
+`2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511`.
+
+When the hashing algorithm is applied to the whole item, the redacted value is
+used as is (without the redaction tag).
 ***
 
 ***
-NOTE: In the example above, the JSON serialisation uses the string
-representation of each value and the schema is needed to cast them back to the
-right datatype. Check the [Serialisation section](/rest-api#serialisation) and
-the [Schema](/glossary/schema) for more details on this topic.
+NOTE: The item hashing algorithm is an implementation of the
+[objecthash](https://github.com/benlaurie/objecthash) algorithm.
 ***
+
+## Normalisation
+
+***
+ISSUE: Pending RFC0020 approval
+***
+
 
 ## Conventional attributes
 
@@ -111,76 +231,4 @@ Entry
 ```
 ***
 
-## Canonicalisation
 
-***
-
-ISSUE: [#24](https://github.com/openregister/registers-rfcs/pull/24) RFC
-with an algorithm that doesn't depend on JSON.
-
-***
-
-The canonicalisation algorithm is as follows:
-
-* The data blob MUST be a valid JSON object according to [RFC8259](@rfc8259).
-* All insignificant whitespace according to [RFC8259](@rfc8259) MUST be removed.
-* The JSON object keys must be valid attribute names. On top of being valid JSON
-  keys they MUST be restricted to to the alphabet of lower case letters and
-  hyphens (`[a-z][a-z-0-9]*`).
-* The JSON object values MUST be sorted into lexicographical order.
-* Unicode sequences `\uXXXX` MUST be in upper-case.
-* The forward slash or solidus (`/`) MUST be unescaped.
-* Non-control characters (i.e. out of the range `\u0000`..`\u001F`) MUST be
-  unescaped.
-
-***
-**EXAMPLE:**
-
-For example, take an item with two attributes `foo` and `bar` with values `abc`
-and `xyz` respectively. This can be expressed as JSON:
-
-```json
-{
-  "foo": "abc",
-  "bar": "xyz"
-}
-```
-
-This can then be canonicalised
-
-```json
-{"bar":"xyz","foo":"abc"}
-```
-
-Then hashed with SHA-256
-
-```shell
-$ echo -n '{"bar":"xyz","foo":"abc"}' | shasum -a 256
-5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
-```
-
-And finally prepended with the hashing algorithm:
-
-```
-sha-256:5dd4fe3b0de91882dae86b223ca531b5c8f2335d9ee3fd0ab18dfdc2871d0c61
-```
-***
-
-
-## Hash
-
-The identity of an item computed from its content.  As the item hash is part
-of an [entry](/glossary/entry), it is included in the input to the [entry
-hash](/glossary/entry#hash) function.
-
-The function takes an item and a [hashing
-algorithm](/glossary/hashing-algorithm) and returns a [Hash
-datatype](/datatypes/hash).
-
-```elm
-itemHash : Entry -> Alg -> Hash
-```
-
-The `sha-256` hash is computed by serialising the item to a canonical form of
-JSON, and computing the SHA-256 hash, defined in the [Secure Hash
-Standard](@fips-180-4), of the resulting serial form.
