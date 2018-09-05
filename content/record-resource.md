@@ -40,16 +40,6 @@ GET /records/{key}
 |Name|Type|Description|
 |-|-|-|
 |`key`| [ID](/glossary/key#id-type)|The record identifier.|
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested record exists and has been delivered.|
-|404|Not Found|The requested record doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 Gets a record by key.
@@ -104,16 +94,6 @@ trail](#list-the-trail-of-change-for-a-record) for this record.
 ```
 GET /records
 ```
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested page exists and has been delivered.|
-|404|Not Found|The requested page doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 Gets the list of records. [This resource MAY be paginated](/rest-api#collection-pagination).
@@ -178,17 +158,6 @@ GET /records/{key}/entries
 |Name|Type|Description|
 |-|-|-|
 |`key`| [ID](/glossary/key#id-type)|The record identifier.|
-
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested page exists and has been delivered.|
-|404|Not Found|The requested page doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 Get the list of [entries](/glossary/entry) with the record `key`. [This
@@ -259,16 +228,6 @@ GET /records/{attribute-name}/{attribute-value}
 |-|-|-|
 |`attribute-name`| [Attribute Name](/datatypes/name)|An attribute name part of the data.|
 |`attribute-value`| [String](/datatypes/string)|The string representation of a valid value for the `attribute-name`.|
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested page exists and has been delivered.|
-|404|Not Found|The requested page doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 Gets the list of records filtered by the exact value of the given attribute name.

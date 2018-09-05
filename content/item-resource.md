@@ -25,18 +25,6 @@ GET /items/{item-hash}
 |Name|Type|Description|
 |-|-|-|
 |`item-hash`|[Hash](/datatypes/hash)| The [Item](/glossary/item) identifier.|
-
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|[200](#success-200)|Success|The requested item exists and has been delivered.|
-|[404](#not-found-404)|Not Found|The requested item doesn't exist.|
-|[410](#gone-410)|Gone|The requested item is no longer available. It was redacted.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 Gets an item by hash.
@@ -81,45 +69,10 @@ Content-Length: 156
 ***
 
 
-### Success (200)
+### Redacted item
 
-The payload MUST be in the requested [serialisation
-format](/rest-api#serialisation) , when available, with the attributes defined
-by the [Schema](/glossary/schema).
-
-### Not Found (404)
-
-A 404 MAY have a payload in the requested [serialisation
-format](/rest-api#serialisation) with a helpful message.
-
-The payload MUST be in the requested [serialisation format](/rest-api#serialisation)
-when available.
-
-***
-**EXAMPLE:**
-
-For example,
-
-```http
-GET /items/foo HTTP/1.1
-Host: country.register.gov.uk
-Accept: application/json
-```
-
-```http
-HTTP/1.1 404 Not Found
-Content-Type: application/json
-
-{
-  "message": "The requested item doesn't exist. The list of items may be of help.",
-  "items-url": "/items"
-}
-```
-***
-
-### Gone (410)
-
-This code MUST be used when the [data blob has been redacted](/data-model/redact).
+When an item has been [fully redacted](/data-model/redact) the response MUST
+be `410 Gone`.
 
 ***
 ISSUE: Pending approval of [RFC0017](https://github.com/openregister/registers-rfcs/pull/30)
@@ -139,23 +92,7 @@ Accept: application/json
 
 ```http
 HTTP/1.1 410 Gone
-Content-Type: application/json
 ```
-
-For tabular data such as CSV, the payload MUST be the same as the expected
-list of attributes doesn't apply:
-
-```http
-GET /items/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
-Host: country.register.gov.uk
-Accept: text/csv;charset=UTF-8
-```
-
-```http
-HTTP/1.1 410 Gone
-Content-Type: text/csv;charset=UTF-8
-```
-***
 
 
 ## List items
@@ -166,15 +103,6 @@ Content-Type: text/csv;charset=UTF-8
 ```
 GET /items
 ```
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested page exists and has been delivered.|
-|404|Not Found|The requested page doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
 ***
 
 Gets the list of items. [This resource MAY be paginated](/rest-api#collection-pagination).
