@@ -34,16 +34,6 @@ GET /entries/{entry-number}
 |`key`| [ID](/glossary/key#id-type)|The [entry key](/glossary/entry#key).|
 |`item-hash`| List of [Hash](/datatypes/hash)|The list of [item hashes](/glossary/entry#item-references).|
 |`index-entry-number`| [Integer](/datatypes/integer)|The entry number [_experimental_].|
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested entry exists and has been delivered.|
-|404|Not Found|The requested entry doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 The entry resource returns an array containing a single entry.
@@ -89,22 +79,6 @@ Content-Type: application/json
 ```
 GET /entries
 ```
-
-### Parameters
-
-|Name|Type|Description|
-|-|-|-|
-|`start`| Optional [Integer](/datatypes/integer)|Filters the collection starting at the given entry number.|
-
-### Response summary
-
-|Code|Status|Description|
-|-|-|-|
-|200|Success|The requested page exists and has been delivered.|
-|404|Not Found|The requested page doesn't exist.|
-
-See the [generic codes](/rest-api#codes) for more.
-
 ***
 
 Gets the list of entries. [This resource MAY be paginated](/rest-api#collection-pagination).
@@ -112,7 +86,11 @@ Gets the list of entries. [This resource MAY be paginated](/rest-api#collection-
 The order MUST be by ascending entry number.
 
 ***
-TODO: This makes `start` normative. Should this be a non-normative parameter?
+**NOTE:**
+
+The reference implementation uses a `start` parameter to let users get the
+collection of entries from a known entry number. The following examples use it
+to illustrate pagination.
 ***
 
 ***
