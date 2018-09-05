@@ -184,7 +184,7 @@ TODO: Move elsewhere
 
 The signed tree head for a register is the tree-head-signature property of the
 [Register proof](/glossary/digital-proof#register-proof), where the `proof-identifier` is
-specified as `merkle:sha-256`.
+specified as `merkle:sha2-256`.
 
 The signed tree head for a register is the signed Merkle tree root hash
 ([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries

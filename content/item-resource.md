@@ -61,7 +61,7 @@ For example, the following request shows an item in the JSON representation:
 
 ```http
 
-GET /items/sha-256:6b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
+GET /items/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
 Host: country.register.gov.uk
 Accept: application/json
 ```
@@ -132,7 +132,7 @@ ISSUE: Pending approval of [RFC0017](https://github.com/openregister/registers-r
 For example,
 
 ```http
-GET /items/sha-256:6b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
+GET /items/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
 Host: country.register.gov.uk
 Accept: application/json
 ```
@@ -140,8 +140,6 @@ Accept: application/json
 ```http
 HTTP/1.1 410 Gone
 Content-Type: application/json
-
-**REDACTED**sha-256:6b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb
 ```
 
 For tabular data such as CSV, the payload MUST be the same as the expected
@@ -156,8 +154,6 @@ Accept: text/csv;charset=UTF-8
 ```http
 HTTP/1.1 410 Gone
 Content-Type: text/csv;charset=UTF-8
-
-**REDACTED**12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb
 ```
 ***
 
@@ -208,13 +204,13 @@ Content-Type: application/json
 Link: </items?cursor=2112>; rel="next"
 
 {
-  "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984": {
-    "local-authority": "E09000019",
-    "name": "Islington"
+  "12206a048d58e944ce2430256d04de09fc70a5c0ff08f08569a7fd5cb96dc559d7cb": {
+    "local-authority-eng": "CAB",
+    "name": "Cambridge"
   },
-  "sha-256:d9178efd8febfebaaa42968648b7bdd023369c7f": {
-    "local-authority": "E09000016",
-    "name": "Havering"
+  "1220d87a75d2333ceaf0e308380ddc0de9fa47eb969413d917f934ee9c9cb31caadd": {
+    "local-authority": "NMD",
+    "name": "Wycombe"
   }
 }
 ```

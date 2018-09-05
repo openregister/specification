@@ -216,7 +216,7 @@ Content-Type: application/json
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "CI",
     "item-hash": [
-      "sha-256:7c16257bd45b4716914010b39dd40e5a6b985b8928d7b8bb0fe3005d2f2b0fec"
+      "12207c16257bd45b4716914010b39dd40e5a6b985b8928d7b8bb0fe3005d2f2b0fec"
     ]
   },
   {
@@ -225,7 +225,7 @@ Content-Type: application/json
     "entry-timestamp": "2017-10-25T09:52:52Z",
     "key": "CI",
     "item-hash": [
-      "sha-256:b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
+      "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
     ]
   }
 ]

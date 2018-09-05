@@ -74,7 +74,7 @@ Content-Type: application/json
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "GH",
     "item-hash": [
-      "sha-256:dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
+      "1220dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
     ]
   }
 ]
@@ -133,36 +133,35 @@ Content-Type: application/json
 Link: </entries?start=101>; rel="next"
 
 [
-  {
-    "index-entry-number": 1,
-    "entry-number": 1,
-    "entry-timestamp": "2015-08-15T08:15:30Z",
-    "key": "402019",
-    "item-hash": [
-        "sha-256:1a0212ba5094383bcc2a0bbe1a55e3a1f1278984"
-    ]
-  },
-  {
-    "index-entry-number": 2,
-    "entry-number": 2,
-    "entry-timestamp": "2015-08-20T08:15:30Z",
-    "key": "402020",
-    "item-hash": [
-        "sha-256:13f6de75b9f6d970691985e72a7dfa211bad1591"
-    ]
-  },
-  {
-    "index-entry-number": 3,
-    "entry-number": 3,
-    "entry-timestamp": "2015-08-21T00:00:00Z",
-    "key": "402020",
-    "item-hash": [
-        "sha-256:13f6de75b9f6d970691985e72a7dfa211ba00000"
-    ]
-  },
-
   ...
 
+  {
+    "index-entry-number": "98",
+    "entry-number": "98",
+    "entry-timestamp": "2017-03-29T14:22:30Z",
+    "key": "GM",
+    "item-hash": [
+      "12200429375c4fb403288ef816e5dd38a24f192e35b8f55e40cc6266eb25eaef77b1"
+    ]
+  },
+  {
+    "index-entry-number": "99",
+    "entry-number": "99",
+    "entry-timestamp": "2017-10-25T09:52:52Z",
+    "key": "CI",
+    "item-hash": [
+      "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
+    ]
+  },
+  {
+    "index-entry-number": "100",
+    "entry-number": "100",
+    "entry-timestamp": "2018-06-13T13:54:40Z",
+    "key": "SZ",
+    "item-hash": [
+      "1220f89f36ed8b2a1417237a8e95b810e8ab4ead844277ad7bc7794cb5f83732c976"
+    ]
+  }
 ]
 ```
 ***
@@ -192,7 +191,7 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "KG",
     "item-hash": [
-      "sha-256:8b748c574bf975990e47e69df040b47126d2a0a3895b31dce73988fba2ba27d8"
+      "12208b748c574bf975990e47e69df040b47126d2a0a3895b31dce73988fba2ba27d8"
     ]
   },
   {
@@ -201,7 +200,7 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "LA",
     "item-hash": [
-      "sha-256:490636974f8087e4518d222eba08851dd3e2b85095f2b1427ff6ecd3fa482435"
+      "1220490636974f8087e4518d222eba08851dd3e2b85095f2b1427ff6ecd3fa482435"
     ]
   },
 

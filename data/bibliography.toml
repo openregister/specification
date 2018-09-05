@@ -168,3 +168,10 @@ title = "The Canonical Link Relation"
 authors = ["M. Ohye", "J. Kupke"]
 publisher = "IETF"
 published = "2012-04"
+
+[[bibliography]]
+id = "multihash"
+url = "https://multiformats.io/multihash/"
+title = "Multihash"
+authors = ["J. Benet"]
+publisher = "Protocol Labs"
