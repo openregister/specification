@@ -91,6 +91,10 @@ See the [forward compatibility section](/data-model/evolve#forwards-compatibilit
 ISSUE: How does the tabular data model interop with the Register data types?
 ***
 
+***
+TODO: Describe the custom cardinality n in CSV serialisation
+***
+
 ### Extensions
 
 A register MAY provide additional, possibly domain specific representations.
