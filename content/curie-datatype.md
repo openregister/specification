@@ -9,10 +9,11 @@ NOTE: The intention of the CURIE datatype is to provide Registers with a
 mechanism to [link between them](/data-model/link).
 ***
 
-A **CURIE** (Compact URL) is inspired by the [CURIE Syntax 1.0](@curie) and
-essentially compatible with it. There are two key differences: only a subset
-of CURIEs are allowed and that the reference part complies with [the URL
-specification](@url) instead of the URL/URI/IRI IETF specifications.
+A **CURIE** datatype is a compact URL inspired by the [CURIE Syntax
+1.0](@curie) and essentially compatible with it. There are two key
+differences: only a subset of CURIEs are allowed and that the reference part
+complies with [the URL specification](@url) instead of the URL/URI/IRI IETF
+specifications.
 
 ```elm
 type Curie =
@@ -60,12 +61,6 @@ To expand a CURIE into a URL, you need a prefix mapping typically found in the
 [catalogue](/glossary/catalogue).
 
 The mapping base URL MUST BE be a valid [Record endpoint](/rest-api/records#get-a-record).
-
-***
-ISSUE:
-
-Catalog needs definition and a place in the data model.
-***
 
 ```elm
 expand : Curie -> Mapping -> Maybe URL
