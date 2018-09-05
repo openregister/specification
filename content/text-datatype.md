@@ -4,7 +4,7 @@ title: Text
 url: /datatypes/text
 ---
 
-A **text** is a [String](/datatypes/string) formatted according to
+The **text** datatype is a [String](/datatypes/string) formatted according to
 [Markdown](@markdown).
 
 ***

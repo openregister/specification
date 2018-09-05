@@ -4,8 +4,8 @@ title: Period
 url: /datatypes/period
 ---
 
-A period of time conforming to the subset of [ISO8601](@iso8601) time
-intervals as follows:
+The **period** datatype is a period of time conforming to the subset of
+[ISO8601](@iso8601) time intervals as follows:
 
 ```abnf
 period =  start-end / start-duration / duration-end / duration

@@ -4,8 +4,8 @@ title: Name
 url: /datatypes/name
 ---
 
-A **name** is a [String](/datatypes/string) restricted to lower case ASCII
-letters, digits and hyphens with the following pattern:
+The **name** datatype is a [String](/datatypes/string) restricted to lower
+case ASCII letters, digits and hyphens with the following pattern:
 
 ```abnf
 name = ALPHA *(ALPHA / DIGIT / "-")

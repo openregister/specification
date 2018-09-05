@@ -4,7 +4,7 @@ title: Integer
 url: /datatypes/integer
 ---
 
-A base 10 number with no fractional component.
+The **integer** datatype is a base 10 number with no fractional component.
 
 ```abnf
 integer = "0" / (["-"] non-zero *digit)

@@ -4,9 +4,9 @@ title: URL
 url: /datatypes/url
 ---
 
-An absolute **URL** according to [the URL specification](@url). When
-serialised as a string it MUST be a valid [absolute-URL
-string](https://url.spec.whatwg.org/#absolute-url-string).
+The **URL** datatype is an absolute **URL** conforming to [the URL
+specification](@url). When serialised as a string it MUST be a valid
+[absolute-URL string](https://url.spec.whatwg.org/#absolute-url-string).
 
 ***
 NOTE:

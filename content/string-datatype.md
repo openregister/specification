@@ -4,8 +4,8 @@ title: String
 url: /datatypes/string
 ---
 
-A **string** is a sequence of one or more [Unicode](@unicode) characters. It
-MUST be encoded as [UTF-8](@rfc3629).
+The **string** datatype is a sequence of one or more [Unicode](@unicode)
+characters. It MUST be encoded as [UTF-8](@rfc3629).
 
 The empty string SHOULD NOT be allowed as a valid string to avoid any ambiguous
 meaning when serialising or deserialising from less-expressive formats like

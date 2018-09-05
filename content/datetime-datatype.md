@@ -4,8 +4,8 @@ title: Datetime
 url: /datatypes/datetime
 ---
 
-A datetime conforming to the subset of a UTC [ISO8601](@iso8601) date or
-datetime as follows:
+The **datetime** datatype conforms to the subset of a UTC [ISO8601](@iso8601)
+date or datetime as follows:
 
 ```abnf
 ;          datetime
