@@ -10,4 +10,6 @@ status: wip
 ***
 TODO: What else is required in order to define this concept? Given that the
 spec is read-only, is minting still a thing?
+
+What's the role of validation? and number assignment?
 ***
