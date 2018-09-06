@@ -5,7 +5,7 @@ url: /data-model
 status: wip
 ---
 
-A **Register** is a dataset for a singular kind of _thing_. It has the
+A **Register** is a dataset for a single kind of _thing_. It has the
 ability to provide previous versions for the data held in it.
 
 The dataset can be mapped to any of the [serialisation
