@@ -99,25 +99,25 @@ done on bytes, not the hexadecimal string representation.
 1. Let _item_ be the normalised blob of data to hash.
 2. Let _hashList_ be an empty list.
 3. Let _valueHash_ be null.
-3. Foreach _(attr, value)_ pair in _item_:
+4. Foreach _(attr, value)_ pair in _item_:
    1. If _value_ is null, continue.
    2. If _value_ is a Set:
-      1. Let _elList_ be an empty list.
-      2. Foreach _el_ in _value_:
-         1. If _el_ starts with `**REDACTED**`, append _el_ without `**REDACTED**`
-            to _elList_.
-         2. Otherwise, normalise _el_ according to string normalisation
-            tag it with `0x75` (String), hash it and append it to _elList_.
-         3. Concatenate _elList_ elements, sort them, tag it with `0x73`
-            (Set), hash it and set it to _valueHash_.
+        1. Let _elList_ be an empty list.
+        2. Foreach _el_ in _value_:
+            1. If _el_ starts with `**REDACTED**`, append _el_ without `**REDACTED**`
+               to _elList_.
+            2. Otherwise, normalise _el_ according to string normalisation
+               tag it with `0x75` (String), hash it and append it to _elList_.
+            3. Concatenate _elList_ elements, sort them, tag it with `0x73`
+               (Set), hash it and set it to _valueHash_.
    3. If _value_ starts with `**REDACTED**`, set _valueHash_ with _value_
       without `**REDACTED**`.
    4. Otherwise, normalise _value_ according to string normalisation
       tag it with `0x75` (String), hash it and set _valueHash_.
    5. Tag _attr_ with `0x75` (String), hash it and set _attrHash_.
    6. Concat _attrHash_ and _valueHash_ in this order, and append to _hashList_.
-4. Sort _hashList_.
-5. Concat _hashList_ elements, tag with `0x64`, hash it and return.
+5. Sort _hashList_.
+6. Concat _hashList_ elements, tag with `0x64`, hash it and return.
 
 ### Sorting
 
