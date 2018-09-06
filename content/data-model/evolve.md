@@ -2,20 +2,12 @@
 id: evolve
 title: Evolve
 url: /data-model/evolve
-status: wip
 ---
 
-***
-ISSUE: Define how schema evolution works.
-***
-
+<!--
 [Schema](/glossary/schema) evolution depends on two pillars: backwards
 compatibility and forwards compatibility.
-
-***
-**NOTE:** Schema evolution is a work in progress but the backwards and forwards
-pillars won't change.
-***
+-->
 
 ## Backwards compitability
 
