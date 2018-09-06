@@ -13,3 +13,25 @@ spec is read-only, is minting still a thing?
 
 What's the role of validation? and number assignment?
 ***
+
+## Validation
+
+***
+TODO: Find a better name for  `Draft`.
+***
+
+```elm
+type Draft =
+  { key : Name
+  , blob : Item
+  }
+```
+
+A `Draft` is valid iff:
+
+* Provides a valid `key` (Name).
+* The [data blob is valid](/glossary/item#validate).
+
+
+Note: RSF rules are not part of the data model. But we can provide a
+non-normative note explaining other checks done in ref impl.

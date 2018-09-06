@@ -206,6 +206,22 @@ normalise : Item -> Item
 ISSUE: Pending RFC0020 approval
 ***
 
+### Validate
+
+```elm
+validate : Item -> Bool
+```
+
+***
+**TODO:**
+
+A data blob is valid iff:
+
+* Every attribute exists in the Schema.
+* Every value is of valid type according to the attribute definition (schema).
+
+***
+
 
 ## Conventional attributes
 
