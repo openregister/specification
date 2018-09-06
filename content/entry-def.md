@@ -71,7 +71,9 @@ It is a set of hashes instead of a single hash due the **index** feature.
 ***
 
 
-## Hash
+## Operations
+
+### Hash
 
 The identity of an entry computed from its content. It is used for
 [audit](/data-model/audit) as the Merkle tree leaves.
