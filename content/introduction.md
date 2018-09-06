@@ -47,6 +47,28 @@ description may be provided to explain how the reference implementation has
 addressed a topic.
 
 
+## Versioning
+
+This specification aims to evolve with changes that are backwards compatible.
+Once that is not possible, a new version will be introduced.
+
+***
+ISSUE: Define versioning strategy
+***
+
+
+## Reference implementation
+
+_This section is non-normative._
+
+This specification is tested and validated by implementing every feature
+defined in it in the [reference
+implementation](https://github.com/openregister/openregister-java).
+
+Also, you can use the [conformance test suite](https://github.com/openregister/conformance-test)
+to test your implementation.
+
+
 ## Conformance requirements
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
@@ -124,27 +146,6 @@ f : a -> b -> c
 
 These types and signatures are mainly to support the narrative of this
 specification and interlink the different concepts in play.
-
-## Versioning
-
-This specification aims to evolve with changes that are backwards compatible.
-Once that is not possible, a new version will be introduced.
-
-***
-ISSUE: Define versioning strategy
-***
-
-
-## Reference implementation
-
-_This section is non-normative._
-
-This specification is tested and validated by implementing every feature
-defined in it in the [reference
-implementation](https://github.com/openregister/openregister-java).
-
-Also, you can use the [conformance test suite](https://github.com/openregister/conformance-test)
-to test your implementation.
 
 
 ## Suggested reading
