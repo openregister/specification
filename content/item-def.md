@@ -75,7 +75,9 @@ datatype. Check the [Serialisation section](/rest-api#serialisation) and the
 [Schema](/glossary/schema) for more details on this topic.
 ***
 
-## Hash
+## Operations
+
+### Hash
 
 The **hash** is the identity of an item computed from its content. As the item
 hash is part of an [entry](/glossary/entry), it is included in the input to
@@ -89,7 +91,7 @@ datatype](/datatypes/hash).
 hash : Item -> HashingAlgorithm -> Hash
 ```
 
-### Algorithm 
+#### Algorithm
 
 ***
 NOTE: When this algorithm operates on hashes (e.g. tag, concatenate) it is
@@ -119,7 +121,7 @@ done on bytes, not the hexadecimal string representation.
 5. Sort _hashList_.
 6. Concat _hashList_ elements, tag with `0x64`, hash it and return.
 
-### Sorting
+#### Sorting
 
 The **sorting algorithm** for a set of hashes is done by comparing the list of
 bytes one by one. For example, given a set `["foo", "bar"]` you'll get the
@@ -133,7 +135,7 @@ folllowing byte lists after hashing them as unicode:
 
 The set sorted given that `166` is smaller than `227`.
 
-### Tagging
+#### Tagging
 
 The **tagging** operation prepends a byte identifying the type to a list of
 bytes.
@@ -149,43 +151,56 @@ The **string normalisation algorithm** is the [NFC
 form](https://en.wikipedia.org/wiki/Unicode_equivalence) as defined by the
 [Unicode standard](@unicode).
 
+***
+NOTE: The item hashing algorithm is an implementation of the
+[objecthash](https://github.com/benlaurie/objecthash) algorithm.
+***
 
-## Redaction
+
+### Redact
 
 To redact a value, you need to take its hash (the partial hash resulting of
 the algorithm above) and, on its string hexadecimal representation prepend the
 string `**REDACTED**`.
 
+```elm
+redact : Name -> HashingAlgorithm -> Item -> Item
+```
+
 ***
 **EXAMPLE:**
 
-For example, these two items are equivalent:
+For example,
 
 ```elm
-Item
-  [ ("foo", "abc")
-  , ("bar", "xyz")
-  ]
+i_0 = 
+  Item
+    [ ("foo", "abc")
+    , ("bar", "xyz")
+    ]
 
+redact "foo" i_0
+```
+
+Will result in
+
+```elm
 Item
   [ ("foo", "**REDACTED**2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511")
   , ("bar", "xyz")
   ]
 ```
 
-The reason they are equivalent is because the hash for `"abc"` is
+And both items will have the same resulting hash. The reason they are
+equivalent is because the hash for `"abc"` is
 `2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511`.
-
-When the hashing algorithm is applied to the whole item, the redacted value is
-used as is (without the redaction tag).
 ***
 
-***
-NOTE: The item hashing algorithm is an implementation of the
-[objecthash](https://github.com/benlaurie/objecthash) algorithm.
-***
+### Normalise
 
-## Normalisation
+```elm
+normalise : Item -> Item
+```
 
 ***
 ISSUE: Pending RFC0020 approval
