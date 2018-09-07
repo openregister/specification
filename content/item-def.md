@@ -245,13 +245,14 @@ validate : Item -> Result ValidationError Item
             2. If _el_ is not of the datatype defined in _attribute_,
                abort. The _item_ has an illegal value.
             2. Otherwise, continue.
-   5. If _value_ is not of the datatype defined in _attribute_, abort.
+   5. If _attribute_ has cardinality “n”, abort. The _item_ has an illegal value.
+   6. If _value_ is not of the datatype defined in _attribute_, abort.
       The _item_ has an illegal value.
-   6. Otherwise, continue.
+   7. Otherwise, continue.
 4. Set _item_ to _result_ and return.
 
 ***
-NOTE: “nullable” means any value that is considered null in the normalisation
+NOTE: “nullable” means any value that is considered null in the [normalisation](#normalise)
 process.
 ***
 
@@ -262,10 +263,10 @@ _This section is non-normative._
 It is convention for most registers to provide a few common attributes with
 particular meaning. These are:
 
-* `start-date`: (Datetime) The date the element started to exist in the world.
+* `start-date`: ([Datetime](/datatypes/datetime)) The date the element started to exist in the world.
   This is not the same as the [Entry timestamp](/glossary/entry#timestamp).
-* `end-date`: (Datetime) The date the element stopped to exist in the world.
-* `name`: (String) The common name for the element.
+* `end-date`: ([Datetime](/datatypes/datetime)) The date the element stopped to exist in the world.
+* `name`: ([String](/datatypes/string)) The common name for the element.
 
 ***
 **EXAMPLE:**

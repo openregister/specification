@@ -14,8 +14,6 @@ spec is read-only, is minting still a thing?
 What's the role of validation? and number assignment?
 ***
 
-## Validation
-
 ***
 TODO: Find a better name for  `Draft`.
 ***
@@ -26,6 +24,12 @@ type Draft =
   , blob : Item
   }
 ```
+
+```elm
+mint : Draft -> Result ValidationError (Entry, Item)
+```
+
+## Validation
 
 A `Draft` is valid iff:
 
