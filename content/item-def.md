@@ -98,7 +98,7 @@ NOTE: When this algorithm operates on hashes (e.g. tag, concatenate) it is
 done on bytes, not the hexadecimal string representation.
 ***
 
-1. Let _item_ be the normalised blob of data to hash.
+1. Let _item_ be the [normalised](#normalise) blob of data to hash.
 2. Let _hashList_ be an empty list.
 3. Let _valueHash_ be null.
 4. Foreach _(attr, value)_ pair in _item_:
@@ -146,10 +146,6 @@ Tags:
 * Hash: `0x72`
 * Set: `0x73`
 * String: `0x75`
-
-The **string normalisation algorithm** is the [NFC
-form](https://en.wikipedia.org/wiki/Unicode_equivalence) as defined by the
-[Unicode standard](@unicode).
 
 ***
 NOTE: The item hashing algorithm is an implementation of the
@@ -216,9 +212,17 @@ normalise : Item -> Item
 ISSUE: Pending RFC0020 approval
 ***
 
+#### String normalisation
+
+The **string normalisation algorithm** is the [NFC
+form](https://en.wikipedia.org/wiki/Unicode_equivalence) as defined by the
+[Unicode standard](@unicode).
+
+
 ### Validate
 
-A blob is valid if all its pairs are valid according to the specification.
+A blob is valid if all its pairs are valid according to the
+[schema](/glossary/schema).
 
 ```elm
 validate : Item -> Result ValidationError Item
