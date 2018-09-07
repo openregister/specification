@@ -218,20 +218,38 @@ ISSUE: Pending RFC0020 approval
 
 ### Validate
 
+A blob is valid if all its pairs are valid according to the specification.
+
 ```elm
-validate : Item -> Bool
+validate : Item -> Result ValidationError Item
 ```
 
+#### Algorithm
+
+1. Let _item_ be the [normalised](#normalise) blob of data to hash.
+2. Let _schema_ be the list of attribute definitions to valiate against.
+2. Let _result_ be null.
+3. Foreach _(name, value)_ pair in _item_:
+   1. If _name_ doesn't exist in the _schema_, abort. The _item_ has an
+      illegal attribute.
+   2. Let _attribute_ be the attribute for _name_ found in _schema_.
+   3. If _value_ is nullable, abort. The _item_ is not normalised.
+   4. If _value_ is a Set:
+        1. If _attribute_ has cardinality “1”, abort. The _item_ has an illegal value.
+        2. Foreach _el_ in _value_:
+            1. If _el_ is nullable, abort. The _item_ is not normalised.
+            2. If _el_ is not of the datatype defined in _attribute_,
+               abort. The _item_ has an illegal value.
+            2. Otherwise, continue.
+   5. If _value_ is not of the datatype defined in _attribute_, abort.
+      The _item_ has an illegal value.
+   6. Otherwise, continue.
+4. Set _item_ to _result_ and return.
+
 ***
-**TODO:**
-
-A data blob is valid iff:
-
-* Every attribute exists in the Schema.
-* Every value is of valid type according to the attribute definition (schema).
-
+NOTE: “nullable” means any value that is considered null in the normalisation
+process.
 ***
-
 
 ## Conventional attributes
 
