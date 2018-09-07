@@ -101,7 +101,7 @@ done on bytes, not the hexadecimal string representation.
 1. Let _item_ be the [normalised](#normalise) blob of data to hash.
 2. Let _hashList_ be an empty list.
 3. Let _valueHash_ be null.
-4. Foreach _(attr, value)_ pair in _item_:
+4. Foreach _(name, value)_ pair in _item_:
    1. If _value_ is null, continue.
    2. If _value_ is a Set:
         1. Let _elList_ be an empty list.
@@ -116,8 +116,8 @@ done on bytes, not the hexadecimal string representation.
       without `**REDACTED**`.
    4. Otherwise, normalise _value_ according to string normalisation
       tag it with `0x75` (String), hash it and set _valueHash_.
-   5. Tag _attr_ with `0x75` (String), hash it and set _attrHash_.
-   6. Concat _attrHash_ and _valueHash_ in this order, and append to _hashList_.
+   5. Tag _name_ with `0x75` (String), hash it and set _nameHash_.
+   6. Concat _nameHash_ and _valueHash_ in this order, and append to _hashList_.
 5. Sort _hashList_.
 6. Concat _hashList_ elements, tag with `0x64`, hash it and return.
 
@@ -204,13 +204,45 @@ this example is SHA2-256.
 
 ### Normalise
 
+Blob normalisation removes nullable values to ensure operations such as
+[hashing](#hash) produce the exact same value.
+
+Any value that is an empty String, empty Set or Set with
+empty strings in it is normalised as a null value and removed from the
+normalised result.
+
+***
+NOTE: The nullable normalisation allows parity between formats like JSON
+with more rigid formats like CSV. For example, in CSV having an empty field,
+empty string, would be normalised as null.
+***
+
 ```elm
 normalise : Item -> Item
 ```
 
-***
-ISSUE: Pending RFC0020 approval
-***
+#### Algorithm
+
+1. Let _blob_ be the blob to normalise.
+2. Let _result_ be an empty dictionary.
+3. Foreach _(name, value)_ pair in _blob_:
+   1. If _value_ is null, continue.
+   2. If _value_ is an empty String, continue.
+   3. If _value_ is an empty Set, continue.
+   4. If _value_ is a Set:
+       1. Let _normSet_ be an empty Set.
+       2. Foreach _el_ in _value_:
+            1. If _el_ is null, continue.
+            2. If _el_ is an empty String, continue.
+            3. Otherwise, [normalise](#string-normalisation) _el_ and append the
+               result to to _normSet_.
+       3. If _normSet_ is empty, continue.
+       4. Otherwise, set _(name, normSet)_ to _result_.
+   5. Otherwise,
+        1. Let _normValue_ be null.
+        2. [Normalise](#string-normalisation) _value_ and set _normValue_.
+        3. Set _(name, normValue)_ to _result_.
+4. Return _result_.
 
 #### String normalisation
 
