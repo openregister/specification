@@ -191,9 +191,19 @@ Item
   ]
 ```
 
-And both items will have the same resulting hash. The reason they are
+In both cases the resulting [hash](#hash) is
+
+```
+12202b90b5d4a714f5fd5f7c670067f090f972dd7be8a472965c90572699249672aa
+```
+
+The reason they are
 equivalent is because the hash for `"abc"` is
 `2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511`.
+
+Notice that the first two bytes of the resulting hash, `0x12` and `0x20`, are
+prepended because the [hashing algorithm](/glossary/hashing-algorithm) used in
+this example is SHA2-256.
 ***
 
 ### Normalise
