@@ -6,7 +6,7 @@ status: wip
 ---
 
 **Minting** is the process of validating a potential change for a key and
-creating a new [entry](/glossary/entry) that can be appended the
+creating a new [entry](/glossary/entry) that can be appended to the
 [log](/glossary/log).
 
 ```elm
