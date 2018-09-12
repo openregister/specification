@@ -12,8 +12,8 @@ available and the Register integrity intact.
 ***
 **WARNING:**
 
-Data redaction does not apply to [entries](/glossary/entry) or any other part
-of the Register other than [items](/glossary/item). Otherwise, the
+Data redaction does not apply to [entries](/glossary/entry) or any part of the
+Register other than [items](/glossary/item). Otherwise, the
 [integrity](/data-model/audit) of the Register would be compromised.
 ***
 
