@@ -11,8 +11,8 @@ fixed size digest for identifying and addressing [items](/glossary/item),
 ```elm
 type HashingAlgorithm =
   { codec : String
-  , functionType : Byte
-  , digestLength : Byte
+  , functionType : UVarInt
+  , digestLength : UInt
   }
 
 ```
