@@ -73,45 +73,27 @@ an entry in the log](#entry-verification) and the “Consistency proof” to [ve
 that two registers of different sizes are consistent](#consistency-verification).
 
 
+***
+NOTE: The reference implementation doesn't provide signatures just yet.
+***
+
+
 ## Register verification
 
 The Register verification process allows proving that a copy of a Register is
 exactly the same as the original one.
 
-***
-TODO: Define and link “root hash” (and Merkle tree).
-***
-
 A client MUST be able to do the following:
 
-1. Get a copy of a Register (i.e. Entries and Items).
-2. Get the Register proof.
-   and items?
-3. Compute the root hash the log of entries.
-4. Sign the root hash with the Register public key.
-5. Verify the root hash is the same as the root hash part of the Register
+1. Get a copy of the Register (i.e. Entries, Items and register proof).
+2. Compute the root hash for the log of entries.
+3. Sign the root hash with the Register public key.
+4. Verify the root hash is the same as the root hash part of the Register
    proof.
-6. Verify the signed root hash is the same as the [signed root
+5. Verify the signed root hash is the same as the [signed root
    hash](#signed-tree-head) part of the Register proof.
-7. Verify that for each Item hash in each Entry there is an Item.
-8. Verify that each Item computes the same hash that identifies it.
-
-***
-TODO: Can (2) be obtained atomically with (1)?
-***
-
-***
-TODO: Isn't (5) implied if (6) succeeds?
-***
-
-***
-TODO: The reference implementation doesn't provide signatures nor public keys.
-How does this affect our planning to align spec and impl?
-***
-
-***
-TODO: How does (7) work with “Redaction by blob removal”?
-***
+6. Verify that for each Item hash in each Entry there is an Item.
+7. Verify that each Item computes the same hash that identifies it.
 
 
 ## Entry verification
@@ -190,16 +172,3 @@ The signed tree head for a register is the signed Merkle tree root hash
 ([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries
 in the register. The corresponding root-hash is also a property of the
 [Register proof](/glossary/digital-proof#register-proof).
-
-
-## Compromised proof
-
-***
-ISSUE: Is this out of scope? What does it entail?
-***
-
-## Compromised private key
-
-***
-ISSUE: Is this out of scope? What does it entail?
-***
