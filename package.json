@@ -6,6 +6,7 @@
     "develop": "VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby develop",
     "build": "yarn clean && VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby build",
     "clean": "rm -rf .cache public",
+    "deploy": "#netlifyctl deploy -P public -m",
     "serve": "gatsby serve"
   },
   "dependencies": {
