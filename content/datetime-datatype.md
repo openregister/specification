@@ -17,7 +17,7 @@ type Second = Int
 
 type Datetime
   = Date Year Month Day
-  | DateTime Year Month Day Hour Minute Second
+  | Timestamp Year Month Day Hour Minute Second
 ```
 
 The string representation is defined in ABNF as:

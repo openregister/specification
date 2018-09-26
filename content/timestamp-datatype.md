@@ -8,6 +8,20 @@ The **timestamp** datatype is a value conforming to a UTC [RFC3339](@rfc3339)
 timestamp. It can be seen as a strict subset of the [datetime
 datatype](/datatypes/datetime).
 
+```elm
+type Year = Int
+type Month = Int
+type Day = Int
+type Hour = Int
+type Minute = Int
+type Second = Int
+
+type Timestamp =
+  Year Month Day Hour Minute Second
+```
+
+The string representation is defined in ABNF as:
+
 ```abnf
 ;           timestamp
 timestamp   = date "T" time
