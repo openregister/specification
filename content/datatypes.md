@@ -29,8 +29,6 @@ resource](/rest-api/context).
 | `hash` | [Hash](/datatypes/hash) | A hashing algorithm digest |
 | `integer` | [Integer](/datatypes/integer) | A base 10 number |
 | `period` | [Period](/datatypes/period) | A period of time |
-| `point` | [Point](/datatypes/point) | A geographical point |
-| `polygon` | [Polygon](/datatypes/polygon) | A geographical polygon |
 | `string` | [String](/datatypes/string) | A UTF-8 string |
 | `text` | [Text](/datatypes/text) | A Markdown text |
 | `url` | [URL](/datatypes/url) | A URL |

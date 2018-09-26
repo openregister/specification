@@ -39,8 +39,6 @@
     - id: hash-datatype
     - id: integer-datatype
     - id: period-datatype
-    - id: point-datatype
-    - id: polygon-datatype
     - id: string-datatype
     - id: text-datatype
     - id: timestamp-datatype

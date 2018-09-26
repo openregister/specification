@@ -99,13 +99,9 @@ TODO: Describe the custom cardinality n in CSV serialisation
 
 A register MAY provide additional, possibly domain specific representations.
 
-A register containing attributes with [Point datatype](/datatypes/point) or
-[Polygon datatype](/datatypes/polygon) values may also serve a list of items
-as [GML](@gml), [KML](@kml) or other geographical serialisation format.
-
-***
-TODO: Example with RSF
-***
+A register containing attributes with Points or Polygons values may also serve
+a list of items as [GML](@gml), [KML](@kml) or other geographical
+serialisation format.
 
 
 ## Security
