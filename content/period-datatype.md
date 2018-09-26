@@ -7,6 +7,15 @@ url: /datatypes/period
 The **period** datatype is a period of time conforming to the subset of
 [ISO8601](@iso8601) time intervals as follows:
 
+```elm
+type Period
+  = StartEnd Datetime Datetime
+  | StartDuration Datetime Duration
+  | DurationEnd Duration Datetime
+```
+
+The string representation is defined in ABNF as:
+
 ```abnf
 period =  start-end / start-duration / duration-end / duration
 start-end = datetime "/" datetime
@@ -35,6 +44,20 @@ P1Y2M10DT2H30M
 A duration of time conforming to [ISO8601](@iso8601). A duration is an
 abstract period of time so its length will depend on an starting or ending
 point in time.
+
+```elm
+type Years = Int
+type Months = Int
+type Days = Int
+type Hours = Int
+type Minutes = Int
+type Seconds = Int
+
+type Duration =
+  (Maybe Years) (Maybe Months) (Maybe Days) (Maybe Hours) (Maybe Minutes) (Maybe Seconds)
+```
+
+The string representation is defined in ABNF as:
 
 ```abnf
 duration = "P" date / "P" "T" time / "P" date "T" time
