@@ -6,6 +6,8 @@ url: /datatypes/integer
 
 The **integer** datatype is a base 10 number with no fractional component.
 
+The string representation is defined in ABNF as:
+
 ```abnf
 integer = "0" / (["-"] non-zero *digit)
 digit =  "0" / positive-digit
