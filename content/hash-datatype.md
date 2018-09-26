@@ -4,10 +4,26 @@ title: Hash
 url: /datatypes/hash
 ---
 
-The **hash** datatype is the digest result of a [hashing
-algorithm](/glossary/hashing-algorithm). The string representation MUST be in
-hexadecimal and it MUST prepend the two bytes defined by the hashing
-algorithm.
+The **hash** datatype represents the digest result of a [hashing
+algorithm](/glossary/hashing-algorithm).
+
+```elm
+type Hash =
+  {
+  , functionType : UVarInt
+  , digestLength : UInt
+  , digest : List Byte
+  }
+```
+
+
+The string representation MUST be in hexadecimal and it MUST prepend the
+function type and digest length defined by the hashing algorithm according to
+the [multihash](https://multiformats.io/multihash/) pattern:
+
+```
+<functionType><digestLength><digest>
+```
 
 ***
 **EXAMPLE:**
@@ -18,7 +34,7 @@ For example, the SHA2-256 digest for `foo` represented in hexadecimal is:
 2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae
 ```
 
-And given that `SHA2-256` has the _function type_ `0x12` and the digest length
+And given that `SHA2-256` has the _function type_ `0x12` and the _digest length_
 is `0x20` the final string representation is:
 
 ```
