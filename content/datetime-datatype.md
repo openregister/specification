@@ -7,6 +7,21 @@ url: /datatypes/datetime
 The **datetime** datatype conforms to the subset of a UTC [ISO8601](@iso8601)
 date or datetime as follows:
 
+```elm
+type Year = Int
+type Month = Int
+type Day = Int
+type Hour = Int
+type Minute = Int
+type Second = Int
+
+type Datetime
+  = Date Year Month Day
+  | DateTime Year Month Day Hour Minute Second
+```
+
+The string representation is defined in ABNF as:
+
 ```abnf
 ;          datetime
 datetime   = date / date "T" time
