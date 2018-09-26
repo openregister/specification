@@ -68,7 +68,7 @@ expand : Curie -> Mapping -> Maybe URL
 
 The algorithm:
 
-1. let _curie_ be the CURIE to exand.
+1. let _curie_ be the CURIE to expand.
 1. let _mapping_ be a pair (_prefix_, _base-url_).
 1. let _url_ be null.
 1. Parse the _curie_ into its parts: _curie-prefix_ and _reference_.
