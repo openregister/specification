@@ -2,7 +2,6 @@
 id: item-resource
 title: Items
 url: /rest-api/items
-status: wip
 ---
 
 ***
@@ -67,32 +66,6 @@ Content-Length: 156
 }
 ```
 ***
-
-
-### Redacted item
-
-When an item has been [fully redacted](/data-model/redact) the response MUST
-be `410 Gone`.
-
-***
-ISSUE: Pending approval of [RFC0017](https://github.com/openregister/registers-rfcs/pull/30)
-***
-
-
-***
-**EXAMPLE:**
-
-For example,
-
-```http
-GET /items/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
-Host: country.register.gov.uk
-Accept: application/json
-```
-
-```http
-HTTP/1.1 410 Gone
-```
 
 
 ## List items
