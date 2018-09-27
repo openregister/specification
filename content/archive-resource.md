@@ -2,7 +2,6 @@
 id: archive-resource
 title: Archive
 url: /rest-api/archive
-status: wip
 ---
 
 ***
@@ -14,11 +13,7 @@ GET /download-register
 ***
 
 ***
-ISSUE: Create a RFC to change this endpoint to `GET /archive`
-***
-
-***
-TODO: This endpoint should return RSF as a non-normative serialisation format.
+ISSUE: [#35](https://github.com/openregister/registers-rfcs/pull/35)
 ***
 
 The contents of a register MUST be made available as an archive. The archive
@@ -29,10 +24,6 @@ available in a single file, but MAY be split into multiple parts if it deemed
 too large.
 
 The archive contains the following files in the following structure:
-
-***
-TODO: Review this structure is the best we can do
-***
 
 * A directory with the name of the register containing:
   * A file named "register.json" containing the [Register summary](/glossary/summary) serialised as [JSON](/rest-api#json).
