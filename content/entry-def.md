@@ -34,14 +34,6 @@ The entry number is unique and defines the position of the entry within the
 The range MUST be the **positive numbers**, that is the natural numbers
 excluding 0.
 
-***
-**EXPERIMENTAL:**
-
-The index entry number is unique and defines
-the entry position within an index log. For an entry in a
-register the entry-number and index-entry-number are always identical.
-***
-
 ### Key
 
 * Type: [ID](/key-def#id-type).
