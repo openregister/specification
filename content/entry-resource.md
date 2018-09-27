@@ -2,7 +2,6 @@
 id: entry-resource
 title: Entries
 url: /rest-api/entries
-status: wip
 ---
 
 ***
@@ -37,10 +36,6 @@ GET /entries/{entry-number}
 ***
 
 The entry resource returns an array containing a single entry.
-
-***
-TODO: Verify we can't revert back to a single entry (no array)
-***
 
 ***
 **EXAMPLE:**
