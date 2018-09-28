@@ -2,7 +2,6 @@
 id: rest-api
 title: REST API
 url: /rest-api
-status: wip
 ---
 
 The REST API exposes a set of read-only resources to interact with a register
@@ -31,10 +30,9 @@ link with `rel="previous"` if you expect iterating backwards.
 
 ## Codes
 
-Each resource defines the codes with specific meaning in their context. The
-list below describes the most important ones with generic meaning. You SHOULD
-use other codes when necessary as long as they don't collide with the ones
-defined in this specification.
+The list below describes the essential HTTP codes and its meaning for any
+Registers API. You SHOULD use other codes when necessary as long as they don't
+collide with the ones defined in this specification.
 
 |Code|Status|Description|
 |-|-|-|
@@ -45,9 +43,9 @@ defined in this specification.
 |406|Not Acceptable|The format requested is not available.|
 |500|Internal Server Error|Generic server error.|
 
-The payload MUST be in the requested [serialisation format](#serialisation).
+The payload MUST be in the requested [serialisation format](#serialisation)
+when available.
 
-A 404 MAY have a payload with a helpful message.
 
 ## Canonical URL
 
@@ -58,11 +56,6 @@ URLs for the same resource with and without a trailing slash.
 
 
 ## Serialisation
-
-***
-**TODO:** Consider making the suffix optional and only normative the content
-type one.
-***
 
 There are two mechanisms to declare the preferred serialisation format: the
 `Accept` header or the suffix. When both are provided the suffix MUST take
@@ -100,21 +93,66 @@ CSV can have empty (blank) values. These have the same semantics as if
 the attributes were missing.
 See the [forward compatibility section](/data-model/evolve#forwards-compatibility).
 
+#### List of values
+
+Generic CSV parsers typically treat all values as strings ([RFC4180](@rfc4180)).
+This specification allows to express multiple values of the same type when the
+[attribute](/glossary/attribute) is of [cardinality
+n](/datatypes#cardinality). The syntax extension for CSV to allow this is:
+
+```abnf
+cell = value [";" value]
+```
+
+Where `value` is any valid string conforming to the attribute datatype.
+
 ***
-ISSUE: How does the tabular data model interop with the Register data types?
+**EXAMPLE:**
+
+For example, a record such as:
+
+```csv
+id, name, flavours
+1, Foo, pistachio;chocolate;vanilla
+```
+
+Where the attribute “flavours” is of cardinality n, is equivalent to the
+following JSON:
+
+```json
+{
+  "id": "1",
+  "name": "Foo",
+  "flavours": ["pistachio", "chocolate", "vanilla"]
+}
+```
 ***
 
 ***
-TODO: Describe the custom cardinality n in CSV serialisation
+**NOTE:**
+
+The [tabular data model](@tabular-data-model) effort from the W3C provide a
+way to describe what how a value is expected to be parsed. The Registers
+specification aims to be compatible with it.
+
+In that context, a value for an attribute of type string with cardinality n
+can be defined in the tabular data model as:
+
+```
+"datatype": "string",
+"separator": ";",
+"valueUrl": "{?values}"
+```
 ***
+
 
 ### Extensions
 
-A register MAY provide additional, possibly domain specific representations.
+A register MAY provide additional, possibly domain specific, representations.
 
-A register containing attributes with Points or Polygons values may also serve
-a list of items as [GML](@gml), [KML](@kml) or other geographical
-serialisation format.
+<!-- A register containing attributes with Points or Polygons values may also serve
+a list of items as [GML](@gml), [KML](@kml) or other geographical 
+serialisation format. -->
 
 
 ## Security

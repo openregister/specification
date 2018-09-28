@@ -129,6 +129,14 @@ publisher = "W3C"
 published = "2015-12-07"
 
 [[bibliography]]
+id = "rfc4180"
+url = "https://tools.ietf.org/html/rfc4180"
+title = "Common Format and MIME Type for Comma-Separated Values (CSV) Files"
+authors = ["Y. Shafranovich"]
+publisher = "IETF"
+published = "2005-10"
+
+[[bibliography]]
 id = "rfc3629"
 url = "https://tools.ietf.org/html/rfc3629"
 title = "UTF-8, a transformation format of ISO 10646"
