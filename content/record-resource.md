@@ -205,14 +205,7 @@ Content-Type: application/json
 ## List records by attribute value
 
 ***
-TODO: This endpoint path clashes with the regular get records. What about
-`/facets/{attr-name}/{attr-value}`? It doesn't reflect that it is about
-records but it removes any possible clash between `key` and `attribute-name`.
-
-Or, `/records?name={attr-name}&value={attr-value}` to be more honest about it.
-After all, this is a filter on the original record list.
-
-Or, `/indexes/{name}/{value}`.
+ISSUE: [RFC0022](https://github.com/openregister/registers-rfcs/pull/39) proposes an alternative approach
 ***
 
 ***
