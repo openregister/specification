@@ -2,7 +2,7 @@
 id: glossary
 title: Glossary
 url: /glossary
-status: wip
 ---
 
-This section defines all concepts part of the data model.
+This section defines all concepts part of the [data model](/data-model) and
+the [REST API](/rest-api).
