@@ -9,6 +9,11 @@ status: wip
 ISSUE: Pending RFC to define how metadata fits the data model.
 ***
 
+***
+WARNING: This resource is a replacement for the old [Register
+resource](/rest-api/register).
+***
+
 ## Schema
 
 ***
