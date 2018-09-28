@@ -1,23 +1,15 @@
 # Registers specification
 
-<https://openregister.github.io/specification/>
+<https://spec.openregister.org/>
 
 The specification builder uses [Gatsby](https://www.gatsbyjs.org) to generate
 a static site out of different data sources.
 
-## Default branch
-
-Note this repository doesn't have a master branch, the default is the gh-pages branch.
 
 ## Data sources
 
 * `data/` directory: Metadata and complementary data.
 * `content/` directory: The markdown source.
-
-## Roadmap
-
-* Finish specification writing
-* Highlight multihash bytes if RFC is accepted
 
 
 ## Development
@@ -39,6 +31,14 @@ yarn develop
 
 ```
 yarn build
+```
+
+## Deploy
+
+Note that to deploy you need access to Netlify. Ask the Registers team.
+
+```
+yarn deploy "deploy message"
 ```
 
 ## Licence
