@@ -5,10 +5,23 @@ url: /rest-api
 status: wip
 ---
 
-***
-TODO: Describe the goal of this REST API and generic stuff. Perhaps consider
-OpenAPI
-***
+The REST API exposes a set of read-only resources to interact with a register
+via HTTP.
+These resources can be split into high-level (“porcelain”) and low
+level (“plumbing”) depending on the intention of the resource.
+
+Porcelain resources:
+
+* [Records](/rest-api/records): The latest data available.
+* [Context](/rest-api/context): Contextual information such as the schema.
+* [Archive](/rest-api/archive): The whole register in one go.
+
+Plumbing resources:
+
+* [Entries](/rest-api/entries): The entries of the [log](/glossary/log).
+* [Items](/rest-api/entries): The raw blobs of data.
+* [Proofs](/rest-api/proofs): The proofs to [audit](/data-model/audit) the integrity of the register.
+
 
 ## Pagination
 
