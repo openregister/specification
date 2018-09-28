@@ -41,7 +41,7 @@ Schema
 When given a data blob such as:
 
 ```elm
-Item
+Blob
   [ ("name", "Walnut")
   , ("group", "allergen:24")
   ]
@@ -62,7 +62,7 @@ Allergen
 When instead, the data blob is:
 
 ```elm
-Item
+Blob
   [ ("name", "foo")
   , ("start-date", "2018-08-14")
   ]
@@ -74,7 +74,7 @@ isomorphic:
 
 
 ```elm
-Item
+Blob
   [ ("name", "Foo")
   , ("start-date", "2018-08-14")
   , ("end-date", "")

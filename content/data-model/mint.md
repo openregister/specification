@@ -12,10 +12,10 @@ creating a new [entry](/glossary/entry) that can be appended to the
 ```elm
 type Draft =
   { key : Name
-  , blob : Item
+  , blob : Blob
   }
 
-mint : Draft -> Result ValidationError (Entry, Item)
+mint : Draft -> Result ValidationError (Entry, Blob)
 
 append : Entry -> Log -> Log
 ```
@@ -25,4 +25,4 @@ append : Entry -> Log -> Log
 A `Draft` is valid iff:
 
 * Provides a valid `key` ([Name](/datatypes/name)).
-* The [data blob is valid](/glossary/item#validate).
+* The [data blob is valid](/glossary/blob#validate).

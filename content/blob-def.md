@@ -1,10 +1,10 @@
 ---
-id: item-def
-title: Item
-url: /glossary/item
+id: blob-def
+title: Blob
+url: /glossary/blob
 ---
 
-An **item** is an unordered set of attribute-value pairs (associative array)
+An **blob** is an unordered set of attribute-value pairs (associative array)
 constrained by the [schema](/glossary/schema) and identified by the [hash
 calculated from its contents](#hash).
 
@@ -16,7 +16,7 @@ type Value
   = StringValue String
   | SetValue (Set String)
 
-type Item =
+type Blob =
   Dict Name Value
 ```
 
@@ -25,10 +25,10 @@ type Item =
 
 For example, given a schema defining attributes `name`, `x` and `y` with
 datatypes `String`, `Integer` and `Integer` respectively. Also, `y` has
-cardinality `n`.  We can define an item as follows:
+cardinality `n`.  We can define an blob as follows:
 
 ```elm
-Item
+Blob
   [ ("name", "Foo")
   , ("x", "0")
   , ("y", ["1", "2"])
@@ -48,7 +48,7 @@ Bar
 Note that all attributes expect an optional value as explained in the
 [evolution section](/data-model/evolve#forwards-compatibility).
 
-The item can be serialised in JSON as:
+The blob can be serialised in JSON as:
 
 ```json
 {
@@ -79,16 +79,16 @@ datatype. Check the [Serialisation section](/rest-api#serialisation) and the
 
 ### Hash
 
-The **hash** is the identity of an item computed from its content. As the item
+The **hash** is the identity of an blob computed from its content. As the blob
 hash is part of an [entry](/glossary/entry), it is included in the input to
 the [entry hash](/glossary/entry#hash) function.
 
-The function takes an item and a [hashing
+The function takes an blob and a [hashing
 algorithm](/glossary/hashing-algorithm) and returns a [Hash
 datatype](/datatypes/hash).
 
 ```elm
-hash : Item -> HashingAlgorithm -> Hash
+hash : Blob -> HashingAlgorithm -> Hash
 ```
 
 #### Algorithm
@@ -98,10 +98,10 @@ NOTE: When this algorithm operates on hashes (e.g. tag, concatenate) it is
 done on bytes, not the hexadecimal string representation.
 ***
 
-1. Let _item_ be the [normalised](#normalise) blob of data to hash.
+1. Let _blob_ be the [normalised](#normalise) blob of data to hash.
 2. Let _hashList_ be an empty list.
 3. Let _valueHash_ be null.
-4. Foreach _(name, value)_ pair in _item_:
+4. Foreach _(name, value)_ pair in _blob_:
    1. If _value_ is null, continue.
    2. If _value_ is a Set:
         1. Let _elList_ be an empty list.
@@ -148,7 +148,7 @@ Tags:
 * String: `0x75`
 
 ***
-NOTE: The item hashing algorithm is an implementation of the
+NOTE: The blob hashing algorithm is an implementation of the
 [objecthash](https://github.com/benlaurie/objecthash) algorithm.
 ***
 
@@ -160,7 +160,7 @@ the algorithm above) and, on its string hexadecimal representation prepend the
 string `**REDACTED**`.
 
 ```elm
-redact : Name -> HashingAlgorithm -> Item -> Item
+redact : Name -> HashingAlgorithm -> Blob -> Blob
 ```
 
 ***
@@ -170,7 +170,7 @@ For example,
 
 ```elm
 i_0 = 
-  Item
+  Blob
     [ ("foo", "abc")
     , ("bar", "xyz")
     ]
@@ -181,7 +181,7 @@ redact "foo" i_0
 Will result in
 
 ```elm
-Item
+Blob
   [ ("foo", "**REDACTED**2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511")
   , ("bar", "xyz")
   ]
@@ -218,7 +218,7 @@ empty string, would be normalised as null.
 ***
 
 ```elm
-normalise : Item -> Item
+normalise : Blob -> Blob
 ```
 
 #### Algorithm
@@ -257,31 +257,31 @@ A blob is valid if all its pairs are valid according to the
 [schema](/glossary/schema).
 
 ```elm
-validate : Item -> Result ValidationError Item
+validate : Blob -> Result ValidationError Blob
 ```
 
 #### Algorithm
 
-1. Let _item_ be the [normalised](#normalise) blob of data to hash.
+1. Let _blob_ be the [normalised](#normalise) blob of data to hash.
 2. Let _schema_ be the list of attribute definitions to valiate against.
 2. Let _result_ be null.
-3. Foreach _(name, value)_ pair in _item_:
-   1. If _name_ doesn't exist in the _schema_, abort. The _item_ has an
+3. Foreach _(name, value)_ pair in _blob_:
+   1. If _name_ doesn't exist in the _schema_, abort. The _blob_ has an
       illegal attribute.
    2. Let _attribute_ be the attribute for _name_ found in _schema_.
-   3. If _value_ is nullable, abort. The _item_ is not normalised.
+   3. If _value_ is nullable, abort. The _blob_ is not normalised.
    4. If _value_ is a Set:
-        1. If _attribute_ has cardinality “1”, abort. The _item_ has an illegal value.
+        1. If _attribute_ has cardinality “1”, abort. The _blob_ has an illegal value.
         2. Foreach _el_ in _value_:
-            1. If _el_ is nullable, abort. The _item_ is not normalised.
+            1. If _el_ is nullable, abort. The _blob_ is not normalised.
             2. If _el_ is not of the datatype defined in _attribute_,
-               abort. The _item_ has an illegal value.
+               abort. The _blob_ has an illegal value.
             2. Otherwise, continue.
-   5. If _attribute_ has cardinality “n”, abort. The _item_ has an illegal value.
+   5. If _attribute_ has cardinality “n”, abort. The _blob_ has an illegal value.
    6. If _value_ is not of the datatype defined in _attribute_, abort.
-      The _item_ has an illegal value.
+      The _blob_ has an illegal value.
    7. Otherwise, continue.
-4. Set _item_ to _result_ and return.
+4. Set _blob_ to _result_ and return.
 
 ***
 NOTE: “nullable” means any value that is considered null in the [normalisation](#normalise)
@@ -307,7 +307,7 @@ For example, a register could identify an element with `DD` (ISO 3166-2 for
 "Germany Democratic Republic") with the data:
 
 ```elm
-Item
+Blob
   [ ("start-date", "1949")
   , ("end-date", "1990-10-02")
   , ("official-name", "Germany Democratic Republic")

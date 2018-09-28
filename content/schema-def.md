@@ -10,7 +10,7 @@ ISSUE: Pending RFC for metadata
 ***
 
 The **schema** is the set of [attributes](/glossary/attribute) used to
-handle [data blobs](/glossary/item).
+handle [data blobs](/glossary/blob).
 
 ```elm
 type Schema =

@@ -15,7 +15,7 @@
     - id: digital-proof-def
     - id: entry-def
     - id: hashing-algorithm-def
-    - id: item-def
+    - id: blob-def
     - id: key-def
     - id: log-def
     - id: record-def
@@ -27,7 +27,7 @@
     - id: record-resource
     - id: context-resource
     - id: entry-resource
-    - id: item-resource
+    - id: blob-resource
     - id: proof-resource
     - id: archive-resource
 - id: datatypes

@@ -11,7 +11,7 @@ resource fits into the [data model](/data-model).
 ***
 
 ***
-NOTE: The reference implementation inlines the [Item](/glossary/item) in the
+NOTE: The reference implementation inlines the [blob](/glossary/blob) in the
 [Record resource](/rest-api/records) for convenience.
 ***
 

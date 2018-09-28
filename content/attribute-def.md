@@ -5,7 +5,7 @@ url: /glossary/attribute
 ---
 
 An **attribute** defines the characteristics of a value part of a
-[blob](/glossary/item) of data. It is the building block for the
+[blob](/glossary/blob) of data. It is the building block for the
 [schema](/glossary/schema).
 
 ```elm

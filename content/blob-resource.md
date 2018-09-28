@@ -1,32 +1,32 @@
 ---
-id: item-resource
-title: Items
-url: /rest-api/items
+id: blob-resource
+title: Blobs
+url: /rest-api/blobs
 ---
 
 ***
-NOTE: See the [Item](/glossary/item) definition to understand how this
+NOTE: See the [Blob](/glossary/blob) definition to understand how this
 resource fits into the [data model](/data-model).
 ***
 
 
-## Get an item
+## Get an blob
 
 ***
 ### Endpoint
 
 ```
-GET /items/{item-hash}
+GET /blobs/{hash}
 ```
 
 ### Parameters
 
 |Name|Type|Description|
 |-|-|-|
-|`item-hash`|[Hash](/datatypes/hash)| The [Item](/glossary/item) identifier.|
+|`hash`|[Hash](/datatypes/hash)| The [Blob](/glossary/blob) identifier.|
 ***
 
-Gets an item by hash.
+Gets an blob by hash.
 
 The column order is implementation dependent when the data is represented in a
 tabular format like [CSV](/rest-api#csv). For tree-like formats like
@@ -44,11 +44,11 @@ the GOV.UK catalogue is the [Register register](https://register.register.gov.uk
 ***
 **EXAMPLE:**
 
-For example, the following request shows an item in the JSON representation:
+For example, the following request shows a blob in the JSON representation:
 
 ```http
 
-GET /items/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
+GET /blobs/12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb HTTP/1.1
 Host: country.register.gov.uk
 Accept: application/json
 ```
@@ -68,25 +68,25 @@ Content-Length: 156
 ***
 
 
-## List items
+## List blobs
 
 ***
 ### Endpoint
 
 ```
-GET /items
+GET /blobs
 ```
 ***
 
-Gets the list of items. [This resource MAY be paginated](/rest-api#collection-pagination).
+Gets the list of blobs. [This resource MAY be paginated](/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
 
 ***
 NOTE: The [reference implementation](/introduction#reference-implementation)
-gives a numeric index to each item when they are inserted to the database so
-complete pages always return the same set of items and incomplete pages grow
+gives a numeric index to each blob when they are inserted to the database so
+complete pages always return the same set of blobs and incomplete pages grow
 in an ordered manner.
 ***
 
@@ -94,7 +94,7 @@ in an ordered manner.
 **EXAMPLE:**
 
 ```http
-GET /items HTTP/1.1
+GET /blobs HTTP/1.1
 Host: local-authority-eng.register.gov.uk
 Accept: application/json
 ```
@@ -102,7 +102,7 @@ Accept: application/json
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Link: </items?cursor=2112>; rel="next"
+Link: </blobs?cursor=2112>; rel="next"
 
 {
   "12206a048d58e944ce2430256d04de09fc70a5c0ff08f08569a7fd5cb96dc559d7cb": {

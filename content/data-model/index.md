@@ -19,7 +19,7 @@ number](/glossary/entry#number).
 Each [entry](/glossary/entry) defines a change for an element in the dataset
 by recording the time the change was appended to the log, the numerical order
 in the log, the key to identify the element the change is for and the
-reference to the [data for that element](/glossary/item).
+reference to the [data for that element](/glossary/blob).
 
 ![A picture of a log with A, B a Z entries](data-model-log.svg)
 

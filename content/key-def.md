@@ -29,10 +29,10 @@ Entry
   }
 ```
 
-And, given that the [item](/glossary/item) referenced from the record is:
+And, given that the [blob](/glossary/blob) referenced from the record is:
 
 ```elm
-Item
+Blob
   , ("start-date", "1949")
   , ("end-date", "1990-10-02")
   , ("official-name", "Germany Democratic Republic")

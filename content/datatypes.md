@@ -7,7 +7,7 @@ url: /datatypes
 ## Primitives
 
 A primitive **datatype** defines a set of rules and expectations for a value
-in a [blob of data](/glossary/item).
+in a [blob of data](/glossary/blob).
 
 ```elm
 type Primitive

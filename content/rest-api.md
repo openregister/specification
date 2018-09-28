@@ -18,7 +18,7 @@ Porcelain resources:
 Plumbing resources:
 
 * [Entries](/rest-api/entries): The entries of the [log](/glossary/log).
-* [Items](/rest-api/entries): The raw blobs of data.
+* [Blobs](/rest-api/blobs): The raw blobs of data.
 * [Proofs](/rest-api/proofs): The proofs to [audit](/data-model/audit) the integrity of the register.
 
 
@@ -151,7 +151,7 @@ can be defined in the tabular data model as:
 A register MAY provide additional, possibly domain specific, representations.
 
 <!-- A register containing attributes with Points or Polygons values may also serve
-a list of items as [GML](@gml), [KML](@kml) or other geographical 
+a list of blobs as [GML](@gml), [KML](@kml) or other geographical 
 serialisation format. -->
 
 

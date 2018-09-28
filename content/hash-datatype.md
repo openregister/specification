@@ -45,7 +45,7 @@ is `0x20` the final string representation is:
 ***
 **NOTE:**
 
-The algorithm for [hashing items](/glossary/item#hash) and the one for [hashing
+The algorithm for [hashing blobs](/glossary/blob#hash) and the one for [hashing
 entries](/glossary/entry#hash) describe in detail how to apply the hashing
 algorithm in each case.
 ***

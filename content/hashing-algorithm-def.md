@@ -5,7 +5,7 @@ url: /glossary/hashing-algorithm
 ---
 
 The **hashing algorithm** is the function used across the register to create a
-fixed size digest for identifying and addressing [items](/glossary/item),
+fixed size digest for identifying and addressing [blobs](/glossary/blob),
 [entry](/glossary/entry) verification and for the [audit process](/data-model/audit).
 
 ```elm

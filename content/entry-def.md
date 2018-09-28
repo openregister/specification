@@ -11,7 +11,7 @@ the [log](/glossary/log). Entries are immutable.
 Each entry defines a change for an element in the dataset by recording the
 time the change was added to the log, the numerical order in the log, the
 key to identify the element the change is for and the reference to the data
-for that element, the [item](/glossary/item).
+for that element, the [blob](/glossary/blob).
 
 ```elm
 type Entry =
@@ -50,11 +50,11 @@ that the timestamp is no guarantee of entry order, the [entry
 number](#entry-number) is.
 
 
-### Item references
+### Blob references
 
 * Type: Set of [Hash](/datatypes/hash).
 
-The set of [item hashes](/glossary/item#hash) the entry links to.
+The set of [blob hashes](/glossary/blob#hash) the entry links to.
 
 ***
 **EXPERIMENTAL:**
@@ -86,7 +86,7 @@ done on bytes, not the hexadecimal string representation.
 1. Let _number_ be the string representation of the entry number.
 2. Let _key_ be the string representation of the entry key.
 3. Let _timestamp_ be the string representation of the entry timestamp.
-4. Let _items_ be the set of item hashes as bytes.
+4. Let _blobs_ be the set of blob hashes as bytes.
 5. Let _hashList_ be an empty list.
 6. Apply the _hashValue_ function to _number_ tagged with `0x69` (Integer). And
    append the result to _hashList_.
@@ -94,15 +94,15 @@ done on bytes, not the hexadecimal string representation.
    append the result to _hashList_.
 8. Apply the _hashValue_ function to _timestamp_ tagged with `0x74` (Timestamp). And
    append the result to _hashList_.
-9. Let _itemsBytes_ be an empty set.
-10. For each value _item_ in the _items_ set:
-    1. Apply the _hashValue_ function to _item_ tagged with `0x72` (Hash) and
-       append the result to _itemsBytes_.
-11. Sort the elements of _itemsBytes_, concatenate them and
+9. Let _blobsBytes_ be an empty set.
+10. For each value _blob_ in the _blobs_ set:
+    1. Apply the _hashValue_ function to _blob_ tagged with `0x72` (Hash) and
+       append the result to _blobsBytes_.
+11. Sort the elements of _blobsBytes_, concatenate them and
 12. Apply the _hashValue_ function tagged with `0x73` (Set). And append the result
     to _hashList_.
 13. Concatenate the elements of _hashList_ in order (i.e. `[numberHash,
-    keyHash, timestampHash, itemsHash]`), tag it with `0x6C` (List) and hash the
+    keyHash, timestampHash, blobsHash]`), tag it with `0x6C` (List) and hash the
     result.
 
 The **sorting algorithm** for a set of hashes is done by comparing the list of
