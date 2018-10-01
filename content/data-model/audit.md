@@ -77,7 +77,6 @@ that two registers of different sizes are consistent](#consistency-verification)
 NOTE: The reference implementation doesn't provide signatures just yet.
 ***
 
-
 ## Register verification
 
 The Register verification process allows proving that a copy of a Register is
@@ -85,8 +84,8 @@ exactly the same as the original one.
 
 A client MUST be able to do the following:
 
-1. Get a copy of the Register (i.e. Entries, Items and register proof).
-2. Compute the root hash for the log of entries.
+1. Get a copy of the Register (i.e. entries, blobs and register proof).
+2. Compute the [root hash](/glossary/digital-proof#root-hash) for the log of entries.
 3. Sign the root hash with the Register public key.
 4. Verify the root hash is the same as the root hash part of the Register
    proof.
@@ -96,79 +95,32 @@ A client MUST be able to do the following:
 7. Verify that each Item computes the same hash that identifies it.
 
 
+## Consistency verification
+
+The Consistency verification process allows proving that a Register _S_ is a
+subset of a larger Register _L_.
+
+A client MUST be able to do the following:
+
+1. Given a Register of size _S_ and a root hash _R_ for a register of size _L_.
+2. [Verify the original register](#register-verification) has the root hash _R_.
+3. Get the Consistency proof (from _S_ to _L_) from the original Register.
+4. Compute the [root hash](/glossary/digital-proof#root-hash) using the [audit path](/glossary/digital-proof#audit-path)
+   using the Register _S_ and the audit path from the Consistency proof.
+5. Verify the resulting root hash is the same as _R_.
+
+
 ## Entry verification
 
 The Entry verification process allows proving that a copy of an entry exists in
-the (original) Register.
+the original Register.
 
 A client MUST be able to do the following:
 
-1. Given a copy of an entry,
+1. Given a copy of an [entry](/glossary/entry),
 2. and the log size (total number of entries).
-3. Get the Entry proof for the log size.
-4. Compute the root hash from the Entry and the audit path.
-5. Verify the root hash is the same as the root hash found in the Entry proof.
+3. Get the [Entry proof](/glossary/digital-proof#entry-proof) for the log size.
+4. Compute the root hash from the Entry and the [audit path](/glossary/digital-proof#audit-path).
+5. Verify the [root hash](/glossary/digital-proof#root-hash) is the same as the root hash found in the Entry proof.
 6. Verify the signed root hash is the same as the [signed root
-   hash](#signed-tree-head) found in the Entry proof.
-
-***
-TODO: (4) Define “audit path” or “merkle audit path”.
-***
-
-***
-TODO: Clarify what is actually need in terms of (2) and why the original
-explanation requires a register proof log size.
-***
-
-***
-TODO: Reubicate
-
-The merkle-audit-path for the entry from the Entry proof resource provides the
-shortest list of additional nodes in the Merkle tree required to compute the
-Merkle tree root hash.
-***
-
-
-## Consistency verification
-
-The Consistency verification process allows proving that a Register copy is a
-subset of a larger Register.
-
-A client MUST be able to do the following:
-
-1. Given a Register copy.
-2. Get the Consistency proof from the original Register.
-3. Compute the larger root hash from the Register copy and the audit path.
-4. Compute the smaller root hash from the Register copy and the consistency
-   nodes.
-5. Verify the larger root hash is the same as the root hash found in the
-   Consistency proof.
-6. Verify the smaller root hash is the same as the root hash found in the
-   Consistency proof.
-6. Verify the signed larger root hash is the same as the [signed root
-   hash](#signed-tree-head) found in the Consistency proof.
-
-***
-TODO: merkle-consistency-nodes vs merkle-audit-path? Define both.
-***
-
-***
-TODO: Review the steps to clarify the mechanism for (5) and (6)
-***
-
-
-
-## Signed tree head
-
-***
-TODO: Move elsewhere
-***
-
-The signed tree head for a register is the tree-head-signature property of the
-[Register proof](/glossary/digital-proof#register-proof), where the `proof-identifier` is
-specified as `merkle:sha2-256`.
-
-The signed tree head for a register is the signed Merkle tree root hash
-([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries
-in the register. The corresponding root-hash is also a property of the
-[Register proof](/glossary/digital-proof#register-proof).
+   hash](/glossary/digital-proof#signed-tree-head) found in the Entry proof.
