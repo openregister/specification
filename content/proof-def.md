@@ -10,20 +10,9 @@ NOTE: See the [Audit section](/data-model/audit) to learn more about
 digital proofs.
 ***
 
-***
-TODO: Define generic digital proof
-***
-
-The [hashing algorithm](/glossary/hashing-algorithm) used to compute the
-digital proofs is defined by each register.
-
-***
-TODO: Proofs should be signed or at least it should be recommended.
-***
-
 ## Register proof
 
-A register proof is a digitally-signed demonstration of the integrity of all
+A **register proof** is a digitally-signed demonstration of the integrity of all
 entries in a register. Given a register proof, it is possible to verify that
 all of the entries and items are correct, and that the entries are in the
 correct order.
@@ -50,26 +39,24 @@ proof](#register-proof).
 An entry proof does not require a client to get the entire register to verify
 the integrity of a single entry.
 
+
+## Root hash
+
+The **root hash** for a register is the Merkle tree root hash
+([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries in
+the register.
+
+
+## Signed tree head
+
+The **signed tree head** for a register is the signed Merkle tree root hash
+([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries
+in the register.
+
+
 ## Audit path
 
 The **audit path** provides the shortest list of additional nodes in the Merkle
 tree required to compute the Merkle tree **root hash**.
 
-## Root hash
 
-TODO
-
-## Signed tree head
-
-***
-TODO: Move elsewhere
-***
-
-The signed tree head for a register is the tree-head-signature property of the
-[Register proof](/glossary/digital-proof#register-proof), where the `proof-identifier` is
-specified as `merkle:sha2-256`.
-
-The signed tree head for a register is the signed Merkle tree root hash
-([RFC6962](@rfc6962) section 2.1) of a Merkle tree containing all entries
-in the register. The corresponding root-hash is also a property of the
-[Register proof](/glossary/digital-proof#register-proof).
