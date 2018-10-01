@@ -2,27 +2,30 @@
 id: mint
 title: Mint
 url: /data-model/mint
-status: wip
 ---
 
-**Minting** is the process of validating a potential change for a key and
-creating a new [entry](/glossary/entry) that can be appended to the
-[log](/glossary/log).
+**Minting** is the process of creating a new [entry](/glossary/entry) for a
+given key. The minting process MAY fail if the entry and
+[blob](/glossary/blob) do not comply with the requirements.
+
+The **draft** data to be minted can be defined as:
 
 ```elm
 type Draft =
   { key : Name
   , blob : Blob
   }
+```
 
+And the `mint` operation as:
+
+```elm
 mint : Draft -> Result ValidationError (Entry, Blob)
-
-append : Entry -> Log -> Log
 ```
 
 ## Validation
 
-A `Draft` is valid iff:
+A `Draft` is valid if and only if:
 
 * Provides a valid `key` ([Name](/datatypes/name)).
 * The [data blob is valid](/glossary/blob#validate).
