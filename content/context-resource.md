@@ -6,7 +6,8 @@ status: wip
 ---
 
 ***
-ISSUE: Pending RFC to define how metadata fits the data model.
+ISSUE: [RFC0018](https://github.com/openregister/registers-rfcs/pull/31)
+Context resource
 ***
 
 ***
