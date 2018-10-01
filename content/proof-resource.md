@@ -10,6 +10,10 @@ NOTE: See the [Audit section](/data-model/audit) to learn what these
 resources are for.
 ***
 
+***
+ISSUE: [RFC0023](https://github.com/openregister/registers-rfcs/pull/40) Proof resource
+***
+
 ## Get the register proof
 
 ***
@@ -40,15 +44,6 @@ GET /proof/register/{proof-identifier}
 ***
 
 Gets the register proof for the given type of proof.
-
-***
-TODO: Consider fixing the type of proof or define a default one.
-***
-
-***
-TODO: The original example had a `tree-head-signature` but it hasn't been
-implemented nor explored yet.
-***
 
 ***
 **EXAMPLE:**
@@ -171,11 +166,6 @@ GET /proof/entries/{entry-number}/{log-size}/{proof-identifier}
 ***
 
 Gets the entry proof for the given entry, log size and proof type.
-
-***
-ISSUE: The `entry-number` in the response MUST be an integer. Ref impl fails to
-do so.
-***
 
 ***
 **EXAMPLE:**
