@@ -2,7 +2,6 @@
 id: data-model
 title: Data model
 url: /data-model
-status: wip
 ---
 
 A **Register** is a dataset for a single kind of _thing_. It has the
