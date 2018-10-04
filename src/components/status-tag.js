@@ -8,6 +8,8 @@ const wipStyle = css`
   font-variant: small-caps;
   line-height: 1.1;
   padding: 0 2px;
+  font-size: 12px;
+  border-bottom: none;
 `;
 
 const expStyle = css`
@@ -16,14 +18,16 @@ const expStyle = css`
   font-variant: small-caps;
   line-height: 1.1;
   padding: 0 2px;
+  font-size: 12px;
+  border-bottom: none;
 `;
 
 const StatusTag = ({label}) => {
   switch (label) {
   case 'wip':
-    return <small className={wipStyle}>wip</small>;
+    return <abbr title="work in progress" className={wipStyle}>wip</abbr>;
   case 'exp':
-    return <small className={expStyle}>exp</small>;
+    return <abbr className={expStyle} title="experimental">exp</abbr>;
   default:
     return null;
   }
