@@ -33,36 +33,34 @@ const Main = ({data}) => {
       </Helmet>
       <ToC tree={tree} />
       <article className={articleStyle}>
-        <div className={scroller} tabIndex="0">
-          <h1>{title}</h1>
-          <dl>
-            <dt>Version:</dt>
-            <dd>{version}</dd>
-            <dt>Latest update:</dt>
-            <dd>{publish_date.substr(0, 10)}</dd>
-            <dt>Issue tracker:</dt>
-            <dd><a href={issue_tracker}>{issue_tracker}</a></dd>
-            <dt>RFC tracker:</dt>
-            <dd><a href={rfc_tracker}>{rfc_tracker}</a></dd>
-            <dt>Editors:</dt>
-            <dd>
-              <ul>
-                {editors.map(({name, organisation}) =>
-                  <li key={name}><Editor name={name} organisation={organisation} /></li>)}
-              </ul>
-            </dd>
-            <dt>Former Editors:</dt>
-            <dd>
-              <ul>
-                {former_editors.map(({name, organisation}) =>
-                  <li key={name}><Editor name={name} organisation={organisation} /></li>)}
-              </ul>
-            </dd>
-          </dl>
-          <p className={copyrightStyle}>
-            <a href={copyright.url}>{copyright.text}</a> released under the <a href={license.url}>{license.text}</a>.
-          </p>
-        </div>
+        <h1>{title}</h1>
+        <dl>
+          <dt>Version:</dt>
+          <dd>{version}</dd>
+          <dt>Latest update:</dt>
+          <dd>{publish_date.substr(0, 10)}</dd>
+          <dt>Issue tracker:</dt>
+          <dd><a href={issue_tracker}>{issue_tracker}</a></dd>
+          <dt>RFC tracker:</dt>
+          <dd><a href={rfc_tracker}>{rfc_tracker}</a></dd>
+          <dt>Editors:</dt>
+          <dd>
+            <ul>
+              {editors.map(({name, organisation}) =>
+                <li key={name}><Editor name={name} organisation={organisation} /></li>)}
+            </ul>
+          </dd>
+          <dt>Former Editors:</dt>
+          <dd>
+            <ul>
+              {former_editors.map(({name, organisation}) =>
+                <li key={name}><Editor name={name} organisation={organisation} /></li>)}
+            </ul>
+          </dd>
+        </dl>
+        <p className={copyrightStyle}>
+          <a href={copyright.url}>{copyright.text}</a> released under the <a href={license.url}>{license.text}</a>.
+        </p>
       </article>
     </Layout>
   );
@@ -136,13 +134,7 @@ const copyrightStyle = css`
 `;
 
 const articleStyle = css`
-  grid-column: 2;
-  grid-row: 2;
-`;
-const scroller = css`
-  outline: 0;
-  overflow-y: auto;
-  height: calc(100vh - 55px);
+  margin-left: 300px;
   padding: 20px;
 `;
 

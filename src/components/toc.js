@@ -61,19 +61,37 @@ Item.propTypes = {
 
 
 const navStyle = css`
-  grid-column: 1;
-  grid-row: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #fffffa;
+  border-left: 8px solid tomato;
+  border-right: 1px solid #eaf9ea;
   padding: 20px;
   overflow-y: auto;
-  height: calc(100vh - 55px);
+  width: 290px;
   outline: 0;
+
+  h1 {
+    margin: 0 0 24px;
+    border-bottom: 4px solid black;
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+  }
 `;
 
 const ToC = ({tree, target}) => {
   return (
-    <nav id="toc" className={navStyle} tabIndex="0">
-      <List items={tree} target={target} />
-    </nav>
+    <div className={navStyle} tabIndex="0">
+      <h1><Link to={'/'}>Registers Specification</Link></h1>
+      <nav id="toc">
+        <List items={tree} target={target} />
+      </nav>
+    </div>
   );
 };
 

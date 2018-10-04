@@ -9,9 +9,16 @@ import ToC from '../components/toc';
 import {extendToc} from '../utils/toc';
 import Status from '../components/status';
 
+const copyrightStyle = css`
+  margin-top: 64px;
+  padding-top: 8px;
+  margin-right: 16px;
+  border-top: 1px solid lightgrey;
+`;
+
 const articleStyle = css`
-  grid-column: 2;
-  grid-row: 2;
+  margin-left: 300px;
+  padding: 20px;
 
   .http-interface {
     margin: 26px 0;
@@ -146,16 +153,8 @@ const articleStyle = css`
     }
   }
 `;
-const scroller = css`
-  outline: 0;
-  overflow-y: auto;
-  height: calc(100vh - 55px);
-  padding: 20px;
-`;
-
 
 const sectionTocStyle = css`
-  margin-top: 40px;
   margin-bottom: 40px;
 `;
 
@@ -183,27 +182,30 @@ const SpecSection = ({data}) => {
   const toc = data.toc.edges.map(({node}) => node);
   const tree = extendToc(toc, data.sections.edges);
   const headings = section.headings.filter(el => el.depth <= 2);
+  const {title, copyright, license} = data.core;
 
   return (
     <Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{`${section.frontmatter.title} - ${data.site.title}`}</title>
+        <title>{`${section.frontmatter.title} - ${title}`}</title>
         <link rel="canonical" href={section.frontmatter.url} />
       </Helmet>
 
       <ToC tree={tree} target={section.frontmatter.id} />
 
       <article className={articleStyle}>
-        <div id="scroller" className={scroller} tabIndex="0">
-          <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
-          {
-            headings.length > 1
-              ? <SectionToC tree={headings} />
-              : null
-          }
-          <div dangerouslySetInnerHTML={{ __html: section.html }} />
-        </div>
+        <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
+        {
+          headings.length > 1
+            ? <SectionToC tree={headings} />
+            : null
+        }
+        <div dangerouslySetInnerHTML={{ __html: section.html }} />
+
+        <p className={copyrightStyle}>
+          <a href={copyright.url}>{copyright.text}</a> released under the <a href={license.url}>{license.text}</a>.
+        </p>
       </article>
     </Layout>
   );
@@ -216,8 +218,17 @@ SpecSection.propTypes = {
 
 export const query = graphql`
   query SpecSectionQuery($id: String!) {
-    site: coreToml {
+    core: coreToml {
       title
+      copyright {
+        text
+        url
+      }
+      license {
+        text
+        url
+      }
+
     }
 
     toc: allNavYaml {
