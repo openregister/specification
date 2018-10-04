@@ -1,4 +1,5 @@
 - id: introduction
+- id: changelog
 - id: data-model
   items:
     - id: version
