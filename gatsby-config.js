@@ -4,6 +4,7 @@ const toml = require('toml');
 const rawBib = fs.readFileSync(`${__dirname}/data/bibliography.toml`, 'utf-8');
 const db = toml.parse(rawBib);
 
+
 module.exports = {
   siteMetadata: {
     version: process.env.VERSION || 'next',
@@ -42,7 +43,6 @@ module.exports = {
     'gatsby-transformer-json',
     'gatsby-transformer-toml',
     'gatsby-transformer-yaml',
-    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -50,12 +50,12 @@ module.exports = {
           'gatsby-remark-restdoc',
           'gatsby-remark-prismjs',
           'gatsby-remark-autolink-headers',
-          {
-            resolve: 'gatsby-remark-curlie',
-            options: {
-              db: db.bibliography
-            }
-          },
+          // {
+          //   resolve: 'gatsby-remark-curlie',
+          //   options: {
+          //     db: db.bibliography
+          //   }
+          // },
           {
             resolve: 'gatsby-remark-bib',
             options: {
@@ -65,13 +65,6 @@ module.exports = {
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-hiblocks',
           'gatsby-remark-svg',
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              linkImagesToOriginal: false,
-              maxWidth: 590,
-            },
-          },
         ],
       },
     },
