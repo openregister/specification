@@ -42,8 +42,8 @@ You have to hash each value like:
 
 ```elm
 Blob
-  [ ("foo", "**REDACTED**2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511")
-  , ("bar", "**REDACTED**0324894df5a397ab53736bf0d01f4063507acceab19d4ce74c9282de21dadffb")
+  [ ("foo", "**REDACTED**12202a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511")
+  , ("bar", "**REDACTED**12200324894df5a397ab53736bf0d01f4063507acceab19d4ce74c9282de21dadffb")
   ]
 ```
 ***
