@@ -2,7 +2,6 @@
 id: record-resource
 title: Records
 url: /rest-api/records
-status: wip
 ---
 
 ***
@@ -78,6 +77,13 @@ trail](#list-the-trail-of-change-for-a-record) for this record.
 ```
 GET /records
 ```
+
+### Query string parameters
+
+|Name|Type|Description|
+|-|-|-|
+|`name`| [Name](/datatypes/name) |An attribute name part of the data. Required if `value` is present.|
+|`value`| [String](/datatypes/string) |The string representation of a valid value for the `name`.|
 ***
 
 Gets the list of records. [This resource MAY be paginated](/rest-api#collection-pagination).
@@ -88,9 +94,11 @@ the dataset.
 ***
 **EXAMPLE:**
 
+For example, a request for all records would look like:
+
 ```http
 GET /records HTTP/1.1
-Host: https://local-authority-eng.register.gov.uk
+Host: local-authority-eng.register.gov.uk
 Accept: application/json
 ```
 
@@ -121,6 +129,37 @@ Content-Type: application/json
 ```
 ***
 
+***
+**EXAMPLE:**
+
+For example, you can filter by value on the `local-authority-type` attribute:
+
+```http
+GET /records?name=local-authority-type&value=CC HTTP/1.1
+Host: local-authority-eng.register.gov.uk
+Accept: application/json
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "entry-number": 355,
+    "entry-timestamp": "2016-10-31T12:59:03Z",
+    "key": "LND",
+    "blob": {
+      "local-authority-type": "CC",
+      "official-name": "City of London Corporation",
+      "local-authority-eng": "LND",
+      "name": "City of London",
+      "start-date": "1905-06-28"
+    }
+  }
+]
+```
+***
 
 ## List the trail of change for a record
 
@@ -168,64 +207,6 @@ Content-Type: application/json
     "entry-timestamp": "2017-10-25T09:52:52Z",
     "key": "CI",
     "blob-hash": "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
-  }
-]
-```
-***
-
-
-## List records by attribute value
-
-***
-ISSUE: [RFC0022](https://github.com/openregister/registers-rfcs/pull/39) proposes an alternative approach
-***
-
-***
-### Endpoint
-
-```
-GET /records/{attribute-name}/{attribute-value}
-```
-
-### Parameters
-
-|Name|Type|Description|
-|-|-|-|
-|`attribute-name`| [Attribute Name](/datatypes/name)|An attribute name part of the data.|
-|`attribute-value`| [String](/datatypes/string)|The string representation of a valid value for the `attribute-name`.|
-***
-
-Gets the list of records filtered by the exact value of the given attribute name.
-[This resource MAY be paginated](/rest-api#collection-pagination).
-
-The order SHOULD be by consistent regardless of new elements being added to
-the dataset.
-
-***
-**EXAMPLE:**
-
-```http
-GET /records/local-authority-type/CC HTTP/1.1
-Host: local-authority-eng.register.gov.uk
-Accept: application/json
-```
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-[
-  {
-    "entry-number": 355,
-    "entry-timestamp": "2016-10-31T12:59:03Z",
-    "key": "LND",
-    "blob": {
-      "local-authority-type": "CC",
-      "official-name": "City of London Corporation",
-      "local-authority-eng": "LND",
-      "name": "City of London",
-      "start-date": "1905-06-28"
-    }
   }
 ]
 ```
