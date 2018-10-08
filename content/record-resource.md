@@ -15,17 +15,6 @@ NOTE: The reference implementation inlines the [blob](/glossary/blob) in the
 [Record resource](/rest-api/records) for convenience.
 ***
 
-***
-TODO: Is the above note normative or, what are the true expectations we want
-to set for consuming records?
-***
-
-***
-TODO: If a record is an entry, I want a resource for the latest data for a
-given key, with no metadata in it.
-***
-
-
 ## Get a record
 
 ***
@@ -63,17 +52,12 @@ Content-Type: application/json
 Link: </records/E09000019/entries>; rel="version-history"
 
 {
-  "E09000019": {
-    "index-entry-number": 72,
-    "entry-number": 72,
-    "entry-timestamp": "2015-08-20T08:15:30Z",
-    "key": "E09000019",
-    "item": [
-        {
-          "local-authority": "E09000019",
-          "name": "Islington"
-        }
-    ]
+  "entry-number": 72,
+  "entry-timestamp": "2015-08-20T08:15:30Z",
+  "key": "E09000019",
+  "blob": {
+    "local-authority": "E09000019",
+    "name": "Islington"
   }
 }
 ```
@@ -114,32 +98,26 @@ Accept: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-  "E09000019": {
-    "index-entry-number": 72,
+[
+  {
     "entry-number": 72,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "E09000019",
-    "item": [
-        {
-          "local-authority": "E09000019",
-          "name": "Islington"
-        }
-    ]
+    "blob": {
+      "local-authority": "E09000019",
+      "name": "Islington"
+    }
   },
-  "E09000016": {
-    "index-entry-number": 76,
+  {
     "entry-number": 76,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "E09000016",
-    "item": [
-        {
-          "local-authority": "E09000016",
-          "name": "Havering"
-        }
-    ]
+    "item": {
+      "local-authority": "E09000016",
+      "name": "Havering"
+    }
   }
-}
+]
 ```
 ***
 
@@ -180,22 +158,16 @@ Content-Type: application/json
 
 [
   {
-    "index-entry-number": 90,
     "entry-number": 90,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "CI",
-    "item-hash": [
-      "12207c16257bd45b4716914010b39dd40e5a6b985b8928d7b8bb0fe3005d2f2b0fec"
-    ]
+    "blob-hash": "12207c16257bd45b4716914010b39dd40e5a6b985b8928d7b8bb0fe3005d2f2b0fec"
   },
   {
-    "index-entry-number": 207,
     "entry-number": 207,
     "entry-timestamp": "2017-10-25T09:52:52Z",
     "key": "CI",
-    "item-hash": [
-      "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
-    ]
+    "blob-hash": "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
   }
 ]
 ```
@@ -242,22 +214,19 @@ Accept: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-  "LND": {
-    "index-entry-number": 355,
+[
+  {
     "entry-number": 355,
     "entry-timestamp": "2016-10-31T12:59:03Z",
     "key": "LND",
-    "item": [
-      {
-        "local-authority-type": "CC",
-        "official-name": "City of London Corporation",
-        "local-authority-eng": "LND",
-        "name": "City of London",
-        "start-date": "1905-06-28"
-      }
-    ]
+    "blob": {
+      "local-authority-type": "CC",
+      "official-name": "City of London Corporation",
+      "local-authority-eng": "LND",
+      "name": "City of London",
+      "start-date": "1905-06-28"
+    }
   }
-}
+]
 ```
 ***

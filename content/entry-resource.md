@@ -31,8 +31,7 @@ GET /entries/{entry-number}
 |`entry-number`| [Integer](/datatypes/integer)|The [entry number](/glossary/entry#number).|
 |`entry-timestamp`| [Timestamp](/datatypes/timestamp)|The [entry timestamp](/glossary/entry#timestamp).
 |`key`| [ID](/glossary/key#id-type)|The [entry key](/glossary/entry#key).|
-|`item-hash`| List of [Hash](/datatypes/hash)|The list of [blob hashes](/glossary/entry#blob-references).|
-|`index-entry-number`| [Integer](/datatypes/integer)|The entry number [_experimental_].|
+|`blob-hash`| [Hash](/datatypes/hash)|The [blob hash](/glossary/entry#blob-references).|
 ***
 
 The entry resource returns an array containing a single entry.
@@ -54,13 +53,10 @@ Content-Type: application/json
 
 [
   {
-    "index-entry-number": 72,
     "entry-number": 72,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "GH",
-    "item-hash": [
-      "1220dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
-    ]
+    "blob-hash": "1220dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
   }
 ]
 ```
@@ -109,31 +105,22 @@ Link: </entries?start=101>; rel="next"
   ...
 
   {
-    "index-entry-number": "98",
-    "entry-number": "98",
+    "entry-number": 98,
     "entry-timestamp": "2017-03-29T14:22:30Z",
     "key": "GM",
-    "item-hash": [
-      "12200429375c4fb403288ef816e5dd38a24f192e35b8f55e40cc6266eb25eaef77b1"
-    ]
+    "blob-hash":"12200429375c4fb403288ef816e5dd38a24f192e35b8f55e40cc6266eb25eaef77b1"
   },
   {
-    "index-entry-number": "99",
-    "entry-number": "99",
+    "entry-number": 99,
     "entry-timestamp": "2017-10-25T09:52:52Z",
     "key": "CI",
-    "item-hash": [
-      "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
-    ]
+    "blob-hash": "1220b3ca21b3b3a795ab9cd1d10f3d447947328406984f8a461b43d9b74b58cccfe8"
   },
   {
-    "index-entry-number": "100",
-    "entry-number": "100",
+    "entry-number": 100,
     "entry-timestamp": "2018-06-13T13:54:40Z",
     "key": "SZ",
-    "item-hash": [
-      "1220f89f36ed8b2a1417237a8e95b810e8ab4ead844277ad7bc7794cb5f83732c976"
-    ]
+    "blob-hash": "1220f89f36ed8b2a1417237a8e95b810e8ab4ead844277ad7bc7794cb5f83732c976"
   }
 ]
 ```
@@ -159,22 +146,16 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
 
 [
   {
-    "index-entry-number": 101,
     "entry-number": 101,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "KG",
-    "item-hash": [
-      "12208b748c574bf975990e47e69df040b47126d2a0a3895b31dce73988fba2ba27d8"
-    ]
+    "blob-hash": "12208b748c574bf975990e47e69df040b47126d2a0a3895b31dce73988fba2ba27d8"
   },
   {
-    "index-entry-number": 102,
     "entry-number": 102,
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "LA",
-    "item-hash": [
-      "1220490636974f8087e4518d222eba08851dd3e2b85095f2b1427ff6ecd3fa482435"
-    ]
+    "blob-hash": "1220490636974f8087e4518d222eba08851dd3e2b85095f2b1427ff6ecd3fa482435"
   },
 
   ...
