@@ -20,6 +20,15 @@ const articleStyle = css`
   margin-left: 300px;
   padding: 20px;
 
+  .gatsby-highlight {
+    margin: 16px 0;
+  }
+
+  pre[class*="language-"] {
+    overflow-x: auto;
+    width: 100%;
+  }
+
   .http-interface {
     margin: 26px 0;
     padding: 8px 20px;
@@ -36,8 +45,6 @@ const articleStyle = css`
     }
 
     pre[class*="language-"] {
-      overflow-x: auto;
-      width: calc(100vw - 428px); // total_width - (nav + gap + http_intf_padding + scroller_padding)
       background-color: white;
 
       > code {
@@ -66,15 +73,6 @@ const articleStyle = css`
   }
 
 
-  .gatsby-highlight {
-    margin: 16px 0;
-  }
-
-  pre[class*="language-"] {
-    overflow-x: auto;
-    width: calc(100vw - 380px); // total_width - (nav + gap + scroller_padding)
-  }
-
   .hiblock {
     border-left: 8px solid black;
     padding: 36px 8px 8px 20px;
@@ -88,11 +86,6 @@ const articleStyle = css`
       position: absolute;
       top: 10px;
       left: 20px;
-    }
-
-    pre[class*="language-"] {
-      overflow-x: auto;
-      width: calc(100vw - 418px); // total_width - (nav + gap + hiblock_padding + scroller_padding)
     }
   }
 

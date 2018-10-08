@@ -195,7 +195,10 @@ In both cases the resulting [hash](#hash) is
 
 The reason they are
 equivalent is because the hash for `"abc"` is
-`2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511`.
+
+```
+2a42a9c91b74c0032f6b8000a2c9c5bcca5bb298f004e8eff533811004dea511
+```
 
 Notice that the first two bytes of the resulting hash, `0x12` and `0x20`, are
 prepended because the [hashing algorithm](/glossary/hashing-algorithm) used in
