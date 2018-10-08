@@ -10,10 +10,6 @@ NOTE: See the [Audit section](/data-model/audit) to learn what these
 resources are for.
 ***
 
-***
-ISSUE: [RFC0023](https://github.com/openregister/registers-rfcs/pull/40) Proof resource
-***
-
 ## Get the register proof
 
 ***
@@ -25,20 +21,13 @@ this resource fits into the [data model](/data-model).
 ### Endpoint
 
 ```
-GET /proof/register/{proof-identifier}
+GET /proofs/register
 ```
-
-### Parameters
-
-|Name|Type|Description|
-|-|-|-|
-|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha2-256`.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha2-256`.|
 |`total-entries`| [Integer](/datatypes/integer)|The size of the log when the proof was issued.|
 |`root-hash`| [Hash](/datatypes/hash)|The root hash for the log when the proof was issued.|
 ***
@@ -52,7 +41,7 @@ The following example shows the request for the representation of the register
 proof.
 
 ```http
-GET /proof/register/merkle:sha2-256 HTTP/1.1
+GET /proofs/register HTTP/1.1
 Host: country.register.gov.uk
 Accept: application/json
 ```
@@ -62,7 +51,6 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "proof-identifier": "merkle:sha2-256",
   "root-hash": "12208d92e1e0af1d43c41e498e6baed0d0b3ea2770d1bf9d2afc04e9c4dad7795729",
   "total-entries": 208
 }
@@ -81,7 +69,7 @@ understand how this resource fits into the [data model](/data-model).
 ### Endpoint
 
 ```
-GET /proof/consistency/{small-log-size}/{large-log-size}/{proof-identifier}
+GET /proofs/consistency/{small-log-size}/{large-log-size}
 ```
 
 ### Parameters
@@ -90,14 +78,12 @@ GET /proof/consistency/{small-log-size}/{large-log-size}/{proof-identifier}
 |-|-|-|
 |`small-log-size`| [Integer](/datatypes/integer)|The size of the smaller log.|
 |`large-log-size`| [Integer](/datatypes/integer)|The size of the larger log.|
-|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha2-256`.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha2-256`.|
-|`merkle-consistency-nodes`| List of [Hash](/datatypes/hash)|The list of node hashes.|
+|`audit-path`| List of [Hash](/datatypes/hash)|The list of node hashes.|
 ***
 
 Gets the consistency proof for the given log sizes and proof type.
@@ -109,7 +95,7 @@ The following example shows the request for the consistency proof of log size
 197 and log size 200 for the `country.register.gov.uk` register:
 
 ```http
-GET /proof/consistency/197/200/merkle:sha2-256 HTTP/1.1
+GET /proofs/consistency/197/200 HTTP/1.1
 Host: country.register.gov.uk
 Accept: application/json
 ```
@@ -119,8 +105,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "proof-identifier": "merkle:sha2-256",
-  "merkle-consistency-nodes": [
+  "audit-path": [
     "122073f13521226acdfa2a610c7bfdc955fa52aea1d554dd247011312ee48686a538",
     "12208a16bb948f55ef959a5a7ddad5e2d1d398b50f3d7095aba1e97ad50c1fa374a9",
     "1220be8a541a0a763f88c8e4ff5f013e701e5f89c3f9cb744aadfaf19668189de514",
@@ -145,7 +130,7 @@ how this resource fits into the [data model](/data-model).
 ### Endpoint
 
 ```
-GET /proof/entries/{entry-number}/{log-size}/{proof-identifier}
+GET /proofs/entries/{entry-number}/{log-size}
 ```
 
 ### Parameters
@@ -154,15 +139,12 @@ GET /proof/entries/{entry-number}/{log-size}/{proof-identifier}
 |-|-|-|
 |`entry-number`| [Integer](/datatypes/integer)|The entry number to proof.|
 |`log-size`| [Integer](/datatypes/integer)|The size of the log.|
-|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha2-256`.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`proof-identifier`| [String](/datatypes/string)|The type of proof. Possible values: `merkle:sha2-256`.|
-|`entry-number`| [Integer](/datatypes/integer)|The entry number for the proof.|
-|`merkle-audit-path`| List of [Hash](/datatypes/hash)|The list of node hashes.|
+|`audit-path`| List of [Hash](/datatypes/hash)|The list of node hashes.|
 ***
 
 Gets the entry proof for the given entry, log size and proof type.
@@ -174,7 +156,7 @@ The following example shows the request for the representation of the entry
 proof for entry 10 at log size 200.
 
 ```http
-GET /proof/entries/10/200/merkle:sha2-256 HTTP/1.1
+GET /proof/entries/10/200 HTTP/1.1
 Host: country.register.gov.uk
 Accept: application/json
 ```
@@ -184,9 +166,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "proof-identifier": "merkle:sha2-256",
-  "entry-number": 10,
-  "merkle-audit-path": [
+  "audit-path": [
     "1220f0ebeef6be205cfc5fb6b4a314294bdff471f5409594f742b0f30c8551278b4a",
     "12208dc980062c4e6ffd2300b72cd5a6a67e23070aabec31911691c657c2e1dd37a6",
     "1220c48916df15f3f6e030d84bf0f8bb59460c472250d38db27b4cd2e7394fe0741d",
