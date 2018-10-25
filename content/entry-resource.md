@@ -51,14 +51,12 @@ Accept: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-[
-  {
-    "entry-number": 72,
-    "entry-timestamp": "2016-04-05T13:23:05Z",
-    "key": "GH",
-    "blob-hash": "1220dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
-  }
-]
+{
+  "entry-number": 72,
+  "entry-timestamp": "2016-04-05T13:23:05Z",
+  "key": "GH",
+  "blob-hash": "1220dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"
+}
 ```
 ***
 
