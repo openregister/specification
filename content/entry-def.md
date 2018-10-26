@@ -115,7 +115,7 @@ Entry
   { number = 6
   , key = ID "GB"
   , timestamp = Timestamp 2016 4 5 13 23 5 Utc
-  , item = Hash "12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb"
+  , blob = Hash "12206b18693874513ba13da54d61aafa7cad0c8f5573f3431d6f1c04b07ddb27d6bb"
   }
 ```
 

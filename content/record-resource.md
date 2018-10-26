@@ -120,7 +120,7 @@ Content-Type: application/json
     "entry-number": 76,
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "E09000016",
-    "item": {
+    "blob": {
       "local-authority": "E09000016",
       "name": "Havering"
     }

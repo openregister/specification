@@ -14,7 +14,7 @@ digital proofs.
 
 A **register proof** is a digitally-signed demonstration of the integrity of all
 entries in a register. Given a register proof, it is possible to verify that
-all of the entries and items are correct, and that the entries are in the
+all of the entries and blobs are correct, and that the entries are in the
 correct order.
 
 ## Consistency proof

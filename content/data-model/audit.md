@@ -91,8 +91,8 @@ A client MUST be able to do the following:
    proof.
 5. Verify the signed root hash is the same as the [signed root
    hash](#signed-tree-head) part of the Register proof.
-6. Verify that for each Item hash in each Entry there is an Item.
-7. Verify that each Item computes the same hash that identifies it.
+6. Verify that for each Blob hash in each Entry there is an Blob.
+7. Verify that each Blob computes the same hash that identifies it.
 
 
 ## Consistency verification

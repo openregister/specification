@@ -325,7 +325,7 @@ Entry
   { number : 3
   , key: ID "DD"
   , timestamp : Timestamp (2016, 4, 5, 13, 23, 5, Utc)
-  , item : [Hash::Sha256 "e1357671d0da24668952373d0cdf9f7659a1b155e45c8fb3c2f24331e46edc26"]
+  , blob : [Hash::Sha256 "e1357671d0da24668952373d0cdf9f7659a1b155e45c8fb3c2f24331e46edc26"]
   }
 ```
 ***

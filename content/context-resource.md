@@ -30,7 +30,7 @@ GET /context
 |`licence`| [String](/datatypes/string) |
 |`root-hash`| [Hash](/datatypes/hash) |
 |`schema`| List of [attributes](#attribute-attributes) |
-|`stats`| [Stats](#stats-attributes) |
+|`statistics`| [Statistics](#statistics-attributes) |
 |`status`| [Status](#status-attributes) |
 |`title`| Optional [String](/datatypes/string) |
 
@@ -52,12 +52,12 @@ GET /context
 |`title`| Optional [String](/datatypes/string) |
 |`description`| Optional [String](/datatypes/string) |
 
-#### Stats attributes
+#### Statistics attributes
 
 |Name|Type|
 |-|-|
 |`total-entries`| [Integer](/datatypes/integer) |
-|`total-items`| [Integer](/datatypes/integer) |
+|`total-blobs`| [Integer](/datatypes/integer) |
 |`total-records`| [Integer](/datatypes/integer) |
 
 #### Status attributes
@@ -95,9 +95,9 @@ Content-Type: application/json
     "function-type": 18,
     "digest-length": 32
   },
-  "stats": {
+  "statistics": {
     "total-entries": 0,
-    "total-items": 0,
+    "total-blobs": 0,
     "total-records": 0,
   },
   "copyright": "Copyright (c) 2016 Protocol Labs Inc.",
