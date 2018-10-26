@@ -49,11 +49,3 @@ type Datatype
 |-|-|-|
 | `1` | One | A set of a single value |
 | `n` | Many | A set of many values |
-
-***
-**NOTE:**
-
-Cardinality is equivalent to list, array or set in other type systems.
-***
-
-
