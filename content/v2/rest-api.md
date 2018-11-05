@@ -13,7 +13,6 @@ Porcelain resources:
 
 * [Records](/rest-api/records): The latest data available.
 * [Context](/rest-api/context): Contextual information such as the schema.
-* [Archive](/rest-api/archive): The whole register in one go.
 
 Plumbing resources:
 
@@ -64,9 +63,6 @@ format.
 
 JSON is the canonical serialisation format but CSV is encouraged to be
 implemented as well.
-
-Some resources like the [Archive](/rest-api/archive) use different content
-types. The resource definition explain its particularities.
 
 
 ### JSON

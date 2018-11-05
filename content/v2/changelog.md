@@ -35,7 +35,7 @@ RFCs for Epoch 2019:
 |0018|Context resource|No|
 |0019|[Boolean datatype](https://github.com/openregister/registers-rfcs/blob/master/content/boolean-datatype/index.md)|No|
 |0020|[Blob normalisation](https://github.com/openregister/registers-rfcs/blob/master/content/blob-normalisation/index.md)|No|
-|0021|Archive resource|Yes|
+|0021|[Archive resource](https://github.com/openregister/registers-rfcs/blob/master/content/archive-resource/index.md)|Yes|
 |0022|Facets endpoint|Yes|
 |0023|Proof resource|Yes|
 |0024|Indexes removal|Yes|

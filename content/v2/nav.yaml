@@ -30,7 +30,6 @@
     - id: entry-resource
     - id: blob-resource
     - id: proof-resource
-    - id: archive-resource
 - id: datatypes
   items:
     - id: boolean-datatype
