@@ -17,7 +17,7 @@ type Context =
   , licence : Maybe String
   , rootHash : Hash
   , schema : Schema
-  , stats : Stats
+  , statistics : Statistics
   , status : Status
   , title : Maybe String
   }
@@ -75,14 +75,14 @@ The [root hash](/glossary/digital-proof#root-hash) for the register.
 
 The set of attributes that define the data allowed in the register.
 
-### Stats
+### Statistics
 
-* Type: Stats
+* Type: Statistics
 
 The summary of objects stored in the register.
 
 ```elm
-type Stats =
+type Statistics =
   { totalEntries : Integer
   , totalRecords : Integer
   , totalBlobs : Integer
