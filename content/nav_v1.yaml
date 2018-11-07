@@ -1,34 +1,34 @@
-- id: v1-introduction
-- id: v1-data-model
-- id: v1-glossary
+- id: introduction
+- id: data-model
+- id: glossary
   items:
-    - id: v1-attribute-def
-    - id: v1-catalogue-def
-    - id: v1-digital-proof-def
-    - id: v1-entry-def
-    - id: v1-item-def
-    - id: v1-key-def
-    - id: v1-log-def
-    - id: v1-record-def
-    - id: v1-schema-def
-    - id: v1-snapshot-def
-- id: v1-rest-api
+    - id: attribute-def
+    - id: catalogue-def
+    - id: digital-proof-def
+    - id: entry-def
+    - id: item-def
+    - id: key-def
+    - id: log-def
+    - id: record-def
+    - id: schema-def
+    - id: snapshot-def
+- id: rest-api
   items:
-    - id: v1-record-resource
-    - id: v1-register-resource
-    - id: v1-entry-resource
-    - id: v1-item-resource
-    - id: v1-proof-resource
-    - id: v1-archive-resource
-- id: v1-datatypes
+    - id: record-resource
+    - id: register-resource
+    - id: entry-resource
+    - id: item-resource
+    - id: proof-resource
+    - id: archive-resource
+- id: datatypes
   items:
-    - id: v1-curie-datatype
-    - id: v1-datetime-datatype
-    - id: v1-name-datatype
-    - id: v1-hash-datatype
-    - id: v1-integer-datatype
-    - id: v1-period-datatype
-    - id: v1-string-datatype
-    - id: v1-text-datatype
-    - id: v1-timestamp-datatype
-    - id: v1-url-datatype
+    - id: curie-datatype
+    - id: datetime-datatype
+    - id: name-datatype
+    - id: hash-datatype
+    - id: integer-datatype
+    - id: period-datatype
+    - id: string-datatype
+    - id: text-datatype
+    - id: timestamp-datatype
+    - id: url-datatype

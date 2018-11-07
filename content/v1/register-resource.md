@@ -1,7 +1,7 @@
 ---
-id: v1-register-resource
+id: register-resource
 title: Register
-url: /v1/rest-api/register
+url: /rest-api/register
 version: v1
 ---
 

@@ -1,7 +1,7 @@
 ---
-id: v1-integer-datatype
+id: integer-datatype
 title: Integer
-url: /v1/datatypes/integer
+url: /datatypes/integer
 version: v1
 ---
 

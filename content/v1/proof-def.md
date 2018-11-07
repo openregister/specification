@@ -1,7 +1,7 @@
 ---
-id: v1-digital-proof-def
+id: digital-proof-def
 title: Digital proof
-url: /v1/glossary/digital-proof
+url: /glossary/digital-proof
 version: v1
 status: exp
 ---

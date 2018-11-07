@@ -1,7 +1,7 @@
 ---
-id: v1-log-def
+id: log-def
 title: Log
-url: /v1/glossary/log
+url: /glossary/log
 version: v1
 ---
 

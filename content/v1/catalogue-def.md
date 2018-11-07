@@ -1,7 +1,7 @@
 ---
-id: v1-catalogue-def
+id: catalogue-def
 title: Catalogue
-url: /v1/glossary/catalogue
+url: /glossary/catalogue
 version: v1
 ---
 

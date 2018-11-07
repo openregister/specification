@@ -1,7 +1,6 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
-
 exports.onCreateNode = ({node, getNode, actions}) => {
   const {createNodeField} = actions;
   if (node.internal.type === 'MarkdownRemark') {
@@ -17,7 +16,9 @@ exports.onCreateNode = ({node, getNode, actions}) => {
 
 
 exports.createPages = ({graphql, actions}) => {
-  const {createPage} = actions;
+  const {createPage, createRedirect} = actions;
+
+  createRedirect({ fromPath: '/v2', toPath: '/v2/introduction', isPermanent: true, redirectInBrowser: true });
 
   const specSections = graphql(`
     {
@@ -27,6 +28,7 @@ exports.createPages = ({graphql, actions}) => {
             frontmatter {
               id
               url
+              version
             }
             fields {
               slug
@@ -40,9 +42,15 @@ exports.createPages = ({graphql, actions}) => {
   return new Promise((resolve, reject) => {
     specSections.then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        const { version } = node.frontmatter;
+        const templates = {
+          v1: './src/templates/spec-v1-section.js',
+          v2: './src/templates/spec-section.js',
+        };
+        
         createPage({
-          path: node.frontmatter.url,
-          component: path.resolve('./src/templates/spec-section.js'),
+          path: `/${version}${node.frontmatter.url}`,
+          component: path.resolve(templates[version]),
           context: {
             // Data passed to context is available
             // in page queries as GraphQL variables.

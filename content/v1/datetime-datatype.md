@@ -1,7 +1,7 @@
 ---
-id: v1-datetime-datatype
+id: datetime-datatype
 title: Datetime
-url: /v1/datatypes/datetime
+url: /datatypes/datetime
 version: v1
 ---
 

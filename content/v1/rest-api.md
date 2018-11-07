@@ -1,7 +1,7 @@
 ---
-id: v1-rest-api
+id: rest-api
 title: REST API
-url: /v1/rest-api
+url: /rest-api
 version: v1
 ---
 

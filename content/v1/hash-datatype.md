@@ -1,7 +1,7 @@
 ---
-id: v1-hash-datatype
+id: hash-datatype
 title: Hash
-url: /v1/datatypes/hash
+url: /datatypes/hash
 version: v1
 ---
 

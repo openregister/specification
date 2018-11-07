@@ -2,6 +2,7 @@
 id: link
 title: Link
 url: /data-model/link
+version: v2
 ---
 
 The mechanism for linking two elements is the [CURIE datatype](/datatypes/curie).

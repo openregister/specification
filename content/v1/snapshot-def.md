@@ -1,7 +1,7 @@
 ---
-id: v1-snapshot-def
+id: snapshot-def
 title: Snapshot
-url: /v1/glossary/snapshot
+url: /glossary/snapshot
 version: v1
 ---
 

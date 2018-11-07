@@ -1,7 +1,7 @@
 ---
-id: v1-item-def
+id: item-def
 title: Item
-url: /v1/glossary/item
+url: /glossary/item
 version: v1
 ---
 

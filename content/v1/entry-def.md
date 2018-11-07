@@ -1,7 +1,7 @@
 ---
-id: v1-entry-def
+id: entry-def
 title: Entry
-url: /v1/glossary/entry
+url: /glossary/entry
 version: v1
 ---
 

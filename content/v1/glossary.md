@@ -1,7 +1,7 @@
 ---
-id: v1-glossary
+id: glossary
 title: Glossary
-url: /v1/glossary
+url: /glossary
 version: v1
 ---
 

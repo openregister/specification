@@ -1,7 +1,7 @@
 ---
-id: v1-item-resource
+id: item-resource
 title: Items
-url: /v1/rest-api/items
+url: /rest-api/items
 version: v1
 ---
 

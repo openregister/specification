@@ -194,11 +194,7 @@ const SpecSection = ({data}) => {
       <ToC tree={tree} target={section.frontmatter.id} />
 
       <article className={articleStyle}>
-        {
-          section.frontmatter.version != version && section.frontmatter.version != 'next'
-            ? <p className="alert-banner">The latest version of the specification is <a href={`/${version}/introduction`}>version {version}</a>.</p>
-            : null
-        }
+        <p className="alert-banner">The latest version of the specification is <a href={`/${version}/introduction`}>version {version}</a>.</p>
         <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
         {
           headings.length > 1
@@ -221,7 +217,7 @@ SpecSection.propTypes = {
 
 
 export const query = graphql`
-  query SpecSectionQuery($id: String!) {
+  query SpecSectionV1Query($id: String!) {
     core: coreToml {
       title
       version
@@ -236,7 +232,7 @@ export const query = graphql`
 
     }
 
-    toc: allNavV2Yaml {
+    toc: allNavV1Yaml {
       edges {
         node {
           id

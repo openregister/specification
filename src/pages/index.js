@@ -72,7 +72,7 @@ Main.propTypes = {
 
 export const query = graphql`
   query IndexQuery {
-    toc: allNavYaml {
+    toc: allNavV2Yaml {
       edges {
         node {
           id
