@@ -3,6 +3,7 @@ id: proof-resource
 title: Proofs
 url: /rest-api/proofs
 status: exp
+version: v2
 ---
 
 ***

@@ -2,6 +2,7 @@
 id: blob-def
 title: Blob
 url: /glossary/blob
+version: v2
 ---
 
 An **blob** is an unordered set of attribute-value pairs (associative array)

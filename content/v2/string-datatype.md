@@ -2,6 +2,7 @@
 id: string-datatype
 title: String
 url: /datatypes/string
+version: v2
 ---
 
 The **string** datatype is a sequence of one or more [Unicode](@unicode)

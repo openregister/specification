@@ -3,6 +3,7 @@ id: audit
 title: Audit
 url: /data-model/audit
 status: exp
+version: v2
 ---
 
 The mechanism for proving the integrity of a Register is based on the digital

@@ -2,6 +2,7 @@
 id: key-def
 title: Key
 url: /glossary/key
+version: v2
 ---
 
 A **key** is the identifier for an element in the dataset and thus, it MUST be

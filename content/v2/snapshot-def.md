@@ -2,6 +2,7 @@
 id: snapshot-def
 title: Snapshot
 url: /glossary/snapshot
+version: v2
 ---
 
 A **snapshot** is the dataset resulting from walking through the

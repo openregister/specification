@@ -2,6 +2,7 @@
 id: record-resource
 title: Records
 url: /rest-api/records
+version: v2
 ---
 
 ***

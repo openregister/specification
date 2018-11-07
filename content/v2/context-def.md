@@ -2,6 +2,7 @@
 id: context-def
 title: Context
 url: /glossary/context
+version: v2
 ---
 
 The **context** is the metadata snapshot that apply to a given log size.

@@ -1,6 +1,7 @@
 title = "Registers Specification"
 issue_tracker = "https://github.com/openregister/specification/issues/"
 rfc_tracker = "https://github.com/openregister/registers-rfcs/"
+version = "v2"
 
 [[editors]]
 name = "Arnau Siches"

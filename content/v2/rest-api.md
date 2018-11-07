@@ -2,6 +2,7 @@
 id: rest-api
 title: REST API
 url: /rest-api
+version: v2
 ---
 
 The REST API exposes a set of read-only resources to interact with a register

@@ -3,6 +3,7 @@ id: digital-proof-def
 title: Digital proof
 url: /glossary/digital-proof
 status: exp
+version: v2
 ---
 
 ***

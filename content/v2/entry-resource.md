@@ -2,6 +2,7 @@
 id: entry-resource
 title: Entries
 url: /rest-api/entries
+version: v2
 ---
 
 ***

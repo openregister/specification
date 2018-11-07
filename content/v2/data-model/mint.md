@@ -2,6 +2,7 @@
 id: mint
 title: Mint
 url: /data-model/mint
+version: v2
 ---
 
 **Minting** is the process of creating a new [entry](/glossary/entry) for a

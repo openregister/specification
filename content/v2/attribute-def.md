@@ -2,6 +2,7 @@
 id: attribute-def
 title: Attribute
 url: /glossary/attribute
+version: v2
 ---
 
 An **attribute** defines the characteristics of a value part of a

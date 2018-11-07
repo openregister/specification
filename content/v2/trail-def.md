@@ -2,6 +2,7 @@
 id: trail-def
 title: Trail
 url: /glossary/trail
+version: v2
 ---
 
 A **trail** is the list of [entries](/glossary/entry) for a given key. It

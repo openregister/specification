@@ -2,6 +2,7 @@
 id: url-datatype
 title: URL
 url: /datatypes/url
+version: v2
 ---
 
 The **URL** datatype is an absolute **URL** conforming to [the URL

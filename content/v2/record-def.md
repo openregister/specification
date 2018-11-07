@@ -2,6 +2,7 @@
 id: record-def
 title: Record
 url: /glossary/record
+version: v2
 ---
 
 A **record** is an [entry](/glossary/entry), element of the latest

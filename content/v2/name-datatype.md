@@ -2,6 +2,7 @@
 id: name-datatype
 title: Name
 url: /datatypes/name
+version: v2
 ---
 
 The **name** datatype is a [String](/datatypes/string) restricted to lower

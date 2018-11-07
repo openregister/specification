@@ -2,6 +2,7 @@
 id: blob-resource
 title: Blobs
 url: /rest-api/blobs
+version: v2
 ---
 
 ***

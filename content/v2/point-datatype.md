@@ -3,6 +3,7 @@ id: point-datatype
 title: Point
 url: /datatypes/point
 status: wip
+version: v2
 ---
 
 ***

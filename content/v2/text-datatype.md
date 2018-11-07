@@ -2,6 +2,7 @@
 id: text-datatype
 title: Text
 url: /datatypes/text
+version: v2
 ---
 
 The **text** datatype is a [String](/datatypes/string) formatted according to

@@ -2,6 +2,7 @@
 id: schema-def
 title: Schema
 url: /glossary/schema
+version: v2
 ---
 
 The **schema** is the set of [attributes](/glossary/attribute) used to

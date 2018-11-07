@@ -2,6 +2,7 @@
 id: entry-def
 title: Entry
 url: /glossary/entry
+version: v2
 ---
 
 An **entry** defines a change in the dataset. The ordered list of entries form

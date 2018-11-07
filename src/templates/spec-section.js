@@ -24,6 +24,12 @@ const articleStyle = css`
     margin: 16px 0;
   }
 
+  .alert-banner {
+    padding: 16px;
+    border-left: 8px solid deepskyblue;
+    background-color: aliceblue;
+  }
+
   pre[class*="language-"] {
     overflow-x: auto;
     width: 100%;
@@ -175,7 +181,7 @@ const SpecSection = ({data}) => {
   const toc = data.toc.edges.map(({node}) => node);
   const tree = extendToc(toc, data.sections.edges);
   const headings = section.headings.filter(el => el.depth <= 2);
-  const {title, copyright, license} = data.core;
+  const {title, copyright, license, version} = data.core;
 
   return (
     <Layout>
@@ -188,6 +194,11 @@ const SpecSection = ({data}) => {
       <ToC tree={tree} target={section.frontmatter.id} />
 
       <article className={articleStyle}>
+        {
+          section.frontmatter.version != version && section.frontmatter.version != 'next'
+            ? <p className="alert-banner">The latest version of the specification is <a href={`/${version}`}>version {version}</a>.</p>
+            : null
+        }
         <h1>{section.frontmatter.title} <Status label={section.frontmatter.status} /></h1>
         {
           headings.length > 1
@@ -213,6 +224,7 @@ export const query = graphql`
   query SpecSectionQuery($id: String!) {
     core: coreToml {
       title
+      version
       copyright {
         text
         url
@@ -259,6 +271,7 @@ export const query = graphql`
         title
         url
         status
+        version
       }
     }
   }

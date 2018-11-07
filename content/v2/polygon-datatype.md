@@ -3,6 +3,7 @@ id: polygon-datatype
 title: Polygon
 url: /datatypes/polygon
 status: wip
+version: v2
 ---
 
 ***

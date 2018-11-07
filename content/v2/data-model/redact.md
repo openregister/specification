@@ -2,6 +2,7 @@
 id: redact
 title: Redact
 url: /data-model/redact
+version: v2
 ---
 
 In rare situations data needs to be removed from a Register. For example, due

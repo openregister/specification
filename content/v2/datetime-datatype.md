@@ -2,6 +2,7 @@
 id: datetime-datatype
 title: Datetime
 url: /datatypes/datetime
+version: "v2"
 ---
 
 The **datetime** datatype conforms to the subset of a UTC [ISO8601](@iso8601)

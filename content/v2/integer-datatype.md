@@ -2,6 +2,7 @@
 id: integer-datatype
 title: Integer
 url: /datatypes/integer
+version: v2
 ---
 
 The **integer** datatype is a base 10 number with no fractional component.

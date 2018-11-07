@@ -2,6 +2,7 @@
 id: period-datatype
 title: Period
 url: /datatypes/period
+version: v2
 ---
 
 The **period** datatype is a period of time conforming to the subset of

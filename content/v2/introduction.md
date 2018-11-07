@@ -2,6 +2,7 @@
 id: introduction
 title: Introduction
 url: /introduction
+version: v2
 ---
 
 This specification defines the [data model](/data-model) and [HTTP

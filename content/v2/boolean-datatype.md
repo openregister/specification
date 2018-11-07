@@ -2,6 +2,7 @@
 id: boolean-datatype
 title: Boolean
 url: /datatypes/boolean
+version: v2
 ---
 
 The **boolean** datatype can have two states:

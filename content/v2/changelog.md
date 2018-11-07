@@ -2,6 +2,7 @@
 id: changelog
 title: Changelog
 url: /changelog
+version: v2
 ---
 
 This document lists the relevant changes made to the Registers specification.

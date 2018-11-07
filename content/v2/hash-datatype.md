@@ -2,6 +2,7 @@
 id: hash-datatype
 title: Hash
 url: /datatypes/hash
+version: v2
 ---
 
 The **hash** datatype represents the digest result of a [hashing

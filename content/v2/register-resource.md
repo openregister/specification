@@ -2,6 +2,7 @@
 id: register-resource
 title: Register
 url: /rest-api/register
+version: "v2"
 ---
 
 ***

@@ -2,6 +2,7 @@
 id: timestamp-datatype
 title: Timestamp
 url: /datatypes/timestamp
+version: "v2"
 ---
 
 The **timestamp** datatype is a value conforming to a UTC [RFC3339](@rfc3339)

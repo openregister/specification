@@ -2,6 +2,7 @@
 id: datatypes
 title: Datatypes
 url: /datatypes
+version: v2
 ---
 
 ## Primitives

@@ -2,6 +2,7 @@
 id: context-resource
 title: Context
 url: /rest-api/context
+version: v2
 ---
 
 ***
