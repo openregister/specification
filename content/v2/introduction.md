@@ -5,8 +5,8 @@ url: /v2/introduction
 version: v2
 ---
 
-This specification defines the [data model](/data-model) and [HTTP
-interface](/rest-api) for accessing the data held in a [System of
+This specification defines the [data model](/v2/data-model) and [HTTP
+interface](/v2/rest-api) for accessing the data held in a [System of
 Record](https://en.wikipedia.org/wiki/System_of_record), the “Register”.
 
 

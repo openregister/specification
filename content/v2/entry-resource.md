@@ -6,8 +6,8 @@ version: v2
 ---
 
 ***
-NOTE: See the [Entry](/glossary/entry) definition to understand how this
-resource fits into the [data model](/data-model).
+NOTE: See the [Entry](/v2/glossary/entry) definition to understand how this
+resource fits into the [data model](/v2/data-model).
 ***
 
 ## Get an entry
@@ -23,16 +23,16 @@ GET /entries/{entry-number}
 
 |Name|Type|Description|
 |-|-|-|
-|`entry-number`| [Integer](/datatypes/integer)|The number of the [Entry](/glossary/entry).|
+|`entry-number`| [Integer](/v2/datatypes/integer)|The number of the [Entry](/v2/glossary/entry).|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`entry-number`| [Integer](/datatypes/integer)|The [entry number](/glossary/entry#number).|
-|`entry-timestamp`| [Timestamp](/datatypes/timestamp)|The [entry timestamp](/glossary/entry#timestamp).
-|`key`| [ID](/glossary/key#id-type)|The [entry key](/glossary/entry#key).|
-|`blob-hash`| [Hash](/datatypes/hash)|The [blob hash](/glossary/entry#blob-references).|
+|`entry-number`| [Integer](/v2/datatypes/integer)|The [entry number](/v2/glossary/entry#number).|
+|`entry-timestamp`| [Timestamp](/v2/datatypes/timestamp)|The [entry timestamp](/v2/glossary/entry#timestamp).
+|`key`| [ID](/v2/glossary/key#id-type)|The [entry key](/v2/glossary/entry#key).|
+|`blob-hash`| [Hash](/v2/datatypes/hash)|The [blob hash](/v2/glossary/entry#blob-references).|
 ***
 
 The entry resource returns an array containing a single entry.
@@ -71,7 +71,7 @@ GET /entries
 ```
 ***
 
-Gets the list of entries. [This resource MAY be paginated](/rest-api#collection-pagination).
+Gets the list of entries. [This resource MAY be paginated](/v2/rest-api#collection-pagination).
 
 The order MUST be by ascending entry number.
 

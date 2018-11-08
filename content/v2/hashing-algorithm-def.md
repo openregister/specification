@@ -6,8 +6,8 @@ version: v2
 ---
 
 The **hashing algorithm** is the function used across the register to create a
-fixed size digest for identifying and addressing [blobs](/glossary/blob),
-[entry](/glossary/entry) verification and for the [audit process](/data-model/audit).
+fixed size digest for identifying and addressing [blobs](/v2/glossary/blob),
+[entry](/glossary/entry) verification and for the [audit process](/v2/data-model/audit).
 
 ```elm
 type HashingAlgorithm =

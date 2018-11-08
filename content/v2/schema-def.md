@@ -5,8 +5,8 @@ url: /v2/glossary/schema
 version: v2
 ---
 
-The **schema** is the set of [attributes](/glossary/attribute) used to
-handle [data blobs](/glossary/blob).
+The **schema** is the set of [attributes](/v2/glossary/attribute) used to
+handle [data blobs](/v2/glossary/blob).
 
 ```elm
 type Schema =
@@ -14,5 +14,5 @@ type Schema =
 ```
 
 ***
-**NOTE:** See the [Context definition](/glossary/context) for the full set of metadata.
+**NOTE:** See the [Context definition](/v2/glossary/context) for the full set of metadata.
 ***

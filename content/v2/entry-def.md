@@ -6,12 +6,12 @@ version: v2
 ---
 
 An **entry** defines a change in the dataset. The ordered list of entries form
-the [log](/glossary/log). Entries are immutable.
+the [log](/v2/glossary/log). Entries are immutable.
 
 Each entry defines a change for an element in the dataset by recording the
 time the change was added to the log, the numerical order in the log, the
 key to identify the element the change is for and the reference to the data
-for that element, the [blob](/glossary/blob).
+for that element, the [blob](/v2/glossary/blob).
 
 ```elm
 type Entry =
@@ -26,10 +26,10 @@ type Entry =
 
 ### Number
 
-* Type: [Integer](/datatypes/integer).
+* Type: [Integer](/v2/datatypes/integer).
 
 The entry number is unique and defines the position of the entry within the
-[log](/glossary/log).
+[log](/v2/glossary/log).
 
 The range MUST be the **positive numbers**, that is the natural numbers
 excluding 0.
@@ -38,23 +38,23 @@ excluding 0.
 
 * Type: [ID](/key-def#id-type).
 
-The [key](/glossary/key) identifies the element of the dataset which the
+The [key](/v2/glossary/key) identifies the element of the dataset which the
 entry refers to.
 
 ### Timestamp
 
-* Type: [Timestamp](/datatypes/timestamp)
+* Type: [Timestamp](/v2/datatypes/timestamp)
 
-The time when the entry was added to the [log](/glossary/log). This means
+The time when the entry was added to the [log](/v2/glossary/log). This means
 that the timestamp is no guarantee of entry order, the [entry
 number](#entry-number) is.
 
 
 ### Blob references
 
-* Type: [Hash](/datatypes/hash).
+* Type: [Hash](/v2/datatypes/hash).
 
-The [blob hash](/glossary/blob#hash) the entry links to.
+The [blob hash](/v2/glossary/blob#hash) the entry links to.
 
 
 ## Operations
@@ -62,11 +62,11 @@ The [blob hash](/glossary/blob#hash) the entry links to.
 ### Hash
 
 The identity of an entry computed from its content. It is used for
-[audit](/data-model/audit) as the Merkle tree leaves.
+[audit](/v2/data-model/audit) as the Merkle tree leaves.
 
 The function takes an entry and a [hashing
-algorithm](/glossary/hashing-algorithm) and returns a [Hash
-datatype](/datatypes/hash).
+algorithm](/v2/glossary/hashing-algorithm) and returns a [Hash
+datatype](/v2/datatypes/hash).
 
 ```elm
 hash : Entry -> HashingAlgorithm -> Hash

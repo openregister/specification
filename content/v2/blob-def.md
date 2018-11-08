@@ -6,11 +6,11 @@ version: v2
 ---
 
 An **blob** is an unordered set of attribute-value pairs (associative array)
-constrained by the [schema](/glossary/schema) and identified by the [hash
+constrained by the [schema](/v2/glossary/schema) and identified by the [hash
 calculated from its contents](#hash).
 
 Values are either strings or sets of strings according to the
-[Attribute](/glossary/attribute) cardinality.
+[Attribute](/v2/glossary/attribute) cardinality.
 
 ```elm
 type Value
@@ -47,7 +47,7 @@ Bar
 ```
 
 Note that all attributes expect an optional value as explained in the
-[evolution section](/data-model/evolve#forwards-compatibility).
+[evolution section](/v2/data-model/evolve#forwards-compatibility).
 
 The blob can be serialised in JSON as:
 
@@ -72,8 +72,8 @@ NOTE:
 
 In the example above, the JSON serialisation uses the string representation of
 each primitive value and the schema is needed to cast them back to the right
-datatype. Check the [Serialisation section](/rest-api#serialisation) and the
-[Schema](/glossary/schema) for more details on this topic.
+datatype. Check the [Serialisation section](/v2/rest-api#serialisation) and the
+[Schema](/v2/glossary/schema) for more details on this topic.
 ***
 
 ## Operations
@@ -81,12 +81,12 @@ datatype. Check the [Serialisation section](/rest-api#serialisation) and the
 ### Hash
 
 The **hash** is the identity of an blob computed from its content. As the blob
-hash is part of an [entry](/glossary/entry), it is included in the input to
-the [entry hash](/glossary/entry#hash) function.
+hash is part of an [entry](/v2/glossary/entry), it is included in the input to
+the [entry hash](/v2/glossary/entry#hash) function.
 
 The function takes an blob and a [hashing
-algorithm](/glossary/hashing-algorithm) and returns a [Hash
-datatype](/datatypes/hash).
+algorithm](/v2/glossary/hashing-algorithm) and returns a [Hash
+datatype](/v2/datatypes/hash).
 
 ```elm
 hash : Blob -> HashingAlgorithm -> Hash
@@ -202,7 +202,7 @@ equivalent is because the hash for `"abc"` is
 ```
 
 Notice that the first two bytes of the resulting hash, `0x12` and `0x20`, are
-prepended because the [hashing algorithm](/glossary/hashing-algorithm) used in
+prepended because the [hashing algorithm](/v2/glossary/hashing-algorithm) used in
 this example is SHA2-256.
 ***
 
@@ -258,7 +258,7 @@ form](https://en.wikipedia.org/wiki/Unicode_equivalence) as defined by the
 ### Validate
 
 A blob is valid if all its pairs are valid according to the
-[schema](/glossary/schema).
+[schema](/v2/glossary/schema).
 
 ```elm
 validate : Blob -> Result ValidationError Blob
@@ -299,10 +299,10 @@ _This section is non-normative._
 It is convention for most registers to provide a few common attributes with
 particular meaning. These are:
 
-* `start-date`: ([Datetime](/datatypes/datetime)) The date the element started to exist in the world.
-  This is not the same as the [Entry timestamp](/glossary/entry#timestamp).
-* `end-date`: ([Datetime](/datatypes/datetime)) The date the element stopped to exist in the world.
-* `name`: ([String](/datatypes/string)) The common name for the element.
+* `start-date`: ([Datetime](/v2/datatypes/datetime)) The date the element started to exist in the world.
+  This is not the same as the [Entry timestamp](/v2/glossary/entry#timestamp).
+* `end-date`: ([Datetime](/v2/datatypes/datetime)) The date the element stopped to exist in the world.
+* `name`: ([String](/v2/datatypes/string)) The common name for the element.
 
 ***
 **EXAMPLE:**

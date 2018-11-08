@@ -5,12 +5,12 @@ url: /v2/data-model/link
 version: v2
 ---
 
-The mechanism for linking two elements is the [CURIE datatype](/datatypes/curie).
-It allows linking between registers defined in the same [catalogue](/glossary/catalogue).
+The mechanism for linking two elements is the [CURIE datatype](/v2/datatypes/curie).
+It allows linking between registers defined in the same [catalogue](/v2/glossary/catalogue).
 
 The catalogue serves as the lookup table for prefix mappings. Given a CURIE
 prefix, the catalogue should return its base URL such that the user could
-perform [the expansion to a URL](/datatypes/curie#expansion-to-url).
+perform [the expansion to a URL](/v2/datatypes/curie#expansion-to-url).
 
 ***
 **EXAMPLE:**

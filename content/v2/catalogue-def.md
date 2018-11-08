@@ -11,7 +11,7 @@ catalogue MAY be a register itself to provide the same guarantees as the
 registers listed in it.
 
 The catalogue MUST provide a way to resolve a [CURIE
-expansion](/datatypes/curie#expansion-to-url) by keeping record of prefixes
+expansion](/v2/datatypes/curie#expansion-to-url) by keeping record of prefixes
 and base URL mappings.
 
 ***

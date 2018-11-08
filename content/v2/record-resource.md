@@ -6,13 +6,13 @@ version: v2
 ---
 
 ***
-NOTE: See the [Record](/glossary/record) definition to understand how this
-resource fits into the [data model](/data-model).
+NOTE: See the [Record](/v2/glossary/record) definition to understand how this
+resource fits into the [data model](/v2/data-model).
 ***
 
 ***
-NOTE: The reference implementation inlines the [blob](/glossary/blob) in the
-[Record resource](/rest-api/records) for convenience.
+NOTE: The reference implementation inlines the [blob](/v2/glossary/blob) in the
+[Record resource](/v2/rest-api/records) for convenience.
 ***
 
 ## Get a record
@@ -28,14 +28,14 @@ GET /records/{key}
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [ID](/glossary/key#id-type)|The record identifier.|
+|`key`| [ID](/v2/glossary/key#id-type)|The record identifier.|
 ***
 
 Gets a record by key.
 
 The column order is implementation dependent when the data is represented in a
-tabular format like [CSV](/rest-api#csv). For tree-like formats like
-[JSON](/rest-api#json), the object has to be treated as unordered.
+tabular format like [CSV](/v2/rest-api#csv). For tree-like formats like
+[JSON](/v2/rest-api#json), the object has to be treated as unordered.
 
 ***
 **EXAMPLE:**
@@ -83,11 +83,11 @@ GET /records
 
 |Name|Type|Description|
 |-|-|-|
-|`name`| [Name](/datatypes/name) |An attribute name part of the data. Required if `value` is present.|
-|`value`| [String](/datatypes/string) |The string representation of a valid value for the `name`.|
+|`name`| [Name](/v2/datatypes/name) |An attribute name part of the data. Required if `value` is present.|
+|`value`| [String](/v2/datatypes/string) |The string representation of a valid value for the `name`.|
 ***
 
-Gets the list of records. [This resource MAY be paginated](/rest-api#collection-pagination).
+Gets the list of records. [This resource MAY be paginated](/v2/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
@@ -175,11 +175,11 @@ GET /records/{key}/entries
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [ID](/glossary/key#id-type)|The record identifier.|
+|`key`| [ID](/v2/glossary/key#id-type)|The record identifier.|
 ***
 
-Get the list of [entries](/glossary/entry) with the record `key`. [This
-resource MAY be paginated](/rest-api#collection-pagination).
+Get the list of [entries](/v2/glossary/entry) with the record `key`. [This
+resource MAY be paginated](/v2/rest-api#collection-pagination).
 
 The order MUST be by ascending entry number.
 

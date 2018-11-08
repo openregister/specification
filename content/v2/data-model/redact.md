@@ -6,23 +6,23 @@ version: v2
 ---
 
 In rare situations data needs to be removed from a Register. For example, due
-to a GDPR request to be forgotten. The [blob hashing](/glossary/blob#hash)
+to a GDPR request to be forgotten. The [blob hashing](/v2/glossary/blob#hash)
 algorithm provides a mechanism to redact a value keeping the rest of values
 available and the Register integrity intact.
 
 ***
 **WARNING:**
 
-Data redaction does not apply to [entries](/glossary/entry) or any part of the
-Register other than [blobs](/glossary/blob). Otherwise, the
-[integrity](/data-model/audit) of the Register would be compromised.
+Data redaction does not apply to [entries](/v2/glossary/entry) or any part of the
+Register other than [blobs](/v2/glossary/blob). Otherwise, the
+[integrity](/v2/data-model/audit) of the Register would be compromised.
 ***
 
 In order to redact a value, you have to replace it with its hash according to
-the [blob hashing](/glossary/blob#hash) algorithm and prepend `**REDACTED**`
+the [blob hashing](/v2/glossary/blob#hash) algorithm and prepend `**REDACTED**`
 to the string hexadecimal representation.
 
-Check the [blob](/glossary/blob) section for more details.
+Check the [blob](/v2/glossary/blob) section for more details.
 
 There is no specific mechanism to redact an entire blob of data, to achieve
 that you MUST redact each value independently.

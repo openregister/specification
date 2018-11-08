@@ -13,7 +13,7 @@ compatibility and forwards compatibility.
 ## Backwards compitability
 
 Backwards compitability requires that once a [data
-attribute](/glossary/attribute) is introduced its semantics don't change.
+attribute](/v2/glossary/attribute) is introduced its semantics don't change.
 
 
 ## Forwards compatibility

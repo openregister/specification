@@ -1,16 +1,13 @@
 ---
-id: v2-changelog
+id: changelog
 title: Changelog
-url: /v2/changelog
-version: v2
+url: /changelog
 ---
 
 This document lists the relevant changes made to the Registers specification.
-The version strategy is not well defined yet so this document grups changes in
-“epochs”.
 
 
-## Epoch 2019
+## Version 2 (v2)
 
 This epoch has breaking changes to the API due to GDPR (i.e. redactability)
 and the indexes experiment being rolled back.
@@ -33,13 +30,13 @@ RFCs for Epoch 2019:
 |0013|[Multihash](https://github.com/openregister/registers-rfcs/blob/master/content/multihash/index.md)|Yes|
 |0016|[Blob resource](https://github.com/openregister/registers-rfcs/blob/master/content/blob-resource/index.md)|Yes|
 |0017|[Full item redaction](https://github.com/openregister/registers-rfcs/blob/master/content/full-item-redacted/index.md)|No|
-|0018|Context resource|No|
+|0018|[Context resource](https://github.com/openregister/registers-rfcs/blob/master/content/context-resource/index.md)|No|
 |0019|[Boolean datatype](https://github.com/openregister/registers-rfcs/blob/master/content/boolean-datatype/index.md)|No|
 |0020|[Blob normalisation](https://github.com/openregister/registers-rfcs/blob/master/content/blob-normalisation/index.md)|No|
 |0021|[Archive resource](https://github.com/openregister/registers-rfcs/blob/master/content/archive-resource/index.md)|Yes|
 |0022|Facets endpoint|Yes|
-|0023|Proof resource|Yes|
-|0024|Indexes removal|Yes|
+|0023|[Proof resource](https://github.com/openregister/registers-rfcs/blob/master/content/proof-resource/index.md)|Yes|
+|0024|[Indexes removal](https://github.com/openregister/registers-rfcs/blob/master/content/indexes-removal/index.md)|Yes|
 |0025|Snapshot resource|Yes|
 
 Note that “breaking change” means that to fully use this Epoch an action is
@@ -154,7 +151,7 @@ registers. For example, RFC0025 makes more clear what resources are high level
 
 * Everyone.
 
-## Epoch 2017
+## Version 1 (v1)
 
 This epoch has breaking changes to the API due to the addition of the indexes
 experiment.

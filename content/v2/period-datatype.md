@@ -24,7 +24,7 @@ start-duration = datetime "/" duration
 duration-end = duration "/" datetime
 ```
 
-Where `datetime` is a [datetime datatype](/datatypes/datetime) and `duration`
+Where `datetime` is a [datetime datatype](/v2/datatypes/datetime) and `duration`
 is a [duration](#duration).
 
 ***

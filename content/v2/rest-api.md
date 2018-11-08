@@ -12,14 +12,14 @@ level (“plumbing”) depending on the intention of the resource.
 
 Porcelain resources:
 
-* [Records](/rest-api/records): The latest data available.
-* [Context](/rest-api/context): Contextual information such as the schema.
+* [Records](/v2/rest-api/records): The latest data available.
+* [Context](/v2/rest-api/context): Contextual information such as the schema.
 
 Plumbing resources:
 
-* [Entries](/rest-api/entries): The entries of the [log](/glossary/log).
-* [Blobs](/rest-api/blobs): The raw blobs of data.
-* [Proofs](/rest-api/proofs): The proofs to [audit](/data-model/audit) the integrity of the register.
+* [Entries](/v2/rest-api/entries): The entries of the [log](/v2/glossary/log).
+* [Blobs](/v2/rest-api/blobs): The raw blobs of data.
+* [Proofs](/v2/rest-api/proofs): The proofs to [audit](/v2/data-model/audit) the integrity of the register.
 
 
 ## Pagination
@@ -74,11 +74,11 @@ implemented as well.
 
 All attribute values MUST be encoded as JSON strings. When JSON needs to be in
 a canonical form, use the procedure defined in the [hash
-datatype](/datatypes/hash).
+datatype](/v2/datatypes/hash).
 
 JSON can have missing attributes. These have the same semantics as an
 attribute with a `null` value or an empty string or empty array.  See the
-[forward compatibility section](/data-model/evolve#forwards-compatibility).
+[forward compatibility section](/v2/data-model/evolve#forwards-compatibility).
 
 ### CSV
 
@@ -88,14 +88,14 @@ attribute with a `null` value or an empty string or empty array.  See the
 
 CSV can have empty (blank) values. These have the same semantics as if
 the attributes were missing.
-See the [forward compatibility section](/data-model/evolve#forwards-compatibility).
+See the [forward compatibility section](/v2/data-model/evolve#forwards-compatibility).
 
 #### List of values
 
 Generic CSV parsers typically treat all values as strings ([RFC4180](@rfc4180)).
 This specification allows to express multiple values of the same type when the
-[attribute](/glossary/attribute) is of [cardinality
-n](/datatypes#cardinality). The syntax extension for CSV to allow this is:
+[attribute](/v2/glossary/attribute) is of [cardinality
+n](/v2/datatypes#cardinality). The syntax extension for CSV to allow this is:
 
 ```abnf
 cell = value [";" value]

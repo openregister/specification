@@ -7,15 +7,15 @@ version: v2
 ---
 
 ***
-NOTE: See the [Audit section](/data-model/audit) to learn what these
+NOTE: See the [Audit section](/v2/data-model/audit) to learn what these
 resources are for.
 ***
 
 ## Get the register proof
 
 ***
-NOTE: See the [Register proof](/glossary/digital-proof#register-proof) definition to understand how
-this resource fits into the [data model](/data-model).
+NOTE: See the [Register proof](/v2/glossary/digital-proof#register-proof) definition to understand how
+this resource fits into the [data model](/v2/data-model).
 ***
 
 ***
@@ -29,8 +29,8 @@ GET /proofs/register
 
 |Name|Type|Description|
 |-|-|-|
-|`total-entries`| [Integer](/datatypes/integer)|The size of the log when the proof was issued.|
-|`root-hash`| [Hash](/datatypes/hash)|The root hash for the log when the proof was issued.|
+|`total-entries`| [Integer](/v2/datatypes/integer)|The size of the log when the proof was issued.|
+|`root-hash`| [Hash](/v2/datatypes/hash)|The root hash for the log when the proof was issued.|
 ***
 
 Gets the register proof for the given type of proof.
@@ -62,8 +62,8 @@ Content-Type: application/json
 ## Get a consistency proof
 
 ***
-NOTE: See the [consistency proof](/glossary/digital-proof#consistency-proof) definition to
-understand how this resource fits into the [data model](/data-model).
+NOTE: See the [consistency proof](/v2/glossary/digital-proof#consistency-proof) definition to
+understand how this resource fits into the [data model](/v2/data-model).
 ***
 
 ***
@@ -77,14 +77,14 @@ GET /proofs/consistency/{small-log-size}/{large-log-size}
 
 |Name|Type|Description|
 |-|-|-|
-|`small-log-size`| [Integer](/datatypes/integer)|The size of the smaller log.|
-|`large-log-size`| [Integer](/datatypes/integer)|The size of the larger log.|
+|`small-log-size`| [Integer](/v2/datatypes/integer)|The size of the smaller log.|
+|`large-log-size`| [Integer](/v2/datatypes/integer)|The size of the larger log.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`audit-path`| List of [Hash](/datatypes/hash)|The list of node hashes.|
+|`audit-path`| List of [Hash](/v2/datatypes/hash)|The list of node hashes.|
 ***
 
 Gets the consistency proof for the given log sizes and proof type.
@@ -123,8 +123,8 @@ Content-Type: application/json
 ## Get an entry proof
 
 ***
-NOTE: See the [entry proof](/glossary/digital-proof#entry-proof) definition to understand
-how this resource fits into the [data model](/data-model).
+NOTE: See the [entry proof](/v2/glossary/digital-proof#entry-proof) definition to understand
+how this resource fits into the [data model](/v2/data-model).
 ***
 
 ***
@@ -138,14 +138,14 @@ GET /proofs/entries/{entry-number}/{log-size}
 
 |Name|Type|Description|
 |-|-|-|
-|`entry-number`| [Integer](/datatypes/integer)|The entry number to proof.|
-|`log-size`| [Integer](/datatypes/integer)|The size of the log.|
+|`entry-number`| [Integer](/v2/datatypes/integer)|The entry number to proof.|
+|`log-size`| [Integer](/v2/datatypes/integer)|The size of the log.|
 
 ### Response attributes
 
 |Name|Type|Description|
 |-|-|-|
-|`audit-path`| List of [Hash](/datatypes/hash)|The list of node hashes.|
+|`audit-path`| List of [Hash](/v2/datatypes/hash)|The list of node hashes.|
 ***
 
 Gets the entry proof for the given entry, log size and proof type.

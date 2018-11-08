@@ -5,8 +5,8 @@ url: /v2/glossary/record
 version: v2
 ---
 
-A **record** is an [entry](/glossary/entry), element of the latest
-[snapshot](/glossary#snapshot).
+A **record** is an [entry](/v2/glossary/entry), element of the latest
+[snapshot](/v2/glossary#snapshot).
 
 ```elm
 record : ID -> Snapshot -> Maybe Entry
@@ -15,7 +15,7 @@ record : ID -> Snapshot -> Maybe Entry
 ![](./data-model/data-model-record-2.svg)
 
 
-A record MAY also be computed from the [log](/glossary#log) by a similar
+A record MAY also be computed from the [log](/v2/glossary#log) by a similar
 method of computing a snapshot.
 
 ```elm
@@ -39,8 +39,8 @@ exist in the Register.
 ![](./data-model/data-model-record-1.svg)
 
 
-Similarly, you can filter the [log](/glossary/log) to get the
-[trail](/glossary/trail) of changes for an element and from the trail, get the
+Similarly, you can filter the [log](/v2/glossary/log) to get the
+[trail](/v2/glossary/trail) of changes for an element and from the trail, get the
 record:
 
 ```elm

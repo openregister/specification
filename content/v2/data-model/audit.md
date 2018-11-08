@@ -15,7 +15,7 @@ was genuinely created by the Register custodian of the Register. In other
 words, it helps auditing if the Register has been tampered with.
 
 ***
-NOTE: You may read the [suggested readings](/introduction#suggested-readings)
+NOTE: You may read the [suggested readings](/v2/introduction#suggested-readings)
 to acquaint yourself with the topic.
 ***
 
@@ -67,7 +67,7 @@ audit_path (6, "Z") log == [j, e]
 
 ## Digital proofs
 
-There are a few types of [digital proofs](/glossary/digital-proof), each one
+There are a few types of [digital proofs](/v2/glossary/digital-proof), each one
 of them supports proving a different trait on a Register. The “Register proof”
 to [verify the register](#register-verification), the “Entry proof” to [verify
 an entry in the log](#entry-verification) and the “Consistency proof” to [verify
@@ -86,7 +86,7 @@ exactly the same as the original one.
 A client MUST be able to do the following:
 
 1. Get a copy of the Register (i.e. entries, blobs and register proof).
-2. Compute the [root hash](/glossary/digital-proof#root-hash) for the log of entries.
+2. Compute the [root hash](/v2/glossary/digital-proof#root-hash) for the log of entries.
 3. Sign the root hash with the Register public key.
 4. Verify the root hash is the same as the root hash part of the Register
    proof.
@@ -106,7 +106,7 @@ A client MUST be able to do the following:
 1. Given a Register of size _S_ and a root hash _R_ for a register of size _L_.
 2. [Verify the original register](#register-verification) has the root hash _R_.
 3. Get the Consistency proof (from _S_ to _L_) from the original Register.
-4. Compute the [root hash](/glossary/digital-proof#root-hash) using the [audit path](/glossary/digital-proof#audit-path)
+4. Compute the [root hash](/v2/glossary/digital-proof#root-hash) using the [audit path](/v2/glossary/digital-proof#audit-path)
    using the Register _S_ and the audit path from the Consistency proof.
 5. Verify the resulting root hash is the same as _R_.
 
@@ -118,10 +118,10 @@ the original Register.
 
 A client MUST be able to do the following:
 
-1. Given a copy of an [entry](/glossary/entry),
+1. Given a copy of an [entry](/v2/glossary/entry),
 2. and the log size (total number of entries).
-3. Get the [Entry proof](/glossary/digital-proof#entry-proof) for the log size.
-4. Compute the root hash from the Entry and the [audit path](/glossary/digital-proof#audit-path).
-5. Verify the [root hash](/glossary/digital-proof#root-hash) is the same as the root hash found in the Entry proof.
+3. Get the [Entry proof](/v2/glossary/digital-proof#entry-proof) for the log size.
+4. Compute the root hash from the Entry and the [audit path](/v2/glossary/digital-proof#audit-path).
+5. Verify the [root hash](/v2/glossary/digital-proof#root-hash) is the same as the root hash found in the Entry proof.
 6. Verify the signed root hash is the same as the [signed root
-   hash](/glossary/digital-proof#signed-tree-head) found in the Entry proof.
+   hash](/v2/glossary/digital-proof#signed-tree-head) found in the Entry proof.

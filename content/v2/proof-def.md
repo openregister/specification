@@ -7,7 +7,7 @@ version: v2
 ---
 
 ***
-NOTE: See the [Audit section](/data-model/audit) to learn more about
+NOTE: See the [Audit section](/v2/data-model/audit) to learn more about
 digital proofs.
 ***
 
@@ -34,7 +34,7 @@ verify the consistency between the two.
 ## Entry proof
 
 An **entry proof** is the information required to prove the integrity of a single
-entry within a register of a given [log](/glossary/log) size, given a [Register
+entry within a register of a given [log](/v2/glossary/log) size, given a [Register
 proof](#register-proof).
 
 An entry proof does not require a client to get the entire register to verify

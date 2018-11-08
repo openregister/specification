@@ -5,7 +5,7 @@ url: /v2/datatypes/text
 version: v2
 ---
 
-The **text** datatype is a [String](/datatypes/string) formatted according to
+The **text** datatype is a [String](/v2/datatypes/string) formatted according to
 [Markdown](@markdown).
 
 ***

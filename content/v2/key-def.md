@@ -6,9 +6,9 @@ version: v2
 ---
 
 A **key** is the identifier for an element in the dataset and thus, it MUST be
-unique within a register. Each [entry](/glossary/entry#key) defines what is
-the element affected through their key. Also, a [record](/glossary/record) is
-identified by the key within the [snapshot](/glossary/snapshot).
+unique within a register. Each [entry](/v2/glossary/entry#key) defines what is
+the element affected through their key. Also, a [record](/v2/glossary/record) is
+identified by the key within the [snapshot](/v2/glossary/snapshot).
 
 A key MUST be of [type ID](#id-type).
 
@@ -30,7 +30,7 @@ Entry
   }
 ```
 
-And, given that the [blob](/glossary/blob) referenced from the record is:
+And, given that the [blob](/v2/glossary/blob) referenced from the record is:
 
 ```elm
 Blob
@@ -56,7 +56,7 @@ Country
 
 ## ID type
 
-An `ID` type is a subset of [String](/datatypes/string) as follows:
+An `ID` type is a subset of [String](/v2/datatypes/string) as follows:
 
 ```abnf
 id = (ALPHA / DIGIT) *(ALPHA / DIGIT / restricted)
@@ -69,7 +69,7 @@ Where `restricted` MUST NOT appear consecutively (e.g `a____b`).
 
 ***
 **NOTE:** The `/` (U+002F) character is discouraged as it needs to be encoded
-as `%2F` in [CURIEs](/datatype/curie), one of the main use cases keys. It is
+as `%2F` in [CURIEs](/v2/datatype/curie), one of the main use cases keys. It is
 allowed due to legacy reasons.
 ***
 

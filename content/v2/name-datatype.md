@@ -5,7 +5,7 @@ url: /v2/datatypes/name
 version: v2
 ---
 
-The **name** datatype is a [String](/datatypes/string) restricted to lower
+The **name** datatype is a [String](/v2/datatypes/string) restricted to lower
 case ASCII letters, digits and hyphens with the following pattern:
 
 ```abnf

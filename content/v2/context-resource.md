@@ -6,8 +6,8 @@ version: v2
 ---
 
 ***
-NOTE: See the [Context](/glossary/context) definition to understand how this
-resource fits into the [data model](/data-model).
+NOTE: See the [Context](/v2/glossary/context) definition to understand how this
+resource fits into the [data model](/v2/data-model).
 ***
 
 ## Get the context
@@ -23,52 +23,52 @@ GET /context
 
 |Name|Type|
 |-|-|
-|`id`| [Name](/datatypes/name) |
-|`copyright`| [String](/datatypes/string) |
-|`custodian`| Optional [String](/datatypes/string) |
-|`description`| Optional [String](/datatypes/string) |
+|`id`| [Name](/v2/datatypes/name) |
+|`copyright`| [String](/v2/datatypes/string) |
+|`custodian`| Optional [String](/v2/datatypes/string) |
+|`description`| Optional [String](/v2/datatypes/string) |
 |`hashing-algorithm`| [HashingAlgorithm](#hashing-algorithm-attributes) |
-|`licence`| [String](/datatypes/string) |
-|`root-hash`| [Hash](/datatypes/hash) |
+|`licence`| [String](/v2/datatypes/string) |
+|`root-hash`| [Hash](/v2/datatypes/hash) |
 |`schema`| List of [attributes](#attribute-attributes) |
 |`statistics`| [Statistics](#statistics-attributes) |
 |`status`| [Status](#status-attributes) |
-|`title`| Optional [String](/datatypes/string) |
+|`title`| Optional [String](/v2/datatypes/string) |
 
 #### Hashing algorithm attributes
 
 |Name|Type|
 |-|-|
-|`digest-length`| [Integer](/datatypes/integer) |
-|`function-type`| [Integer](/datatypes/integer) |
-|`codec`| [String](/datatypes/string) |
+|`digest-length`| [Integer](/v2/datatypes/integer) |
+|`function-type`| [Integer](/v2/datatypes/integer) |
+|`codec`| [String](/v2/datatypes/string) |
 
 #### Attribute attributes
 
 |Name|Type|
 |-|-|
-|`id`| [Name](/datatypes/name) |
-|`datatype`| [Datatype](/datatypes#primitives) |
-|`cardinality`| [Cardinality](/datatypes#cardinality) |
-|`title`| Optional [String](/datatypes/string) |
-|`description`| Optional [String](/datatypes/string) |
+|`id`| [Name](/v2/datatypes/name) |
+|`datatype`| [Datatype](/v2/datatypes#primitives) |
+|`cardinality`| [Cardinality](/v2/datatypes#cardinality) |
+|`title`| Optional [String](/v2/datatypes/string) |
+|`description`| Optional [String](/v2/datatypes/string) |
 
 #### Statistics attributes
 
 |Name|Type|
 |-|-|
-|`total-entries`| [Integer](/datatypes/integer) |
-|`total-blobs`| [Integer](/datatypes/integer) |
-|`total-records`| [Integer](/datatypes/integer) |
+|`total-entries`| [Integer](/v2/datatypes/integer) |
+|`total-blobs`| [Integer](/v2/datatypes/integer) |
+|`total-records`| [Integer](/v2/datatypes/integer) |
 
 #### Status attributes
 
 |Name|Type|
 |-|-|
-|`start-date`| [Datetime](/datatypes/datetime) |
-|`end-date`| Optional [Datetime](/datatypes/datetime) |
-|`replacement`| Optional [Url](/datatypes/url) |
-|`reason`| Optional [String](/datatypes/string) |
+|`start-date`| [Datetime](/v2/datatypes/datetime) |
+|`end-date`| Optional [Datetime](/v2/datatypes/datetime) |
+|`replacement`| Optional [Url](/v2/datatypes/url) |
+|`reason`| Optional [String](/v2/datatypes/string) |
 
 ***
 

@@ -6,7 +6,7 @@ version: v2
 ---
 
 The **hash** datatype represents the digest result of a [hashing
-algorithm](/glossary/hashing-algorithm).
+algorithm](/v2/glossary/hashing-algorithm).
 
 ```elm
 type Hash =
@@ -46,8 +46,8 @@ is `0x20` the final string representation is:
 ***
 **NOTE:**
 
-The algorithm for [hashing blobs](/glossary/blob#hash) and the one for [hashing
-entries](/glossary/entry#hash) describe in detail how to apply the hashing
+The algorithm for [hashing blobs](/v2/glossary/blob#hash) and the one for [hashing
+entries](/v2/glossary/entry#hash) describe in detail how to apply the hashing
 algorithm in each case.
 ***
 

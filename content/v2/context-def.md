@@ -27,26 +27,26 @@ type Context =
 
 ### Id
 
-* Type: [Name](/datatypes/name)
+* Type: [Name](/v2/datatypes/name)
 
 The register identifier.
 
 ### Copyright
 
-* Type: [String](/datatypes/string)
+* Type: [String](/v2/datatypes/string)
 
 The register copyright. E.g. `© Crown copyright`. A register SHOULD have
 an explicit copyright.
 
 ### Custodian
 
-* Type: Optional [String](/datatypes/string)
+* Type: Optional [String](/v2/datatypes/string)
 
 The data owner. A register SHOULD have an explicit owner.
 
 ### Description
 
-* Type: Optional [String](/datatypes/string)
+* Type: Optional [String](/v2/datatypes/string)
 
 The human readable description of the register.
 
@@ -54,24 +54,24 @@ The human readable description of the register.
 
 * Type: HashingAlgorithm
 
-The [hashing algorithm](/glossary/hashing-algorithm) for the register.
+The [hashing algorithm](/v2/glossary/hashing-algorithm) for the register.
 
 ### Licence
 
-* Type: Optional [String](/datatypes/string)
+* Type: Optional [String](/v2/datatypes/string)
 
 The licence the data is released under. A register SHOULD have an explicit
 licence to ensure users know under what terms they can use the data.
 
 ### Root hash
 
-* Type: [Hash](/datatypes/hash)
+* Type: [Hash](/v2/datatypes/hash)
 
-The [root hash](/glossary/digital-proof#root-hash) for the register.
+The [root hash](/v2/glossary/digital-proof#root-hash) for the register.
 
 ### Schema
 
-* Type: [Schema](/glosasry/schema)
+* Type: [Schema](/v2/glosasry/schema)
 
 The set of attributes that define the data allowed in the register.
 
@@ -107,6 +107,6 @@ type Status
 
 ### Title
 
-* Type: Optional [String](/datatypes/string)
+* Type: Optional [String](/v2/datatypes/string)
 
 The human readable name of the register.

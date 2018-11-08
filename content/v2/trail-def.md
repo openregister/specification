@@ -5,7 +5,7 @@ url: /v2/glossary/trail
 version: v2
 ---
 
-A **trail** is the list of [entries](/glossary/entry) for a given key. It
+A **trail** is the list of [entries](/v2/glossary/entry) for a given key. It
 represents the history of changes for a given key.
 
 ```elm
@@ -14,7 +14,7 @@ type Trail =
 ```
 
 A trail can be seen as a function `sieve` that filters the given
-[log](/glossary/log):
+[log](/v2/glossary/log):
 
 ```elm
 sieve : ID -> Log -> Maybe Trail
@@ -34,8 +34,8 @@ After all entries in the log have been inspected, the latest one stored in
 _result_ is the record. If no entries were found for _key_, the trail doesn't
 exist in the Register.
 
-Similar to the [snapshot](/glossary/snapshot), there is a function to get the
-[record](/glossary/record) from the **trail**:
+Similar to the [snapshot](/v2/glossary/snapshot), there is a function to get the
+[record](/v2/glossary/record) from the **trail**:
 
 ```elm
 record : Trail -> Entry

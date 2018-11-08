@@ -10,7 +10,7 @@ characters. It MUST be encoded as [UTF-8](@rfc3629).
 
 The empty string SHOULD NOT be allowed as a valid string to avoid any ambiguous
 meaning when serialising or deserialising from less-expressive formats like
-[CSV](/rest-api#serialisation).
+[CSV](/v2/rest-api#serialisation).
 
 It is advised to reject as well any string with no printable characters.
 

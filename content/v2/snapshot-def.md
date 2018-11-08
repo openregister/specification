@@ -6,7 +6,7 @@ version: v2
 ---
 
 A **snapshot** is the dataset resulting from walking through the
-[log](/glossary/log) start to end and taking the latest data for each
+[log](/v2/glossary/log) start to end and taking the latest data for each
 element.
 
 ```elm
@@ -16,7 +16,7 @@ type Snapshot =
 
 ***
 NOTE: When the snapshot is for the latest change the elements are called
-[records](/glossary/record).
+[records](/v2/glossary/record).
 ***
 
 A snapshot can be seen as a function `collect` that derives the snapshot from

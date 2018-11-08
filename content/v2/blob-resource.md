@@ -6,8 +6,8 @@ version: v2
 ---
 
 ***
-NOTE: See the [Blob](/glossary/blob) definition to understand how this
-resource fits into the [data model](/data-model).
+NOTE: See the [Blob](/v2/glossary/blob) definition to understand how this
+resource fits into the [data model](/v2/data-model).
 ***
 
 
@@ -24,17 +24,17 @@ GET /blobs/{hash}
 
 |Name|Type|Description|
 |-|-|-|
-|`hash`|[Hash](/datatypes/hash)| The [Blob](/glossary/blob) identifier.|
+|`hash`|[Hash](/v2/datatypes/hash)| The [Blob](/v2/glossary/blob) identifier.|
 ***
 
 Gets an blob by hash.
 
 The column order is implementation dependent when the data is represented in a
-tabular format like [CSV](/rest-api#csv). For tree-like formats like
-[JSON](/rest-api#json), the object has to be treated as unordered.
+tabular format like [CSV](/v2/rest-api#csv). For tree-like formats like
+[JSON](/v2/rest-api#json), the object has to be treated as unordered.
 
 To determine the set of attributes and their value types the user SHOULD use
-the schema from the [Context resource](/rest-api/context).
+the schema from the [Context resource](/v2/rest-api/context).
 
 ***
 NOTE: The set of attributes MAY be found in the catalogue as well. For example,
@@ -79,7 +79,7 @@ GET /blobs
 ```
 ***
 
-Gets the list of blobs. [This resource MAY be paginated](/rest-api#collection-pagination).
+Gets the list of blobs. [This resource MAY be paginated](/v2/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
