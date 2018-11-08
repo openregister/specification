@@ -40,7 +40,7 @@ const Main = ({data, pageContext}) => {
           <dt>Versions:</dt>
           <dd>
             <ul>
-              <li><a href="/v1/introduction">Version 2</a> (<a href="/v2/changelog">Changelog</a>)</li>
+              <li><a href="/v2/introduction">Version 2</a> (<a href="/v2/changelog">Changelog</a>)</li>
               <li><a href="/v1/introduction">Version 1</a> (<a href="/v1/changelog">Changelog</a>)</li>
             </ul>
           </dd>
