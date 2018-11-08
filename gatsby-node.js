@@ -21,7 +21,8 @@ exports.onCreateNode = ({node, getNode, actions}) => {
 exports.createPages = ({graphql, actions}) => {
   const {createPage, createRedirect} = actions;
 
-  createRedirect({ fromPath: '/v2', toPath: '/v2/introduction', isPermanent: true, redirectInBrowser: true });
+  createRedirect({ fromPath: '/v2', toPath: '/v2/introduction', isPermanent: true });
+  createRedirect({ fromPath: '/v1', toPath: '/v1/introduction', isPermanent: true });
 
   const specSections = graphql(`
     {
