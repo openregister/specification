@@ -5,6 +5,7 @@ import {css} from 'react-emotion';
 import Layout from '../components/layout';
 import ToC from '../components/toc';
 import {Helmet} from 'react-helmet';
+import {extendToc} from '../utils/toc';
 
 const Editor = ({name, organisation}) => {
   return (
@@ -17,25 +18,11 @@ Editor.propTypes = {
   organisation: PropTypes.string.isRequired,
 };
 
-const Main = ({data}) => {
+const Main = ({data, pageContext}) => {
   const {publish_date} = data.site.siteMetadata;
+  const {toc} = pageContext;
+  const tree = extendToc(toc, data.sections.edges);
   const {title, issue_tracker, version, rfc_tracker, editors, former_editors, copyright, license} = data.core;
-  const tree = [
-    {
-      id: 'v1',
-      items: null,
-      title: 'Version 1',
-      url: '/v1/introduction',
-      status: null,
-    },
-    {
-      id: 'v2',
-      items: null,
-      title: 'Version 2 (latest)',
-      url: '/v2/introduction',
-      status: null,
-    }
-  ];
 
   return (
     <Layout>
@@ -44,12 +31,19 @@ const Main = ({data}) => {
         <title>{title}</title>
         <link rel="canonical" href="/" />
       </Helmet>
-      <ToC tree={tree} />
+      <ToC tree={tree} version={version} />
       <article className={articleStyle}>
         <h1>{title}</h1>
         <dl>
-          <dt>Version:</dt>
+          <dt>Current version:</dt>
           <dd>{version}</dd>
+          <dt>Versions:</dt>
+          <dd>
+            <ul>
+              <li><a href="/v1/introduction">Version 2</a> (<a href="/v2/changelog">Changelog</a>)</li>
+              <li><a href="/v1/introduction">Version 1</a> (<a href="/v1/changelog">Changelog</a>)</li>
+            </ul>
+          </dd>
           <dt>Latest update:</dt>
           <dd>{publish_date.substr(0, 10)}</dd>
           <dt>Issue tracker:</dt>
@@ -80,7 +74,8 @@ const Main = ({data}) => {
 };
 
 Main.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object
 };
 
 export const query = graphql`
@@ -112,6 +107,19 @@ export const query = graphql`
       editors {
         name
         organisation
+      }
+    }
+
+    sections: allMarkdownRemark(filter: {frontmatter: { version: { eq: "v2" }}}) {
+      edges {
+        node {
+          frontmatter {
+            id
+            title
+            url
+            status
+          }
+        }
       }
     }
   }

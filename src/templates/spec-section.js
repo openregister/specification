@@ -192,7 +192,7 @@ const SpecSection = ({data, pageContext}) => {
         <link rel="canonical" href={section.frontmatter.url} />
       </Helmet>
 
-      <ToC tree={tree} target={section.frontmatter.id} />
+      <ToC tree={tree} target={section.frontmatter.id} version={section.frontmatter.version} />
 
       <article className={articleStyle}>
         {

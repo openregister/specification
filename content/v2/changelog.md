@@ -1,22 +1,18 @@
 ---
-id: changelog
+id: v2-changelog
 title: Changelog
-url: /changelog
+url: /v2/changelog
+version: v2
 ---
 
-This document lists the relevant changes made to the Registers specification.
-
-
-## Version 2 (v2)
-
-This epoch has breaking changes to the API due to GDPR (i.e. redactability)
+This version has breaking changes to the API due to GDPR (i.e. redactability)
 and the indexes experiment being rolled back.
 
-This is the first Epoch that has driven changes using the RFC (Request For
+This is the first version that has driven changes using the RFC (Request For
 Comments) flow. See
 [RFC0000](https://github.com/openregister/registers-rfcs/blob/master/content/rfc-process/index.md).
 
-RFCs for Epoch 2019:
+RFCs for version 2:
 
 |ID|Name|Breaking change|
 |-|-|-|
@@ -39,7 +35,7 @@ RFCs for Epoch 2019:
 |0024|[Indexes removal](https://github.com/openregister/registers-rfcs/blob/master/content/indexes-removal/index.md)|Yes|
 |0025|Snapshot resource|Yes|
 
-Note that “breaking change” means that to fully use this Epoch an action is
+Note that “breaking change” means that to fully use this version an action is
 required by the user consuming registers. The version strategy offers ways to
 make the transition non-disruptive.
 
@@ -132,7 +128,7 @@ that play well with CURIEs.
 
 Addressed by: RFC0024
 
-Epoch 2017 introduced an experiment aiming to generalise the way registers
+Version 1 introduced an experiment aiming to generalise the way registers
 were queried. After more than a year with the experiment in place we concluded
 that the flexibility wasn't worth it due the increase of complexity. We may
 revisit this decision in the future if we find a more balanced approach.
@@ -150,17 +146,3 @@ registers. For example, RFC0025 makes more clear what resources are high level
 #### Who is affected?
 
 * Everyone.
-
-## Version 1 (v1)
-
-This epoch has breaking changes to the API due to the addition of the indexes
-experiment.
-
-ADRs for Epoch 2017:
-
-|ID|Name|Breaking change|
-|-|-|-|
-|007|[Indexes experiment](https://github.com/openregister/openregister-java/blob/master/doc/arch/adr-007-read-api-changes.md)|Yes|
-
-
-TODO

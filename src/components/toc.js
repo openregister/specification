@@ -81,13 +81,17 @@ const navStyle = css`
       color: black;
       text-decoration: none;
     }
+
+    small {
+      font-size: 18px;
+    }
   }
 `;
 
-const ToC = ({tree, target}) => {
+const ToC = ({tree, target, version}) => {
   return (
     <div className={navStyle} tabIndex="0">
-      <h1><Link to={'/'}>Registers Specification</Link></h1>
+      <h1><Link to={'/'}>Registers Specification</Link> <small>({version})</small></h1>
       <nav id="toc">
         <List items={tree} target={target} />
       </nav>
@@ -97,7 +101,8 @@ const ToC = ({tree, target}) => {
 
 ToC.propTypes = {
   tree: PropTypes.array.isRequired,
-  target: PropTypes.string
+  target: PropTypes.string,
+  version: PropTypes.string
 };
 
 export default ToC;

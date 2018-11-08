@@ -1,4 +1,5 @@
 - id: v2-introduction
+- id: v2-changelog
 - id: v2-data-model
   items:
     - id: v2-version

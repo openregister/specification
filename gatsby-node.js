@@ -18,6 +18,19 @@ exports.onCreateNode = ({node, getNode, actions}) => {
 };
 
 
+exports.onCreatePage = ({ page }) => {
+  return new Promise(resolve => {
+    if (page.path == '/') {
+      page.context = {
+        toc: yaml.safeLoad(fs.readFileSync(path.resolve('./content/v2/nav.yaml'), 'utf8'))
+      };
+    }
+
+    resolve();
+  });
+};
+
+
 exports.createPages = ({graphql, actions}) => {
   const {createPage, createRedirect} = actions;
 
