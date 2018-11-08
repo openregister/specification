@@ -1,7 +1,7 @@
 ---
-id: key-def
+id: v2-key-def
 title: Key
-url: /glossary/key
+url: /v2/glossary/key
 version: v2
 ---
 

@@ -1,7 +1,7 @@
 ---
-id: context-def
+id: v2-context-def
 title: Context
-url: /glossary/context
+url: /v2/glossary/context
 version: v2
 ---
 

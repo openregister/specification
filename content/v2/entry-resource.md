@@ -1,7 +1,7 @@
 ---
-id: entry-resource
+id: v2-entry-resource
 title: Entries
-url: /rest-api/entries
+url: /v2/rest-api/entries
 version: v2
 ---
 

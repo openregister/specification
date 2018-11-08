@@ -1,7 +1,7 @@
 ---
-id: introduction
+id: v2-introduction
 title: Introduction
-url: /introduction
+url: /v2/introduction
 version: v2
 ---
 

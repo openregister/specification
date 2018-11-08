@@ -1,7 +1,7 @@
 ---
-id: name-datatype
+id: v2-name-datatype
 title: Name
-url: /datatypes/name
+url: /v2/datatypes/name
 version: v2
 ---
 

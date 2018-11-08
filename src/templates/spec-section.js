@@ -9,6 +9,7 @@ import ToC from '../components/toc';
 import {extendToc} from '../utils/toc';
 import Status from '../components/status';
 
+
 const copyrightStyle = css`
   margin-top: 64px;
   padding-top: 8px;
@@ -176,9 +177,9 @@ SectionToC.propTypes = {
   tree: PropTypes.array.isRequired
 };
 
-const SpecSection = ({data}) => {
+const SpecSection = ({data, pageContext}) => {
   const section = data.content;
-  const toc = data.toc.edges.map(({node}) => node);
+  const { toc } = pageContext;
   const tree = extendToc(toc, data.sections.edges);
   const headings = section.headings.filter(el => el.depth <= 2);
   const {title, copyright, license, version} = data.core;
@@ -216,12 +217,13 @@ const SpecSection = ({data}) => {
 };
 
 SpecSection.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object
 };
 
 
 export const query = graphql`
-  query SpecSectionQuery($id: String!) {
+  query SpecSectionQuery($id: String!, $version: String!) {
     core: coreToml {
       title
       version
@@ -236,18 +238,7 @@ export const query = graphql`
 
     }
 
-    toc: allNavV2Yaml {
-      edges {
-        node {
-          id
-          items {
-            id
-          }
-        }
-      }
-    }
-
-    sections: allMarkdownRemark {
+    sections: allMarkdownRemark(filter: {frontmatter: { version: { eq: $version }}}) {
       edges {
         node {
           frontmatter {

@@ -1,7 +1,7 @@
 ---
-id: trail-def
+id: v2-trail-def
 title: Trail
-url: /glossary/trail
+url: /v2/glossary/trail
 version: v2
 ---
 

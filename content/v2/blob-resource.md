@@ -1,7 +1,7 @@
 ---
-id: blob-resource
+id: v2-blob-resource
 title: Blobs
-url: /rest-api/blobs
+url: /v2/rest-api/blobs
 version: v2
 ---
 

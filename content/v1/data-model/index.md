@@ -1,7 +1,7 @@
 ---
-id: data-model
+id: v1-data-model
 title: Data model
-url: /data-model
+url: /v1/data-model
 version: v1
 ---
 

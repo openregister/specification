@@ -1,7 +1,7 @@
 ---
-id: redact
+id: v2-redact
 title: Redact
-url: /data-model/redact
+url: /v2/data-model/redact
 version: v2
 ---
 

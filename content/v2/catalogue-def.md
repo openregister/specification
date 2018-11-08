@@ -1,7 +1,7 @@
 ---
-id: catalogue-def
+id: v2-catalogue-def
 title: Catalogue
-url: /glossary/catalogue
+url: /v2/glossary/catalogue
 status: exp
 version: v2
 ---

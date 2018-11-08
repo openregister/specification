@@ -1,7 +1,7 @@
 ---
-id: polygon-datatype
+id: v2-polygon-datatype
 title: Polygon
-url: /datatypes/polygon
+url: /v2/datatypes/polygon
 status: wip
 version: v2
 ---

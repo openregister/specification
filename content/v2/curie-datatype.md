@@ -1,7 +1,7 @@
 ---
-id: curie-datatype
+id: v2-curie-datatype
 title: CURIE
-url: /datatypes/curie
+url: /v2/datatypes/curie
 version: v2
 ---
 

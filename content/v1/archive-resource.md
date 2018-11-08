@@ -1,7 +1,7 @@
 ---
-id: archive-resource
+id: v1-archive-resource
 title: Archive
-url: /rest-api/archive
+url: /v1/rest-api/archive
 version: v1
 ---
 

@@ -4,7 +4,6 @@ import {graphql} from 'gatsby';
 import {css} from 'react-emotion';
 import Layout from '../components/layout';
 import ToC from '../components/toc';
-import {extendToc} from '../utils/toc';
 import {Helmet} from 'react-helmet';
 
 const Editor = ({name, organisation}) => {
@@ -19,10 +18,24 @@ Editor.propTypes = {
 };
 
 const Main = ({data}) => {
-  const {version, publish_date} = data.site.siteMetadata;
-  const {title, issue_tracker, rfc_tracker, editors, former_editors, copyright, license} = data.core;
-  const toc = data.toc.edges.map(({node}) => node);
-  const tree = extendToc(toc, data.sections.edges);
+  const {publish_date} = data.site.siteMetadata;
+  const {title, issue_tracker, version, rfc_tracker, editors, former_editors, copyright, license} = data.core;
+  const tree = [
+    {
+      id: 'v1',
+      items: null,
+      title: 'Version 1',
+      url: '/v1/introduction',
+      status: null,
+    },
+    {
+      id: 'v2',
+      items: null,
+      title: 'Version 2 (latest)',
+      url: '/v2/introduction',
+      status: null,
+    }
+  ];
 
   return (
     <Layout>
@@ -72,16 +85,6 @@ Main.propTypes = {
 
 export const query = graphql`
   query IndexQuery {
-    toc: allNavV2Yaml {
-      edges {
-        node {
-          id
-          items {
-            id
-          }
-        }
-      }
-    }
     site {
       siteMetadata {
         version
@@ -93,6 +96,7 @@ export const query = graphql`
       title
       issue_tracker
       rfc_tracker
+      version
       former_editors {
         name
         organisation
@@ -108,19 +112,6 @@ export const query = graphql`
       editors {
         name
         organisation
-      }
-    }
-
-    sections: allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            id
-            title
-            url
-            status
-          }
-        }
       }
     }
   }

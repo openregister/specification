@@ -1,8 +1,8 @@
 ---
-id: version
+id: v2-version
 title: Version
-url: /data-model/version
-version: "v2"
+url: /v2/data-model/version
+version: v2
 ---
 
 A **version** of the dataset is a [snapshot](/glossary/snapshot) at a

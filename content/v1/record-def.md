@@ -1,7 +1,7 @@
 ---
-id: record-def
+id: v1-record-def
 title: Record
-url: /glossary/record
+url: /v1/glossary/record
 version: v1
 ---
 

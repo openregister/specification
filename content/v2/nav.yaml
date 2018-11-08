@@ -1,0 +1,45 @@
+- id: v2-introduction
+- id: v2-changelog
+- id: v2-data-model
+  items:
+    - id: v2-version
+    - id: v2-link
+    - id: v2-evolve
+    - id: v2-mint
+    - id: v2-redact
+    - id: v2-audit
+- id: v2-glossary
+  items:
+    - id: v2-attribute-def
+    - id: v2-catalogue-def
+    - id: v2-context-def
+    - id: v2-digital-proof-def
+    - id: v2-entry-def
+    - id: v2-hashing-algorithm-def
+    - id: v2-blob-def
+    - id: v2-key-def
+    - id: v2-log-def
+    - id: v2-record-def
+    - id: v2-schema-def
+    - id: v2-snapshot-def
+    - id: v2-trail-def
+- id: v2-rest-api
+  items:
+    - id: v2-record-resource
+    - id: v2-context-resource
+    - id: v2-entry-resource
+    - id: v2-blob-resource
+    - id: v2-proof-resource
+- id: v2-datatypes
+  items:
+    - id: v2-boolean-datatype
+    - id: v2-curie-datatype
+    - id: v2-datetime-datatype
+    - id: v2-name-datatype
+    - id: v2-hash-datatype
+    - id: v2-integer-datatype
+    - id: v2-period-datatype
+    - id: v2-string-datatype
+    - id: v2-text-datatype
+    - id: v2-timestamp-datatype
+    - id: v2-url-datatype

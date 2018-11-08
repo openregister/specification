@@ -1,7 +1,7 @@
 ---
-id: boolean-datatype
+id: v2-boolean-datatype
 title: Boolean
-url: /datatypes/boolean
+url: /v2/datatypes/boolean
 version: v2
 ---
 

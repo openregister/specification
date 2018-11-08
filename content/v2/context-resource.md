@@ -1,7 +1,7 @@
 ---
-id: context-resource
+id: v2-context-resource
 title: Context
-url: /rest-api/context
+url: /v2/rest-api/context
 version: v2
 ---
 

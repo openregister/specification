@@ -1,7 +1,7 @@
 ---
-id: changelog
+id: v2-changelog
 title: Changelog
-url: /changelog
+url: /v2/changelog
 version: v2
 ---
 

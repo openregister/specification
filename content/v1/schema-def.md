@@ -1,7 +1,7 @@
 ---
-id: schema-def
+id: v1-schema-def
 title: Schema
-url: /glossary/schema
+url: /v1/glossary/schema
 version: v1
 ---
 

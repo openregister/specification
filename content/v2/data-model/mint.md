@@ -1,7 +1,7 @@
 ---
-id: mint
+id: v2-mint
 title: Mint
-url: /data-model/mint
+url: /v2/data-model/mint
 version: v2
 ---
 

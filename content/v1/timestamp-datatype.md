@@ -1,7 +1,7 @@
 ---
-id: timestamp-datatype
+id: v1-timestamp-datatype
 title: Timestamp
-url: /datatypes/timestamp
+url: /v1/datatypes/timestamp
 version: v1
 ---
 

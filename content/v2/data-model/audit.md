@@ -1,7 +1,7 @@
 ---
-id: audit
+id: v2-audit
 title: Audit
-url: /data-model/audit
+url: /v2/data-model/audit
 status: exp
 version: v2
 ---

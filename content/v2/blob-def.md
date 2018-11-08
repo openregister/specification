@@ -1,7 +1,7 @@
 ---
-id: blob-def
+id: v2-blob-def
 title: Blob
-url: /glossary/blob
+url: /v2/glossary/blob
 version: v2
 ---
 

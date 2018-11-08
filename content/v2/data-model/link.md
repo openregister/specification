@@ -1,7 +1,7 @@
 ---
-id: link
+id: v2-link
 title: Link
-url: /data-model/link
+url: /v2/data-model/link
 version: v2
 ---
 

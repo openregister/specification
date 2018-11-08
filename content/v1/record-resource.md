@@ -1,7 +1,7 @@
 ---
-id: record-resource
+id: v1-record-resource
 title: Records
-url: /rest-api/records
+url: /v1/rest-api/records
 version: v1
 ---
 

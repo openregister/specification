@@ -1,5 +1,8 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
+const yaml = require('js-yaml');
+const fs = require('fs');
+
 
 exports.onCreateNode = ({node, getNode, actions}) => {
   const {createNodeField} = actions;
@@ -41,20 +44,23 @@ exports.createPages = ({graphql, actions}) => {
 
   return new Promise((resolve, reject) => {
     specSections.then(result => {
+      const toc = {
+        v1: yaml.safeLoad(fs.readFileSync(path.resolve('./content/v1/nav.yaml'), 'utf8')),
+        v2: yaml.safeLoad(fs.readFileSync(path.resolve('./content/v2/nav.yaml'), 'utf8')),
+      };
+
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        const { version } = node.frontmatter;
-        const templates = {
-          v1: './src/templates/spec-v1-section.js',
-          v2: './src/templates/spec-section.js',
-        };
-        
+        const { version, url, id } = node.frontmatter;
+
         createPage({
-          path: `/${version}${node.frontmatter.url}`,
-          component: path.resolve(templates[version]),
+          path: url,
+          component: path.resolve('./src/templates/spec-section.js'),
           context: {
             // Data passed to context is available
             // in page queries as GraphQL variables.
-            id: node.frontmatter.id,
+            toc: toc[version],
+            version: version,
+            id: id,
           },
         });
       });

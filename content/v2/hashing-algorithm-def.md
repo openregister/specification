@@ -1,8 +1,8 @@
 ---
-id: hashing-algorithm-def
+id: v2-hashing-algorithm-def
 title: Hashing algorithm
-url: /glossary/hashing-algorithm
-version: "v2"
+url: /v2/glossary/hashing-algorithm
+version: v2
 ---
 
 The **hashing algorithm** is the function used across the register to create a

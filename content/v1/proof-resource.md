@@ -1,7 +1,7 @@
 ---
-id: proof-resource
+id: v1-proof-resource
 title: Proofs
-url: /rest-api/proofs
+url: /v1/rest-api/proofs
 version: v1
 status: exp
 ---

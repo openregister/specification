@@ -1,7 +1,7 @@
 ---
-id: attribute-def
+id: v1-attribute-def
 title: Attribute
-url: /glossary/attribute
+url: /v1/glossary/attribute
 version: v1
 ---
 

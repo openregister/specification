@@ -1,7 +1,7 @@
 ---
-id: period-datatype
+id: v2-period-datatype
 title: Period
-url: /datatypes/period
+url: /v2/datatypes/period
 version: v2
 ---
 
