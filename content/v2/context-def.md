@@ -10,7 +10,7 @@ The **context** is the metadata snapshot that apply to a given log size.
 ```elm
 type Context =
   { id : Name
-  , copyright : String
+  , copyright : Maybe String
   , custodian : Maybe String
   , description : Maybe String
   , hashingAlgorithm : HashingAlgorithm
@@ -33,7 +33,7 @@ The register identifier.
 
 ### Copyright
 
-* Type: [String](/v2/datatypes/string)
+* Type: Optional [String](/v2/datatypes/string)
 
 The register copyright. E.g. `© Crown copyright`. A register SHOULD have
 an explicit copyright.
