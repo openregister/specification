@@ -160,11 +160,6 @@ GET /proof/entries/{entry-number}/{log-size}/{proof-identifier}
 Gets the entry proof for the given entry, log size and proof type.
 
 ***
-ISSUE: The `entry-number` in the response MUST be an integer. Ref impl fails to
-do so.
-***
-
-***
 **EXAMPLE:**
 
 The following example shows the request for the representation of the entry
