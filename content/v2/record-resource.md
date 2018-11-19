@@ -84,13 +84,18 @@ GET /records
 |Name|Type|Description|
 |-|-|-|
 |`name`| [Name](/v2/datatypes/name) |An attribute name part of the data. Required if `value` is present.|
-|`value`| [String](/v2/datatypes/string) |The string representation of a valid value for the `name`.|
+|`value`| [String](/v2/datatypes/string) |The string representation of a valid value for the `name`. Required if `name` is present.|
 ***
 
 Gets the list of records. [This resource MAY be paginated](/v2/rest-api#collection-pagination).
 
 The order SHOULD be by consistent regardless of new elements being added to
 the dataset.
+
+***
+NOTE: It is not mandatory to implement the query string parameters for this
+endpoint.
+***
 
 ***
 **EXAMPLE:**
