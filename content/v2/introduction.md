@@ -53,10 +53,14 @@ addressed a topic.
 This specification aims to evolve with changes that are backwards compatible.
 Once that is not possible, a new version will be introduced.
 
-***
-ISSUE: Define versioning strategy
-***
-
+A “breaking change” is a change in how Registers are defined such that is
+unavoidable to change the interface expectations. There are many factors that
+can make a change an unavoidable breaking change, the key breaking change for
+this version 2 to exist is the GDPR right to be forgotten. It requires the
+ability to make some data points inaccessible but given that a Register is
+immutable and relies on blob checksums to guarantee referential integrity with
+entries it required to change the hashing algorithm for blobs such that it
+would allow for an eventual redaction on a piece of data.
 
 ## Reference implementation
 
