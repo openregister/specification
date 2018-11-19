@@ -29,7 +29,7 @@ function and length used.
 ## List of codes
 
 The list of [Multihash](@multihash) codes can be found here:
-https://github.com/multiformats/multihash/blob/master/hashtable.csv.
+https://github.com/multiformats/multicodec/blob/master/table.csv.
 
 For convenience, the following table highlights some that are relevant for
 Registers.
