@@ -26,7 +26,7 @@ type Blob =
 
 For example, given a schema defining attributes `name`, `x` and `y` with
 datatypes `String`, `Integer` and `Integer` respectively. Also, `y` has
-cardinality `n`.  We can define an blob as follows:
+cardinality `n`.  We can define a blob as follows:
 
 ```elm
 Blob
