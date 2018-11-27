@@ -24,6 +24,7 @@ resource](/v2/rest-api/context).
 
 | Identifier | Name | Description |
 |-|-|-|
+| `boolean` | [Boolean](/v2/datatypes/boolean) | Either true or false |
 | `curie` | [CURIE](/v2/datatypes/curie) | A Link between registers |
 | `datetime` | [Datetime](/v2/datatypes/datetime) | A date with flexible accuracy |
 | `name` | [Name](/v2/datatypes/name) | A restricted string suitable for identifiers or attribute names |
