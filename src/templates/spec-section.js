@@ -186,7 +186,7 @@ const SpecSection = ({data, pageContext}) => {
 
   return (
     <Layout>
-      <Helmet>
+      <Helmet htmlAttributes={ {'lang': 'en'} }>
         <meta charSet="utf-8" />
         <title>{`${section.frontmatter.title} - ${title}`}</title>
         <link rel="canonical" href={section.frontmatter.url} />

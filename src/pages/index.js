@@ -26,7 +26,7 @@ const Main = ({data, pageContext}) => {
 
   return (
     <Layout>
-      <Helmet>
+      <Helmet htmlAttributes={ {'lang': 'en'} }>
         <meta charSet="utf-8" />
         <title>{title}</title>
         <link rel="canonical" href="/" />
