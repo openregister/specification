@@ -11,14 +11,13 @@ a static site out of different data sources.
 * `data/` directory: Metadata and complementary data.
 * `content/` directory: The markdown source.
 
+Note that `docs/` is kept for backward-compatibility reasons.
 
 ## Development
 
-TODO: Dockerise to abstract dependencies.
+Dependencies:
 
-### Dependencies
-
-* nodejs 10
+* nodejs +10
 * yarn
 
 ### Running in development
