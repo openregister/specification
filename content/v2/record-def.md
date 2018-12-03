@@ -5,47 +5,28 @@ url: /v2/glossary/record
 version: v2
 ---
 
-A **record** is an [entry](/v2/glossary/entry), element of the latest
-[snapshot](/v2/glossary#snapshot).
+A **record** is the result of combining the key for an [entry](/v2/glossary/entry)
+with the data from the blob.
 
 ```elm
-record : ID -> Snapshot -> Maybe Entry
+type Record =
+  { key : ID
+  , data : Dict Name Value
+  }
 ```
-
-![](./data-model/data-model-record-2.svg)
-
-
-A record MAY also be computed from the [log](/v2/glossary#log) by a similar
-method of computing a snapshot.
 
 ```elm
-record : ID -> Log -> Maybe Entry
+combine : BlobStore -> Entry -> Result Record UnknownBlob
 ```
 
-The algorithm:
+***
+**EXAMPLE:**
 
-1. Let _key_ be the identifier for the record to find.
-1. Let _log_ be the full log to parse.
-1. Let _result_ be null.
-1. Foreach _entry_ in _log_:
-    1. If the _entry_ key equals _key_, set __entry__ to  _result_.
-
-       Otherwise, do nothing.
-
-After all entries in the log have been inspected, the latest one stored in
-_result_ is the record. If no entries were found for _key_, the record doesn't
-exist in the Register.
-
-![](./data-model/data-model-record-1.svg)
-
-
-Similarly, you can filter the [log](/v2/glossary/log) to get the
-[trail](/v2/glossary/trail) of changes for an element and from the trail, get the
-record:
+For example, the list of records part of the REST API can be computed by first
+computing the latest [snapshot](/v2/glossary/snapshot) and then computing the
+record for each entry:
 
 ```elm
-sieve : ID -> Log -> Trail
-record : Trail -> Entry
+map (combine store) (collect log)
 ```
-
-![](./data-model/data-model-trail.svg)
+***

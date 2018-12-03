@@ -30,10 +30,10 @@ RFCs for version 2:
 |0019|[Boolean datatype](https://github.com/openregister/registers-rfcs/blob/master/content/boolean-datatype/index.md)|No|
 |0020|[Blob normalisation](https://github.com/openregister/registers-rfcs/blob/master/content/blob-normalisation/index.md)|No|
 |0021|[Archive resource](https://github.com/openregister/registers-rfcs/blob/master/content/archive-resource/index.md)|Yes|
-|0022|Facets endpoint|Yes|
+|0022|[Facets endpoint](https://github.com/openregister/registers-rfcs/blob/master/content/facets-endpoint/index.md)|Yes|
 |0023|[Proof resource](https://github.com/openregister/registers-rfcs/blob/master/content/proof-resource/index.md)|Yes|
 |0024|[Indexes removal](https://github.com/openregister/registers-rfcs/blob/master/content/indexes-removal/index.md)|Yes|
-|0025|Snapshot resource|Yes|
+|0025|[Snapshot resource](https://github.com/openregister/registers-rfcs/blob/master/content/snapshot-resource/index.md)|Yes|
 
 Note that “breaking change” means that to fully use this version an action is
 required by the user consuming registers. The version strategy offers ways to

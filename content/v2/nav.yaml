@@ -29,6 +29,7 @@
     - id: v2-context-resource
     - id: v2-entry-resource
     - id: v2-blob-resource
+    - id: v2-snapshot-resource
     - id: v2-proof-resource
 - id: v2-datatypes
   items:

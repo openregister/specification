@@ -10,25 +10,20 @@ NOTE: See the [Record](/v2/glossary/record) definition to understand how this
 resource fits into the [data model](/v2/data-model).
 ***
 
-***
-NOTE: The reference implementation inlines the [blob](/v2/glossary/blob) in the
-[Record resource](/v2/rest-api/records) for convenience.
-***
-
 ## Get a record
 
 ***
 ### Endpoint
 
 ```
-GET /records/{key}
+GET /records/{id}
 ```
 
 ### Parameters
 
 |Name|Type|Description|
 |-|-|-|
-|`key`| [ID](/v2/glossary/key#id-type)|The record identifier.|
+|`id`| [ID](/v2/glossary/key#id-type)|The record identifier.|
 ***
 
 Gets a record by key.
@@ -52,13 +47,8 @@ Content-Type: application/json
 Link: </records/E09000019/entries>; rel="version-history"
 
 {
-  "entry-number": 72,
-  "entry-timestamp": "2015-08-20T08:15:30Z",
-  "key": "E09000019",
-  "blob": {
-    "local-authority": "E09000019",
-    "name": "Islington"
-  }
+  "_id": "E09000019",
+  "name": "Islington"
 }
 ```
 ***
@@ -89,9 +79,6 @@ GET /records
 
 Gets the list of records. [This resource MAY be paginated](/v2/rest-api#collection-pagination).
 
-The order SHOULD be by consistent regardless of new elements being added to
-the dataset.
-
 ***
 NOTE: It is not mandatory to implement the query string parameters for this
 endpoint.
@@ -114,22 +101,12 @@ Content-Type: application/json
 
 [
   {
-    "entry-number": 72,
-    "entry-timestamp": "2015-08-20T08:15:30Z",
-    "key": "E09000019",
-    "blob": {
-      "local-authority": "E09000019",
-      "name": "Islington"
-    }
+    "_id": "E09000019",
+    "name": "Islington"
   },
   {
-    "entry-number": 76,
-    "entry-timestamp": "2015-08-20T08:15:30Z",
-    "key": "E09000016",
-    "blob": {
-      "local-authority": "E09000016",
-      "name": "Havering"
-    }
+    "_id": "E09000016",
+    "name": "Havering"
   }
 ]
 ```
@@ -152,16 +129,11 @@ Content-Type: application/json
 
 [
   {
-    "entry-number": 355,
-    "entry-timestamp": "2016-10-31T12:59:03Z",
-    "key": "LND",
-    "blob": {
-      "local-authority-type": "CC",
-      "official-name": "City of London Corporation",
-      "local-authority-eng": "LND",
-      "name": "City of London",
-      "start-date": "1905-06-28"
-    }
+    "_id": "LND",
+    "type": "CC",
+    "official-name": "City of London Corporation",
+    "name": "City of London",
+    "start-date": "1905-06-28"
   }
 ]
 ```
