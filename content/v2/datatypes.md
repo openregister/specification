@@ -33,6 +33,7 @@ resource](/v2/rest-api/context).
 | `period` | [Period](/v2/datatypes/period) | A period of time |
 | `string` | [String](/v2/datatypes/string) | A UTF-8 string |
 | `text` | [Text](/v2/datatypes/text) | A Markdown text |
+| `timestamp` | [Timestamp](/v2/datatypes/timestamp) | A point in time in UTC. |
 | `url` | [URL](/v2/datatypes/url) | A URL |
 
 

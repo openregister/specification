@@ -30,6 +30,7 @@ The table below lists the identifiers for each available primitive datatype.
 | `period` | [Period](/v1/datatypes/period) | A period of time |
 | `string` | [String](/v1/datatypes/string) | A UTF-8 string |
 | `text` | [Text](/v1/datatypes/text) | A Markdown text |
+| `timestamp` | [Timestamp](/v2/datatypes/timestamp) | A point in time in UTC. |
 | `url` | [URL](/v1/datatypes/url) | A URL |
 
 
