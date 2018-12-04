@@ -21,6 +21,3 @@ The latest version is the [list of records](/v2/glossary/record).
 
 Data can be sliced in a different way to collect all versions for a particular
 element, the [trail](/v2/glossary/trail).
-
-
-![A picture of transforming a log into trails](data-model-trails.svg)

@@ -34,28 +34,6 @@ After all entries in the log have been inspected, the latest one stored in
 _result_ is the record. If no entries were found for _key_, the trail doesn't
 exist in the Register.
 
-Similar to the [snapshot](/v2/glossary/snapshot), there is a function to get the
-[record](/v2/glossary/record) from the **trail**:
-
-```elm
-record : Trail -> Entry
-```
-
-The algorithm:
-
-1. Let _trail_ be the full list of entries for a key.
-1. Let _result_ be null.
-1. Foreach _entry_ in the _log_:
-    1. If the _entry_ id is bigger than the one stored in _result_, set
-       _entry_ in _result_.
-
-       Otherwise, do nothing.
-
-After all entries in the log have been inspected, the latest one stored in
-_result_ is the record.
-
-![](./data-model/data-model-trail.svg)
-
 ***
 **EXAMPLE:**
 
@@ -106,15 +84,5 @@ sieve (ID "A") log == Just Trail
                             ...
                             }
                          ]
-```
-
-And the record:
-
-```elm
-record (ID "A") log == Just Entry
-                          { number : 4
-                          , key: ID "A"
-                          ...
-                          }
 ```
 ***
