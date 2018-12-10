@@ -34,6 +34,7 @@ RFCs for version 2:
 |0023|[Proof resource](https://github.com/openregister/registers-rfcs/blob/master/content/proof-resource/index.md)|Yes|
 |0024|[Indexes removal](https://github.com/openregister/registers-rfcs/blob/master/content/indexes-removal/index.md)|Yes|
 |0025|[Snapshot resource](https://github.com/openregister/registers-rfcs/blob/master/content/snapshot-resource/index.md)|Yes|
+|0027|[Blob collection resource](https://github.com/openregister/registers-rfcs/blob/master/content/blob-collection-resource/index.md)|Yes|
 
 Note that “breaking change” means that to fully use this version an action is
 required by the user consuming registers. The version strategy offers ways to

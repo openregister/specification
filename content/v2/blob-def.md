@@ -5,7 +5,7 @@ url: /v2/glossary/blob
 version: v2
 ---
 
-An **blob** is an unordered set of attribute-value pairs (associative array)
+A **blob** is an unordered set of attribute-value pairs (associative array)
 constrained by the [schema](/v2/glossary/schema) and identified by the [hash
 calculated from its contents](#hash).
 
