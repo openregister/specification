@@ -10,9 +10,9 @@ version: v2
 compatibility and forwards compatibility.
 -->
 
-## Backwards compitability
+## Backwards compatibility
 
-Backwards compitability requires that once a [data
+Backwards compatibility requires that once a [data
 attribute](/v2/glossary/attribute) is introduced its semantics don't change.
 
 
