@@ -30,7 +30,7 @@
     "gatsby-source-filesystem": "^2.0.28",
     "gatsby-transformer-json": "^2.1.11",
     "gatsby-transformer-remark": "^2.3.8",
-    "gatsby-transformer-toml": "2.1.7",
+    "gatsby-transformer-toml": "^2.1.9",
     "gatsby-transformer-yaml": "^2.1.11",
     "github-slugger": "^1.2.1",
     "js-yaml": "^3.13.0",
