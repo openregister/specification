@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
-import {css} from 'react-emotion';
+import { css } from 'emotion';
 import Layout from '../components/layout';
 import ToC from '../components/toc';
 import {Helmet} from 'react-helmet';
