@@ -9,6 +9,6 @@
   },
   "main": "index.js",
   "peerDependencies": {
-    "gatsby": "next"
+    "gatsby": "^2.0.88"
   }
 }
