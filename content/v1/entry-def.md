@@ -71,3 +71,19 @@ The identity of an entry computed from its content. It is used for
 
 The function takes an entry and a hashing algorithm and returns a [Hash
 datatype](/v1/datatypes/hash).
+
+```elm
+hash : Entry -> HashingAlgorithm -> Hash
+```
+
+To compute the entry hash you need to [represent the entry as
+json](/v1/rest-api/entries) and remove all non-significant spaces:
+
+```json
+{"index-entry-number":"72","entry-number":"72","entry-timestamp":"2016-04-05T13:23:05Z","key": "GH","item-hash":["sha-256:dc1d12943ea264de937468b254286e5ebd8acd316e21bf667076ebdb8c111bd1"]}
+```
+
+And then hash it with the register `HashingAlgorithm`.
+
+Notice that the entry representation is a single JSON object but the API
+always returns an array.

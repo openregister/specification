@@ -55,8 +55,8 @@ Content-Type: application/json
 
 [
   {
-    "index-entry-number": 72,
-    "entry-number": 72,
+    "index-entry-number": "72",
+    "entry-number": "72",
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "GH",
     "item-hash": [
@@ -106,8 +106,8 @@ Link: </entries?start=101>; rel="next"
 
 [
   {
-    "index-entry-number": 1,
-    "entry-number": 1,
+    "index-entry-number": "1",
+    "entry-number": "1",
     "entry-timestamp": "2015-08-15T08:15:30Z",
     "key": "402019",
     "item-hash": [
@@ -115,8 +115,8 @@ Link: </entries?start=101>; rel="next"
     ]
   },
   {
-    "index-entry-number": 2,
-    "entry-number": 2,
+    "index-entry-number": "2",
+    "entry-number": "2",
     "entry-timestamp": "2015-08-20T08:15:30Z",
     "key": "402020",
     "item-hash": [
@@ -124,8 +124,8 @@ Link: </entries?start=101>; rel="next"
     ]
   },
   {
-    "index-entry-number": 3,
-    "entry-number": 3,
+    "index-entry-number": "3",
+    "entry-number": "3",
     "entry-timestamp": "2015-08-21T00:00:00Z",
     "key": "402020",
     "item-hash": [
@@ -159,8 +159,8 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
 
 [
   {
-    "index-entry-number": 101,
-    "entry-number": 101,
+    "index-entry-number": "101",
+    "entry-number": "101",
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "KG",
     "item-hash": [
@@ -168,8 +168,8 @@ Link: </entries?start=201>; rel="next", </entries?start=1>; rel="previous"
     ]
   },
   {
-    "index-entry-number": 102,
-    "entry-number": 102,
+    "index-entry-number": "102",
+    "entry-number": "102",
     "entry-timestamp": "2016-04-05T13:23:05Z",
     "key": "LA",
     "item-hash": [
