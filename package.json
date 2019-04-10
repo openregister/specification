@@ -3,6 +3,11 @@
   "description": "Registers Specification builder",
   "license": "MIT",
   "scripts": {
+    "install-all": "yarn install && yarn install-bib && yarn install-hiblocks && yarn install-restdoc && yarn install-svg",
+    "install-bib": "yarn --cwd 'gatsby-remark-bib' install",
+    "install-hiblocks": "yarn --cwd 'gatsby-remark-hiblocks' install",
+    "install-restdoc": "yarn --cwd 'gatsby-remark-restdoc' install",
+    "install-svg": "yarn --cwd 'gatsby-remark-svg' install",
     "develop": "VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby develop",
     "build": "yarn clean && VERSION=$(git rev-parse --short HEAD) PUBDATE=$(git show -s --format=%cI) gatsby build",
     "clean": "rm -rf .cache public",

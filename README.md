@@ -20,6 +20,10 @@ Dependencies:
 * nodejs +10
 * yarn
 
+```
+yarn install-all
+```
+
 ### Running in development
 
 ```
