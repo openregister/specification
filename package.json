@@ -40,7 +40,7 @@
     "github-slugger": "^1.2.1",
     "js-yaml": "^3.13.0",
     "netlify-cli": "^2.10.0",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.21.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
